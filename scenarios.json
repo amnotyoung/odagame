@@ -1,0 +1,598 @@
+{
+  "start": {
+    "title": "새로운 시작",
+    "description": "당신은 오늘 KOICA 아프리카 지부 소장으로 첫 출근을 했습니다. 사무실에는 전임 소장이 남긴 업무 인수인계 자료와 함께 긴급하게 결정해야 할 여러 현안들이 쌓여 있습니다.\n\n부소장이 들어와 말합니다: \"소장님, 환영합니다. 바쁘시겠지만 곧바로 중요한 결정을 내리셔야 합니다. 올해 중점 사업을 선택해야 하는데, 예산과 인력이 한정되어 있어 하나에 집중해야 합니다.\"",
+    "choices": [
+      {
+        "text": "교육 사업 - 현지 학교 건립 및 교사 연수 프로그램",
+        "result": {
+          "message": "교육은 미래에 대한 투자입니다. 현지 정부도 긍정적으로 반응했습니다.",
+          "stats": {
+            "reputation": 5,
+            "project_success": 10
+          },
+          "advance_time": true,
+          "next": "education_project_start"
+        }
+      },
+      {
+        "text": "보건 사업 - 지역 보건소 개선 및 의료진 파견",
+        "result": {
+          "message": "보건 사업은 주민들의 즉각적인 삶의 질 개선에 도움이 됩니다. 주민들이 환영합니다.",
+          "stats": {
+            "reputation": 10,
+            "staff_morale": 5
+          },
+          "advance_time": true,
+          "next": "health_project_start"
+        }
+      },
+      {
+        "text": "농업 개발 - 스마트팜 기술 전수 및 농업 협동조합 지원",
+        "result": {
+          "message": "농업 개발은 지속 가능한 경제 발전의 기초입니다. 농민들이 기대에 부풀어 있습니다.",
+          "stats": {
+            "project_success": 5,
+            "budget": 10
+          },
+          "advance_time": true,
+          "next": "agriculture_project_start"
+        }
+      }
+    ]
+  },
+
+  "education_project_start": {
+    "title": "교육 프로젝트 착수",
+    "description": "교육 프로젝트가 시작되었습니다. 3개 마을에 학교를 건립하고 교사 50명을 연수시킬 계획입니다. 하지만 첫 달부터 문제가 발생했습니다.\n\n현지 부족장들이 사무소를 방문했습니다: \"우리 마을에도 학교를 지어야 합니다. 세 마을만 선정한 것은 불공평합니다.\" 5개 마을이 추가 지원을 요청하고 있습니다.",
+    "choices": [
+      {
+        "text": "원래 계획대로 3개 마을만 진행 (품질 우선)",
+        "result": {
+          "message": "일부 부족장들이 불만을 표출했지만, 프로젝트의 품질은 보장됩니다.",
+          "stats": {
+            "reputation": -5,
+            "project_success": 10
+          },
+          "advance_time": true,
+          "next": "budget_crisis_1"
+        }
+      },
+      {
+        "text": "8개 마을 모두 포함 (예산 분산)",
+        "result": {
+          "message": "모든 부족장들이 만족했지만 예산이 부족해져 각 학교의 규모를 축소해야 합니다.",
+          "stats": {
+            "reputation": 10,
+            "budget": -20,
+            "project_success": -5
+          },
+          "advance_time": true,
+          "next": "budget_crisis_1"
+        }
+      },
+      {
+        "text": "본부에 추가 예산 요청",
+        "result": {
+          "message": "본부는 추가 예산을 거절했습니다. '현지에서 자체적으로 해결하라'는 답변이 왔습니다. 시간만 낭비했습니다.",
+          "stats": {
+            "staff_morale": -5,
+            "reputation": -3
+          },
+          "advance_time": true,
+          "next": "budget_crisis_1"
+        }
+      }
+    ]
+  },
+
+  "health_project_start": {
+    "title": "보건 프로젝트 착수",
+    "description": "보건소 개선 사업이 시작되었습니다. 한국에서 의료진 5명이 파견되어 현지 의료진을 교육하고 있습니다. 그런데 2개월째, 파견 의료진 중 한 명이 사무실로 찾아왔습니다.\n\n의사 김 선생: \"소장님, 현지 의료 관행이 WHO 가이드라인과 많이 다릅니다. 우리가 가르치는 방식대로 하라고 하면 현지 의료진들이 반발합니다. 어떻게 해야 할까요?\"",
+    "choices": [
+      {
+        "text": "국제 표준을 고수 - WHO 가이드라인 엄격 적용",
+        "result": {
+          "message": "현지 의료진과 마찰이 생겼지만, 의료 품질은 향상되었습니다. 하지만 일부 현지 직원들이 반발합니다.",
+          "stats": {
+            "project_success": 10,
+            "reputation": -5,
+            "staff_morale": -5
+          },
+          "advance_time": true,
+          "next": "cultural_conflict"
+        }
+      },
+      {
+        "text": "현지 상황을 존중 - 점진적 변화 추구",
+        "result": {
+          "message": "현지 의료진들과의 관계는 좋아졌지만, 파견 의사들이 '이러면 효과가 없다'며 불만을 표합니다.",
+          "stats": {
+            "reputation": 10,
+            "staff_morale": -10,
+            "project_success": -5
+          },
+          "advance_time": true,
+          "next": "cultural_conflict"
+        }
+      },
+      {
+        "text": "절충안 모색 - 핵심은 국제 표준, 나머지는 유연하게",
+        "result": {
+          "message": "양측 모두 만족스럽지는 않지만 받아들였습니다. 타협의 기술이 필요했습니다.",
+          "stats": {
+            "reputation": 5,
+            "project_success": 5,
+            "staff_morale": -3
+          },
+          "advance_time": true,
+          "next": "cultural_conflict"
+        }
+      }
+    ]
+  },
+
+  "agriculture_project_start": {
+    "title": "농업 개발 프로젝트 착수",
+    "description": "스마트팜 기술 전수 프로젝트가 시작되었습니다. 시범 농장을 만들고 현지 농민 100명에게 기술을 교육하고 있습니다. 그런데 예상치 못한 수확 성공으로 인해 새로운 문제가 발생했습니다.\n\n농업 담당자: \"소장님, 큰일났습니다. 스마트팜 수확량이 너무 좋아서 기존 농산물 중개상들이 우리 농민들을 배척하고 있습니다. 시장 진입을 방해하고 있어요.\"",
+    "choices": [
+      {
+        "text": "정부에 중재 요청",
+        "result": {
+          "message": "정부가 개입했지만 시간이 오래 걸렸습니다. 일부 농산물이 상했고 농민들이 손해를 봤습니다.",
+          "stats": {
+            "reputation": 5,
+            "project_success": -10,
+            "budget": -10
+          },
+          "advance_time": true,
+          "next": "corruption_issue"
+        }
+      },
+      {
+        "text": "직접 유통망 구축 - 수출 시장 개척",
+        "result": {
+          "message": "새로운 유통망을 만들었지만 초기 비용이 많이 들었습니다. 하지만 장기적으로는 더 나은 선택입니다.",
+          "stats": {
+            "budget": -25,
+            "project_success": 15,
+            "reputation": 10
+          },
+          "advance_time": true,
+          "next": "corruption_issue"
+        }
+      },
+      {
+        "text": "중개상들과 협상 - 이익 공유 방안 제시",
+        "result": {
+          "message": "중개상들에게 일부 마진을 주는 조건으로 합의했습니다. 농민 수익은 줄었지만 갈등은 해결되었습니다.",
+          "stats": {
+            "reputation": 10,
+            "project_success": 5
+          },
+          "advance_time": true,
+          "next": "corruption_issue"
+        }
+      }
+    ]
+  },
+
+  "budget_crisis_1": {
+    "title": "예산 검토 회의",
+    "description": "분기 예산 검토 회의입니다. 회계 담당자가 보고합니다: \"현재 진행 속도로는 예산이 6개월 후 부족할 것으로 예상됩니다. 지출을 줄이거나 수입을 늘려야 합니다.\"\n\n부소장이 제안합니다: \"현지 기업의 CSR 예산을 유치하거나, 일부 복지 비용을 줄이는 방법이 있습니다.\"",
+    "choices": [
+      {
+        "text": "현지 기업 협력 추진 - CSR 예산 유치",
+        "result": {
+          "message": "현지 기업과 파트너십을 맺었습니다. 예산은 확보했지만 기업의 요구사항도 들어줘야 합니다.",
+          "stats": {
+            "budget": 30,
+            "reputation": 5,
+            "project_success": -5
+          },
+          "advance_time": true,
+          "next": "staff_problem_1"
+        }
+      },
+      {
+        "text": "직원 복지 예산 10% 삭감",
+        "result": {
+          "message": "예산은 확보했지만 직원들의 불만이 높아졌습니다. 사기가 저하되었습니다.",
+          "stats": {
+            "budget": 15,
+            "staff_morale": -15
+          },
+          "advance_time": true,
+          "next": "staff_problem_1"
+        }
+      },
+      {
+        "text": "프로젝트 규모 축소",
+        "result": {
+          "message": "프로젝트 일부를 축소하기로 했습니다. 현실적인 선택이지만 아쉬움이 남습니다.",
+          "stats": {
+            "project_success": -10,
+            "reputation": -5
+          },
+          "advance_time": true,
+          "next": "staff_problem_1"
+        }
+      }
+    ]
+  },
+
+  "cultural_conflict": {
+    "title": "문화적 갈등",
+    "description": "사무소에서 문화적 갈등이 불거졌습니다. 한국인 직원들과 현지 직원들 간의 업무 방식 차이로 인한 오해가 쌓였습니다.\n\n현지 직원 대표: \"한국 직원들은 우리를 존중하지 않습니다. 항상 빨리빨리만 외칩니다.\"\n한국 직원: \"현지 직원들은 시간 약속을 안 지킵니다. 업무 효율이 너무 낮아요.\"",
+    "choices": [
+      {
+        "text": "문화 이해 워크숍 개최 (예산 사용)",
+        "result": {
+          "message": "전문가를 초청해 문화 이해 교육을 진행했습니다. 비용이 들었지만 팀워크가 개선되었습니다.",
+          "stats": {
+            "budget": -15,
+            "staff_morale": 15,
+            "project_success": 5
+          },
+          "advance_time": true,
+          "next": "emergency_situation"
+        }
+      },
+      {
+        "text": "한국 방식으로 통일 - 효율성 우선",
+        "result": {
+          "message": "한국식 업무 방식을 표준으로 정했습니다. 효율은 올랐지만 현지 직원들의 이탈이 시작되었습니다.",
+          "stats": {
+            "project_success": 10,
+            "staff_morale": -15,
+            "reputation": -10
+          },
+          "advance_time": true,
+          "next": "emergency_situation"
+        }
+      },
+      {
+        "text": "현지 방식 존중 - 적응력 중시",
+        "result": {
+          "message": "현지 방식에 맞춰 업무 프로세스를 조정했습니다. 한국 직원들은 불만이지만 현지 관계는 개선되었습니다.",
+          "stats": {
+            "reputation": 15,
+            "staff_morale": -10,
+            "project_success": -5
+          },
+          "advance_time": true,
+          "next": "emergency_situation"
+        }
+      }
+    ]
+  },
+
+  "corruption_issue": {
+    "title": "부정부패 의혹",
+    "description": "심각한 문제가 발생했습니다. 현지 정부 담당자가 프로젝트 승인의 대가로 금품을 요구하고 있습니다.\n\n현지 코디네이터: \"소장님, 이게 여기서는 관행입니다. 안 주면 프로젝트 허가가 계속 지연될 겁니다. 다른 NGO들도 다 줍니다.\"",
+    "choices": [
+      {
+        "text": "단호히 거절 - 원칙 고수",
+        "result": {
+          "message": "원칙을 지켰습니다. 하지만 프로젝트 진행이 6개월 지연되었고 일부는 취소되었습니다. 본부는 당신의 원칙을 높이 평가했습니다.",
+          "stats": {
+            "reputation": 10,
+            "project_success": -20,
+            "staff_morale": -10
+          },
+          "advance_time": true,
+          "next": "mid_evaluation"
+        }
+      },
+      {
+        "text": "타협 - '컨설팅 비용' 명목으로 지급",
+        "result": {
+          "message": "합법적인 형태로 비용을 지불했습니다. 프로젝트는 진행되지만 마음이 편치 않습니다.",
+          "stats": {
+            "budget": -20,
+            "project_success": 10,
+            "reputation": -5
+          },
+          "advance_time": true,
+          "next": "mid_evaluation"
+        }
+      },
+      {
+        "text": "본부 및 대사관에 공식 문제 제기",
+        "result": {
+          "message": "외교적으로 문제를 제기했습니다. 현지 정부와의 관계가 일시적으로 경색되었지만 장기적으로는 투명성이 개선되었습니다.",
+          "stats": {
+            "reputation": -10,
+            "project_success": -10,
+            "budget": -10
+          },
+          "advance_time": true,
+          "next": "mid_evaluation"
+        }
+      }
+    ]
+  },
+
+  "staff_problem_1": {
+    "title": "직원 이탈 위기",
+    "description": "핵심 현지 직원이 사직서를 제출했습니다. 그는 프로젝트의 성공에 매우 중요한 인물입니다.\n\n직원: \"소장님, 더 좋은 조건의 일자리 제안을 받았습니다. KOICA에서 일하는 것은 보람차지만 가족을 생각하면...\"\n\n다른 직원들도 그의 동향을 주시하고 있습니다.",
+    "choices": [
+      {
+        "text": "급여 인상 제안 (예산 부담)",
+        "result": {
+          "message": "그는 남기로 했습니다. 하지만 다른 직원들도 인상을 요구하기 시작했습니다.",
+          "stats": {
+            "budget": -20,
+            "staff_morale": 10,
+            "project_success": 5
+          },
+          "advance_time": true,
+          "next": "year2_start"
+        }
+      },
+      {
+        "text": "역할과 책임 확대로 설득",
+        "result": {
+          "message": "더 중요한 업무를 맡기고 커리어 발전 기회를 제공했습니다. 그는 고민 끝에 남기로 했습니다.",
+          "stats": {
+            "staff_morale": 5,
+            "project_success": 10
+          },
+          "advance_time": true,
+          "next": "year2_start"
+        }
+      },
+      {
+        "text": "보내주되 좋은 관계 유지",
+        "result": {
+          "message": "그를 축복하며 보냈습니다. 그는 나중에 외부 협력자로서 큰 도움을 주었습니다. 하지만 당분간 공백이 생겼습니다.",
+          "stats": {
+            "reputation": 10,
+            "project_success": -10,
+            "staff_morale": -5
+          },
+          "advance_time": true,
+          "next": "year2_start"
+        }
+      }
+    ]
+  },
+
+  "emergency_situation": {
+    "title": "긴급 상황 - 정치 불안",
+    "description": "현지에 정치적 불안이 발생했습니다. 수도에서 대규모 시위가 일어나고 있으며, 일부 외국인 사무소가 습격을 받았습니다.\n\n대사관: \"한국 국민의 안전을 위해 일시 귀국을 권고합니다.\"\n현지 직원: \"프로젝트를 계속하려면 누군가 남아야 합니다.\"",
+    "choices": [
+      {
+        "text": "전원 일시 철수",
+        "result": {
+          "message": "안전을 최우선으로 했습니다. 하지만 3개월간 프로젝트가 중단되었고 현지 파트너들이 실망했습니다.",
+          "stats": {
+            "reputation": -15,
+            "project_success": -15,
+            "staff_morale": 5
+          },
+          "advance_time": true,
+          "next": "year2_start"
+        }
+      },
+      {
+        "text": "최소 인원만 남기고 철수",
+        "result": {
+          "message": "자원한 직원 2명과 당신만 남았습니다. 위험했지만 프로젝트를 이어갔습니다. 본부와 현지 모두 당신의 결단을 높이 평가했습니다.",
+          "stats": {
+            "reputation": 20,
+            "project_success": 10,
+            "staff_morale": -5,
+            "budget": -10
+          },
+          "advance_time": true,
+          "next": "year2_start"
+        }
+      },
+      {
+        "text": "현지 직원 중심으로 운영",
+        "result": {
+          "message": "한국 직원은 철수하고 현지 직원들에게 운영을 맡겼습니다. 그들은 훌륭히 해냈고 자신감을 얻었습니다.",
+          "stats": {
+            "reputation": 15,
+            "staff_morale": 15,
+            "project_success": 5
+          },
+          "advance_time": true,
+          "next": "year2_start"
+        }
+      }
+    ]
+  },
+
+  "year2_start": {
+    "title": "2년차 시작",
+    "description": "어느덧 1년이 지나 2년차가 시작되었습니다. 그동안의 경험을 바탕으로 새로운 도전을 시작할 시간입니다.\n\n본부에서 평가단이 왔습니다: \"1년차 성과를 검토한 결과, 추가 사업을 하나 더 진행할 수 있는 예산을 배정했습니다. 어떤 사업을 하시겠습니까?\"",
+    "choices": [
+      {
+        "text": "여성 역량 강화 프로그램",
+        "result": {
+          "message": "여성 기업가 양성 프로그램을 시작했습니다. 현지 여성단체들이 큰 환영을 표했습니다.",
+          "stats": {
+            "reputation": 15,
+            "staff_morale": 5
+          },
+          "advance_time": true,
+          "next": "mid_evaluation"
+        }
+      },
+      {
+        "text": "청년 IT 교육 센터",
+        "result": {
+          "message": "코딩과 디지털 기술을 가르치는 센터를 열었습니다. 청년들의 반응이 뜨겁습니다.",
+          "stats": {
+            "project_success": 15,
+            "reputation": 10
+          },
+          "advance_time": true,
+          "next": "mid_evaluation"
+        }
+      },
+      {
+        "text": "기존 사업 확대 강화",
+        "result": {
+          "message": "새로운 것보다 기존 사업을 더 잘하기로 했습니다. 집중과 선택의 전략입니다.",
+          "stats": {
+            "project_success": 20,
+            "budget": 10
+          },
+          "advance_time": true,
+          "next": "mid_evaluation"
+        }
+      }
+    ]
+  },
+
+  "mid_evaluation": {
+    "title": "중간 평가",
+    "description": "2년차 중반, 본부에서 중간 평가를 받았습니다. 평가단장이 피드백을 전달합니다.\n\n\"전반적으로 양호한 성과입니다. 하지만 몇 가지 개선이 필요합니다. 본부는 '가시적 성과'를 원합니다. 언론에 보도될 만한 성공 사례가 필요합니다.\"",
+    "choices": [
+      {
+        "text": "쇼케이스 프로젝트 집중 - 홍보용 대형 프로젝트",
+        "result": {
+          "message": "학교 개교식을 대대적으로 열고 언론을 초청했습니다. 본부는 만족했지만 실질적 효과는 제한적입니다.",
+          "stats": {
+            "reputation": 15,
+            "budget": -20,
+            "project_success": -5
+          },
+          "advance_time": true,
+          "next": "year3_start"
+        }
+      },
+      {
+        "text": "실질적 성과 중심 - 조용하지만 확실한 변화",
+        "result": {
+          "message": "화려하지 않지만 지역 사회에 실질적인 변화를 만들어냈습니다. 현지인들의 삶이 개선되었습니다.",
+          "stats": {
+            "project_success": 20,
+            "reputation": -5
+          },
+          "advance_time": true,
+          "next": "year3_start"
+        }
+      },
+      {
+        "text": "균형 잡힌 접근 - 홍보와 실질 모두",
+        "result": {
+          "message": "실질적 성과를 내면서도 적절히 홍보했습니다. 두 마리 토끼를 잡기는 어렵지만 노력했습니다.",
+          "stats": {
+            "reputation": 10,
+            "project_success": 10,
+            "budget": -10
+          },
+          "advance_time": true,
+          "next": "year3_start"
+        }
+      }
+    ]
+  },
+
+  "year3_start": {
+    "title": "3년차 - 마지막 해",
+    "description": "벌써 마지막 해입니다. 3년의 임기를 마무리하고 후임에게 인계할 준비를 해야 합니다.\n\n부소장: \"소장님, 그동안 수고 많으셨습니다. 마지막 해는 어떻게 보내시겠습니까? 새로운 도전을 하실 수도, 기존 사업을 안정화시킬 수도 있습니다.\"",
+    "choices": [
+      {
+        "text": "레거시 구축 - 지속가능한 시스템 만들기",
+        "result": {
+          "message": "현지 파트너들이 스스로 운영할 수 있는 시스템을 구축했습니다. 당신이 떠나도 사업은 계속될 것입니다.",
+          "stats": {
+            "project_success": 20,
+            "reputation": 15,
+            "staff_morale": 10
+          },
+          "advance_time": true,
+          "next": "final_choice"
+        }
+      },
+      {
+        "text": "마지막 대형 프로젝트 추진",
+        "result": {
+          "message": "야심찬 프로젝트를 시작했습니다. 성공하면 큰 성과지만 위험도 큽니다.",
+          "stats": {
+            "project_success": -10,
+            "budget": -30,
+            "reputation": 10
+          },
+          "advance_time": true,
+          "next": "final_choice"
+        }
+      },
+      {
+        "text": "안정적 마무리 - 문제없이 인계",
+        "result": {
+          "message": "모든 것을 정리하고 깔끔하게 인계 준비를 했습니다. 안전한 선택이지만 특별한 것은 없습니다.",
+          "stats": {
+            "project_success": 5,
+            "staff_morale": 5,
+            "reputation": 5
+          },
+          "advance_time": true,
+          "next": "final_choice"
+        }
+      }
+    ]
+  },
+
+  "final_choice": {
+    "title": "마지막 결단",
+    "description": "임기를 며칠 남기지 않은 시점, 현지 정부가 당신에게 제안을 했습니다.\n\n장관: \"소장님의 노력에 감사드립니다. 우리는 당신 같은 분이 필요합니다. 우리 정부의 국제협력 자문관으로 와주시겠습니까? 높은 급여와 함께 더 큰 영향력을 행사할 수 있습니다.\"\n\n동시에 본부에서도 연락이 왔습니다: \"본부 기획팀장 자리가 비었습니다. 당신의 현장 경험이 필요합니다.\"",
+    "choices": [
+      {
+        "text": "현지 정부 자문관 수락",
+        "result": {
+          "message": "당신은 현지에 남아 더 넓은 범위에서 국제 협력에 기여하기로 했습니다. 새로운 도전이 시작됩니다.",
+          "stats": {
+            "reputation": 20,
+            "project_success": 10
+          },
+          "advance_time": true,
+          "next": "ending_local_advisor"
+        }
+      },
+      {
+        "text": "본부 복귀 - 기획팀장",
+        "result": {
+          "message": "현장 경험을 살려 본부에서 더 나은 정책을 만들기로 했습니다. 당신의 여정은 계속됩니다.",
+          "stats": {
+            "reputation": 10,
+            "project_success": 10
+          },
+          "advance_time": true,
+          "next": "ending_headquarters"
+        }
+      },
+      {
+        "text": "퇴직 - 새로운 삶",
+        "result": {
+          "message": "3년의 경험으로 충분합니다. 이제는 다른 꿈을 좇을 시간입니다.",
+          "stats": {
+            "staff_morale": 10
+          },
+          "advance_time": true,
+          "next": "ending_new_life"
+        }
+      }
+    ]
+  },
+
+  "ending_local_advisor": {
+    "title": "엔딩: 현지 자문관의 길",
+    "description": "당신은 현지 정부의 국제협력 자문관이 되었습니다. KOICA에서의 경험을 바탕으로 더 큰 규모의 국제 협력 프로젝트를 기획하고 있습니다.\n\n5년 후, 당신이 관여한 프로젝트들이 이 나라를 크게 변화시켰습니다. 현지 언론은 당신을 '개발의 파트너'라고 부릅니다.\n\n당신의 선택이 많은 사람들의 삶을 바꾸었습니다."
+  },
+
+  "ending_headquarters": {
+    "title": "엔딩: 본부 기획자의 길",
+    "description": "본부로 돌아온 당신은 현장 경험을 바탕으로 새로운 정책들을 만들어냅니다. 당신의 제안으로 KOICA의 사업 방식이 더 현장 중심적으로 변화했습니다.\n\n3년 후, 당신은 본부 이사로 승진했고, 더 많은 KOICA 직원들이 당신처럼 현장을 이해하는 리더가 되도록 돕고 있습니다.\n\n당신의 유산은 조직 전체에 퍼져나갑니다."
+  },
+
+  "ending_new_life": {
+    "title": "엔딩: 새로운 시작",
+    "description": "KOICA를 떠난 당신은 그동안의 경험을 책으로 엮어 출판했습니다. '현장에서 배운 국제 협력의 진실'이라는 제목의 책은 베스트셀러가 되었습니다.\n\n이제 당신은 대학에서 강의하며 차세대 국제 협력 전문가들을 양성하고 있습니다. 학생들은 당신의 실전 경험에서 나온 이야기에 귀 기울입니다.\n\n당신의 3년은 많은 사람들에게 영감을 주고 있습니다."
+  }
+}
