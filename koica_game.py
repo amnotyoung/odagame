@@ -28,7 +28,7 @@ class GameState:
 
     def __init__(self):
         self.year = 1
-        self.quarter = 1
+        self.period = 1  # 격월 단위 (1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
         self.reputation = 50  # 평판 (0-100)
         self.budget = 100  # 예산 (0-200)
         self.staff_morale = 50  # 직원 만족도 (0-100)
@@ -72,7 +72,7 @@ class GameState:
         # 스탯 변화 기록
         self.stat_history.append({
             'year': self.year,
-            'quarter': self.quarter,
+            'period': self.period,
             'changes': changes,
             'old': old_stats,
             'new': {
@@ -90,7 +90,7 @@ class GameState:
             'choice_text': choice_text,
             'choice_index': choice_index,
             'year': self.year,
-            'quarter': self.quarter,
+            'period': self.period,
             'result': result
         })
 
@@ -116,7 +116,7 @@ class GameState:
         return {
             'current_stats': {
                 'year': self.year,
-                'quarter': self.quarter,
+                'period': self.period,
                 'reputation': self.reputation,
                 'budget': self.budget,
                 'staff_morale': self.staff_morale,
@@ -129,10 +129,10 @@ class GameState:
         }
 
     def advance_time(self):
-        """시간 진행 (분기)"""
-        self.quarter += 1
-        if self.quarter > 4:
-            self.quarter = 1
+        """시간 진행 (격월)"""
+        self.period += 1
+        if self.period > 6:
+            self.period = 1
             self.year += 1
 
     def check_game_over(self):
@@ -185,8 +185,15 @@ class GameState:
 
     def display_status(self):
         """현재 상태 표시"""
+        # 격월 단위를 월 범위로 변환
+        period_months = {
+            1: "1-2월", 2: "3-4월", 3: "5-6월",
+            4: "7-8월", 5: "9-10월", 6: "11-12월"
+        }
+        period_str = period_months.get(self.period, f"{self.period}기")
+
         print("\n" + "="*60)
-        print(f"📅 {self.year}년차 {self.quarter}분기")
+        print(f"📅 {self.year}년차 {period_str}")
         print("-"*60)
         print(f"🌟 평판: {self.reputation}/100 {'■' * (self.reputation//5)}{'□' * (20-self.reputation//5)}")
         print(f"💰 예산: {self.budget}/200 {'■' * (self.budget//10)}{'□' * (20-self.budget//10)}")
@@ -260,7 +267,7 @@ class GeminiIntegration:
 - 소통 및 보고: 정기 본부 보고, 연례 해외사무소장 회의(48개국) 참석
 
 ## 현재 게임 상태
-- 시기: {summary['current_stats']['year']}년차 {summary['current_stats']['quarter']}분기
+- 시기: {summary['current_stats']['year']}년차 {summary['current_stats']['period']}기 (격월 단위: 1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
 - 평판: {summary['current_stats']['reputation']}/100
 - 예산: {summary['current_stats']['budget']}/200
 - 직원 만족도: {summary['current_stats']['staff_morale']}/100
@@ -357,7 +364,7 @@ class GeminiIntegration:
 - 위기관리 총괄: 파견 인력 안전 최종 책임
 
 ## 현재 상황
-- 시기: {summary['current_stats']['year']}년차 {summary['current_stats']['quarter']}분기
+- 시기: {summary['current_stats']['year']}년차 {summary['current_stats']['period']}기 (격월 단위: 1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
 - 평판: {summary['current_stats']['reputation']}/100
 - 예산: {summary['current_stats']['budget']}/200
 - 직원 만족도: {summary['current_stats']['staff_morale']}/100
@@ -542,7 +549,7 @@ class KOICAGame:
         print("   4️⃣  해외봉사단 지원 (단원 안전 관리, 활동 모니터링)")
         print("   5️⃣  협력 네트워크 구축 (정부, UN, 타 공여국, NGO)")
         print("   6️⃣  본부-협력국 간 중간 연결 (소통, 보고, 조율)")
-        print("\n🎯 앞으로 2년(8분기) 동안의 임기 동안,")
+        print("\n🎯 앞으로 2년(격월 12회 선택) 동안의 임기 동안,")
         print("   당신의 결정이 프로젝트의 성공, 팀의 사기,")
         print("   그리고 국제 협력의 미래를 만들어갑니다.")
         print("\n⚠️  15년 이상 경력의 전문가로서, 외교관에 준하는")
