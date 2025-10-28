@@ -1031,7 +1031,15 @@ class KOICAGame:
                 # 폴백: 기본 엔딩 사용
                 self._display_standard_ending()
         else:
-            self._display_standard_ending()
+            # 클래식 모드에서 템플릿 기반 두꺼운 설명 생성 (정상 종료시에만)
+            if self.state.ending in ["legendary_director", "successful_director", "average_director", "struggling_director"] and len(self.state.choice_history) > 3:
+                print(f"🏆 당신만의 이야기\n")
+                thick_description = self._generate_classic_thick_description()
+                print(thick_description)
+                print()
+            else:
+                # 게임 오버(비정상 종료)는 기본 엔딩 사용
+                self._display_standard_ending()
 
         self.state.display_status()
 
@@ -1152,6 +1160,196 @@ class KOICAGame:
             summary.append("• 성향: 균형잡힌 의사결정")
 
         return "\n".join(summary) if summary else "다양한 접근 시도"
+
+    def _generate_classic_thick_description(self) -> str:
+        """클래식 모드용 두꺼운 설명(thick description) 생성 - 템플릿 기반"""
+
+        # 스탯 분석
+        stats = self.state
+
+        # 예산 집행률 평가 점수 계산
+        if 80 <= stats.budget_execution_rate <= 100:
+            budget_score = 100
+        elif stats.budget_execution_rate < 80:
+            budget_score = (stats.budget_execution_rate / 80) * 100
+        else:
+            budget_score = 100
+
+        total_score = (stats.reputation + stats.staff_morale +
+                      stats.project_success + budget_score) / 4
+
+        # 플레이어 스타일 분석
+        style = stats.player_style
+        max_focus = max(style['reputation_focused'], style['budget_focused'],
+                       style['staff_focused'], style['project_focused'])
+
+        # 리더십 스타일 결정
+        leadership_style = []
+        if style['reputation_focused'] == max_focus:
+            leadership_style.append("외교적")
+        if style['budget_focused'] == max_focus:
+            leadership_style.append("실무형")
+        if style['staff_focused'] == max_focus:
+            leadership_style.append("인본주의적")
+        if style['project_focused'] == max_focus:
+            leadership_style.append("성과 중심적")
+
+        if not leadership_style:
+            leadership_style.append("균형잡힌")
+
+        # 위험 성향
+        total_choices = len(stats.choice_history)
+        risk_ratio = style['risk_taking'] / total_choices if total_choices > 0 else 0
+
+        if risk_ratio > 0.3:
+            risk_desc = "혁신가"
+        elif risk_ratio < 0.1:
+            risk_desc = "안정적 전략가"
+        else:
+            risk_desc = "신중한 리더"
+
+        # 성과 수준 판단
+        if total_score >= 80:
+            performance_level = "탁월한"
+        elif total_score >= 65:
+            performance_level = "우수한"
+        elif total_score >= 50:
+            performance_level = "양호한"
+        else:
+            performance_level = "평범한"
+
+        # 엔딩 설명 구성
+        paragraphs = []
+
+        # 첫 문단: 여정의 전반적 평가
+        para1 = f"소장님의 2년은 단순히 시간을 보내는 것이 아닌, 변화를 이끌어내는 여정이었습니다. "
+
+        # 예산 집행률 언급
+        if stats.budget_execution_rate >= 80:
+            budget_context = f"예산 집행률 {stats.budget_execution_rate}%를 달성하며 재정 관리의 모범을 보였고, "
+        elif stats.budget_execution_rate >= 60:
+            budget_context = f"예산 집행률 {stats.budget_execution_rate}%로 재정 운영에 노력하였고, "
+        else:
+            budget_context = f"제한된 예산이라는 현실 속에서도, "
+
+        para1 += budget_context
+
+        # 평판 언급
+        if stats.reputation >= 80:
+            para1 += f"평판 {stats.reputation}점이라는 높은 신뢰를 얻었습니다. "
+        elif stats.reputation >= 50:
+            para1 += f"평판 {stats.reputation}점으로 안정적인 관계를 유지했습니다. "
+        else:
+            para1 += f"여러 도전 속에서도 포기하지 않았습니다. "
+
+        para1 += f"2년간의 노력은 총점 {total_score:.1f}이라는 {performance_level} 결과로 마무리됩니다."
+
+        paragraphs.append(para1)
+
+        # 두 번째 문단: 리더십 스타일과 주요 결정
+        para2 = f"소장님은 {' · '.join(leadership_style)} 리더십을 발휘하며 사무소를 이끌었습니다. "
+
+        # 주요 결정들 언급 (최근 5-8개)
+        recent_choices = stats.choice_history[-8:] if len(stats.choice_history) > 8 else stats.choice_history
+
+        if recent_choices:
+            # 중요한 결정들을 선별 (큰 스탯 변화를 일으킨 것들)
+            significant_choices = []
+            for choice in recent_choices:
+                if 'result' in choice and 'stats' in choice['result']:
+                    stat_changes = choice['result']['stats']
+                    total_change = sum(abs(v) for v in stat_changes.values())
+                    if total_change > 15:  # 큰 변화
+                        significant_choices.append(choice)
+
+            if significant_choices:
+                para2 += f"{risk_desc}로서, "
+
+                # 첫 번째 중요한 결정 언급
+                first_choice = significant_choices[0]
+                choice_text = first_choice.get('choice_text', '중요한 결정')
+                # 선택 텍스트에서 핵심만 추출 (너무 길면 생략)
+                if len(choice_text) > 40:
+                    choice_text = choice_text[:37] + "..."
+                para2 += f"'{choice_text}'와 같은 결정을 내리며 "
+
+                if len(significant_choices) > 1:
+                    para2 += "여러 중요한 순간마다 "
+
+                    # 결정의 성향 분석
+                    positive_outcomes = sum(1 for c in significant_choices
+                                           if 'result' in c and 'stats' in c['result']
+                                           and sum(c['result']['stats'].values()) > 0)
+
+                    if positive_outcomes >= len(significant_choices) * 0.7:
+                        para2 += "효과적인 선택을 이어갔습니다. "
+                    elif positive_outcomes >= len(significant_choices) * 0.4:
+                        para2 += "균형잡힌 판단을 추구했습니다. "
+                    else:
+                        para2 += "어려운 상황 속에서도 최선을 다했습니다. "
+                else:
+                    para2 += "신중하게 사무소를 운영했습니다. "
+            else:
+                para2 += f"{risk_desc}로서 안정적으로 사무소를 운영했습니다. "
+        else:
+            para2 += "새로운 시작을 준비했습니다. "
+
+        paragraphs.append(para2)
+
+        # 세 번째 문단: 구체적 성과
+        para3 = "소장님의 리더십 아래, 해외사무소는 "
+
+        # 프로젝트 성공도
+        if stats.project_success >= 80:
+            para3 += f"{stats.project_success}%라는 높은 프로젝트 성공도로 "
+            para3 += "현장에서 실질적인 변화를 만들어냈습니다. "
+        elif stats.project_success >= 50:
+            para3 += f"{stats.project_success}%의 프로젝트 성공도로 "
+            para3 += "의미있는 성과를 거두었습니다. "
+        else:
+            para3 += "여러 도전에 직면했지만, "
+            para3 += "포기하지 않고 끝까지 노력했습니다. "
+
+        # 직원 만족도
+        if stats.staff_morale >= 70:
+            para3 += f"{stats.staff_morale}%의 직원 만족도는 "
+            para3 += "소장님의 리더십에 대한 팀의 신뢰를 보여줍니다. "
+        elif stats.staff_morale >= 40:
+            para3 += f"{stats.staff_morale}%의 직원 만족도는 "
+            para3 += "어려운 상황 속에서도 팀이 함께했음을 의미합니다. "
+        else:
+            para3 += "직원들과의 관계에서 어려움이 있었지만, "
+            para3 += "함께 임기를 마칠 수 있었습니다. "
+
+        paragraphs.append(para3)
+
+        # 네 번째 문단: 유산과 미래
+        para4 = "이제 소장님의 2년 여정이 막을 내리지만, "
+
+        if total_score >= 70:
+            para4 += "소장님이 남긴 유산은 오랫동안 빛을 발할 것입니다. "
+            para4 += "당신의 헌신과 리더십은 KOICA의 역사 속에 기억될 것입니다. "
+        elif total_score >= 50:
+            para4 += "소장님이 쌓은 경험과 성과는 다음 세대에게 귀중한 자산이 될 것입니다. "
+        else:
+            para4 += "소장님이 겪은 어려움과 도전은 소중한 배움의 기회였습니다. "
+
+        # 마무리 문구
+        if total_score >= 80:
+            para4 += "당신은 KOICA 해외사무소가 나아가야 할 모범적인 방향을 제시했으며, "
+            para4 += "이는 미래의 여러 난관 속에서도 새로운 길을 찾아나갈 귀중한 나침반이 될 것입니다. "
+            para4 += "소장님의 탁월한 업적에 진심으로 감사드립니다."
+        elif total_score >= 60:
+            para4 += "당신의 노력과 헌신이 만들어낸 변화는 "
+            para4 += "수많은 사람들의 삶에 긍정적인 영향을 미쳤습니다. "
+            para4 += "소장님의 헌신에 감사드립니다."
+        else:
+            para4 += "어려운 여정을 끝까지 포기하지 않은 당신의 용기에 경의를 표합니다. "
+            para4 += "이 경험은 앞으로의 여정에 소중한 밑거름이 될 것입니다."
+
+        paragraphs.append(para4)
+
+        return "\n\n".join(paragraphs)
 
     def play(self):
         """게임 플레이 메인 루프 (AI 기능 통합)"""
