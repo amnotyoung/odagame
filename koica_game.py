@@ -155,6 +155,21 @@ class GameState:
             return True
         return False
 
+    def will_cause_game_over(self, stat_changes):
+        """선택이 게임 오버를 초래할지 확인"""
+        temp_reputation = self.reputation
+        temp_budget = self.budget
+        temp_staff_morale = self.staff_morale
+
+        if 'reputation' in stat_changes:
+            temp_reputation += stat_changes['reputation']
+        if 'budget' in stat_changes:
+            temp_budget += stat_changes['budget']
+        if 'staff_morale' in stat_changes:
+            temp_staff_morale += stat_changes['staff_morale']
+
+        return temp_reputation <= 0 or temp_budget <= 0 or temp_staff_morale <= 0
+
     def calculate_final_ending(self):
         """최종 엔딩 계산"""
         total_score = (self.reputation + self.staff_morale + self.project_success + self.budget / 2) / 3.5
@@ -505,7 +520,15 @@ class KOICAGame:
         print("   그리고 국제 협력의 미래를 만들어갑니다.")
         print("\n⚠️  15년 이상 경력의 전문가로서, 외교관에 준하는")
         print("   지위로 수원국 장관급 인사와 협의할 것입니다.")
-        print("\n각 상황에서 신중하게 선택하세요!")
+        print("\n" + "─"*60)
+        print("📋 게임 오버 조건 (반드시 숙지하세요!)")
+        print("─"*60)
+        print("다음 스탯 중 하나라도 0이 되면 게임이 즉시 종료됩니다:")
+        print("  • 평판이 0 이하 → 평판 실추로 본부 소환")
+        print("  • 예산이 0 이하 → 예산 위기로 해임")
+        print("  • 직원 만족도가 0 이하 → 직원 반발로 사임")
+        print("\n💡 위험한 선택을 할 때는 경고가 표시됩니다.")
+        print("   각 상황에서 신중하게 선택하세요!")
         print("="*60 + "\n")
 
         if not self.demo_mode:
@@ -843,6 +866,40 @@ class KOICAGame:
             else:
                 # 일반 선택 처리
                 selected_choice = scenario['choices'][choice_index]
+
+                # 게임 오버를 초래할 수 있는 선택인지 확인
+                if 'stats' in selected_choice['result']:
+                    if self.state.will_cause_game_over(selected_choice['result']['stats']):
+                        # 확인 프롬프트 표시
+                        print("\n" + "="*60)
+                        print("⚠️  경고: 위험한 선택")
+                        print("="*60)
+                        print("이 선택은 즉각적인 게임 종료를 초래할 수 있습니다!")
+
+                        # 예상되는 스탯 변화 표시
+                        changes = selected_choice['result']['stats']
+                        print("\n예상 스탯 변화:")
+                        if 'reputation' in changes and changes['reputation'] < 0:
+                            new_rep = max(0, self.state.reputation + changes['reputation'])
+                            print(f"  평판: {self.state.reputation} → {new_rep}")
+                        if 'budget' in changes and changes['budget'] < 0:
+                            new_budget = max(0, self.state.budget + changes['budget'])
+                            print(f"  예산: {self.state.budget} → {new_budget}")
+                        if 'staff_morale' in changes and changes['staff_morale'] < 0:
+                            new_morale = max(0, self.state.staff_morale + changes['staff_morale'])
+                            print(f"  직원 만족도: {self.state.staff_morale} → {new_morale}")
+
+                        print("\n정말로 이 선택을 진행하시겠습니까?")
+                        print("="*60)
+
+                        if not self.demo_mode:
+                            confirm = input("\n진행하려면 'yes' 입력, 다시 선택하려면 Enter: ").strip().lower()
+                            if confirm != 'yes':
+                                print("\n선택을 취소했습니다. 다시 선택하세요.")
+                                continue
+                        else:
+                            print("\n🤖 [데모 모드] 위험한 선택이지만 계속 진행합니다...")
+                            time.sleep(2)
 
                 # 선택 기록
                 self.state.record_choice(
