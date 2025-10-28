@@ -9,6 +9,9 @@ import json
 import os
 import sys
 import re
+import time
+import random
+import argparse
 from typing import Dict, List, Optional, Tuple
 
 # Gemini API import (optional - graceful degradation if not available)
@@ -452,11 +455,12 @@ class GeminiIntegration:
 class KOICAGame:
     """메인 게임 클래스"""
 
-    def __init__(self, ai_mode: bool = False, api_key: Optional[str] = None):
+    def __init__(self, ai_mode: bool = False, api_key: Optional[str] = None, demo_mode: bool = False):
         self.state = GameState()
         self.scenarios = self.load_scenarios()
         self.ai_mode = ai_mode
         self.gemini = GeminiIntegration(api_key) if ai_mode else None
+        self.demo_mode = demo_mode
 
     def load_scenarios(self):
         """시나리오 데이터 로드"""
@@ -477,6 +481,9 @@ class KOICAGame:
         print("\n" + "="*60)
         print(" "*15 + "KOICA 해외사무소장 시뮬레이터")
         print("="*60)
+        if self.demo_mode:
+            print(" "*20 + "🤖 [데모 모드]")
+            print("="*60)
         print("\n당신은 KOICA 해외사무소장으로 새로 부임했습니다.")
         print("\n🌏 KOICA는 전 세계 48개국에 해외사무소를 운영하며,")
         print("   대한민국 무상원조사업을 현장에서 직접 실행합니다.")
@@ -500,7 +507,12 @@ class KOICAGame:
         print("   지위로 수원국 장관급 인사와 협의할 것입니다.")
         print("\n각 상황에서 신중하게 선택하세요!")
         print("="*60 + "\n")
-        input("Enter를 눌러 시작하세요...")
+
+        if not self.demo_mode:
+            input("Enter를 눌러 시작...")
+        else:
+            print("🤖 [데모 모드] 자동으로 게임을 시작합니다...")
+            time.sleep(2)
 
     def display_scenario(self, scenario_id):
         """시나리오 표시 (AI 생성 지원)"""
@@ -542,6 +554,15 @@ class KOICAGame:
         if self.ai_mode and self.gemini.enabled:
             print(f"{len(choices) + 1}. 💡 직접 행동 입력하기 (자유 입력)")
 
+        # 데모 모드: 자동 선택
+        if self.demo_mode:
+            time.sleep(1.5)  # 읽을 시간 제공
+            # 균형잡힌 선택을 위한 가중치 기반 선택
+            choice_index = self._demo_choose(choices)
+            print(f"\n🤖 [데모 모드] 선택: {choice_index + 1}. {choices[choice_index]['text']}")
+            time.sleep(1)
+            return choice_index
+
         while True:
             try:
                 choice_input = input("\n선택 (번호 입력): ").strip()
@@ -560,6 +581,49 @@ class KOICAGame:
             except KeyboardInterrupt:
                 print("\n\n게임을 종료합니다.")
                 sys.exit(0)
+
+    def _demo_choose(self, choices) -> int:
+        """데모 모드에서 균형잡힌 선택을 위한 로직"""
+        # 각 선택지의 스탯 영향을 평가
+        choice_scores = []
+
+        for i, choice in enumerate(choices):
+            score = 0
+            if 'result' in choice and 'stats' in choice['result']:
+                stats = choice['result']['stats']
+
+                # 낮은 스탯을 올리는 선택에 가중치 부여
+                if 'reputation' in stats:
+                    if self.state.reputation < 40 and stats['reputation'] > 0:
+                        score += 3
+                    elif stats['reputation'] < 0 and self.state.reputation > 60:
+                        score += 1
+
+                if 'budget' in stats:
+                    if self.state.budget < 40 and stats['budget'] > 0:
+                        score += 3
+                    elif stats['budget'] < 0 and self.state.budget > 60:
+                        score += 1
+
+                if 'staff_morale' in stats:
+                    if self.state.staff_morale < 40 and stats['staff_morale'] > 0:
+                        score += 3
+                    elif stats['staff_morale'] < 0 and self.state.staff_morale > 60:
+                        score += 1
+
+                if 'project_success' in stats:
+                    if self.state.project_success < 40 and stats['project_success'] > 0:
+                        score += 3
+                    elif stats['project_success'] < 0 and self.state.project_success > 60:
+                        score += 1
+
+            choice_scores.append(score)
+
+        # 점수가 같으면 랜덤, 아니면 가장 높은 점수 선택
+        max_score = max(choice_scores)
+        best_choices = [i for i, s in enumerate(choice_scores) if s == max_score]
+
+        return random.choice(best_choices)
 
     def handle_free_form_input(self):
         """자유 입력 모드 처리"""
@@ -600,7 +664,10 @@ class KOICAGame:
         """선택 결과 적용"""
         if 'message' in result:
             print(f"\n💬 {result['message']}")
-            input("\nEnter를 눌러 계속...")
+            if not self.demo_mode:
+                input("\nEnter를 눌러 계속...")
+            else:
+                time.sleep(1.5)
 
         if 'stats' in result:
             self.state.update_stats(result['stats'])
@@ -740,7 +807,10 @@ class KOICAGame:
 
             if 'choices' not in scenario:
                 # 엔딩 시나리오
-                input("\nEnter를 눌러 계속...")
+                if not self.demo_mode:
+                    input("\nEnter를 눌러 계속...")
+                else:
+                    time.sleep(2)
                 self.state.game_over = True
                 break
 
@@ -798,6 +868,36 @@ class KOICAGame:
 
 def main():
     """메인 함수 - 게임 모드 선택"""
+    # argparse 설정
+    parser = argparse.ArgumentParser(
+        description='KOICA 해외사무소장 시뮬레이터',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+예시:
+  python3 koica_game.py          # 일반 플레이
+  python3 koica_game.py --demo   # 자동 데모 플레이
+        """
+    )
+    parser.add_argument('--demo', action='store_true',
+                       help='데모 모드 (자동 플레이)')
+    parser.add_argument('--speed', type=float, default=1.5,
+                       help='데모 모드 속도 (초 단위, 기본: 1.5초)')
+
+    args = parser.parse_args()
+
+    # 데모 모드
+    if args.demo:
+        print("\n" + "="*60)
+        print(" "*15 + "KOICA 소장 시뮬레이터")
+        print(" "*20 + "🤖 [데모 모드]")
+        print("="*60)
+        print("\n자동으로 게임을 플레이합니다...")
+        time.sleep(2)
+        game = KOICAGame(ai_mode=False, demo_mode=True)
+        game.play()
+        return
+
+    # 일반 모드
     print("\n" + "="*60)
     print(" "*15 + "KOICA 소장 시뮬레이터")
     print("="*60)
