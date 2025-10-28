@@ -5,13 +5,18 @@ KOICA 소장 시뮬레이터
 텍스트 기반 선택형 게임
 """
 
-import json
+# Suppress Google Cloud warnings
 import os
+os.environ['GRPC_VERBOSITY'] = 'ERROR'
+os.environ['GLOG_minloglevel'] = '2'
+
+import json
 import sys
 import re
 import time
 import random
 import argparse
+import threading
 from typing import Dict, List, Optional, Tuple
 
 # Gemini API import (optional - graceful degradation if not available)
@@ -21,6 +26,40 @@ try:
 except ImportError:
     GEMINI_AVAILABLE = False
     print("Warning: google-generativeai not installed. AI features will be disabled.")
+
+
+class LoadingSpinner:
+    """AI 응답 대기 중 로딩 애니메이션을 표시하는 클래스"""
+
+    def __init__(self, message="처리중"):
+        self.message = message
+        self.is_running = False
+        self.thread = None
+
+    def _animate(self):
+        """스피너 애니메이션 실행"""
+        frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
+        idx = 0
+        while self.is_running:
+            frame = frames[idx % len(frames)]
+            sys.stdout.write(f'\r{frame} {self.message}...')
+            sys.stdout.flush()
+            time.sleep(0.1)
+            idx += 1
+
+    def start(self):
+        """스피너 시작"""
+        self.is_running = True
+        self.thread = threading.Thread(target=self._animate, daemon=True)
+        self.thread.start()
+
+    def stop(self):
+        """스피너 정지"""
+        self.is_running = False
+        if self.thread:
+            self.thread.join()
+        sys.stdout.write('\r' + ' ' * (len(self.message) + 10) + '\r')
+        sys.stdout.flush()
 
 
 class GameState:
@@ -518,8 +557,12 @@ class KOICAGame:
         """시나리오 표시 (AI 생성 지원)"""
         # AI 모드에서 'ai_generated' 시나리오 ID인 경우 동적 생성
         if self.ai_mode and scenario_id == 'ai_generated':
-            print("\n🤖 AI가 맞춤형 시나리오를 생성중입니다...\n")
+            print()
+            spinner = LoadingSpinner("🤖 AI가 맞춤형 시나리오를 생성중입니다")
+            spinner.start()
             scenario = self.gemini.generate_scenario(self.state)
+            spinner.stop()
+            print()
 
             if not scenario:
                 print("AI 시나리오 생성 실패. 기본 시나리오를 사용합니다.")
@@ -640,8 +683,12 @@ class KOICAGame:
         if action.lower() == 'cancel':
             return None
 
-        print("\n🤖 AI가 결과를 계산중입니다...\n")
+        print()
+        spinner = LoadingSpinner("🤖 AI가 결과를 계산중입니다")
+        spinner.start()
         result = self.gemini.generate_free_form_result(self.state, action)
+        spinner.stop()
+        print()
 
         if result and result.get('success'):
             return {
@@ -684,8 +731,11 @@ class KOICAGame:
 
         # AI 모드에서 개인화된 엔딩 생성
         if self.ai_mode and self.gemini.enabled and len(self.state.choice_history) > 5:
-            print("🤖 AI가 당신만의 엔딩을 생성중입니다...\n")
+            spinner = LoadingSpinner("🤖 AI가 당신만의 엔딩을 생성중입니다")
+            spinner.start()
             personalized_ending = self.gemini.generate_personalized_ending(self.state)
+            spinner.stop()
+            print()
 
             if personalized_ending:
                 print(f"🏆 당신만의 이야기\n")
