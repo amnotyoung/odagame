@@ -30,7 +30,7 @@ class GameState:
         self.year = 1
         self.period = 1  # 격월 단위 (1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
         self.reputation = 50  # 평판 (0-100)
-        self.budget_execution_rate = 0  # 예산 집행률 (0-100), 80-100%가 이상적
+        self.budget_execution_rate = 50  # 예산 집행률 (0-100), 80-100%가 이상적
         self.staff_morale = 50  # 직원 만족도 (0-100)
         self.project_success = 50  # 프로젝트 성공도 (0-100)
 
