@@ -979,5 +979,426 @@
         }
       }
     ]
+  },
+
+  "yp_management": {
+    "title": "영프로페셔널(YP) 프로그램 운영",
+    "description": "사무소에 7명의 영프로페셔널(YP, 만 19-34세 청년인재)이 배치되었습니다. 그들은 5+5개월 계약으로 각 분야에서 활동하고 있습니다.\n\nYP 대표가 찾아왔습니다: \"소장님, YP들이 업무 방향에 대해 혼란을 겪고 있습니다. 일부는 실무 경험을 원하지만, 코디네이터들은 단순 지원 업무만 시킵니다. 계약 연장 여부도 불투명합니다.\"",
+    "choices": [
+      {
+        "text": "YP 역량 강화 프로그램 신설 - 체계적 교육",
+        "result": {
+          "message": "YP 전담 멘토링과 교육 프로그램을 만들었습니다. YP들의 만족도가 높아졌지만 코디네이터들의 업무 부담이 증가했습니다.",
+          "stats": {
+            "staff_morale": 15,
+            "project_success": 5,
+            "budget": -10
+          },
+          "advance_time": true,
+          "next": "training_program_issue"
+        }
+      },
+      {
+        "text": "실무 프로젝트 배정 - 책임감 부여",
+        "result": {
+          "message": "YP들에게 소규모 프로젝트를 직접 맡겼습니다. 일부는 훌륭히 해냈지만 일부는 실수를 했습니다. 위험과 기회가 공존합니다.",
+          "stats": {
+            "staff_morale": 10,
+            "project_success": -5,
+            "reputation": 5
+          },
+          "advance_time": true,
+          "next": "training_program_issue"
+        }
+      },
+      {
+        "text": "본부에 YP 제도 개선 건의",
+        "result": {
+          "message": "YP 계약 조건과 역할 명확화를 본부에 건의했습니다. 본부는 '현장에서 알아서 하라'는 답변을 보냈습니다. YP들은 실망했습니다.",
+          "stats": {
+            "staff_morale": -10,
+            "reputation": -5
+          },
+          "advance_time": true,
+          "next": "training_program_issue"
+        }
+      }
+    ]
+  },
+
+  "training_program_issue": {
+    "title": "연수사업 선발 논란",
+    "description": "한국 초청 연수사업에 100명의 지원자가 있지만 선발 인원은 20명입니다. 연수생 선발 추천이 사무소장의 중요한 업무입니다.\n\n협력국 정부 담당자가 압력을 넣습니다: \"장관님의 조카를 꼭 포함시켜 주십시오. 우리의 우호관계를 생각해서라도...\" 하지만 그 조카의 자격은 다른 지원자들에 비해 부족합니다.",
+    "choices": [
+      {
+        "text": "원칙대로 자격 요건 기준 선발",
+        "result": {
+          "message": "공정한 심사를 통해 최적격자를 선발했습니다. 장관은 불쾌해했지만 선발된 연수생들의 만족도와 성과는 뛰어났습니다.",
+          "stats": {
+            "reputation": -10,
+            "project_success": 20,
+            "staff_morale": 10
+          },
+          "advance_time": true,
+          "next": "embassy_coordination"
+        }
+      },
+      {
+        "text": "장관 요청 수용 - 관계 우선",
+        "result": {
+          "message": "장관의 조카를 포함시켰습니다. 정부 관계는 개선되었지만 다른 연수생들의 불만이 있었고, 해당 인원의 연수 성과는 저조했습니다.",
+          "stats": {
+            "reputation": 15,
+            "project_success": -10,
+            "staff_morale": -5
+          },
+          "advance_time": true,
+          "next": "embassy_coordination"
+        }
+      },
+      {
+        "text": "추가 인원 확보 노력 - 본부 협의",
+        "result": {
+          "message": "본부에 특별 추가 인원을 요청했습니다. 본부는 예산 문제로 2명만 추가 승인했습니다. 완벽하지 않지만 타협안을 찾았습니다.",
+          "stats": {
+            "reputation": 5,
+            "project_success": 5,
+            "budget": -15
+          },
+          "advance_time": true,
+          "next": "embassy_coordination"
+        }
+      }
+    ]
+  },
+
+  "embassy_coordination": {
+    "title": "재외공관(대사관)과의 협력",
+    "description": "대한민국 대사관에서 민관합동 개발협력회의체 회의가 열립니다. 대사님이 주재하는 중요한 자리입니다.\n\n대사관 경제공사가 사전에 연락했습니다: \"대사님께서는 가시적 성과를 원하십니다. KOICA 사업이 너무 장기적이고 눈에 안 보인다는 지적이 있습니다. 회의에서 답변 준비하세요.\"",
+    "choices": [
+      {
+        "text": "장기적 성과의 중요성 설명 - 교육적 접근",
+        "result": {
+          "message": "역량강화 사업의 장기적 가치를 데이터와 사례로 설명했습니다. 대사님은 이해했지만 '외교적으로 보여줄 게 필요하다'고 강조했습니다.",
+          "stats": {
+            "reputation": 5,
+            "project_success": 10,
+            "staff_morale": 5
+          },
+          "advance_time": true,
+          "next": "local_staff_issue"
+        }
+      },
+      {
+        "text": "가시적 사업 추가 제안 - 대사관 요구 수용",
+        "result": {
+          "message": "학교 개교식, 보건소 준공식 등 대사관이 참석할 수 있는 이벤트를 기획했습니다. 대사관은 만족했지만 예산과 인력이 소모됩니다.",
+          "stats": {
+            "reputation": 15,
+            "budget": -20,
+            "project_success": -5,
+            "staff_morale": -10
+          },
+          "advance_time": true,
+          "next": "local_staff_issue"
+        }
+      },
+      {
+        "text": "대사관-KOICA 공동 사업 제안",
+        "result": {
+          "message": "대사관의 외교적 목표와 KOICA의 개발협력을 결합한 공동 사업을 제안했습니다. 혁신적이지만 조율이 복잡합니다.",
+          "stats": {
+            "reputation": 20,
+            "project_success": 5,
+            "budget": -10,
+            "staff_morale": -5
+          },
+          "advance_time": true,
+          "next": "local_staff_issue"
+        }
+      }
+    ]
+  },
+
+  "local_staff_issue": {
+    "title": "현지 고용원(현지 직원) 관리",
+    "description": "사무소에는 17명의 현지 직원이 4개 섹터를 지원하고 있습니다. 그들은 장기 근속자로서 사무소 운영의 핵심입니다.\n\n현지 직원 대표가 요구사항을 전달했습니다: \"우리는 10년 넘게 일했지만 급여가 동종 업계보다 낮습니다. 승진 기회도 제한적입니다. 개선이 없으면 집단 사직도 고려하겠습니다.\"",
+    "choices": [
+      {
+        "text": "급여 인상 승인 - 본부 협의",
+        "result": {
+          "message": "본부에 현지 직원 급여 인상을 건의하고 승인받았습니다. 현지 직원들의 충성도가 높아졌지만 예산 부담이 증가했습니다.",
+          "stats": {
+            "budget": -25,
+            "staff_morale": 20,
+            "project_success": 10
+          },
+          "advance_time": true,
+          "next": "headquarters_report"
+        }
+      },
+      {
+        "text": "비금전적 보상 제공 - 복지 및 교육 기회",
+        "result": {
+          "message": "급여 대신 교육 기회, 유연근무제, 성과포상제를 도입했습니다. 일부는 만족했지만 일부는 '실질적 개선이 없다'고 불만입니다.",
+          "stats": {
+            "staff_morale": 10,
+            "budget": -10,
+            "project_success": 5
+          },
+          "advance_time": true,
+          "next": "headquarters_report"
+        }
+      },
+      {
+        "text": "현지 직원 역할 확대 - 책임과 권한 부여",
+        "result": {
+          "message": "현지 직원을 프로젝트 리더로 승진시키고 더 큰 책임을 부여했습니다. 그들은 기대 이상으로 역량을 발휘했고, 사무소 효율이 크게 향상되었습니다.",
+          "stats": {
+            "staff_morale": 15,
+            "project_success": 15,
+            "reputation": 10
+          },
+          "advance_time": true,
+          "next": "headquarters_report"
+        }
+      }
+    ]
+  },
+
+  "headquarters_report": {
+    "title": "본부 정기 보고 및 연례 회의",
+    "description": "1년에 한 번 열리는 해외사무소장 연례회의를 위해 한국 본부에 출장을 갑니다. 48개국 사무소장들이 모두 참석합니다.\n\n본부 담당 이사: \"올해 귀 사무소의 예산 집행률이 타 사무소보다 낮습니다. 사업 지연 이유를 설명하고, 내년도 예산 계획을 발표하세요. 다른 소장들도 지켜보고 있습니다.\"",
+    "choices": [
+      {
+        "text": "솔직한 현장 어려움 공유 - 투명성 우선",
+        "result": {
+          "message": "현지 정치 상황, 협력국 행정 지연 등 현실적 어려움을 솔직히 공유했습니다. 본부는 이해했고 다른 소장들도 공감했지만, '변명'으로 비춰질 위험이 있습니다.",
+          "stats": {
+            "reputation": -5,
+            "staff_morale": 10,
+            "project_success": 5
+          },
+          "advance_time": true,
+          "next": "deputy_director_conflict"
+        }
+      },
+      {
+        "text": "개선 방안 중심 발표 - 해결책 제시",
+        "result": {
+          "message": "문제보다 해결책에 초점을 맞춰 발표했습니다. 구체적 개선 로드맵과 혁신적 접근을 제시했습니다. 본부와 동료 소장들에게 좋은 인상을 남겼습니다.",
+          "stats": {
+            "reputation": 15,
+            "project_success": 10,
+            "staff_morale": 5
+          },
+          "advance_time": true,
+          "next": "deputy_director_conflict"
+        }
+      },
+      {
+        "text": "타 사무소 우수사례 벤치마킹 제안",
+        "result": {
+          "message": "다른 사무소의 성공 사례를 벤치마킹하고 협력 네트워크를 제안했습니다. 본부는 협력적 태도를 높이 평가했고, 다른 소장들과의 네트워크도 강화되었습니다.",
+          "stats": {
+            "reputation": 20,
+            "project_success": 15,
+            "staff_morale": 10
+          },
+          "advance_time": true,
+          "next": "deputy_director_conflict"
+        }
+      }
+    ]
+  },
+
+  "deputy_director_conflict": {
+    "title": "부소장과의 업무 갈등",
+    "description": "사무소에는 4명의 부소장이 있으며 각각 분야별 책임을 맡고 있습니다. 그 중 한 명인 김 부소장이 사무소장인 당신의 결정에 공개적으로 반대하고 있습니다.\n\n김 부소장: \"소장님의 방식은 너무 본부 중심적입니다. 현장 실무자들의 의견을 듣지 않으세요. 저는 15년 경력의 전문가입니다. 제 전문성을 존중해주시기 바랍니다.\"",
+    "choices": [
+      {
+        "text": "권위로 해결 - 사무소장 권한 행사",
+        "result": {
+          "message": "최종 의사결정권이 사무소장에게 있음을 명확히 했습니다. 김 부소장은 따랐지만 불만이 남았고, 다른 직원들도 위축되었습니다.",
+          "stats": {
+            "staff_morale": -15,
+            "project_success": 5,
+            "reputation": -5
+          },
+          "advance_time": true,
+          "next": "cps_workshop"
+        }
+      },
+      {
+        "text": "1:1 심층 면담 - 소통과 이해",
+        "result": {
+          "message": "김 부소장과 장시간 대화를 나눴습니다. 그의 전문성을 인정하고 일부 권한을 위임했습니다. 관계가 개선되었고 팀워크가 강화되었습니다.",
+          "stats": {
+            "staff_morale": 15,
+            "project_success": 10,
+            "reputation": 5
+          },
+          "advance_time": true,
+          "next": "cps_workshop"
+        }
+      },
+      {
+        "text": "본부에 인사 조치 요청",
+        "result": {
+          "message": "본부에 김 부소장의 다른 사무소 전보를 요청했습니다. 본부는 '현장에서 해결하라'며 거절했습니다. 상황이 더 악화되었습니다.",
+          "stats": {
+            "reputation": -10,
+            "staff_morale": -20,
+            "project_success": -10
+          },
+          "advance_time": true,
+          "next": "cps_workshop"
+        }
+      }
+    ]
+  },
+
+  "cps_workshop": {
+    "title": "국별협력전략(CPS) 수립 워크숍",
+    "description": "협력국의 향후 5년 국별협력전략(Country Partnership Strategy) 수립을 위한 대규모 워크숍을 개최합니다. 협력국 정부 고위급, 본부 임원, 타 공여국 대표, NGO 등 100명 이상이 참석합니다.\n\n본부 팀장: \"이 워크숍은 향후 5년을 결정하는 중요한 자리입니다. 소장님이 총괄 진행하시고, 협력국과 본부 간 의견을 조율하세요.\"",
+    "choices": [
+      {
+        "text": "협력국 정부 의견 중심 - 수원국 주도성 존중",
+        "result": {
+          "message": "협력국 정부의 개발 우선순위를 최대한 반영했습니다. 협력국은 매우 만족했지만 본부는 'KOICA의 강점이 반영되지 않았다'며 우려했습니다.",
+          "stats": {
+            "reputation": 20,
+            "project_success": -5,
+            "staff_morale": 5
+          },
+          "advance_time": true,
+          "next": "crisis_management"
+        }
+      },
+      {
+        "text": "KOICA 강점 분야 집중 - 전략적 선택",
+        "result": {
+          "message": "KOICA가 비교우위가 있는 분야(교육, 보건, 농업)에 집중하는 전략을 제시했습니다. 본부는 만족했지만 협력국은 인프라 지원을 원해 아쉬워했습니다.",
+          "stats": {
+            "reputation": -5,
+            "project_success": 20,
+            "staff_morale": 10,
+            "budget": 10
+          },
+          "advance_time": true,
+          "next": "crisis_management"
+        }
+      },
+      {
+        "text": "다층적 협력 모델 - 정부, 민간, NGO 통합",
+        "result": {
+          "message": "정부 주도 사업, 민관협력, NGO 파트너십을 통합한 혁신적 모델을 제안했습니다. 모든 이해관계자가 만족했지만 실행이 복잡합니다.",
+          "stats": {
+            "reputation": 25,
+            "project_success": 10,
+            "staff_morale": -10,
+            "budget": -15
+          },
+          "advance_time": true,
+          "next": "crisis_management"
+        }
+      }
+    ]
+  },
+
+  "crisis_management": {
+    "title": "긴급 안전 사고 - 봉사단원 납치 미수",
+    "description": "심각한 사건이 발생했습니다. 지방에서 활동 중인 KOICA 봉사단원이 납치 시도를 당했습니다. 다행히 현지 경찰의 신속한 대응으로 구출되었지만 정신적 충격이 큽니다.\n\n본부 안전담당: \"즉시 상황 보고서를 제출하고 대응 방안을 수립하세요. 언론에 알려질 경우 모든 봉사단원의 안전이 문제가 될 수 있습니다.\"",
+    "choices": [
+      {
+        "text": "전체 봉사단원 일시 철수 - 안전 최우선",
+        "result": {
+          "message": "모든 봉사단원을 수도로 소집하고 안전이 확보될 때까지 활동을 중단했습니다. 봉사단원들은 안심했지만 프로젝트가 중단되었고 협력국이 실망했습니다.",
+          "stats": {
+            "staff_morale": 15,
+            "project_success": -20,
+            "reputation": -15,
+            "budget": -10
+          },
+          "advance_time": true,
+          "next": "year2_start"
+        }
+      },
+      {
+        "text": "강화된 안전 대책 수립 - 활동 지속",
+        "result": {
+          "message": "현지 경찰과 협력하여 안전 체계를 강화하고, 위험 지역만 활동을 제한했습니다. 균형잡힌 접근이지만 여전히 위험이 남아있습니다.",
+          "stats": {
+            "staff_morale": -5,
+            "project_success": 5,
+            "reputation": 5,
+            "budget": -15
+          },
+          "advance_time": true,
+          "next": "year2_start"
+        }
+      },
+      {
+        "text": "피해 단원 즉시 귀국, 나머지는 자율 선택",
+        "result": {
+          "message": "피해 단원은 귀국시키고 나머지는 각자 판단하도록 했습니다. 대부분이 남기로 했고, 그들의 헌신이 현지 사회에 큰 감동을 주었습니다.",
+          "stats": {
+            "reputation": 20,
+            "staff_morale": 10,
+            "project_success": 10,
+            "budget": -5
+          },
+          "advance_time": true,
+          "next": "year2_start"
+        }
+      }
+    ]
+  },
+
+  "coordinator_development": {
+    "title": "코디네이터 전문성 개발",
+    "description": "사무소의 다수 코디네이터들이 사업별 실무를 담당하고 있습니다. 그들은 현장 사업의 핵심 인력이지만, 경력 개발과 전문성 향상에 대한 요구가 높아지고 있습니다.\n\n코디네이터 대표: \"우리는 일선에서 뛰고 있지만 교육 기회가 부족합니다. 다른 사무소와의 교류나 전문 교육 참여를 원합니다.\"",
+    "choices": [
+      {
+        "text": "온라인 전문 교육 프로그램 도입",
+        "result": {
+          "message": "국제개발 전문 온라인 과정을 구독하고 업무 시간 중 학습을 허용했습니다. 비용은 적지만 실질적 도움이 되었고 직원들이 만족했습니다.",
+          "stats": {
+            "budget": -10,
+            "staff_morale": 15,
+            "project_success": 10
+          },
+          "advance_time": true,
+          "next": "budget_crisis_1"
+        }
+      },
+      {
+        "text": "타 사무소와 교환 연수 프로그램",
+        "result": {
+          "message": "아시아 지역 다른 사무소와 코디네이터 교환 프로그램을 운영했습니다. 새로운 시각과 네트워크를 얻었지만 일시적 인력 공백이 생겼습니다.",
+          "stats": {
+            "staff_morale": 20,
+            "project_success": -5,
+            "reputation": 10,
+            "budget": -15
+          },
+          "advance_time": true,
+          "next": "budget_crisis_1"
+        }
+      },
+      {
+        "text": "현업 중심 학습 - 실전 프로젝트 리딩 기회",
+        "result": {
+          "message": "코디네이터들에게 소규모 프로젝트를 직접 이끌 기회를 주었습니다. 실전 경험을 통해 성장했지만 초기에는 시행착오가 있었습니다.",
+          "stats": {
+            "staff_morale": 15,
+            "project_success": 5,
+            "reputation": 5
+          },
+          "advance_time": true,
+          "next": "budget_crisis_1"
+        }
+      }
+    ]
   }
 }
