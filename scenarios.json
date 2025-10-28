@@ -609,5 +609,281 @@
   "ending_staff_revolt": {
     "title": "게임 오버: 조직 붕괴",
     "description": "직원들의 신뢰를 완전히 잃었습니다.\n\n대량 사직이 이어졌고, 남은 직원들도 업무를 거부하고 있습니다. 본부에 집단 진정서가 접수되었고, 노조에서 문제를 제기했습니다.\n\n당신은 리더십 실패로 경질되었습니다. 사무소 조직은 재건이 필요한 상태입니다.\n\n\"조직의 성공은 리더 혼자가 아니라, 팀 전체의 헌신으로 만들어진다.\""
+  },
+
+  "ending_burnout": {
+    "title": "게임 오버: 번아웃",
+    "description": "스트레스가 한계를 넘었습니다.\n\n과도한 업무, 문화적 적응의 어려움, 쉴 새 없는 압박이 당신을 지쳐 쓰러지게 만들었습니다. 어느 날 아침, 침대에서 일어날 수 없었습니다. 본부는 긴급 귀국 조치를 내렸습니다.\n\n당신은 6개월간의 휴직 후 본부 내부 업무로 복귀했지만, 다시는 해외 파견을 지원하지 않았습니다.\n\n\"가장 중요한 프로젝트는 당신 자신의 건강입니다.\""
+  },
+
+  "ending_health_crisis": {
+    "title": "게임 오버: 건강 위기",
+    "description": "건강이 급격히 악화되었습니다.\n\n불규칙한 식사, 부족한 운동, 현지 의료 시스템의 한계가 겹쳐 심각한 건강 문제가 발생했습니다. 의료진은 즉시 한국으로 돌아가야 한다고 권고했습니다.\n\n의료 후송 항공편으로 한국에 도착한 당신은 3개월간 입원 치료를 받았습니다. 임기는 후임자에게 인계되었습니다.\n\n\"몸이 건강해야 마음도 일도 제대로 할 수 있습니다.\""
+  },
+
+  "life_event_health_issue": {
+    "title": "생활 이벤트: 갑작스러운 건강 문제",
+    "description": "며칠째 몸 상태가 좋지 않습니다. 현지 음식이 맞지 않았는지, 아니면 스트레스 때문인지 두통과 소화불량이 계속됩니다.\n\n현지 병원은 한국만큼 시설이 좋지 않고, 의사소통도 어렵습니다. 하지만 업무는 계속 밀려오고 있습니다.",
+    "choices": [
+      {
+        "text": "현지 병원에 가서 치료받는다",
+        "result": {
+          "message": "현지 병원에서 진료를 받았습니다. 의사는 스트레스와 식습관 문제를 지적했습니다. 약을 처방받았지만, 하루 업무를 쉬어야 했습니다.",
+          "stats": {
+            "wellbeing": 10,
+            "stress": 5,
+            "project_success": -3
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "한국 대사관 의무관에게 자문을 구한다",
+        "result": {
+          "message": "대사관 의무관이 친절하게 상담해주었습니다. 응급약을 받았고, 필요하면 한국 원격 진료도 가능하다고 했습니다. 안심이 되었습니다.",
+          "stats": {
+            "wellbeing": 15,
+            "stress": -8,
+            "reputation": 3
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "그냥 참고 약국에서 약만 사먹는다",
+        "result": {
+          "message": "약국에서 진통제와 소화제를 샀습니다. 당장은 나아진 것 같지만, 근본적인 해결은 아닌 것 같습니다. 건강이 더 악화될 수 있습니다.",
+          "stats": {
+            "wellbeing": 3,
+            "stress": 10
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "본부에 연락해서 긴급 귀국 검진을 요청한다",
+        "result": {
+          "message": "본부가 1주일 긴급 귀국을 승인했습니다. 한국에서 정밀 검진을 받고 돌아왔습니다. 건강은 회복되었지만, 업무 공백이 생겼습니다.",
+          "stats": {
+            "wellbeing": 25,
+            "stress": -15,
+            "project_success": -10,
+            "staff_morale": -5
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      }
+    ]
+  },
+
+  "life_event_homesickness": {
+    "title": "생활 이벤트: 한국이 그립습니다",
+    "description": "오늘따라 유난히 한국이 그립습니다. 문득 반올림 피자가 먹고 싶고, 신선한 방어회, 평양냉면의 시원한 맛이 간절합니다. 편의점에서 구운 계란을 사먹던 소소한 일상이 그립습니다.\n\n현지 마트에서 한국 식품을 찾아보지만 가격도 비싸고 종류도 제한적입니다. 이런 마음을 어떻게 달래야 할까요?",
+    "choices": [
+      {
+        "text": "현지 한국 식당을 찾아간다",
+        "result": {
+          "message": "현지 한인 교민이 운영하는 작은 한식당을 찾았습니다. 김치찌개를 먹으며 주인과 이야기를 나눴습니다. 맛은 한국만큼은 아니지만, 마음이 위로되었습니다.",
+          "stats": {
+            "wellbeing": 10,
+            "stress": -10,
+            "budget": -3
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "직접 한국 음식을 만들어본다",
+        "result": {
+          "message": "현지 마트에서 재료를 구해 부대찌개를 만들어봤습니다. 맛은... 실패했지만, 만드는 과정 자체가 치유가 되었습니다. 다음엔 더 잘 만들 수 있을 것 같습니다.",
+          "stats": {
+            "wellbeing": 8,
+            "stress": -5
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "가족에게 영상통화를 걸어 한국 풍경을 본다",
+        "result": {
+          "message": "가족과 1시간 동안 통화했습니다. 한국의 거리, 익숙한 얼굴들을 보니 눈물이 났습니다. 가족들이 응원해주었습니다. 힘이 났습니다.",
+          "stats": {
+            "wellbeing": 15,
+            "stress": -12
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "참고 현지 생활에 적응하려고 노력한다",
+        "result": {
+          "message": "현지 음식을 먹고, 현지 문화를 받아들이려 노력했습니다. 하지만 마음 한구석이 계속 허전합니다. 향수병은 쉽게 사라지지 않았습니다.",
+          "stats": {
+            "wellbeing": -3,
+            "stress": 5,
+            "reputation": 3
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      }
+    ]
+  },
+
+  "life_event_psychological_pressure": {
+    "title": "생활 이벤트: 심리적 압박",
+    "description": "요즘 밤에 잠을 잘 이루지 못합니다. 업무 스트레스, 문화적 고립감, 외로움이 겹쳐 심리적으로 많이 힘듭니다. 아침에 일어나기가 두렵고, 사무소에 가는 것이 무겁습니다.\n\nKOICA는 해외 파견 인력을 위한 심리 상담 프로그램을 운영하고 있습니다. 도움을 청하는 것이 나약함이 아니라는 것을 알지만, 결정하기가 쉽지 않습니다.",
+    "choices": [
+      {
+        "text": "회사 지원 심리 상담을 신청한다",
+        "result": {
+          "message": "심리 상담사와 화상으로 1시간 동안 이야기를 나눴습니다. 당신의 감정이 정상적이고 이해할 만하다는 말에 안심했습니다. 정기 상담을 예약했습니다.",
+          "stats": {
+            "wellbeing": 20,
+            "stress": -20
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "동료 직원들과 솔직하게 이야기를 나눈다",
+        "result": {
+          "message": "부소장에게 솔직하게 마음을 털어놓았습니다. 그도 비슷한 경험이 있다며 공감해주었습니다. 직원들이 업무 분담을 자청하며 도와주었습니다.",
+          "stats": {
+            "wellbeing": 15,
+            "stress": -15,
+            "staff_morale": 10
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "운동과 명상으로 스스로 극복하려 한다",
+        "result": {
+          "message": "매일 아침 30분씩 조깅을 시작했습니다. 명상 앱을 다운받아 저녁에 명상을 합니다. 조금씩 나아지는 것 같지만, 근본적인 해결은 아직 멀었습니다.",
+          "stats": {
+            "wellbeing": 8,
+            "stress": -8
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "그냥 참고 버틴다 (소장은 강해야 한다)",
+        "result": {
+          "message": "소장으로서의 체면을 지키려 혼자 감당했습니다. 하지만 상황은 나아지지 않았고, 스트레스는 계속 쌓여갑니다. 언젠가 폭발할 것 같습니다.",
+          "stats": {
+            "wellbeing": -10,
+            "stress": 15
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      }
+    ]
+  },
+
+  "life_event_car_breakdown": {
+    "title": "생활 이벤트: 자동차 고장",
+    "description": "출근길에 자동차가 갑자기 멈춰섰습니다. 현지 정비소에 연락했지만, 부품을 구하는 데 일주일이 걸린다고 합니다. 오늘 오후에 중요한 현장 방문 일정이 있습니다.",
+    "choices": [
+      {
+        "text": "택시를 타고 일정을 소화한다",
+        "result": {
+          "message": "택시를 이용해 일정을 무사히 마쳤습니다. 비용이 들었지만, 업무에는 지장이 없었습니다.",
+          "stats": {
+            "stress": 5,
+            "budget": -3,
+            "project_success": 3
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "부소장에게 차량 지원을 요청한다",
+        "result": {
+          "message": "부소장이 자신의 차를 빌려주었습니다. 동료의 배려에 감사했고, 팀워크가 더 돈독해졌습니다.",
+          "stats": {
+            "stress": -3,
+            "staff_morale": 8,
+            "project_success": 3
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "일정을 연기하고 집에서 쉰다",
+        "result": {
+          "message": "갑작스러운 일정 연기로 파트너 기관이 불쾌해했습니다. 하지만 당신은 하루를 쉬며 재충전할 수 있었습니다.",
+          "stats": {
+            "stress": -10,
+            "wellbeing": 10,
+            "reputation": -8,
+            "project_success": -5
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      }
+    ]
+  },
+
+  "life_event_housing_issue": {
+    "title": "생활 이벤트: 주거 문제",
+    "description": "집에 문제가 생겼습니다. 수도관이 터져서 집이 물바다가 되었습니다. 집주인은 수리에 한 달이 걸린다고 합니다. 어떻게 해야 할까요?",
+    "choices": [
+      {
+        "text": "호텔에 임시로 머문다",
+        "result": {
+          "message": "한 달간 호텔에 머물렀습니다. 편안하지만 비용이 많이 들었습니다. 집은 완벽하게 수리되어 돌아왔습니다.",
+          "stats": {
+            "wellbeing": 5,
+            "stress": -5,
+            "budget": -10
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "동료 집에 신세를 진다",
+        "result": {
+          "message": "부소장 가족이 기꺼이 방을 내주었습니다. 불편했지만, 팀 간의 유대감이 깊어졌습니다.",
+          "stats": {
+            "wellbeing": 0,
+            "stress": 8,
+            "staff_morale": 15,
+            "budget": 5
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      },
+      {
+        "text": "집주인에게 빠른 수리를 강력히 요구한다",
+        "result": {
+          "message": "집주인과 크게 다퉜습니다. 결국 2주 만에 수리가 완료되었지만, 관계가 불편해졌습니다.",
+          "stats": {
+            "wellbeing": -5,
+            "stress": 10,
+            "reputation": -3
+          },
+          "advance_time": false,
+          "next": "continue_main_scenario"
+        }
+      }
+    ]
   }
 }
