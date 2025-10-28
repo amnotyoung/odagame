@@ -1,0 +1,7 @@
+# KOICA 소장 시뮬레이터 - 의존성 패키지
+
+# AI 모드를 위한 Gemini API (선택사항)
+google-generativeai>=0.3.0
+
+# Python 기본 라이브러리만으로 실행 가능
+# 클래식 모드는 추가 패키지 없이 Python 3.6+ 에서 작동합니다
