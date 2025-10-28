@@ -10,7 +10,7 @@
           "stats": {
             "reputation": 8,
             "project_success": 10,
-            "budget": -5
+            "budget": 10
           },
           "advance_time": true,
           "next": "period_2"
@@ -23,7 +23,7 @@
           "stats": {
             "reputation": 12,
             "staff_morale": 5,
-            "budget": -8
+            "budget": 12
           },
           "advance_time": true,
           "next": "period_2"
@@ -117,7 +117,7 @@
             "reputation": 15,
             "project_success": 15,
             "staff_morale": -5,
-            "budget": -5
+            "budget": 10
           },
           "advance_time": true,
           "next": "period_4"
@@ -149,7 +149,7 @@
         "result": {
           "message": "목표치를 달성했으나, 일부 사업의 품질이 다소 저하되었고 직원들이 과로했습니다.",
           "stats": {
-            "budget": -35,
+            "budget": 35,
             "reputation": 8,
             "project_success": -5,
             "staff_morale": -15
@@ -200,7 +200,7 @@
           "stats": {
             "reputation": 20,
             "project_success": 15,
-            "budget": -15,
+            "budget": 15,
             "staff_morale": -5
           },
           "advance_time": true,
@@ -215,7 +215,7 @@
             "staff_morale": 20,
             "reputation": 8,
             "project_success": 3,
-            "budget": -8
+            "budget": 5
           },
           "advance_time": true,
           "next": "period_6"
@@ -263,7 +263,7 @@
           "stats": {
             "project_success": 15,
             "reputation": 12,
-            "budget": -20,
+            "budget": 15,
             "staff_morale": -5
           },
           "advance_time": true,
@@ -277,7 +277,7 @@
           "stats": {
             "reputation": 25,
             "staff_morale": 10,
-            "budget": -15,
+            "budget": 10,
             "project_success": 8
           },
           "advance_time": true,
@@ -327,7 +327,7 @@
             "reputation": 20,
             "project_success": 15,
             "staff_morale": 10,
-            "budget": -15
+            "budget": 10
           },
           "advance_time": true,
           "next": "period_8"
@@ -397,7 +397,7 @@
             "staff_morale": 15,
             "reputation": -15,
             "project_success": -20,
-            "budget": 10
+            "budget": -15
           },
           "advance_time": true,
           "next": "period_10"
@@ -446,7 +446,7 @@
             "project_success": 25,
             "reputation": 10,
             "staff_morale": -15,
-            "budget": -20
+            "budget": 20
           },
           "advance_time": true,
           "next": "period_11"
@@ -460,7 +460,7 @@
             "reputation": 25,
             "project_success": 10,
             "staff_morale": 5,
-            "budget": -25
+            "budget": 15
           },
           "advance_time": true,
           "next": "period_11"
@@ -494,7 +494,7 @@
           "stats": {
             "reputation": 30,
             "project_success": 15,
-            "budget": -25,
+            "budget": 15,
             "staff_morale": -5
           },
           "advance_time": true,
