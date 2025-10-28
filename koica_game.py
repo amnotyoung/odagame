@@ -146,7 +146,7 @@ class GameState:
             self.game_over = True
             self.ending = "staff_revolt"
             return True
-        if self.year > 3:
+        if self.year > 2:
             self.game_over = True
             self.calculate_final_ending()
             return True
@@ -325,7 +325,7 @@ class GeminiIntegration:
 
         prompt = f"""
 당신은 KOICA 소장 시뮬레이터 게임의 엔딩 작가입니다.
-플레이어의 3년간의 여정을 분석하여 개인화된 엔딩 내러티브를 작성하세요.
+플레이어의 2년간의 여정을 분석하여 개인화된 엔딩 내러티브를 작성하세요.
 
 ## 최종 스탯
 - 평판: {game_state.reputation}/100
@@ -442,7 +442,7 @@ class KOICAGame:
         print(" "*15 + "KOICA 소장 시뮬레이터")
         print("="*60)
         print("\n당신은 새로 임명된 KOICA 현지 사무소장입니다.")
-        print("앞으로 3년 동안 다양한 상황에 직면하게 될 것입니다.")
+        print("앞으로 2년 동안 다양한 상황에 직면하게 될 것입니다.")
         print("당신의 선택이 프로젝트의 성공, 직원들의 사기,")
         print("그리고 국제 협력의 미래를 결정할 것입니다.")
         print("\n각 상황에서 신중하게 선택하세요!")
@@ -614,15 +614,15 @@ class KOICAGame:
             },
             "successful_director": {
                 "title": "성공적인 소장",
-                "description": "3년의 임기를 성공적으로 마쳤습니다.\n여러 어려움이 있었지만 전반적으로 좋은 성과를 냈습니다.\n현지 주민들과 직원들이 당신의 노고를 인정합니다."
+                "description": "2년의 임기를 성공적으로 마쳤습니다.\n여러 어려움이 있었지만 전반적으로 좋은 성과를 냈습니다.\n현지 주민들과 직원들이 당신의 노고를 인정합니다."
             },
             "average_director": {
                 "title": "평범한 소장",
-                "description": "3년의 임기를 무난하게 마쳤습니다.\n특별한 성과는 없었지만 큰 실수도 없었습니다.\n다음 소장에게 안정적으로 업무를 인계했습니다."
+                "description": "2년의 임기를 무난하게 마쳤습니다.\n특별한 성과는 없었지만 큰 실수도 없었습니다.\n다음 소장에게 안정적으로 업무를 인계했습니다."
             },
             "struggling_director": {
                 "title": "고전한 소장",
-                "description": "3년의 임기가 끝났지만 많은 어려움을 겪었습니다.\n일부 프로젝트는 실패했고 여러 문제들이 남아있습니다.\n하지만 끝까지 포기하지 않은 당신의 노력은 인정받습니다."
+                "description": "2년의 임기가 끝났지만 많은 어려움을 겪었습니다.\n일부 프로젝트는 실패했고 여러 문제들이 남아있습니다.\n하지만 끝까지 포기하지 않은 당신의 노력은 인정받습니다."
             }
         }
 
