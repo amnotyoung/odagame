@@ -33,10 +33,21 @@ class GameState:
         self.budget_execution_rate = 0  # 예산 집행률 (0-100), 80-100%가 이상적
         self.staff_morale = 50  # 직원 만족도 (0-100)
         self.project_success = 50  # 프로젝트 성공도 (0-100)
+
+        # 생활 스탯 추가
+        self.stress = 30  # 스트레스 (0-100, 낮을수록 좋음)
+        self.wellbeing = 50  # 웰빙 (0-100, 높을수록 좋음)
+
         self.current_scenario = "start"
         self.visited_scenarios = []
         self.game_over = False
         self.ending = None
+
+        # 초기 생활 선택 (게임 시작 시 결정)
+        self.car_choice = None  # "bring_from_korea", "buy_local", "no_car"
+        self.housing_choice = None  # "spacious", "nice", "near_office", "secure"
+        self.leisure_choice = None  # "reading", "exercise", "drinking", "writing", "gaming", "online_courses"
+        self.meal_choice = None  # "cook_at_home", "eat_out", "mixed"
 
         # Enhanced: Player history tracking
         self.choice_history = []  # 선택 히스토리
@@ -57,7 +68,9 @@ class GameState:
             'reputation': self.reputation,
             'budget_execution_rate': self.budget_execution_rate,
             'staff_morale': self.staff_morale,
-            'project_success': self.project_success
+            'project_success': self.project_success,
+            'stress': self.stress,
+            'wellbeing': self.wellbeing
         }
 
         if 'reputation' in changes:
@@ -69,6 +82,10 @@ class GameState:
             self.staff_morale = max(0, min(100, self.staff_morale + changes['staff_morale']))
         if 'project_success' in changes:
             self.project_success = max(0, min(100, self.project_success + changes['project_success']))
+        if 'stress' in changes:
+            self.stress = max(0, min(100, self.stress + changes['stress']))
+        if 'wellbeing' in changes:
+            self.wellbeing = max(0, min(100, self.wellbeing + changes['wellbeing']))
 
         # 스탯 변화 기록
         self.stat_history.append({
@@ -80,7 +97,9 @@ class GameState:
                 'reputation': self.reputation,
                 'budget_execution_rate': self.budget_execution_rate,
                 'staff_morale': self.staff_morale,
-                'project_success': self.project_success
+                'project_success': self.project_success,
+                'stress': self.stress,
+                'wellbeing': self.wellbeing
             }
         })
 
@@ -122,7 +141,15 @@ class GameState:
                 'reputation': self.reputation,
                 'budget_execution_rate': self.budget_execution_rate,
                 'staff_morale': self.staff_morale,
-                'project_success': self.project_success
+                'project_success': self.project_success,
+                'stress': self.stress,
+                'wellbeing': self.wellbeing
+            },
+            'lifestyle_choices': {
+                'car': self.car_choice,
+                'housing': self.housing_choice,
+                'leisure': self.leisure_choice,
+                'meal': self.meal_choice
             },
             'visited_scenarios': self.visited_scenarios,
             'choice_history': self.choice_history[-5:] if len(self.choice_history) > 5 else self.choice_history,  # 최근 5개만
@@ -147,6 +174,14 @@ class GameState:
             self.game_over = True
             self.ending = "staff_revolt"
             return True
+        if self.stress >= 100:
+            self.game_over = True
+            self.ending = "burnout"
+            return True
+        if self.wellbeing <= 0:
+            self.game_over = True
+            self.ending = "health_crisis"
+            return True
         if self.year > 2:
             self.game_over = True
             self.calculate_final_ending()
@@ -157,13 +192,19 @@ class GameState:
         """선택이 게임 오버를 초래할지 확인"""
         temp_reputation = self.reputation
         temp_staff_morale = self.staff_morale
+        temp_stress = self.stress
+        temp_wellbeing = self.wellbeing
 
         if 'reputation' in stat_changes:
             temp_reputation += stat_changes['reputation']
         if 'staff_morale' in stat_changes:
             temp_staff_morale += stat_changes['staff_morale']
+        if 'stress' in stat_changes:
+            temp_stress += stat_changes['stress']
+        if 'wellbeing' in stat_changes:
+            temp_wellbeing += stat_changes['wellbeing']
 
-        return temp_reputation <= 0 or temp_staff_morale <= 0
+        return temp_reputation <= 0 or temp_staff_morale <= 0 or temp_stress >= 100 or temp_wellbeing <= 0
 
     def calculate_final_ending(self):
         """최종 엔딩 계산"""
@@ -200,10 +241,15 @@ class GameState:
         print("\n" + "="*60)
         print(f"📅 {self.year}년차 {period_str}")
         print("-"*60)
+        print("💼 업무 스탯")
         print(f"🌟 평판: {self.reputation}/100 {'■' * (self.reputation//5)}{'□' * (20-self.reputation//5)}")
         print(f"💰 예산 집행률: {self.budget_execution_rate}/100 {'■' * (self.budget_execution_rate//5)}{'□' * (20-self.budget_execution_rate//5)}")
         print(f"😊 직원 만족도: {self.staff_morale}/100 {'■' * (self.staff_morale//5)}{'□' * (20-self.staff_morale//5)}")
         print(f"📊 프로젝트 성공도: {self.project_success}/100 {'■' * (self.project_success//5)}{'□' * (20-self.project_success//5)}")
+        print("-"*60)
+        print("🏠 생활 스탯")
+        print(f"😰 스트레스: {self.stress}/100 {'■' * (self.stress//5)}{'□' * (20-self.stress//5)}")
+        print(f"😌 웰빙: {self.wellbeing}/100 {'■' * (self.wellbeing//5)}{'□' * (20-self.wellbeing//5)}")
         print("="*60 + "\n")
 
 
@@ -563,10 +609,11 @@ class KOICAGame:
         print("\n" + "─"*60)
         print("📋 게임 오버 조건 (반드시 숙지하세요!)")
         print("─"*60)
-        print("다음 스탯 중 하나라도 0이 되면 게임이 즉시 종료됩니다:")
+        print("다음 조건 중 하나라도 해당되면 게임이 즉시 종료됩니다:")
         print("  • 평판이 0 이하 → 평판 실추로 본부 소환")
-        print("  • 예산이 0 이하 → 예산 위기로 해임")
         print("  • 직원 만족도가 0 이하 → 직원 반발로 사임")
+        print("  • 스트레스가 100 이상 → 번아웃으로 긴급 귀국")
+        print("  • 웰빙이 0 이하 → 건강 위기로 의료 후송")
         print("\n💡 위험한 선택을 할 때는 경고가 표시됩니다.")
         print("   각 상황에서 신중하게 선택하세요!")
         print("="*60 + "\n")
@@ -576,6 +623,229 @@ class KOICAGame:
         else:
             print("🤖 [데모 모드] 자동으로 게임을 시작합니다...")
             time.sleep(2)
+
+    def initial_lifestyle_setup(self):
+        """게임 시작 시 초기 생활 선택"""
+        self.clear_screen()
+        print("\n" + "="*60)
+        print(" "*15 + "해외 생활 준비하기")
+        print("="*60)
+        print("\n부임 전, 몇 가지 생활 관련 결정을 내려야 합니다.")
+        print("이 선택들은 앞으로 2년간의 생활에 영향을 미칩니다.\n")
+
+        # 1. 자동차 선택
+        print("="*60)
+        print("🚗 자동차는 어떻게 하시겠습니까?")
+        print("="*60)
+        print("1. 한국에서 자동차를 가져간다 (익숙하지만 비용과 수리가 문제)")
+        print("2. 현지에서 중고차를 구입한다 (저렴하지만 품질이 불확실)")
+        print("3. 자동차 없이 택시와 대중교통 이용 (자유롭지만 불편)")
+
+        if self.demo_mode:
+            car_choice = random.randint(1, 3)
+            print(f"\n🤖 [데모 모드] 선택: {car_choice}")
+            time.sleep(1)
+        else:
+            car_choice = self._get_choice_input(3)
+
+        car_effects = {
+            1: {"stress": -5, "wellbeing": 5, "choice": "bring_from_korea"},
+            2: {"stress": 5, "wellbeing": -3, "choice": "buy_local"},
+            3: {"stress": 8, "wellbeing": -5, "choice": "no_car"}
+        }
+        self.state.car_choice = car_effects[car_choice]["choice"]
+        self.state.update_stats({"stress": car_effects[car_choice]["stress"],
+                                  "wellbeing": car_effects[car_choice]["wellbeing"]})
+
+        # 2. 주거지 선택
+        print("\n" + "="*60)
+        print("🏠 주거지는 어떤 곳을 구하시겠습니까?")
+        print("="*60)
+        print("1. 넓은 집 (여유 공간, 하지만 먼 거리)")
+        print("2. 좋은 집 (새 건물, 고급 시설, 하지만 비싼 임대료)")
+        print("3. 사무소 가까운 집 (출퇴근 편리, 하지만 좁고 오래됨)")
+        print("4. 치안 좋은 동네 집 (안전, 하지만 시내에서 멀고 심심함)")
+
+        if self.demo_mode:
+            housing_choice = random.randint(1, 4)
+            print(f"\n🤖 [데모 모드] 선택: {housing_choice}")
+            time.sleep(1)
+        else:
+            housing_choice = self._get_choice_input(4)
+
+        housing_effects = {
+            1: {"stress": -3, "wellbeing": 8, "choice": "spacious"},
+            2: {"stress": -5, "wellbeing": 10, "budget": -5, "choice": "nice"},
+            3: {"stress": -10, "wellbeing": -5, "choice": "near_office"},
+            4: {"stress": -5, "wellbeing": 3, "choice": "secure"}
+        }
+        self.state.housing_choice = housing_effects[housing_choice]["choice"]
+        self.state.update_stats({k: v for k, v in housing_effects[housing_choice].items() if k != "choice"})
+
+        # 3. 여가 생활 선택
+        print("\n" + "="*60)
+        print("🎮 여가 생활은 어떻게 보내시겠습니까?")
+        print("="*60)
+        print("1. 독서 (조용하고 지적인 시간)")
+        print("2. 운동 (건강 관리와 스트레스 해소)")
+        print("3. 음주 (직원들과 친목, 하지만 건강 염려)")
+        print("4. 작문/블로그 (경험 기록, 창의적 표현)")
+        print("5. 집에서 뒹굴기 (편안한 휴식)")
+        print("6. 온라인 강의 듣기 (자기계발)")
+
+        if self.demo_mode:
+            leisure_choice = random.randint(1, 6)
+            print(f"\n🤖 [데모 모드] 선택: {leisure_choice}")
+            time.sleep(1)
+        else:
+            leisure_choice = self._get_choice_input(6)
+
+        leisure_effects = {
+            1: {"stress": -8, "wellbeing": 5, "choice": "reading"},
+            2: {"stress": -10, "wellbeing": 15, "choice": "exercise"},
+            3: {"stress": -5, "wellbeing": -5, "staff_morale": 5, "choice": "drinking"},
+            4: {"stress": -7, "wellbeing": 8, "reputation": 3, "choice": "writing"},
+            5: {"stress": -3, "wellbeing": 3, "choice": "gaming"},
+            6: {"stress": 3, "wellbeing": 5, "project_success": 5, "choice": "online_courses"}
+        }
+        self.state.leisure_choice = leisure_effects[leisure_choice]["choice"]
+        self.state.update_stats({k: v for k, v in leisure_effects[leisure_choice].items() if k != "choice"})
+
+        # 4. 식사 방식 선택
+        print("\n" + "="*60)
+        print("🍽️ 식사는 어떻게 해결하시겠습니까?")
+        print("="*60)
+        print("1. 집에서 직접 요리 (건강하지만 시간 소요)")
+        print("2. 외식 위주 (편리하지만 비용과 건강)")
+        print("3. 혼합 (적절한 균형)")
+
+        if self.demo_mode:
+            meal_choice = random.randint(1, 3)
+            print(f"\n🤖 [데모 모드] 선택: {meal_choice}")
+            time.sleep(1)
+        else:
+            meal_choice = self._get_choice_input(3)
+
+        meal_effects = {
+            1: {"stress": 5, "wellbeing": 10, "choice": "cook_at_home"},
+            2: {"stress": -3, "wellbeing": -5, "budget": -5, "choice": "eat_out"},
+            3: {"stress": 0, "wellbeing": 3, "budget": -2, "choice": "mixed"}
+        }
+        self.state.meal_choice = meal_effects[meal_choice]["choice"]
+        self.state.update_stats({k: v for k, v in meal_effects[meal_choice].items() if k != "choice"})
+
+        # 결과 요약
+        print("\n" + "="*60)
+        print("✅ 생활 준비가 완료되었습니다!")
+        print("="*60)
+        print("\n선택하신 내용:")
+        car_desc = {
+            "bring_from_korea": "한국에서 가져온 자동차",
+            "buy_local": "현지에서 구입한 중고차",
+            "no_car": "자동차 없이 대중교통"
+        }
+        housing_desc = {
+            "spacious": "넓은 집",
+            "nice": "좋은 집",
+            "near_office": "사무소 가까운 집",
+            "secure": "치안 좋은 동네 집"
+        }
+        leisure_desc = {
+            "reading": "독서",
+            "exercise": "운동",
+            "drinking": "음주",
+            "writing": "작문/블로그",
+            "gaming": "집에서 뒹굴기",
+            "online_courses": "온라인 강의"
+        }
+        meal_desc = {
+            "cook_at_home": "집에서 요리",
+            "eat_out": "외식 위주",
+            "mixed": "혼합"
+        }
+
+        print(f"🚗 자동차: {car_desc[self.state.car_choice]}")
+        print(f"🏠 주거: {housing_desc[self.state.housing_choice]}")
+        print(f"🎮 여가: {leisure_desc[self.state.leisure_choice]}")
+        print(f"🍽️ 식사: {meal_desc[self.state.meal_choice]}")
+        print("\n이제 본격적인 사무소장 업무를 시작합니다!")
+        print("="*60 + "\n")
+
+        if not self.demo_mode:
+            input("Enter를 눌러 계속...")
+        else:
+            time.sleep(2)
+
+    def _get_choice_input(self, max_choice):
+        """선택 입력 헬퍼 함수"""
+        while True:
+            try:
+                choice = int(input(f"\n선택 (1-{max_choice}): ").strip())
+                if 1 <= choice <= max_choice:
+                    return choice
+                else:
+                    print(f"1부터 {max_choice} 사이의 숫자를 입력하세요.")
+            except ValueError:
+                print("올바른 숫자를 입력하세요.")
+            except KeyboardInterrupt:
+                print("\n\n게임을 종료합니다.")
+                sys.exit(0)
+
+    def check_and_trigger_life_event(self):
+        """주기적 생활 이벤트 발생 확인"""
+        # 기본 확률 30%
+        base_chance = 0.30
+
+        # 스트레스/웰빙 상태에 따라 확률 조정
+        if self.state.stress > 70:
+            base_chance += 0.2  # 스트레스 높으면 이벤트 확률 증가
+        if self.state.wellbeing < 30:
+            base_chance += 0.2  # 웰빙 낮으면 이벤트 확률 증가
+
+        # 랜덤으로 이벤트 발생 여부 결정
+        if random.random() < base_chance:
+            return self.select_life_event()
+        return None
+
+    def select_life_event(self):
+        """적절한 생활 이벤트 선택"""
+        available_events = []
+
+        # 건강 이벤트 (웰빙 낮을 때)
+        if self.state.wellbeing < 40:
+            available_events.append(("life_event_health_issue", 3))  # 가중치 3
+
+        # 향수병 (기간에 따라 - 5-6개월 이상 지났을 때)
+        if self.state.year >= 1 and self.state.period >= 3:
+            available_events.append(("life_event_homesickness", 2))
+
+        # 심리적 압박 (스트레스 높을 때)
+        if self.state.stress > 60:
+            available_events.append(("life_event_psychological_pressure", 3))
+
+        # 자동차 고장 (자동차가 있는 경우)
+        if self.state.car_choice in ["bring_from_korea", "buy_local"]:
+            available_events.append(("life_event_car_breakdown", 1))
+
+        # 주거 문제 (모든 경우)
+        available_events.append(("life_event_housing_issue", 1))
+
+        if not available_events:
+            return None
+
+        # 가중치를 고려한 랜덤 선택
+        events = [e[0] for e in available_events]
+        weights = [e[1] for e in available_events]
+        total_weight = sum(weights)
+        rand = random.uniform(0, total_weight)
+
+        cumulative = 0
+        for event, weight in zip(events, weights):
+            cumulative += weight
+            if rand <= cumulative:
+                return event
+
+        return events[0]  # 폴백
 
     def display_scenario(self, scenario_id):
         """시나리오 표시 (AI 생성 지원)"""
@@ -810,6 +1080,14 @@ class KOICAGame:
                 "title": "직원 반발로 사임",
                 "description": "직원들의 사기가 최저점에 달해 집단 사직이 발생했습니다.\n당신은 책임을 지고 사임했습니다."
             },
+            "burnout": {
+                "title": "번아웃으로 긴급 귀국",
+                "description": "스트레스가 한계를 넘었습니다.\n\n과도한 업무, 문화적 적응의 어려움, 쉴 새 없는 압박이 당신을 지쳐 쓰러지게 만들었습니다.\n어느 날 아침, 침대에서 일어날 수 없었습니다. 본부는 긴급 귀국 조치를 내렸습니다.\n\n당신은 6개월간의 휴직 후 본부 내부 업무로 복귀했지만, 다시는 해외 파견을 지원하지 않았습니다.\n\n\"가장 중요한 프로젝트는 당신 자신의 건강입니다.\""
+            },
+            "health_crisis": {
+                "title": "건강 위기로 의료 후송",
+                "description": "건강이 급격히 악화되었습니다.\n\n불규칙한 식사, 부족한 운동, 현지 의료 시스템의 한계가 겹쳐 심각한 건강 문제가 발생했습니다.\n의료진은 즉시 한국으로 돌아가야 한다고 권고했습니다.\n\n의료 후송 항공편으로 한국에 도착한 당신은 3개월간 입원 치료를 받았습니다.\n임기는 후임자에게 인계되었습니다.\n\n\"몸이 건강해야 마음도 일도 제대로 할 수 있습니다.\""
+            },
             "legendary_director": {
                 "title": "전설적인 소장",
                 "description": "당신은 KOICA 역사상 가장 성공적인 소장으로 기억될 것입니다!\n모든 프로젝트가 성공적이었고, 현지 사회에 큰 긍정적 영향을 미쳤습니다.\n당신은 본부의 고위 간부로 승진했습니다."
@@ -878,6 +1156,7 @@ class KOICAGame:
     def play(self):
         """게임 플레이 메인 루프 (AI 기능 통합)"""
         self.display_intro()
+        self.initial_lifestyle_setup()
 
         while not self.state.game_over:
             scenario = self.display_scenario(self.state.current_scenario)
@@ -969,6 +1248,31 @@ class KOICAGame:
 
                 if self.state.check_game_over():
                     break
+
+                # 생활 이벤트 체크 (advance_time이 true인 경우에만)
+                if selected_choice['result'].get('advance_time', False):
+                    life_event_id = self.check_and_trigger_life_event()
+                    if life_event_id:
+                        # 생활 이벤트 발생
+                        life_event_scenario = self.display_scenario(life_event_id)
+                        if life_event_scenario and 'choices' in life_event_scenario:
+                            print("\n" + "="*60)
+                            print("🏠 생활 이벤트가 발생했습니다!")
+                            print("="*60)
+                            if not self.demo_mode:
+                                input("\nEnter를 눌러 계속...")
+                            else:
+                                time.sleep(1)
+
+                            # 생활 이벤트 선택 처리
+                            life_choice_index = self.display_choices(life_event_scenario['choices'])
+                            if life_choice_index >= 0:
+                                life_selected = life_event_scenario['choices'][life_choice_index]
+                                self.state.record_choice(life_event_id, life_selected['text'], life_choice_index, life_selected['result'])
+                                self.apply_choice_result(life_selected['result'])
+
+                                if self.state.check_game_over():
+                                    break
 
                 if 'next' in selected_choice['result']:
                     self.state.current_scenario = selected_choice['result']['next']
