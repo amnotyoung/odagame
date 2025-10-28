@@ -30,7 +30,7 @@ class GameState:
         self.year = 1
         self.period = 1  # 격월 단위 (1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
         self.reputation = 50  # 평판 (0-100)
-        self.budget = 100  # 예산 (0-200)
+        self.budget_execution_rate = 0  # 예산 집행률 (0-100), 80-100%가 이상적
         self.staff_morale = 50  # 직원 만족도 (0-100)
         self.project_success = 50  # 프로젝트 성공도 (0-100)
         self.current_scenario = "start"
@@ -55,7 +55,7 @@ class GameState:
         """스탯 업데이트 및 히스토리 기록"""
         old_stats = {
             'reputation': self.reputation,
-            'budget': self.budget,
+            'budget_execution_rate': self.budget_execution_rate,
             'staff_morale': self.staff_morale,
             'project_success': self.project_success
         }
@@ -63,7 +63,8 @@ class GameState:
         if 'reputation' in changes:
             self.reputation = max(0, min(100, self.reputation + changes['reputation']))
         if 'budget' in changes:
-            self.budget = max(0, min(200, self.budget + changes['budget']))
+            # budget 변화값을 예산 집행률로 변환
+            self.budget_execution_rate = max(0, min(100, self.budget_execution_rate + changes['budget']))
         if 'staff_morale' in changes:
             self.staff_morale = max(0, min(100, self.staff_morale + changes['staff_morale']))
         if 'project_success' in changes:
@@ -77,7 +78,7 @@ class GameState:
             'old': old_stats,
             'new': {
                 'reputation': self.reputation,
-                'budget': self.budget,
+                'budget_execution_rate': self.budget_execution_rate,
                 'staff_morale': self.staff_morale,
                 'project_success': self.project_success
             }
@@ -99,7 +100,8 @@ class GameState:
             stats = result['stats']
             if 'reputation' in stats and stats['reputation'] > 0:
                 self.player_style['reputation_focused'] += 1
-            if 'budget' in stats and stats['budget'] > 0:
+            if 'budget' in stats:
+                # 예산 집행률 관리에 신경 쓰는 선택
                 self.player_style['budget_focused'] += 1
             if 'staff_morale' in stats and stats['staff_morale'] > 0:
                 self.player_style['staff_focused'] += 1
@@ -118,7 +120,7 @@ class GameState:
                 'year': self.year,
                 'period': self.period,
                 'reputation': self.reputation,
-                'budget': self.budget,
+                'budget_execution_rate': self.budget_execution_rate,
                 'staff_morale': self.staff_morale,
                 'project_success': self.project_success
             },
@@ -141,10 +143,6 @@ class GameState:
             self.game_over = True
             self.ending = "reputation_loss"
             return True
-        if self.budget <= 0:
-            self.game_over = True
-            self.ending = "budget_crisis"
-            return True
         if self.staff_morale <= 0:
             self.game_over = True
             self.ending = "staff_revolt"
@@ -158,21 +156,28 @@ class GameState:
     def will_cause_game_over(self, stat_changes):
         """선택이 게임 오버를 초래할지 확인"""
         temp_reputation = self.reputation
-        temp_budget = self.budget
         temp_staff_morale = self.staff_morale
 
         if 'reputation' in stat_changes:
             temp_reputation += stat_changes['reputation']
-        if 'budget' in stat_changes:
-            temp_budget += stat_changes['budget']
         if 'staff_morale' in stat_changes:
             temp_staff_morale += stat_changes['staff_morale']
 
-        return temp_reputation <= 0 or temp_budget <= 0 or temp_staff_morale <= 0
+        return temp_reputation <= 0 or temp_staff_morale <= 0
 
     def calculate_final_ending(self):
         """최종 엔딩 계산"""
-        total_score = (self.reputation + self.staff_morale + self.project_success + self.budget / 2) / 3.5
+        # 예산 집행률 평가: 80-100%가 이상적 (100점), 그 외는 감점
+        if 80 <= self.budget_execution_rate <= 100:
+            budget_score = 100
+        elif self.budget_execution_rate < 80:
+            # 80% 미만은 선형 감점 (0%=0점, 80%=100점)
+            budget_score = (self.budget_execution_rate / 80) * 100
+        else:
+            # 100% 초과는 없어야 하지만, 만약 있다면 100점으로 처리
+            budget_score = 100
+
+        total_score = (self.reputation + self.staff_morale + self.project_success + budget_score) / 4
 
         if total_score >= 80:
             self.ending = "legendary_director"
@@ -196,7 +201,7 @@ class GameState:
         print(f"📅 {self.year}년차 {period_str}")
         print("-"*60)
         print(f"🌟 평판: {self.reputation}/100 {'■' * (self.reputation//5)}{'□' * (20-self.reputation//5)}")
-        print(f"💰 예산: {self.budget}/200 {'■' * (self.budget//10)}{'□' * (20-self.budget//10)}")
+        print(f"💰 예산 집행률: {self.budget_execution_rate}/100 {'■' * (self.budget_execution_rate//5)}{'□' * (20-self.budget_execution_rate//5)}")
         print(f"😊 직원 만족도: {self.staff_morale}/100 {'■' * (self.staff_morale//5)}{'□' * (20-self.staff_morale//5)}")
         print(f"📊 프로젝트 성공도: {self.project_success}/100 {'■' * (self.project_success//5)}{'□' * (20-self.project_success//5)}")
         print("="*60 + "\n")
@@ -269,7 +274,7 @@ class GeminiIntegration:
 ## 현재 게임 상태
 - 시기: {summary['current_stats']['year']}년차 {summary['current_stats']['period']}기 (격월 단위: 1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
 - 평판: {summary['current_stats']['reputation']}/100
-- 예산: {summary['current_stats']['budget']}/200
+- 예산 집행률: {summary['current_stats']['budget_execution_rate']}/100 (80-100%가 이상적)
 - 직원 만족도: {summary['current_stats']['staff_morale']}/100
 - 프로젝트 성공도: {summary['current_stats']['project_success']}/100
 
@@ -285,6 +290,7 @@ class GeminiIntegration:
 3. 플레이어의 현재 상태(특히 낮은 스탯)를 고려한 시나리오를 만드세요
 4. 4-5개의 선택지를 제공하되, 각각 명확한 장단점이 있어야 합니다
 5. 각 선택의 결과로 스탯 변화를 제안하세요 (reputation, budget, staff_morale, project_success)
+   - budget 값은 예산 집행률 변화를 의미 (양수=집행률 상승, 음수=집행률 하락)
 
 ## 응답 형식 (반드시 JSON 형식으로)
 {{
@@ -366,7 +372,7 @@ class GeminiIntegration:
 ## 현재 상황
 - 시기: {summary['current_stats']['year']}년차 {summary['current_stats']['period']}기 (격월 단위: 1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
 - 평판: {summary['current_stats']['reputation']}/100
-- 예산: {summary['current_stats']['budget']}/200
+- 예산 집행률: {summary['current_stats']['budget_execution_rate']}/100 (80-100%가 이상적)
 - 직원 만족도: {summary['current_stats']['staff_morale']}/100
 - 프로젝트 성공도: {summary['current_stats']['project_success']}/100
 
@@ -417,7 +423,7 @@ class GeminiIntegration:
 
 ## 최종 스탯
 - 평판: {game_state.reputation}/100
-- 예산: {game_state.budget}/200
+- 예산 집행률: {game_state.budget_execution_rate}/100
 - 직원 만족도: {game_state.staff_morale}/100
 - 프로젝트 성공도: {game_state.project_success}/100
 - 총점: {total_score:.1f}/100
@@ -657,10 +663,13 @@ class KOICAGame:
                         score += 1
 
                 if 'budget' in stats:
-                    if self.state.budget < 40 and stats['budget'] > 0:
+                    # 예산 집행률을 80-100% 범위로 맞추는 선택 선호
+                    if self.state.budget_execution_rate < 60 and stats['budget'] > 0:
                         score += 3
-                    elif stats['budget'] < 0 and self.state.budget > 60:
-                        score += 1
+                    elif self.state.budget_execution_rate >= 80:
+                        # 이미 적정 수준이면 현상 유지 선택
+                        if abs(stats['budget']) < 5:
+                            score += 2
 
                 if 'staff_morale' in stats:
                     if self.state.staff_morale < 40 and stats['staff_morale'] > 0:
@@ -757,9 +766,25 @@ class KOICAGame:
         self.state.display_status()
 
         print("\n최종 점수:")
+        # 예산 집행률 평가 점수 계산
+        if 80 <= self.state.budget_execution_rate <= 100:
+            budget_score = 100
+        elif self.state.budget_execution_rate < 80:
+            budget_score = (self.state.budget_execution_rate / 80) * 100
+        else:
+            budget_score = 100
+
         total_score = (self.state.reputation + self.state.staff_morale +
-                      self.state.project_success + self.state.budget / 2) / 3.5
+                      self.state.project_success + budget_score) / 4
         print(f"⭐ {total_score:.1f}/100")
+
+        # 예산 집행률 평가 표시
+        if 80 <= self.state.budget_execution_rate <= 100:
+            print(f"💰 예산 집행: 우수 ({self.state.budget_execution_rate}%)")
+        elif self.state.budget_execution_rate >= 60:
+            print(f"💰 예산 집행: 양호 ({self.state.budget_execution_rate}%)")
+        else:
+            print(f"💰 예산 집행: 미흡 ({self.state.budget_execution_rate}%)")
 
         # 플레이 스타일 요약 (AI 모드)
         if self.ai_mode and len(self.state.choice_history) > 0:
@@ -916,9 +941,6 @@ class KOICAGame:
                         if 'reputation' in changes and changes['reputation'] < 0:
                             new_rep = max(0, self.state.reputation + changes['reputation'])
                             print(f"  평판: {self.state.reputation} → {new_rep}")
-                        if 'budget' in changes and changes['budget'] < 0:
-                            new_budget = max(0, self.state.budget + changes['budget'])
-                            print(f"  예산: {self.state.budget} → {new_budget}")
                         if 'staff_morale' in changes and changes['staff_morale'] < 0:
                             new_morale = max(0, self.state.staff_morale + changes['staff_morale'])
                             print(f"  직원 만족도: {self.state.staff_morale} → {new_morale}")
