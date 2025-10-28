@@ -187,7 +187,7 @@ class GeminiIntegration:
         self.enabled = GEMINI_AVAILABLE and api_key is not None
         if self.enabled:
             genai.configure(api_key=api_key)
-            self.model = genai.GenerativeModel('gemini-1.5-pro')
+            self.model = genai.GenerativeModel('gemini-1.5-flash')
         else:
             self.model = None
 
