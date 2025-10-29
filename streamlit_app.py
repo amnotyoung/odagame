@@ -479,17 +479,6 @@ def game_play_screen():
 
     # 현재 시나리오 가져오기
     current_scenario_id = state.current_scenario
-
-    # 시작 시나리오인 경우 다음 시나리오로 이동
-    if current_scenario_id == "start":
-        next_scenarios = [s for s in game.scenarios.keys() if s not in state.visited_scenarios and s != "start"]
-        if next_scenarios:
-            current_scenario_id = random.choice(next_scenarios)
-            state.current_scenario = current_scenario_id
-        else:
-            st.error("더 이상 시나리오가 없습니다.")
-            return
-
     scenario = game.scenarios.get(current_scenario_id)
 
     if not scenario:
