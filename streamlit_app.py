@@ -546,11 +546,12 @@ def game_play_screen():
                         # 성공 시에만 자유 답변 모드 종료
                         st.session_state.free_form_mode = False
                         st.session_state.free_form_action = ""
+                        st.rerun()
                     else:
                         # 실패 시 입력 내용 유지하여 다시 입력할 수 있도록
+                        # st.rerun()을 호출하지 않아 에러 메시지가 표시됨
                         st.session_state.free_form_mode = True
                         st.session_state.free_form_action = action
-                    st.rerun()
                 else:
                     st.error("행동을 입력해주세요.")
 
@@ -600,8 +601,17 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
     Returns:
         bool: 성공 시 True, 실패 시 False
     """
+    # AI 모드 체크
+    if not game.gemini or not game.gemini.enabled:
+        st.error("⚠️ AI 모드가 활성화되어 있지 않습니다.")
+        return False
+
     with st.spinner("🤖 AI가 결과를 계산중입니다..."):
-        result = game.gemini.generate_free_form_result(game.state, action)
+        try:
+            result = game.gemini.generate_free_form_result(game.state, action)
+        except Exception as e:
+            st.error(f"⚠️ AI 처리 중 오류가 발생했습니다: {str(e)}")
+            return False
 
     if result and result.get('success'):
         # 결과 메시지 저장
@@ -640,8 +650,12 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
         return True
     else:
         # 실패 시 에러 메시지
-        error_msg = result.get('message', '해당 행동은 불가능합니다.') if result else 'AI 처리 실패. 다시 시도해주세요.'
-        st.error(error_msg)
+        if result:
+            error_msg = result.get('message', '해당 행동은 불가능합니다.')
+            st.error(f"⚠️ {error_msg}")
+        else:
+            st.error("⚠️ AI가 응답을 생성하지 못했습니다. 다시 시도해주세요.")
+            st.info("💡 팁: 더 구체적이고 현실적인 행동을 입력해보세요.")
         return False
 
 
