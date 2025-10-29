@@ -29,14 +29,14 @@ class GameState:
     def __init__(self):
         self.year = 1
         self.period = 1  # 격월 단위 (1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
-        self.reputation = 50  # 평판 (0-100)
-        self.budget_execution_rate = 50  # 예산 집행률 (0-100), 80-100%가 이상적
-        self.staff_morale = 50  # 직원 만족도 (0-100)
-        self.project_success = 50  # 프로젝트 성공도 (0-100)
+        self.reputation = 40  # 평판 (0-100) - 더 낮은 시작점
+        self.budget_execution_rate = 30  # 예산 집행률 (0-100), 80-100%가 이상적 - 더 낮은 시작점
+        self.staff_morale = 45  # 직원 만족도 (0-100) - 더 낮은 시작점
+        self.project_success = 35  # 프로젝트 성공도 (0-100) - 더 낮은 시작점
 
         # 생활 스탯 추가
-        self.stress = 30  # 스트레스 (0-100, 낮을수록 좋음)
-        self.wellbeing = 50  # 웰빙 (0-100, 높을수록 좋음)
+        self.stress = 40  # 스트레스 (0-100, 낮을수록 좋음) - 더 높은 시작점
+        self.wellbeing = 45  # 웰빙 (0-100, 높을수록 좋음) - 더 낮은 시작점
 
         self.current_scenario = "start"
         self.visited_scenarios = []
@@ -1343,12 +1343,11 @@ class KOICAGame:
             self.state.advance_time()
 
     def _determine_director_types(self) -> List[str]:
-        """플레이어의 스탯과 선택 패턴을 분석하여 소장 유형들을 결정"""
+        """플레이어의 스탯과 선택 패턴을 분석하여 가장 적합한 소장 유형 1개를 결정"""
         stats = self.state
         style = stats.player_style
-        types = []
 
-        # 각 스탯의 상대적 수준 분석 (절대값이 아닌 상대적 패턴)
+        # 각 스탯의 상대적 수준 분석
         work_stats = {
             'reputation': stats.reputation,
             'budget': stats.budget_execution_rate,
@@ -1356,15 +1355,15 @@ class KOICAGame:
             'project': stats.project_success
         }
 
-        # 가장 높은 스탯들 찾기 (상위 50% 이상인 것들)
+        # 가장 높은 스탯 찾기
         max_stat = max(work_stats.values()) if work_stats.values() else 50
-        high_stats = [k for k, v in work_stats.items() if v >= max(max_stat * 0.8, 60)]
+        max_stat_name = max(work_stats, key=work_stats.get)
 
         # 스탯 균형도 계산
         stat_values = list(work_stats.values())
         avg_stat = sum(stat_values) / len(stat_values) if stat_values else 50
         variance = sum((v - avg_stat) ** 2 for v in stat_values) / len(stat_values) if stat_values else 0
-        is_balanced = variance < 300  # 분산이 작으면 균형잡힘
+        is_balanced = variance < 200  # 더 엄격한 균형 기준
 
         # 플레이 스타일 분석
         total_choices = len(stats.choice_history)
@@ -1372,69 +1371,71 @@ class KOICAGame:
 
         # 스트레스와 웰빙으로 생활 패턴 분석
         is_high_stress = stats.stress >= 70
-        is_high_wellbeing = stats.wellbeing >= 70
-        is_low_stress = stats.stress <= 40
+        is_high_wellbeing = stats.wellbeing >= 65
+        is_low_stress = stats.stress <= 35
 
-        # === 유형 결정 로직 (복수 유형 가능) ===
+        # 가장 중점을 둔 영역 찾기
+        focus_areas = {
+            'reputation': style['reputation_focused'],
+            'budget': style['budget_focused'],
+            'staff': style['staff_focused'],
+            'project': style['project_focused']
+        }
+        max_focus = max(focus_areas.values()) if focus_areas.values() else 0
+        most_focused = max(focus_areas, key=focus_areas.get) if max_focus > 0 else None
 
-        # 균형잡힌 소장 - 모든 스탯이 비슷하게 관리됨
-        if is_balanced and avg_stat >= 55:
-            types.append("균형잡힌 소장")
+        # === 유형 결정 로직 (우선순위 기반으로 1개만 선택) ===
 
-        # 스탯별 특화 유형
-        if 'staff' in high_stats and style['staff_focused'] >= 3:
-            if is_low_stress:
-                types.append("부드러운 소장")  # 직원 중시 + 낮은 스트레스
-            else:
-                types.append("사려깊은 소장")  # 직원 중시
+        # 1. 극단적 특성 먼저 체크
+        if risk_ratio > 0.35 and max_stat >= 55:
+            return ["혁신적인 소장"]
 
-        if 'reputation' in high_stats and style['reputation_focused'] >= 3:
-            if risk_ratio < 0.15:
-                types.append("냉철한 소장")  # 평판 중시 + 신중함
-            else:
-                types.append("외교적인 소장")  # 평판 중시
+        if is_high_wellbeing and is_low_stress and avg_stat >= 55:
+            return ["여유로운 소장"]
 
-        if 'project' in high_stats and style['project_focused'] >= 3:
+        if is_high_stress and avg_stat >= 65:
+            return ["헌신적인 소장"]
+
+        # 2. 균형형 체크
+        if is_balanced and avg_stat >= 60:
+            return ["균형잡힌 소장"]
+
+        # 3. 스탯 + 플레이 스타일 조합으로 결정
+        if most_focused == 'staff' and style['staff_focused'] >= 3:
+            if is_low_stress and max_stat >= 60:
+                return ["온화한 소장"]
+            return ["사람 중심 소장"]
+
+        if most_focused == 'reputation' and style['reputation_focused'] >= 3:
+            if risk_ratio < 0.15 and max_stat >= 60:
+                return ["신중한 외교가"]
+            return ["외교적인 소장"]
+
+        if most_focused == 'project' and style['project_focused'] >= 3:
             if risk_ratio > 0.25:
-                types.append("진취적인 소장")  # 프로젝트 중시 + 도전적
-            else:
-                types.append("성과 중심적인 소장")  # 프로젝트 중시
+                return ["진취적인 소장"]
+            return ["성과 중심 소장"]
 
-        if 'budget' in high_stats and style['budget_focused'] >= 3:
-            types.append("실무형 소장")  # 예산 중시
+        if most_focused == 'budget' and style['budget_focused'] >= 3:
+            return ["실무형 소장"]
 
-        # 복합 유형
-        if is_high_wellbeing and not is_high_stress and avg_stat >= 50:
-            types.append("건강한 소장")  # 일과 삶의 균형
+        # 4. 스탯 기반 결정 (플레이 스타일이 명확하지 않을 때)
+        if max_stat_name == 'staff' and max_stat >= 60:
+            return ["사람 중심 소장"]
+        elif max_stat_name == 'reputation' and max_stat >= 60:
+            return ["외교적인 소장"]
+        elif max_stat_name == 'project' and max_stat >= 60:
+            return ["성과 중심 소장"]
+        elif max_stat_name == 'budget' and max_stat >= 60:
+            return ["실무형 소장"]
 
-        if is_high_stress and avg_stat >= 60:
-            types.append("헌신적인 소장")  # 높은 성과 + 높은 스트레스
-
-        if risk_ratio > 0.3:
-            types.append("혁신적인 소장")  # 높은 위험 감수
-
-        if risk_ratio < 0.1 and avg_stat >= 50:
-            types.append("신중한 소장")  # 매우 신중한 접근
-
-        # 통찰력 있는 소장 - 다양한 관심사
-        focus_counts = [
-            style['reputation_focused'],
-            style['budget_focused'],
-            style['staff_focused'],
-            style['project_focused']
-        ]
-        if all(f >= 2 for f in focus_counts):
-            types.append("꿰뚫어 보는 소장")  # 모든 영역에 관심
-
-        # 유형이 없으면 기본 유형 부여
-        if not types:
-            if avg_stat >= 55:
-                types.append("성실한 소장")
-            else:
-                types.append("도전적인 소장")
-
-        # 최대 3개까지만 반환
-        return types[:3]
+        # 5. 기본 유형 (특별한 특징이 없을 때)
+        if avg_stat >= 55:
+            return ["안정적인 소장"]
+        elif avg_stat >= 45:
+            return ["성실한 소장"]
+        else:
+            return ["분투한 소장"]
 
     def display_ending(self):
         """엔딩 표시 (AI 개인화 지원)"""
@@ -1468,11 +1469,15 @@ class KOICAGame:
 
         self.state.display_status()
 
-        # 소장 유형 평가 (최종 점수 대신)
+        # 소장 유형 평가 (1개만 표시)
         print("\n✨ 당신의 소장 유형:")
         director_types = self._determine_director_types()
-        for dtype in director_types:
-            print(f"   🎯 {dtype}")
+        director_type = director_types[0] if director_types else "소장"
+        print(f"   🎯 {director_type}")
+
+        # 선택 분석을 통한 풍부한 설명
+        choice_explanation = self._generate_choice_explanation_console(director_type)
+        print(f"\n{choice_explanation}")
 
         print("\n📊 영역별 성과:")
         print(f"   🌟 평판: {self.state.reputation}/100")
@@ -1546,6 +1551,95 @@ class KOICAGame:
         print(f"🏆 {ending_info['title']}\n")
         print(ending_info['description'])
         print()
+
+    def _generate_choice_explanation_console(self, director_type: str) -> str:
+        """선택 히스토리를 분석하여 소장 유형에 대한 풍부한 설명 생성 (콘솔용)"""
+        stats = self.state
+        style = stats.player_style
+        total_choices = len(stats.choice_history)
+
+        if total_choices == 0:
+            return "2년간의 임기를 완수하셨습니다."
+
+        # 주요 관심사 파악
+        focus_areas = {
+            '평판': style['reputation_focused'],
+            '예산': style['budget_focused'],
+            '직원': style['staff_focused'],
+            '프로젝트': style['project_focused']
+        }
+
+        # 위험 감수 성향
+        risk_ratio = style['risk_taking'] / total_choices if total_choices > 0 else 0
+
+        # 상위 2개 관심사
+        sorted_focus = sorted(focus_areas.items(), key=lambda x: x[1], reverse=True)
+        top_concerns = [area for area, count in sorted_focus[:2] if count > 0]
+
+        # 설명 구성
+        lines = []
+
+        # 첫 문장: 전반적인 여정
+        if stats.reputation >= 60 and stats.project_success >= 60:
+            lines.append("2년간 균형잡힌 성과를 달성하셨습니다.")
+        elif max(stats.reputation, stats.budget_execution_rate, stats.staff_morale, stats.project_success) >= 70:
+            lines.append("2년간 특정 영역에서 뛰어난 성과를 거두셨습니다.")
+        else:
+            lines.append("2년간 다양한 도전 속에서 최선을 다하셨습니다.")
+
+        # 주요 관심사 언급
+        if len(top_concerns) >= 2:
+            lines.append(f"특히 {top_concerns[0]}와(과) {top_concerns[1]}에 중점을 두셨습니다.")
+        elif len(top_concerns) == 1:
+            lines.append(f"특히 {top_concerns[0]}에 집중하셨습니다.")
+
+        # 의사결정 스타일 설명
+        if risk_ratio > 0.35:
+            lines.append("위험을 두려워하지 않고 혁신적인 시도를 많이 하셨습니다.")
+        elif risk_ratio > 0.2:
+            lines.append("적절한 수준의 도전을 마다하지 않으셨습니다.")
+        elif risk_ratio < 0.1:
+            lines.append("신중하고 안정적인 접근을 선호하셨습니다.")
+        else:
+            lines.append("균형잡힌 의사결정을 추구하셨습니다.")
+
+        # 구체적 선택 사례 (최근 중요한 결정들)
+        significant_choices = []
+        for choice in stats.choice_history[-10:]:  # 최근 10개 중에서
+            if 'result' in choice and 'stats' in choice['result']:
+                stat_changes = choice['result']['stats']
+                total_change = sum(abs(v) for v in stat_changes.values())
+                if total_change > 15:  # 큰 영향을 준 선택
+                    significant_choices.append(choice)
+
+        if significant_choices:
+            # 가장 큰 영향을 준 선택 찾기
+            max_impact_choice = max(significant_choices,
+                                   key=lambda c: sum(abs(v) for v in c['result']['stats'].values()))
+
+            choice_text = max_impact_choice.get('choice_text', '')
+            if choice_text:
+                # 너무 길면 축약
+                if len(choice_text) > 60:
+                    choice_text = choice_text[:57] + "..."
+                lines.append(f"'{choice_text}'와(과) 같은 중요한 결정들이 이러한 유형을 만들었습니다.")
+
+        # 개인 생활과 업무 균형
+        if stats.wellbeing >= 65 and stats.stress <= 35:
+            lines.append("업무와 개인 생활의 건강한 균형을 유지하셨습니다.")
+        elif stats.stress >= 70:
+            lines.append("높은 스트레스 속에서도 헌신적으로 임무를 수행하셨습니다.")
+
+        # 최종 성과 언급
+        avg_stat = (stats.reputation + stats.budget_execution_rate + stats.staff_morale + stats.project_success) / 4
+        if avg_stat >= 70:
+            lines.append("그 결과 뛰어난 성과로 임기를 마무리하셨습니다.")
+        elif avg_stat >= 55:
+            lines.append("그 결과 안정적인 성과로 임기를 마무리하셨습니다.")
+        elif avg_stat >= 40:
+            lines.append("다양한 어려움 속에서도 끝까지 완수하셨습니다.")
+
+        return " ".join(lines)
 
     def _summarize_play_style(self) -> str:
         """플레이 스타일 요약"""

@@ -756,20 +756,19 @@ def ending_screen():
 
     st.title("🎉 임기 완수!")
 
-    # 소장 유형 결정
+    # 소장 유형 결정 (이제 1개만 반환됨)
     director_types = game._determine_director_types()
+    director_type = director_types[0] if director_types else "소장"
+
+    # 선택 분석을 통한 풍부한 설명 생성
+    choice_explanation = _generate_choice_explanation(state, director_type)
 
     st.markdown(f"""
     <div class="scenario-text">
-    <h2>✨ 당신의 소장 유형</h2>
+    <h2>✨ 당신의 소장 유형: {director_type}</h2>
+    <p style="line-height: 1.8; margin-top: 15px;">{choice_explanation}</p>
+    </div>
     """, unsafe_allow_html=True)
-
-    for dtype in director_types:
-        st.markdown(f"""
-        <div class="scenario-text">
-        <p style="font-size: 1.2em; font-weight: bold; color: #4CAF50;">🎯 {dtype}</p>
-        </div>
-        """, unsafe_allow_html=True)
 
     st.markdown(f"""
     <div class="scenario-text">
@@ -788,7 +787,6 @@ def ending_screen():
     </ul>
 
     <p style="margin-top: 20px;">2년간의 여정을 완수하셨습니다. 수고하셨습니다!</p>
-    <p style="font-style: italic; color: #666;">각자 자신만의 방식으로 소장의 역할을 수행했습니다. 획일적인 기준은 없습니다.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -805,6 +803,97 @@ def ending_screen():
             st.session_state.current_screen = 'welcome'
             st.session_state.game = None
             st.rerun()
+
+
+def _generate_choice_explanation(state: GameState, director_type: str) -> str:
+    """선택 히스토리를 분석하여 소장 유형에 대한 풍부한 설명 생성"""
+
+    # 플레이어 스타일 분석
+    style = state.player_style
+    total_choices = len(state.choice_history)
+
+    if total_choices == 0:
+        return "2년간의 임기를 완수하셨습니다."
+
+    # 주요 관심사 파악
+    focus_areas = {
+        '평판': style['reputation_focused'],
+        '예산': style['budget_focused'],
+        '직원': style['staff_focused'],
+        '프로젝트': style['project_focused']
+    }
+
+    # 위험 감수 성향
+    risk_ratio = style['risk_taking'] / total_choices if total_choices > 0 else 0
+
+    # 상위 2개 관심사
+    sorted_focus = sorted(focus_areas.items(), key=lambda x: x[1], reverse=True)
+    top_concerns = [area for area, count in sorted_focus[:2] if count > 0]
+
+    # 설명 구성
+    explanation_parts = []
+
+    # 첫 문장: 전반적인 여정
+    if state.reputation >= 60 and state.project_success >= 60:
+        explanation_parts.append("2년간 균형잡힌 성과를 달성하셨습니다.")
+    elif max(state.reputation, state.budget_execution_rate, state.staff_morale, state.project_success) >= 70:
+        explanation_parts.append("2년간 특정 영역에서 뛰어난 성과를 거두셨습니다.")
+    else:
+        explanation_parts.append("2년간 다양한 도전 속에서 최선을 다하셨습니다.")
+
+    # 주요 관심사 언급
+    if len(top_concerns) >= 2:
+        explanation_parts.append(f"특히 <b>{top_concerns[0]}</b>와(과) <b>{top_concerns[1]}</b>에 중점을 두셨습니다.")
+    elif len(top_concerns) == 1:
+        explanation_parts.append(f"특히 <b>{top_concerns[0]}</b>에 집중하셨습니다.")
+
+    # 의사결정 스타일 설명
+    if risk_ratio > 0.35:
+        explanation_parts.append("위험을 두려워하지 않고 <b>혁신적인 시도</b>를 많이 하셨습니다.")
+    elif risk_ratio > 0.2:
+        explanation_parts.append("적절한 수준의 <b>도전</b>을 마다하지 않으셨습니다.")
+    elif risk_ratio < 0.1:
+        explanation_parts.append("<b>신중하고 안정적인 접근</b>을 선호하셨습니다.")
+    else:
+        explanation_parts.append("<b>균형잡힌 의사결정</b>을 추구하셨습니다.")
+
+    # 구체적 선택 사례 (최근 중요한 결정들)
+    significant_choices = []
+    for choice in state.choice_history[-10:]:  # 최근 10개 중에서
+        if 'result' in choice and 'stats' in choice['result']:
+            stat_changes = choice['result']['stats']
+            total_change = sum(abs(v) for v in stat_changes.values())
+            if total_change > 15:  # 큰 영향을 준 선택
+                significant_choices.append(choice)
+
+    if significant_choices:
+        # 가장 큰 영향을 준 선택 찾기
+        max_impact_choice = max(significant_choices,
+                               key=lambda c: sum(abs(v) for v in c['result']['stats'].values()))
+
+        choice_text = max_impact_choice.get('choice_text', '')
+        if choice_text:
+            # 너무 길면 축약
+            if len(choice_text) > 60:
+                choice_text = choice_text[:57] + "..."
+            explanation_parts.append(f"'{choice_text}'와(과) 같은 <b>중요한 결정들</b>이 이러한 유형을 만들었습니다.")
+
+    # 개인 생활과 업무 균형
+    if state.wellbeing >= 65 and state.stress <= 35:
+        explanation_parts.append("업무와 개인 생활의 <b>건강한 균형</b>을 유지하셨습니다.")
+    elif state.stress >= 70:
+        explanation_parts.append("높은 스트레스 속에서도 <b>헌신적으로</b> 임무를 수행하셨습니다.")
+
+    # 최종 성과 언급
+    avg_stat = (state.reputation + state.budget_execution_rate + state.staff_morale + state.project_success) / 4
+    if avg_stat >= 70:
+        explanation_parts.append("그 결과 <b>뛰어난 성과</b>로 임기를 마무리하셨습니다.")
+    elif avg_stat >= 55:
+        explanation_parts.append("그 결과 <b>안정적인 성과</b>로 임기를 마무리하셨습니다.")
+    elif avg_stat >= 40:
+        explanation_parts.append("다양한 어려움 속에서도 <b>끝까지 완수</b>하셨습니다.")
+
+    return " ".join(explanation_parts)
 
 
 def main():
