@@ -808,12 +808,13 @@ class KOICAGame:
         return None
 
     def select_life_event(self):
-        """적절한 생활 이벤트 선택"""
+        """적절한 생활 이벤트 선택 (기존 생활 이벤트 + 새로운 서사 이벤트)"""
         available_events = []
 
+        # === 기존 생활 이벤트 ===
         # 건강 이벤트 (웰빙 낮을 때)
         if self.state.wellbeing < 40:
-            available_events.append(("life_event_health_issue", 3))  # 가중치 3
+            available_events.append(("life_event_health_issue", 3))
 
         # 향수병 (기간에 따라 - 5-6개월 이상 지났을 때)
         if self.state.year >= 1 and self.state.period >= 3:
@@ -829,6 +830,101 @@ class KOICAGame:
 
         # 주거 문제 (모든 경우)
         available_events.append(("life_event_housing_issue", 1))
+
+        # === 새로운 서사 이벤트 ===
+
+        # --- 긍정적 이벤트 (높은 stat 요구) ---
+        if self.state.project_success >= 70 and self.state.year >= 1:
+            available_events.append(("narrative_event_project_opening", 2))
+
+        if self.state.staff_morale >= 60:
+            available_events.append(("narrative_event_volunteer_success", 2))
+
+        if self.state.project_success >= 60 and self.state.year >= 1:
+            available_events.append(("narrative_event_partner_growth", 2))
+
+        if self.state.project_success >= 65:
+            available_events.append(("narrative_event_unexpected_impact", 2))
+
+        if self.state.reputation >= 60:
+            available_events.append(("narrative_event_emergency_relief", 1))
+
+        if self.state.staff_morale >= 60 and self.state.year >= 1:
+            available_events.append(("narrative_event_staff_wedding", 2))
+
+        if self.state.reputation >= 60 and self.state.period >= 1:
+            available_events.append(("narrative_event_new_year_letters", 1))
+
+        if self.state.reputation >= 70 and self.state.year >= 1:
+            available_events.append(("narrative_event_minister_trust", 2))
+
+        if self.state.staff_morale >= 65:
+            available_events.append(("narrative_event_staff_dedication", 2))
+
+        if self.state.project_success >= 75 and self.state.reputation >= 75:
+            available_events.append(("narrative_event_international_award", 1))
+
+        if self.state.reputation >= 70:
+            available_events.append(("narrative_event_media_interview", 2))
+
+        # --- 부정적 이벤트 (낮은 stat 또는 위기 상황) ---
+        if self.state.period == 6:
+            available_events.append(("narrative_event_policy_shift", 2))
+
+        if self.state.period >= 10 and self.state.budget < 70:
+            available_events.append(("narrative_event_budget_pressure", 3))
+
+        available_events.append(("narrative_event_volunteer_safety", 1))
+
+        if self.state.year >= 1:
+            available_events.append(("narrative_event_regime_change", 1))
+
+        if self.state.reputation < 60:
+            available_events.append(("narrative_event_jica_competition", 2))
+
+        if self.state.period == 9 or self.state.period == 3:
+            available_events.append(("narrative_event_audit", 2))
+
+        if self.state.period == 5 or self.state.period == 11:
+            available_events.append(("narrative_event_congress_visit", 2))
+
+        if self.state.stress > 50 and self.state.staff_morale < 50:
+            available_events.append(("narrative_event_yp_adaptation_failure", 2))
+
+        available_events.append(("narrative_event_currency_crisis", 1))
+
+        available_events.append(("narrative_event_corruption_pressure", 1))
+
+        if self.state.project_success < 60:
+            available_events.append(("narrative_event_harsh_evaluation", 2))
+
+        if self.state.reputation < 50:
+            available_events.append(("narrative_event_media_attack", 2))
+
+        # --- 양면적 이벤트 (복잡한 선택지) ---
+        available_events.append(("narrative_event_china_proposal", 1))
+
+        available_events.append(("narrative_event_hq_unrealistic_schedule", 1))
+
+        if self.state.year >= 1:
+            available_events.append(("narrative_event_staff_salary_demand", 2))
+
+        available_events.append(("narrative_event_ppp_suspicion", 1))
+
+        available_events.append(("narrative_event_gender_culture", 1))
+
+        if self.state.period == 4 or self.state.period == 10:
+            available_events.append(("narrative_event_ramadan_schedule", 1))
+
+        if self.state.project_success < 50:
+            available_events.append(("narrative_event_admitting_failure", 2))
+
+        if self.state.staff_morale >= 50:
+            available_events.append(("narrative_event_volunteer_social_enterprise", 1))
+
+        available_events.append(("narrative_event_family_emergency", 1))
+
+        available_events.append(("narrative_event_local_crisis_support", 1))
 
         if not available_events:
             return None
