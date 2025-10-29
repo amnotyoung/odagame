@@ -745,50 +745,39 @@ def ending_screen():
 
     st.title("🎉 임기 완수!")
 
-    # 최종 점수 계산
-    total_score = (
-        state.reputation * 0.3 +
-        state.budget_execution_rate * 0.2 +
-        state.staff_morale * 0.25 +
-        state.project_success * 0.25
-    )
-
-    # 엔딩 결정
-    if total_score >= 80:
-        ending_title = "전설적인 소장"
-        ending_desc = "당신은 모든 면에서 탁월한 성과를 달성했습니다!"
-        emoji = "🏆"
-    elif total_score >= 65:
-        ending_title = "성공적인 소장"
-        ending_desc = "훌륭한 성과를 달성했습니다!"
-        emoji = "🌟"
-    elif total_score >= 50:
-        ending_title = "평범한 소장"
-        ending_desc = "무난하게 임기를 완수했습니다."
-        emoji = "👍"
-    else:
-        ending_title = "고전한 소장"
-        ending_desc = "많은 어려움을 겪었지만 임기를 마쳤습니다."
-        emoji = "💪"
+    # 소장 유형 결정
+    director_types = game._determine_director_types()
 
     st.markdown(f"""
     <div class="scenario-text">
-    <h2>{emoji} {ending_title}</h2>
-    <p>{ending_desc}</p>
+    <h2>✨ 당신의 소장 유형</h2>
+    """, unsafe_allow_html=True)
 
-    <h3>최종 점수: {total_score:.1f}/100</h3>
+    for dtype in director_types:
+        st.markdown(f"""
+        <div class="scenario-text">
+        <p style="font-size: 1.2em; font-weight: bold; color: #4CAF50;">🎯 {dtype}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-    <h4>최종 스탯:</h4>
+    st.markdown(f"""
+    <div class="scenario-text">
+    <h3>📊 영역별 성과</h3>
     <ul>
-    <li>평판: {state.reputation}/100</li>
-    <li>예산 집행률: {state.budget_execution_rate}/100</li>
-    <li>직원 만족도: {state.staff_morale}/100</li>
-    <li>프로젝트 성공도: {state.project_success}/100</li>
-    <li>스트레스: {state.stress}/100</li>
-    <li>웰빙: {state.wellbeing}/100</li>
+    <li>🌟 평판: {state.reputation}/100</li>
+    <li>💰 예산 집행률: {state.budget_execution_rate}/100</li>
+    <li>😊 직원 만족도: {state.staff_morale}/100</li>
+    <li>📊 프로젝트 성공도: {state.project_success}/100</li>
     </ul>
 
-    <p>2년간의 여정을 완수하셨습니다. 수고하셨습니다!</p>
+    <h3>🏥 개인 상태</h3>
+    <ul>
+    <li>😰 스트레스: {state.stress}/100</li>
+    <li>😌 웰빙: {state.wellbeing}/100</li>
+    </ul>
+
+    <p style="margin-top: 20px;">2년간의 여정을 완수하셨습니다. 수고하셨습니다!</p>
+    <p style="font-style: italic; color: #666;">각자 자신만의 방식으로 소장의 역할을 수행했습니다. 획일적인 기준은 없습니다.</p>
     </div>
     """, unsafe_allow_html=True)
 

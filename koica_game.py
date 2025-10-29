@@ -1342,6 +1342,100 @@ class KOICAGame:
         if 'advance_time' in result and result['advance_time']:
             self.state.advance_time()
 
+    def _determine_director_types(self) -> List[str]:
+        """플레이어의 스탯과 선택 패턴을 분석하여 소장 유형들을 결정"""
+        stats = self.state
+        style = stats.player_style
+        types = []
+
+        # 각 스탯의 상대적 수준 분석 (절대값이 아닌 상대적 패턴)
+        work_stats = {
+            'reputation': stats.reputation,
+            'budget': stats.budget_execution_rate,
+            'staff': stats.staff_morale,
+            'project': stats.project_success
+        }
+
+        # 가장 높은 스탯들 찾기 (상위 50% 이상인 것들)
+        max_stat = max(work_stats.values()) if work_stats.values() else 50
+        high_stats = [k for k, v in work_stats.items() if v >= max(max_stat * 0.8, 60)]
+
+        # 스탯 균형도 계산
+        stat_values = list(work_stats.values())
+        avg_stat = sum(stat_values) / len(stat_values) if stat_values else 50
+        variance = sum((v - avg_stat) ** 2 for v in stat_values) / len(stat_values) if stat_values else 0
+        is_balanced = variance < 300  # 분산이 작으면 균형잡힘
+
+        # 플레이 스타일 분석
+        total_choices = len(stats.choice_history)
+        risk_ratio = style['risk_taking'] / total_choices if total_choices > 0 else 0
+
+        # 스트레스와 웰빙으로 생활 패턴 분석
+        is_high_stress = stats.stress >= 70
+        is_high_wellbeing = stats.wellbeing >= 70
+        is_low_stress = stats.stress <= 40
+
+        # === 유형 결정 로직 (복수 유형 가능) ===
+
+        # 균형잡힌 소장 - 모든 스탯이 비슷하게 관리됨
+        if is_balanced and avg_stat >= 55:
+            types.append("균형잡힌 소장")
+
+        # 스탯별 특화 유형
+        if 'staff' in high_stats and style['staff_focused'] >= 3:
+            if is_low_stress:
+                types.append("부드러운 소장")  # 직원 중시 + 낮은 스트레스
+            else:
+                types.append("사려깊은 소장")  # 직원 중시
+
+        if 'reputation' in high_stats and style['reputation_focused'] >= 3:
+            if risk_ratio < 0.15:
+                types.append("냉철한 소장")  # 평판 중시 + 신중함
+            else:
+                types.append("외교적인 소장")  # 평판 중시
+
+        if 'project' in high_stats and style['project_focused'] >= 3:
+            if risk_ratio > 0.25:
+                types.append("진취적인 소장")  # 프로젝트 중시 + 도전적
+            else:
+                types.append("성과 중심적인 소장")  # 프로젝트 중시
+
+        if 'budget' in high_stats and style['budget_focused'] >= 3:
+            types.append("실무형 소장")  # 예산 중시
+
+        # 복합 유형
+        if is_high_wellbeing and not is_high_stress and avg_stat >= 50:
+            types.append("건강한 소장")  # 일과 삶의 균형
+
+        if is_high_stress and avg_stat >= 60:
+            types.append("헌신적인 소장")  # 높은 성과 + 높은 스트레스
+
+        if risk_ratio > 0.3:
+            types.append("혁신적인 소장")  # 높은 위험 감수
+
+        if risk_ratio < 0.1 and avg_stat >= 50:
+            types.append("신중한 소장")  # 매우 신중한 접근
+
+        # 통찰력 있는 소장 - 다양한 관심사
+        focus_counts = [
+            style['reputation_focused'],
+            style['budget_focused'],
+            style['staff_focused'],
+            style['project_focused']
+        ]
+        if all(f >= 2 for f in focus_counts):
+            types.append("꿰뚫어 보는 소장")  # 모든 영역에 관심
+
+        # 유형이 없으면 기본 유형 부여
+        if not types:
+            if avg_stat >= 55:
+                types.append("성실한 소장")
+            else:
+                types.append("도전적인 소장")
+
+        # 최대 3개까지만 반환
+        return types[:3]
+
     def display_ending(self):
         """엔딩 표시 (AI 개인화 지원)"""
         self.clear_screen()
@@ -1374,30 +1468,29 @@ class KOICAGame:
 
         self.state.display_status()
 
-        print("\n최종 점수:")
-        # 예산 집행률 평가 점수 계산
-        if 80 <= self.state.budget_execution_rate <= 100:
-            budget_score = 100
-        elif self.state.budget_execution_rate < 80:
-            budget_score = (self.state.budget_execution_rate / 80) * 100
-        else:
-            budget_score = 100
+        # 소장 유형 평가 (최종 점수 대신)
+        print("\n✨ 당신의 소장 유형:")
+        director_types = self._determine_director_types()
+        for dtype in director_types:
+            print(f"   🎯 {dtype}")
 
-        total_score = (self.state.reputation + self.state.staff_morale +
-                      self.state.project_success + budget_score) / 4
-        print(f"⭐ {total_score:.1f}/100")
+        print("\n📊 영역별 성과:")
+        print(f"   🌟 평판: {self.state.reputation}/100")
+        print(f"   💰 예산 집행률: {self.state.budget_execution_rate}/100")
+        print(f"   😊 직원 만족도: {self.state.staff_morale}/100")
+        print(f"   📊 프로젝트 성공도: {self.state.project_success}/100")
 
         # 예산 집행률 평가 표시
         if 80 <= self.state.budget_execution_rate <= 100:
-            print(f"💰 예산 집행: 우수 ({self.state.budget_execution_rate}%)")
+            print(f"\n   💰 예산 집행: 우수 ({self.state.budget_execution_rate}%)")
         elif self.state.budget_execution_rate >= 60:
-            print(f"💰 예산 집행: 양호 ({self.state.budget_execution_rate}%)")
+            print(f"\n   💰 예산 집행: 양호 ({self.state.budget_execution_rate}%)")
         else:
-            print(f"💰 예산 집행: 미흡 ({self.state.budget_execution_rate}%)")
+            print(f"\n   💰 예산 집행: 미흡 ({self.state.budget_execution_rate}%)")
 
         # 플레이 스타일 요약 (AI 모드)
         if self.ai_mode and len(self.state.choice_history) > 0:
-            print("\n📊 당신의 플레이 스타일:")
+            print("\n💡 당신의 플레이 스타일:")
             style_summary = self._summarize_play_style()
             print(style_summary)
 
@@ -1498,17 +1591,6 @@ class KOICAGame:
         # 스탯 분석
         stats = self.state
 
-        # 예산 집행률 평가 점수 계산
-        if 80 <= stats.budget_execution_rate <= 100:
-            budget_score = 100
-        elif stats.budget_execution_rate < 80:
-            budget_score = (stats.budget_execution_rate / 80) * 100
-        else:
-            budget_score = 100
-
-        total_score = (stats.reputation + stats.staff_morale +
-                      stats.project_success + budget_score) / 4
-
         # 플레이어 스타일 분석
         style = stats.player_style
         max_focus = max(style['reputation_focused'], style['budget_focused'],
@@ -1539,16 +1621,6 @@ class KOICAGame:
         else:
             risk_desc = "신중한 리더"
 
-        # 성과 수준 판단
-        if total_score >= 80:
-            performance_level = "탁월한"
-        elif total_score >= 65:
-            performance_level = "우수한"
-        elif total_score >= 50:
-            performance_level = "양호한"
-        else:
-            performance_level = "평범한"
-
         # 엔딩 설명 구성
         paragraphs = []
 
@@ -1573,7 +1645,13 @@ class KOICAGame:
         else:
             para1 += f"여러 도전 속에서도 포기하지 않았습니다. "
 
-        para1 += f"2년간의 노력은 총점 {total_score:.1f}이라는 {performance_level} 결과로 마무리됩니다."
+        # 소장 유형 언급
+        director_types = self._determine_director_types()
+        if director_types:
+            types_str = ' · '.join(director_types)
+            para1 += f"당신은 {types_str}으로서의 여정을 완수했습니다."
+        else:
+            para1 += f"2년간의 노력을 통해 자신만의 길을 만들어냈습니다."
 
         paragraphs.append(para1)
 
