@@ -65,6 +65,9 @@ class GameState:
         # 발생한 생활 이벤트 추적 (중복 방지)
         self.triggered_life_events = set()
 
+        # 부소장 관리 시스템 (4명의 부소장)
+        self.deputies = self._initialize_deputies()
+
     def update_stats(self, changes):
         """스탯 업데이트 및 히스토리 기록"""
         old_stats = {
@@ -105,6 +108,58 @@ class GameState:
                 'wellbeing': self.wellbeing
             }
         })
+
+    def _initialize_deputies(self):
+        """4명의 부소장 초기화 (성격과 사기 부여)"""
+        deputy_types = [
+            {
+                "name": "김원칙 부소장",
+                "personality": "principled",  # 원칙주의자
+                "description": "규정과 원칙을 중시하는 스타일",
+                "morale": 50
+            },
+            {
+                "name": "박현지 부소장",
+                "personality": "local_friendly",  # 현지친화형
+                "description": "현지 파트너와의 관계를 중시하는 스타일",
+                "morale": 50
+            },
+            {
+                "name": "이성과 부소장",
+                "personality": "performance_oriented",  # 성과중심형
+                "description": "프로젝트 성과와 수치를 중시하는 스타일",
+                "morale": 50
+            },
+            {
+                "name": "정조율 부소장",
+                "personality": "balanced",  # 균형형
+                "description": "균형잡힌 접근을 선호하는 스타일",
+                "morale": 50
+            }
+        ]
+        return deputy_types
+
+    def update_deputy_morale(self, personality_type, change):
+        """특정 성격의 부소장 사기 변경"""
+        for deputy in self.deputies:
+            if deputy["personality"] == personality_type:
+                deputy["morale"] = max(0, min(100, deputy["morale"] + change))
+                break
+
+    def get_deputy_by_personality(self, personality_type):
+        """특정 성격의 부소장 정보 반환"""
+        for deputy in self.deputies:
+            if deputy["personality"] == personality_type:
+                return deputy
+        return None
+
+    def get_low_morale_deputies(self, threshold=40):
+        """사기가 낮은 부소장 목록 반환"""
+        return [d for d in self.deputies if d["morale"] < threshold]
+
+    def get_average_deputy_morale(self):
+        """부소장 평균 사기 계산"""
+        return sum(d["morale"] for d in self.deputies) / len(self.deputies)
 
     def record_choice(self, scenario_id, choice_text, choice_index, result):
         """선택 기록 및 플레이어 스타일 분석"""
@@ -253,6 +308,11 @@ class GameState:
         print("🏠 생활 스탯")
         print(f"😰 스트레스: {self.stress}/100 {'■' * (self.stress//5)}{'□' * (20-self.stress//5)}")
         print(f"😌 웰빙: {self.wellbeing}/100 {'■' * (self.wellbeing//5)}{'□' * (20-self.wellbeing//5)}")
+        print("-"*60)
+        print("👥 부소장 사기")
+        for deputy in self.deputies:
+            morale_bar = '■' * (deputy['morale']//10) + '□' * (10-deputy['morale']//10)
+            print(f"  • {deputy['name']}: {deputy['morale']}/100 {morale_bar}")
         print("="*60 + "\n")
 
 
@@ -796,6 +856,12 @@ class KOICAGame:
 
     def check_and_trigger_life_event(self):
         """주기적 생활 이벤트 발생 확인"""
+        # 운동 습관의 패시브 효과: 웰빙 하락 방어
+        if self.state.leisure_choice == "exercise" and self.state.wellbeing < 40:
+            # 운동 습관이 웰빙 하락을 방어해 줌
+            self.state.update_stats({'wellbeing': 5, 'stress': -5})
+            print("\n💪 [운동 습관 효과] 규칙적인 운동으로 정신 건강이 개선되었습니다. (웰빙 +5, 스트레스 -5)")
+
         # 기본 확률 30%
         base_chance = 0.30
 
@@ -814,10 +880,14 @@ class KOICAGame:
         """적절한 생활 이벤트 선택 (기존 생활 이벤트 + 새로운 서사 이벤트)"""
         available_events = []
 
-        # === 기존 생활 이벤트 ===
-        # 건강 이벤트 (웰빙 낮을 때)
+        # === 기존 생활 이벤트 (생활 선택과 연동) ===
+        # 건강 이벤트 (웰빙 낮을 때) - 음주 습관 + 스트레스 시 확률 증가
         if self.state.wellbeing < 40 and "life_event_health_issue" not in self.state.triggered_life_events:
-            available_events.append(("life_event_health_issue", 3))
+            weight = 3
+            # 음주 + 스트레스 조합은 건강 위험 증가
+            if self.state.leisure_choice == "drinking" and self.state.stress > 60:
+                weight = 6  # 확률 2배 증가
+            available_events.append(("life_event_health_issue", weight))
 
         # 향수병 (기간에 따라 - 5-6개월 이상 지났을 때)
         if self.state.year >= 1 and self.state.period >= 3 and "life_event_homesickness" not in self.state.triggered_life_events:
@@ -827,13 +897,19 @@ class KOICAGame:
         if self.state.stress > 60 and "life_event_psychological_pressure" not in self.state.triggered_life_events:
             available_events.append(("life_event_psychological_pressure", 3))
 
-        # 자동차 고장 (자동차가 있는 경우)
+        # 자동차 고장 (자동차가 있는 경우) - 현지 중고차는 고장 확률 높음
         if self.state.car_choice in ["bring_from_korea", "buy_local"] and "life_event_car_breakdown" not in self.state.triggered_life_events:
-            available_events.append(("life_event_car_breakdown", 1))
+            weight = 1
+            if self.state.car_choice == "buy_local":
+                weight = 4  # 현지 중고차는 고장 확률 4배
+            available_events.append(("life_event_car_breakdown", weight))
 
-        # 주거 문제 (모든 경우)
+        # 주거 문제 (모든 경우) - 사무실 근처 집은 문제 발생 확률 높음
         if "life_event_housing_issue" not in self.state.triggered_life_events:
-            available_events.append(("life_event_housing_issue", 1))
+            weight = 1
+            if self.state.housing_choice == "near_office":
+                weight = 3  # 좁고 오래된 집은 문제 발생 확률 3배
+            available_events.append(("life_event_housing_issue", weight))
 
         # === 새로운 서사 이벤트 ===
 
@@ -938,6 +1014,33 @@ class KOICAGame:
 
         if "narrative_event_local_crisis_support" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_local_crisis_support", 1))
+
+        # === 부소장 관련 이벤트 ===
+        # 특정 부소장의 사기가 낮을 때
+        low_morale_deputies = self.state.get_low_morale_deputies(threshold=30)
+        if low_morale_deputies and "deputy_event_low_morale" not in self.state.triggered_life_events:
+            available_events.append(("deputy_event_low_morale", 3))
+
+        # 부소장 간 갈등
+        if self.state.year >= 1 and self.state.period >= 3 and "deputy_event_conflict" not in self.state.triggered_life_events:
+            available_events.append(("deputy_event_conflict", 2))
+
+        # === 연차별 특화 이벤트 ===
+        # 1년차 전용: 신임 소장 적응
+        if self.state.year == 1 and self.state.period <= 3 and "year1_event_adaptation" not in self.state.triggered_life_events:
+            available_events.append(("year1_event_adaptation", 2))
+
+        # 2년차 전용: 본부 정기 감사
+        if self.state.year == 2 and self.state.period >= 2 and "year2_event_audit" not in self.state.triggered_life_events:
+            available_events.append(("year2_event_audit", 3))
+
+        # 2년차 전용: 임기 말 평가 압박
+        if self.state.year == 2 and self.state.period >= 9 and "year2_event_final_evaluation" not in self.state.triggered_life_events:
+            available_events.append(("year2_event_final_evaluation", 4))
+
+        # 2년차 전용: 차기 CPS 구상
+        if self.state.year == 2 and self.state.period >= 6 and "year2_event_cps_planning" not in self.state.triggered_life_events:
+            available_events.append(("year2_event_cps_planning", 2))
 
         if not available_events:
             return None
@@ -1116,6 +1219,16 @@ class KOICAGame:
 
         if 'stats' in result:
             self.state.update_stats(result['stats'])
+
+        # 부소장 사기 변경 처리
+        if 'deputy_morale' in result:
+            print("\n👥 부소장 사기 변화:")
+            for personality, change in result['deputy_morale'].items():
+                self.state.update_deputy_morale(personality, change)
+                deputy = self.state.get_deputy_by_personality(personality)
+                if deputy:
+                    change_str = f"+{change}" if change > 0 else str(change)
+                    print(f"  • {deputy['name']}: {change_str} (현재 사기: {deputy['morale']})")
 
         if 'advance_time' in result and result['advance_time']:
             self.state.advance_time()
