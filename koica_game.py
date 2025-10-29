@@ -69,6 +69,10 @@ class GameState:
         self.deputies = self._initialize_deputies()
         self.coordinators = self._initialize_coordinators()
 
+        # YP 및 현지직원 관리 시스템 (YP 2명, 현지직원 10명)
+        self.yps = self._initialize_yps()
+        self.local_staff = self._initialize_local_staff()
+
     def update_stats(self, changes):
         """스탯 업데이트 및 히스토리 기록"""
         old_stats = {
@@ -142,6 +146,47 @@ class GameState:
         ]
         return coordinators
 
+    def _initialize_yps(self):
+        """2명의 YP (Young Professional) 초기화"""
+        yps = [
+            {
+                "name": "YP 1",
+                "morale": 50,
+                "specialty": "monitoring_evaluation"  # 모니터링 평가 전문
+            },
+            {
+                "name": "YP 2",
+                "morale": 50,
+                "specialty": "community_development"  # 지역사회 개발 전문
+            }
+        ]
+        return yps
+
+    def _initialize_local_staff(self):
+        """10명의 현지직원 초기화"""
+        local_staff = []
+        roles = [
+            ("행정", 2),  # 행정 직원 2명
+            ("통역", 2),  # 통역사 2명
+            ("운전기사", 2),  # 운전기사 2명
+            ("프로젝트 보조", 3),  # 프로젝트 보조 직원 3명
+            ("청소/경비", 1)  # 청소/경비 1명
+        ]
+
+        staff_id = 1
+        for role, count in roles:
+            for i in range(count):
+                local_staff.append({
+                    "id": staff_id,
+                    "name": f"{role} {i+1}" if count > 1 else role,
+                    "role": role,
+                    "morale": 50,
+                    "salary_satisfaction": 50  # 급여 만족도
+                })
+                staff_id += 1
+
+        return local_staff
+
     def update_deputy_morale(self, personality_type, change):
         """특정 성격의 부소장 사기 변경"""
         for deputy in self.deputies:
@@ -168,6 +213,58 @@ class GameState:
         """코디네이터 사기 변경 (0-based index)"""
         if 0 <= coordinator_index < len(self.coordinators):
             self.coordinators[coordinator_index]["morale"] = max(0, min(100, self.coordinators[coordinator_index]["morale"] + change))
+
+    def update_yp_morale(self, yp_index, change):
+        """YP 사기 변경 (0-based index)"""
+        if 0 <= yp_index < len(self.yps):
+            self.yps[yp_index]["morale"] = max(0, min(100, self.yps[yp_index]["morale"] + change))
+
+    def update_all_yp_morale(self, change):
+        """모든 YP의 사기 일괄 변경"""
+        for yp in self.yps:
+            yp["morale"] = max(0, min(100, yp["morale"] + change))
+
+    def get_average_yp_morale(self):
+        """YP 평균 사기 계산"""
+        if len(self.yps) == 0:
+            return 50
+        return sum(yp["morale"] for yp in self.yps) / len(self.yps)
+
+    def update_local_staff_morale(self, staff_id, change):
+        """특정 현지직원 사기 변경 (ID 기반)"""
+        for staff in self.local_staff:
+            if staff["id"] == staff_id:
+                staff["morale"] = max(0, min(100, staff["morale"] + change))
+                break
+
+    def update_all_local_staff_morale(self, change):
+        """모든 현지직원 사기 일괄 변경"""
+        for staff in self.local_staff:
+            staff["morale"] = max(0, min(100, staff["morale"] + change))
+
+    def update_local_staff_by_role(self, role, change):
+        """특정 역할의 현지직원 사기 변경"""
+        for staff in self.local_staff:
+            if staff["role"] == role:
+                staff["morale"] = max(0, min(100, staff["morale"] + change))
+
+    def get_average_local_staff_morale(self):
+        """현지직원 평균 사기 계산"""
+        if len(self.local_staff) == 0:
+            return 50
+        return sum(staff["morale"] for staff in self.local_staff) / len(self.local_staff)
+
+    def get_low_morale_local_staff(self, threshold=40):
+        """사기가 낮은 현지직원 목록 반환"""
+        return [s for s in self.local_staff if s["morale"] < threshold]
+
+    def get_staff_count_by_role(self, role):
+        """특정 역할의 직원 수 반환"""
+        return sum(1 for s in self.local_staff if s["role"] == role)
+
+    def get_total_staff_count(self):
+        """전체 직원 수 반환 (부소장 + 코디 + YP + 현지직원)"""
+        return len(self.deputies) + len(self.coordinators) + len(self.yps) + len(self.local_staff)
 
     def record_choice(self, scenario_id, choice_text, choice_index, result):
         """선택 기록 및 플레이어 스타일 분석"""
