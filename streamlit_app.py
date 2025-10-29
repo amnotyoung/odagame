@@ -565,10 +565,11 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
 
     # 다음 시나리오 설정
     next_scenario = result.get('next')
-    if next_scenario:
+    if next_scenario and next_scenario in game.scenarios:
+        # 다음 시나리오가 존재하는 경우에만 설정
         game.state.current_scenario = next_scenario
     else:
-        # 랜덤 시나리오 선택
+        # 다음 시나리오가 없거나 존재하지 않으면 랜덤 시나리오 선택
         available = [s for s in game.scenarios.keys()
                     if s not in game.state.visited_scenarios and s != "start"]
         if available:
