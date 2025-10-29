@@ -1553,13 +1553,13 @@ class KOICAGame:
         print()
 
     def _generate_choice_explanation_console(self, director_type: str) -> str:
-        """선택 히스토리를 분석하여 소장 유형에 대한 풍부한 설명 생성 (콘솔용)"""
+        """선택 히스토리를 분석하여 소장 유형에 대한 드라마틱한 설명 생성 (콘솔용)"""
         stats = self.state
         style = stats.player_style
         total_choices = len(stats.choice_history)
 
         if total_choices == 0:
-            return "2년간의 임기를 완수하셨습니다."
+            return "축하합니다. 2년간의 임기를 완수하셨습니다."
 
         # 주요 관심사 파악
         focus_areas = {
@@ -1572,74 +1572,72 @@ class KOICAGame:
         # 위험 감수 성향
         risk_ratio = style['risk_taking'] / total_choices if total_choices > 0 else 0
 
-        # 상위 2개 관심사
+        # 상위 관심사
         sorted_focus = sorted(focus_areas.items(), key=lambda x: x[1], reverse=True)
-        top_concerns = [area for area, count in sorted_focus[:2] if count > 0]
+        top_concern = sorted_focus[0][0] if sorted_focus[0][1] > 0 else "사무소 운영"
 
-        # 설명 구성
-        lines = []
+        # === 드라마틱한 구조로 재구성 ===
+        paragraphs = []
 
-        # 첫 문장: 전반적인 여정
-        if stats.reputation >= 60 and stats.project_success >= 60:
-            lines.append("2년간 균형잡힌 성과를 달성하셨습니다.")
-        elif max(stats.reputation, stats.budget_execution_rate, stats.staff_morale, stats.project_success) >= 70:
-            lines.append("2년간 특정 영역에서 뛰어난 성과를 거두셨습니다.")
+        # 1. 오프닝: 축하와 여정의 완수
+        paragraphs.append("축하합니다. 2년간의 험난한 여정을 완수하셨습니다.")
+
+        # 2. 위기와 성공의 대비
+        crisis_parts = []
+        success_parts = []
+
+        # 어려움 파악
+        if stats.reputation < 50:
+            crisis_parts.append("평판 위기")
+        if stats.staff_morale < 50:
+            crisis_parts.append("직원들의 불만")
+        if stats.stress >= 60:
+            crisis_parts.append("극심한 스트레스")
+        if stats.budget_execution_rate < 60:
+            crisis_parts.append("예산 집행의 어려움")
+
+        # 성공 파악
+        if stats.reputation >= 60:
+            success_parts.append("신뢰 구축")
+        if stats.project_success >= 60:
+            success_parts.append("프로젝트 성공")
+        if stats.staff_morale >= 60:
+            success_parts.append("팀워크 형성")
+        if stats.budget_execution_rate >= 70:
+            success_parts.append("효율적인 예산 운영")
+
+        # 위기와 성공을 문장으로 구성
+        if crisis_parts and success_parts:
+            para2 = f"{', '.join(crisis_parts[:2])}의 위기도 있었고, {', '.join(success_parts[:2])}의 순간도 있었습니다."
+        elif crisis_parts:
+            para2 = f"{', '.join(crisis_parts[:2])}의 위기가 있었지만, 당신은 흔들리지 않았습니다."
+        elif success_parts:
+            para2 = f"{', '.join(success_parts[:2])}을 이루며 빛나는 순간들이 있었습니다."
         else:
-            lines.append("2년간 다양한 도전 속에서 최선을 다하셨습니다.")
+            para2 = "크고 작은 사건들이 있었습니다."
 
-        # 주요 관심사 언급
-        if len(top_concerns) >= 2:
-            lines.append(f"특히 {top_concerns[0]}와(과) {top_concerns[1]}에 중점을 두셨습니다.")
-        elif len(top_concerns) == 1:
-            lines.append(f"특히 {top_concerns[0]}에 집중하셨습니다.")
+        para2 += "\n예산 부족과 문화적 갈등, 예상치 못한 사건들이 연이어 닥쳤지만, 당신은 포기하지 않고 한 걸음씩 나아갔습니다."
+        paragraphs.append(para2)
 
-        # 의사결정 스타일 설명
+        # 3. 리더십 스타일과 헌신
+        # 의사결정 스타일
         if risk_ratio > 0.35:
-            lines.append("위험을 두려워하지 않고 혁신적인 시도를 많이 하셨습니다.")
+            leadership_style = "혁신적"
         elif risk_ratio > 0.2:
-            lines.append("적절한 수준의 도전을 마다하지 않으셨습니다.")
+            leadership_style = "도전적"
         elif risk_ratio < 0.1:
-            lines.append("신중하고 안정적인 접근을 선호하셨습니다.")
+            leadership_style = "신중"
         else:
-            lines.append("균형잡힌 의사결정을 추구하셨습니다.")
+            leadership_style = "균형잡힌"
 
-        # 구체적 선택 사례 (최근 중요한 결정들)
-        significant_choices = []
-        for choice in stats.choice_history[-10:]:  # 최근 10개 중에서
-            if 'result' in choice and 'stats' in choice['result']:
-                stat_changes = choice['result']['stats']
-                total_change = sum(abs(v) for v in stat_changes.values())
-                if total_change > 15:  # 큰 영향을 준 선택
-                    significant_choices.append(choice)
+        para3 = f"당신의 {top_concern}에 대한 헌신, {leadership_style}한 리더십은\n이곳 사람들의 삶에 실질적인 변화를 만들어냈습니다."
+        paragraphs.append(para3)
 
-        if significant_choices:
-            # 가장 큰 영향을 준 선택 찾기
-            max_impact_choice = max(significant_choices,
-                                   key=lambda c: sum(abs(v) for v in c['result']['stats'].values()))
+        # 4. 유산과 기억
+        para4 = f"이제 사람들은 당신을 '{director_type}'으로 기억할 것입니다.\n그리고 당신이 남긴 발자국은 오랫동안 이 땅에 남을 것입니다."
+        paragraphs.append(para4)
 
-            choice_text = max_impact_choice.get('choice_text', '')
-            if choice_text:
-                # 너무 길면 축약
-                if len(choice_text) > 60:
-                    choice_text = choice_text[:57] + "..."
-                lines.append(f"'{choice_text}'와(과) 같은 중요한 결정들이 이러한 유형을 만들었습니다.")
-
-        # 개인 생활과 업무 균형
-        if stats.wellbeing >= 65 and stats.stress <= 35:
-            lines.append("업무와 개인 생활의 건강한 균형을 유지하셨습니다.")
-        elif stats.stress >= 70:
-            lines.append("높은 스트레스 속에서도 헌신적으로 임무를 수행하셨습니다.")
-
-        # 최종 성과 언급
-        avg_stat = (stats.reputation + stats.budget_execution_rate + stats.staff_morale + stats.project_success) / 4
-        if avg_stat >= 70:
-            lines.append("그 결과 뛰어난 성과로 임기를 마무리하셨습니다.")
-        elif avg_stat >= 55:
-            lines.append("그 결과 안정적인 성과로 임기를 마무리하셨습니다.")
-        elif avg_stat >= 40:
-            lines.append("다양한 어려움 속에서도 끝까지 완수하셨습니다.")
-
-        return " ".join(lines)
+        return "\n\n".join(paragraphs)
 
     def _summarize_play_style(self) -> str:
         """플레이 스타일 요약"""
