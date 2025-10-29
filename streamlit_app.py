@@ -541,9 +541,15 @@ def game_play_screen():
             if st.button("실행", use_container_width=True):
                 if action.strip():
                     # 자유 답변 처리
-                    handle_free_form_action(game, action.strip())
-                    st.session_state.free_form_mode = False
-                    st.session_state.free_form_action = ""
+                    success = handle_free_form_action(game, action.strip())
+                    if success:
+                        # 성공 시에만 자유 답변 모드 종료
+                        st.session_state.free_form_mode = False
+                        st.session_state.free_form_action = ""
+                    else:
+                        # 실패 시 입력 내용 유지하여 다시 입력할 수 있도록
+                        st.session_state.free_form_mode = True
+                        st.session_state.free_form_action = action
                     st.rerun()
                 else:
                     st.error("행동을 입력해주세요.")
@@ -588,8 +594,12 @@ def game_play_screen():
             st.rerun()
 
 
-def handle_free_form_action(game: KOICAGame, action: str):
-    """자유 답변 처리"""
+def handle_free_form_action(game: KOICAGame, action: str) -> bool:
+    """자유 답변 처리
+
+    Returns:
+        bool: 성공 시 True, 실패 시 False
+    """
     with st.spinner("🤖 AI가 결과를 계산중입니다..."):
         result = game.gemini.generate_free_form_result(game.state, action)
 
@@ -626,12 +636,13 @@ def handle_free_form_action(game: KOICAGame, action: str):
             game.state.stress >= 100 or
             game.state.wellbeing <= 0):
             game.state.game_over = True
+
+        return True
     else:
         # 실패 시 에러 메시지
         error_msg = result.get('message', '해당 행동은 불가능합니다.') if result else 'AI 처리 실패. 다시 시도해주세요.'
         st.error(error_msg)
-        st.session_state.free_form_mode = True  # 다시 자유 답변 모드로
-        st.session_state.free_form_action = action  # 입력한 내용 유지
+        return False
 
 
 def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
