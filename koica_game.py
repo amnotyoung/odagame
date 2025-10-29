@@ -65,8 +65,9 @@ class GameState:
         # 발생한 생활 이벤트 추적 (중복 방지)
         self.triggered_life_events = set()
 
-        # 부소장 관리 시스템 (4명의 부소장)
+        # 부소장 및 코디네이터 관리 시스템 (부소장 2명, 코디 2명)
         self.deputies = self._initialize_deputies()
+        self.coordinators = self._initialize_coordinators()
 
     def update_stats(self, changes):
         """스탯 업데이트 및 히스토리 기록"""
@@ -110,34 +111,36 @@ class GameState:
         })
 
     def _initialize_deputies(self):
-        """4명의 부소장 초기화 (성격과 사기 부여)"""
+        """2명의 부소장 초기화 (성격과 사기 부여)"""
         deputy_types = [
             {
-                "name": "김원칙 부소장",
+                "name": "부소장 1",
                 "personality": "principled",  # 원칙주의자
                 "description": "규정과 원칙을 중시하는 스타일",
                 "morale": 50
             },
             {
-                "name": "박현지 부소장",
+                "name": "부소장 2",
                 "personality": "local_friendly",  # 현지친화형
                 "description": "현지 파트너와의 관계를 중시하는 스타일",
-                "morale": 50
-            },
-            {
-                "name": "이성과 부소장",
-                "personality": "performance_oriented",  # 성과중심형
-                "description": "프로젝트 성과와 수치를 중시하는 스타일",
-                "morale": 50
-            },
-            {
-                "name": "정조율 부소장",
-                "personality": "balanced",  # 균형형
-                "description": "균형잡힌 접근을 선호하는 스타일",
                 "morale": 50
             }
         ]
         return deputy_types
+
+    def _initialize_coordinators(self):
+        """2명의 코디네이터 초기화"""
+        coordinators = [
+            {
+                "name": "코디 1",
+                "morale": 50
+            },
+            {
+                "name": "코디 2",
+                "morale": 50
+            }
+        ]
+        return coordinators
 
     def update_deputy_morale(self, personality_type, change):
         """특정 성격의 부소장 사기 변경"""
@@ -160,6 +163,11 @@ class GameState:
     def get_average_deputy_morale(self):
         """부소장 평균 사기 계산"""
         return sum(d["morale"] for d in self.deputies) / len(self.deputies)
+
+    def update_coordinator_morale(self, coordinator_index, change):
+        """코디네이터 사기 변경 (0-based index)"""
+        if 0 <= coordinator_index < len(self.coordinators):
+            self.coordinators[coordinator_index]["morale"] = max(0, min(100, self.coordinators[coordinator_index]["morale"] + change))
 
     def record_choice(self, scenario_id, choice_text, choice_index, result):
         """선택 기록 및 플레이어 스타일 분석"""
@@ -313,6 +321,10 @@ class GameState:
         for deputy in self.deputies:
             morale_bar = '■' * (deputy['morale']//10) + '□' * (10-deputy['morale']//10)
             print(f"  • {deputy['name']}: {deputy['morale']}/100 {morale_bar}")
+        print("\n👔 코디네이터 사기")
+        for coordinator in self.coordinators:
+            morale_bar = '■' * (coordinator['morale']//10) + '□' * (10-coordinator['morale']//10)
+            print(f"  • {coordinator['name']}: {coordinator['morale']}/100 {morale_bar}")
         print("="*60 + "\n")
 
 
@@ -342,7 +354,7 @@ class GeminiIntegration:
 플레이어는 KOICA 48개국 해외사무소 중 한 곳의 사무소장으로서 15년 이상 경력의 전문가입니다.
 
 ## 조직 구성 (약 37명)
-- 소장: 1명 (플레이어), 부소장: 4명 (분야별), 코디네이터: 다수
+- 소장: 1명 (플레이어), 부소장: 2명, 코디네이터: 2명
 - YP(영프로페셔널): 7명 (19-34세), 현지 직원: 17명 (4개 섹터)
 
 ## KOICA 예산 구조 (중요!)
@@ -453,7 +465,7 @@ class GeminiIntegration:
 
         prompt = f"""
 당신은 KOICA 해외사무소장 시뮬레이터 게임의 게임 마스터입니다.
-플레이어는 KOICA 48개국 해외사무소 중 한 곳의 사무소장으로서 약 37명(부소장 4명, 코디네이터 다수, YP 7명, 현지 직원 17명)을 총괄합니다.
+플레이어는 KOICA 48개국 해외사무소 중 한 곳의 사무소장으로서 약 37명(부소장 2명, 코디네이터 2명, YP 7명, 현지 직원 17명)을 총괄합니다.
 플레이어가 자유롭게 입력한 행동에 대해 결과를 판정하고 스탯 변화를 계산하세요.
 
 ## KOICA 예산 구조 (중요!)
@@ -653,8 +665,8 @@ class KOICAGame:
         print("   대한민국 무상원조사업을 현장에서 직접 실행합니다.")
         print("\n📊 당신의 사무소 조직 구성:")
         print("   • 사무소장: 1명 (당신)")
-        print("   • 부소장: 4명 (분야별 책임자)")
-        print("   • 코디네이터: 다수 (사업 실무 담당)")
+        print("   • 부소장: 2명 (사업 책임자)")
+        print("   • 코디네이터: 2명 (사업 실무 담당)")
         print("   • YP(영프로페셔널): 7명 (만 19-34세 청년인재)")
         print("   • 현지 직원: 17명 (4개 섹터 지원)")
         print("\n👔 사무소장으로서 당신의 6대 핵심 역할:")
