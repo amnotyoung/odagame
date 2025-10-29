@@ -473,24 +473,68 @@ def game_play_screen():
         if st.button("다음으로", use_container_width=True):
             st.session_state.result_message = ""
             st.session_state.choice_made = False
+            st.session_state.pop('free_form_input', None)
+            st.session_state.pop('show_free_form', None)
             st.rerun()
 
         return
 
     # 현재 시나리오 가져오기
     current_scenario_id = state.current_scenario
+    scenario = None
 
-    # 시작 시나리오인 경우 다음 시나리오로 이동
-    if current_scenario_id == "start":
-        next_scenarios = [s for s in game.scenarios.keys() if s not in state.visited_scenarios and s != "start"]
-        if next_scenarios:
-            current_scenario_id = random.choice(next_scenarios)
-            state.current_scenario = current_scenario_id
+    # AI 모드에서 ai_generated 시나리오인 경우 동적 생성
+    if game.ai_mode and current_scenario_id == 'ai_generated':
+        if 'ai_scenario' not in st.session_state:
+            with st.spinner("🤖 AI가 새로운 시나리오를 생성하고 있습니다..."):
+                ai_scenario = game.gemini.generate_scenario(state)
+                if ai_scenario:
+                    st.session_state.ai_scenario = ai_scenario
+                    scenario = ai_scenario
+                else:
+                    # AI 생성 실패시 클래식 시나리오로 폴백
+                    st.warning("AI 시나리오 생성에 실패했습니다. 클래식 시나리오로 진행합니다.")
+                    available = [s for s in game.scenarios.keys()
+                                if s not in state.visited_scenarios and s != "start"]
+                    if available:
+                        current_scenario_id = random.choice(available)
+                        state.current_scenario = current_scenario_id
+                        scenario = game.scenarios.get(current_scenario_id)
+                    else:
+                        st.error("더 이상 시나리오가 없습니다.")
+                        return
         else:
-            st.error("더 이상 시나리오가 없습니다.")
-            return
+            scenario = st.session_state.ai_scenario
+    else:
+        # 시작 시나리오인 경우 다음 시나리오로 이동
+        if current_scenario_id == "start":
+            if game.ai_mode:
+                # AI 모드: 50% 확률로 AI 시나리오, 50% 클래식
+                if random.random() < 0.5:
+                    current_scenario_id = 'ai_generated'
+                    state.current_scenario = current_scenario_id
+                    st.rerun()
+                    return
+                else:
+                    next_scenarios = [s for s in game.scenarios.keys()
+                                     if s not in state.visited_scenarios and s != "start"]
+                    if next_scenarios:
+                        current_scenario_id = random.choice(next_scenarios)
+                        state.current_scenario = current_scenario_id
+                    else:
+                        st.error("더 이상 시나리오가 없습니다.")
+                        return
+            else:
+                next_scenarios = [s for s in game.scenarios.keys()
+                                 if s not in state.visited_scenarios and s != "start"]
+                if next_scenarios:
+                    current_scenario_id = random.choice(next_scenarios)
+                    state.current_scenario = current_scenario_id
+                else:
+                    st.error("더 이상 시나리오가 없습니다.")
+                    return
 
-    scenario = game.scenarios.get(current_scenario_id)
+        scenario = game.scenarios.get(current_scenario_id)
 
     if not scenario:
         st.error("시나리오를 찾을 수 없습니다.")
@@ -526,7 +570,54 @@ def game_play_screen():
         if st.button(button_text, key=f"choice_{idx}", use_container_width=True):
             # 선택 처리
             handle_choice(game, choice, current_scenario_id)
+            if 'ai_scenario' in st.session_state:
+                del st.session_state.ai_scenario
             st.rerun()
+
+    # AI 모드: 자유 입력 옵션
+    if game.ai_mode and game.gemini and game.gemini.enabled:
+        st.markdown("---")
+
+        if 'show_free_form' not in st.session_state:
+            st.session_state.show_free_form = False
+
+        if not st.session_state.show_free_form:
+            if st.button("✍️ 직접 행동 입력하기 (AI 모드)", use_container_width=True):
+                st.session_state.show_free_form = True
+                st.rerun()
+        else:
+            st.markdown("### ✍️ 자유롭게 행동을 입력하세요")
+            st.info("예: '부소장들과 긴급 회의를 열어 해결책을 논의한다', '현지 협력 파트너와 비공식 미팅을 요청한다'")
+
+            free_form_input = st.text_area(
+                "행동 입력",
+                placeholder="어떤 행동을 하시겠습니까?",
+                key="free_form_input",
+                height=100
+            )
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+                if st.button("실행", use_container_width=True):
+                    if free_form_input.strip():
+                        with st.spinner("🤖 AI가 결과를 판정하고 있습니다..."):
+                            result = game.gemini.generate_free_form_result(state, free_form_input)
+                            if result:
+                                handle_free_form_choice(game, result, free_form_input)
+                                if 'ai_scenario' in st.session_state:
+                                    del st.session_state.ai_scenario
+                                st.session_state.show_free_form = False
+                                st.rerun()
+                            else:
+                                st.error("AI 처리에 실패했습니다. 다시 시도해주세요.")
+                    else:
+                        st.warning("행동을 입력해주세요.")
+
+            with col2:
+                if st.button("취소", use_container_width=True):
+                    st.session_state.show_free_form = False
+                    st.rerun()
 
 
 def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
@@ -563,6 +654,51 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
             game.state.current_scenario = random.choice(available)
         else:
             # 모든 시나리오를 방문했으면 리셋
+            game.state.visited_scenarios = []
+            game.state.current_scenario = random.choice(list(game.scenarios.keys()))
+
+    # 게임 오버 체크
+    if (game.state.reputation <= 0 or
+        game.state.staff_morale <= 0 or
+        game.state.stress >= 100 or
+        game.state.wellbeing <= 0):
+        game.state.game_over = True
+
+
+def handle_free_form_choice(game: KOICAGame, result: dict, action: str):
+    """자유 입력 선택 처리"""
+    # 결과 메시지 저장
+    message = result.get('message', '')
+    st.session_state.result_message = f"**당신의 행동:** {action}\n\n{message}"
+
+    # 스탯 업데이트
+    stats = result.get('stats', {})
+    game.state.update_stats(stats)
+
+    # 시간 진행 (자유 입력은 항상 시간 진행)
+    game.state.period += 1
+    if game.state.period > 6:
+        game.state.period = 1
+        game.state.year += 1
+
+    # AI 모드에서는 다음에도 AI 시나리오 또는 클래식 혼합
+    if game.ai_mode:
+        if random.random() < 0.6:  # 60% AI, 40% 클래식
+            game.state.current_scenario = 'ai_generated'
+        else:
+            available = [s for s in game.scenarios.keys()
+                        if s not in game.state.visited_scenarios and s != "start"]
+            if available:
+                game.state.current_scenario = random.choice(available)
+            else:
+                game.state.current_scenario = 'ai_generated'
+    else:
+        # 클래식 모드 (이 분기는 실행되지 않아야 하지만 안전장치)
+        available = [s for s in game.scenarios.keys()
+                    if s not in game.state.visited_scenarios and s != "start"]
+        if available:
+            game.state.current_scenario = random.choice(available)
+        else:
             game.state.visited_scenarios = []
             game.state.current_scenario = random.choice(list(game.scenarios.keys()))
 
