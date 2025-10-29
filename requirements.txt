@@ -1,5 +1,8 @@
 # KOICA 소장 시뮬레이터 - 의존성 패키지
 
+# 웹 인터페이스
+streamlit>=1.28.0
+
 # AI 모드를 위한 Gemini API (선택사항)
 google-generativeai>=0.3.0
 

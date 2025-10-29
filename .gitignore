@@ -37,3 +37,6 @@ Thumbs.db
 # Game save files (if added in future)
 *.sav
 save_*.json
+
+# Streamlit
+.streamlit/secrets.toml
