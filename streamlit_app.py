@@ -98,6 +98,45 @@ st.markdown("""
         font-size: 0.9rem;
     }
 
+    /* 로딩 인디케이터 */
+    .loading-overlay {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 3rem 2rem;
+        border-radius: 1rem;
+        text-align: center;
+        margin: 2rem 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .loading-spinner {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        border: 6px solid rgba(255,255,255,0.3);
+        border-top: 6px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 1rem auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-top: 1rem;
+    }
+
+    .loading-subtext {
+        color: rgba(255,255,255,0.9);
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+
     /* 모바일에서 사이드바 숨기기 */
     @media (max-width: 768px) {
         .main {
@@ -111,6 +150,18 @@ st.markdown("""
         .stButton > button {
             font-size: 0.95rem;
             padding: 0.8rem;
+        }
+
+        .loading-overlay {
+            padding: 2rem 1rem;
+        }
+
+        .loading-text {
+            font-size: 1.1rem;
+        }
+
+        .loading-subtext {
+            font-size: 0.9rem;
         }
     }
 </style>
@@ -135,6 +186,8 @@ def initialize_session_state():
         st.session_state.free_form_mode = False
     if 'free_form_action' not in st.session_state:
         st.session_state.free_form_action = ""
+    if 'is_generating_ai' not in st.session_state:
+        st.session_state.is_generating_ai = False
 
 
 def display_stats(state: GameState):
@@ -486,8 +539,17 @@ def game_play_screen():
 
     # AI 모드에서 'ai_generated' 시나리오 처리
     if st.session_state.ai_mode and current_scenario_id == 'ai_generated':
-        with st.spinner("🤖 AI가 맞춤형 시나리오를 생성중입니다..."):
-            scenario = game.gemini.generate_scenario(state)
+        # 로딩 인디케이터 표시
+        st.markdown("""
+        <div class="loading-overlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">🤖 AI가 맞춤형 시나리오를 생성중입니다</div>
+            <div class="loading-subtext">플레이어의 선택을 분석하여 최적의 시나리오를 준비하고 있습니다...</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # AI 시나리오 생성
+        scenario = game.gemini.generate_scenario(state)
 
         if not scenario:
             st.warning("AI 시나리오 생성 실패. 기본 시나리오를 사용합니다.")
@@ -606,12 +668,20 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
         st.error("⚠️ AI 모드가 활성화되어 있지 않습니다.")
         return False
 
-    with st.spinner("🤖 AI가 결과를 계산중입니다..."):
-        try:
-            result = game.gemini.generate_free_form_result(game.state, action)
-        except Exception as e:
-            st.error(f"⚠️ AI 처리 중 오류가 발생했습니다: {str(e)}")
-            return False
+    # 로딩 인디케이터 표시
+    st.markdown("""
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">🤖 AI가 결과를 계산중입니다</div>
+        <div class="loading-subtext">플레이어의 행동을 분석하여 결과를 생성하고 있습니다...</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    try:
+        result = game.gemini.generate_free_form_result(game.state, action)
+    except Exception as e:
+        st.error(f"⚠️ AI 처리 중 오류가 발생했습니다: {str(e)}")
+        return False
 
     if result and result.get('success'):
         # 결과 메시지 저장
@@ -687,23 +757,27 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
         # 다음 시나리오가 존재하는 경우에만 설정
         game.state.current_scenario = next_scenario
     else:
-        # 다음 시나리오가 없거나 존재하지 않으면 랜덤 시나리오 선택
-        # 엔딩 시나리오는 제외
-        available = [s for s in game.scenarios.keys()
-                    if s not in game.state.visited_scenarios
-                    and s != "start"
-                    and not s.startswith("ending_")]
-        if available:
-            game.state.current_scenario = random.choice(available)
+        # AI 모드인 경우 AI가 생성한 시나리오 사용
+        if st.session_state.ai_mode and game.gemini and game.gemini.enabled:
+            game.state.current_scenario = 'ai_generated'
         else:
-            # 모든 시나리오를 방문했으면 리셋 (엔딩 시나리오는 여전히 제외)
-            game.state.visited_scenarios = []
-            non_ending_scenarios = [s for s in game.scenarios.keys()
-                                   if not s.startswith("ending_") and s != "start"]
-            if non_ending_scenarios:
-                game.state.current_scenario = random.choice(non_ending_scenarios)
+            # 다음 시나리오가 없거나 존재하지 않으면 랜덤 시나리오 선택
+            # 엔딩 시나리오는 제외
+            available = [s for s in game.scenarios.keys()
+                        if s not in game.state.visited_scenarios
+                        and s != "start"
+                        and not s.startswith("ending_")]
+            if available:
+                game.state.current_scenario = random.choice(available)
             else:
-                game.state.current_scenario = "start"
+                # 모든 시나리오를 방문했으면 리셋 (엔딩 시나리오는 여전히 제외)
+                game.state.visited_scenarios = []
+                non_ending_scenarios = [s for s in game.scenarios.keys()
+                                       if not s.startswith("ending_") and s != "start"]
+                if non_ending_scenarios:
+                    game.state.current_scenario = random.choice(non_ending_scenarios)
+                else:
+                    game.state.current_scenario = "start"
 
     # 게임 오버 체크
     if (game.state.reputation <= 0 or
