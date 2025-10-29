@@ -232,7 +232,7 @@ def welcome_screen():
 
     with col2:
         if GEMINI_AVAILABLE:
-            if st.button("🤖 AI 모드\n\nGemini AI 동적 시나리오", key="ai_mode", use_container_width=True):
+            if st.button("🤖 AI 모드\n\nGemini AI 동적 시나리오", key="ai_mode_btn", use_container_width=True):
                 st.session_state.ai_mode = True
                 st.session_state.current_screen = 'ai_setup'
                 st.rerun()
