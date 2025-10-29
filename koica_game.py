@@ -62,6 +62,9 @@ class GameState:
             "principle_oriented": 0
         }
 
+        # 발생한 생활 이벤트 추적 (중복 방지)
+        self.triggered_life_events = set()
+
     def update_stats(self, changes):
         """스탯 업데이트 및 히스토리 기록"""
         old_stats = {
@@ -813,118 +816,128 @@ class KOICAGame:
 
         # === 기존 생활 이벤트 ===
         # 건강 이벤트 (웰빙 낮을 때)
-        if self.state.wellbeing < 40:
+        if self.state.wellbeing < 40 and "life_event_health_issue" not in self.state.triggered_life_events:
             available_events.append(("life_event_health_issue", 3))
 
         # 향수병 (기간에 따라 - 5-6개월 이상 지났을 때)
-        if self.state.year >= 1 and self.state.period >= 3:
+        if self.state.year >= 1 and self.state.period >= 3 and "life_event_homesickness" not in self.state.triggered_life_events:
             available_events.append(("life_event_homesickness", 2))
 
         # 심리적 압박 (스트레스 높을 때)
-        if self.state.stress > 60:
+        if self.state.stress > 60 and "life_event_psychological_pressure" not in self.state.triggered_life_events:
             available_events.append(("life_event_psychological_pressure", 3))
 
         # 자동차 고장 (자동차가 있는 경우)
-        if self.state.car_choice in ["bring_from_korea", "buy_local"]:
+        if self.state.car_choice in ["bring_from_korea", "buy_local"] and "life_event_car_breakdown" not in self.state.triggered_life_events:
             available_events.append(("life_event_car_breakdown", 1))
 
         # 주거 문제 (모든 경우)
-        available_events.append(("life_event_housing_issue", 1))
+        if "life_event_housing_issue" not in self.state.triggered_life_events:
+            available_events.append(("life_event_housing_issue", 1))
 
         # === 새로운 서사 이벤트 ===
 
         # --- 긍정적 이벤트 (높은 stat 요구) ---
-        if self.state.project_success >= 70 and self.state.year >= 1:
+        if self.state.project_success >= 70 and self.state.year >= 1 and "narrative_event_project_opening" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_project_opening", 2))
 
-        if self.state.staff_morale >= 60:
+        if self.state.staff_morale >= 60 and "narrative_event_volunteer_success" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_volunteer_success", 2))
 
-        if self.state.project_success >= 60 and self.state.year >= 1:
+        if self.state.project_success >= 60 and self.state.year >= 1 and "narrative_event_partner_growth" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_partner_growth", 2))
 
-        if self.state.project_success >= 65:
+        if self.state.project_success >= 65 and "narrative_event_unexpected_impact" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_unexpected_impact", 2))
 
-        if self.state.reputation >= 60:
+        if self.state.reputation >= 60 and "narrative_event_emergency_relief" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_emergency_relief", 1))
 
-        if self.state.staff_morale >= 60 and self.state.year >= 1:
+        if self.state.staff_morale >= 60 and self.state.year >= 1 and "narrative_event_staff_wedding" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_staff_wedding", 2))
 
-        if self.state.reputation >= 60 and self.state.period >= 1:
+        if self.state.reputation >= 60 and self.state.period >= 1 and "narrative_event_new_year_letters" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_new_year_letters", 1))
 
-        if self.state.reputation >= 70 and self.state.year >= 1:
+        if self.state.reputation >= 70 and self.state.year >= 1 and "narrative_event_minister_trust" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_minister_trust", 2))
 
-        if self.state.staff_morale >= 65:
+        if self.state.staff_morale >= 65 and "narrative_event_staff_dedication" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_staff_dedication", 2))
 
-        if self.state.project_success >= 75 and self.state.reputation >= 75:
+        if self.state.project_success >= 75 and self.state.reputation >= 75 and "narrative_event_international_award" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_international_award", 1))
 
-        if self.state.reputation >= 70:
+        if self.state.reputation >= 70 and "narrative_event_media_interview" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_media_interview", 2))
 
         # --- 부정적 이벤트 (낮은 stat 또는 위기 상황) ---
-        if self.state.period == 6:
+        if self.state.period == 6 and "narrative_event_policy_shift" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_policy_shift", 2))
 
-        if self.state.period >= 10 and self.state.budget < 70:
+        if self.state.period >= 10 and self.state.budget_execution_rate < 70 and "narrative_event_budget_pressure" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_budget_pressure", 3))
 
-        available_events.append(("narrative_event_volunteer_safety", 1))
+        if "narrative_event_volunteer_safety" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_volunteer_safety", 1))
 
-        if self.state.year >= 1:
+        if self.state.year >= 1 and "narrative_event_regime_change" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_regime_change", 1))
 
-        if self.state.reputation < 60:
+        if self.state.reputation < 60 and "narrative_event_jica_competition" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_jica_competition", 2))
 
-        if self.state.period == 9 or self.state.period == 3:
+        if (self.state.period == 9 or self.state.period == 3) and "narrative_event_audit" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_audit", 2))
 
-        if self.state.period == 5 or self.state.period == 11:
+        if (self.state.period == 5 or self.state.period == 11) and "narrative_event_congress_visit" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_congress_visit", 2))
 
-        if self.state.stress > 50 and self.state.staff_morale < 50:
+        if self.state.stress > 50 and self.state.staff_morale < 50 and "narrative_event_yp_adaptation_failure" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_yp_adaptation_failure", 2))
 
-        available_events.append(("narrative_event_currency_crisis", 1))
+        if "narrative_event_currency_crisis" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_currency_crisis", 1))
 
-        available_events.append(("narrative_event_corruption_pressure", 1))
+        if "narrative_event_corruption_pressure" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_corruption_pressure", 1))
 
-        if self.state.project_success < 60:
+        if self.state.project_success < 60 and "narrative_event_harsh_evaluation" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_harsh_evaluation", 2))
 
-        if self.state.reputation < 50:
+        if self.state.reputation < 50 and "narrative_event_media_attack" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_media_attack", 2))
 
         # --- 양면적 이벤트 (복잡한 선택지) ---
-        available_events.append(("narrative_event_china_proposal", 1))
+        if "narrative_event_china_proposal" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_china_proposal", 1))
 
-        available_events.append(("narrative_event_hq_unrealistic_schedule", 1))
+        if "narrative_event_hq_unrealistic_schedule" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_hq_unrealistic_schedule", 1))
 
-        if self.state.year >= 1:
+        if self.state.year >= 1 and "narrative_event_staff_salary_demand" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_staff_salary_demand", 2))
 
-        available_events.append(("narrative_event_ppp_suspicion", 1))
+        if "narrative_event_ppp_suspicion" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_ppp_suspicion", 1))
 
-        available_events.append(("narrative_event_gender_culture", 1))
+        if "narrative_event_gender_culture" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_gender_culture", 1))
 
-        if self.state.period == 4 or self.state.period == 10:
+        if (self.state.period == 4 or self.state.period == 10) and "narrative_event_ramadan_schedule" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_ramadan_schedule", 1))
 
-        if self.state.project_success < 50:
+        if self.state.project_success < 50 and "narrative_event_admitting_failure" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_admitting_failure", 2))
 
-        if self.state.staff_morale >= 50:
+        if self.state.staff_morale >= 50 and "narrative_event_volunteer_social_enterprise" not in self.state.triggered_life_events:
             available_events.append(("narrative_event_volunteer_social_enterprise", 1))
 
-        available_events.append(("narrative_event_family_emergency", 1))
+        if "narrative_event_family_emergency" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_family_emergency", 1))
 
-        available_events.append(("narrative_event_local_crisis_support", 1))
+        if "narrative_event_local_crisis_support" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_local_crisis_support", 1))
 
         if not available_events:
             return None
@@ -1547,6 +1560,8 @@ class KOICAGame:
                 if selected_choice['result'].get('advance_time', False):
                     life_event_id = self.check_and_trigger_life_event()
                     if life_event_id:
+                        # 생활 이벤트 발생 - 중복 방지를 위해 추적 리스트에 추가
+                        self.state.triggered_life_events.add(life_event_id)
                         # 생활 이벤트 발생
                         life_event_scenario = self.display_scenario(life_event_id)
                         if life_event_scenario and 'choices' in life_event_scenario:
