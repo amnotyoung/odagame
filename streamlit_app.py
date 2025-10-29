@@ -504,6 +504,18 @@ def game_play_screen():
     </div>
     """, unsafe_allow_html=True)
 
+    # 엔딩 시나리오 처리 (choices가 없는 경우)
+    if 'choices' not in scenario:
+        st.markdown("---")
+        if st.button("다음으로", use_container_width=True):
+            # 게임 오버 상태인지 확인
+            if state.check_game_over():
+                st.session_state.current_screen = 'game_over'
+            else:
+                st.session_state.current_screen = 'ending'
+            st.rerun()
+        return
+
     # 선택지 표시
     st.markdown("### 🤔 어떻게 하시겠습니까?")
 
