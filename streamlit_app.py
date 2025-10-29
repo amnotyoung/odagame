@@ -691,6 +691,14 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
         stats = result.get('stats', {})
         game.state.update_stats(stats)
 
+        # 선택 히스토리 기록 (시간 증가 전에 기록)
+        game.state.choice_history.append({
+            'year': game.state.year,
+            'period': game.state.period,
+            'action': action,
+            'custom': True
+        })
+
         # 시간 진행
         game.state.period += 1
         if game.state.period > 6:
@@ -701,14 +709,6 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
         game.state.current_scenario = 'ai_generated' if game.gemini.enabled else random.choice(
             [s for s in game.scenarios.keys() if not s.startswith("ending_") and s != "start"]
         )
-
-        # 선택 히스토리 기록
-        game.state.choice_history.append({
-            'year': game.state.year,
-            'period': game.state.period,
-            'action': action,
-            'custom': True
-        })
 
         # 게임 오버 체크
         if (game.state.reputation <= 0 or
@@ -743,6 +743,15 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
     # 시나리오 방문 기록
     if scenario_id not in game.state.visited_scenarios:
         game.state.visited_scenarios.append(scenario_id)
+
+    # 선택 히스토리 기록 (시간 증가 전에 기록)
+    game.state.choice_history.append({
+        'scenario_id': scenario_id,
+        'choice_text': choice.get('text', ''),
+        'year': game.state.year,
+        'period': game.state.period,
+        'result': result
+    })
 
     # 시간 진행
     if result.get('advance_time', False):
