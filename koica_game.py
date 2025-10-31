@@ -29,14 +29,14 @@ class GameState:
     def __init__(self):
         self.year = 1
         self.period = 1  # 격월 단위 (1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
-        self.reputation = 40  # 평판 (0-100) - 더 낮은 시작점
-        self.budget_execution_rate = 30  # 예산 집행률 (0-100), 80-100%가 이상적 - 더 낮은 시작점
-        self.staff_morale = 45  # 직원 만족도 (0-100) - 더 낮은 시작점
-        self.project_success = 35  # 프로젝트 성공도 (0-100) - 더 낮은 시작점
+        self.reputation = 25  # 평판 (0-100) - 더 어려운 시작점
+        self.budget_execution_rate = 25  # 예산 집행률 (0-100), 80-100%가 이상적 - 더 어려운 시작점
+        self.staff_morale = 30  # 직원 만족도 (0-100) - 더 어려운 시작점
+        self.project_success = 25  # 프로젝트 성공도 (0-100) - 더 어려운 시작점
 
         # 생활 스탯 추가
-        self.stress = 40  # 스트레스 (0-100, 낮을수록 좋음) - 더 높은 시작점
-        self.wellbeing = 45  # 웰빙 (0-100, 높을수록 좋음) - 더 낮은 시작점
+        self.stress = 50  # 스트레스 (0-100, 낮을수록 좋음) - 더 높은 시작점
+        self.wellbeing = 35  # 웰빙 (0-100, 높을수록 좋음) - 더 낮은 시작점
 
         self.current_scenario = "start"
         self.visited_scenarios = []
@@ -280,22 +280,57 @@ class GameState:
             'result': result
         })
 
-        # 플레이어 스타일 분석
+        # 플레이어 스타일 분석 (가중치 기반)
         if 'stats' in result:
             stats = result['stats']
-            if 'reputation' in stats and stats['reputation'] > 0:
-                self.player_style['reputation_focused'] += 1
+
+            # 평판 중심: 큰 변화에 가중치 부여
+            if 'reputation' in stats:
+                rep_change = stats['reputation']
+                if abs(rep_change) >= 10:
+                    # 큰 변화는 2배 가중치
+                    self.player_style['reputation_focused'] += 2 if rep_change > 0 else 1
+                elif rep_change > 0:
+                    self.player_style['reputation_focused'] += 1
+                elif rep_change <= -5:
+                    # 큰 희생을 감수한 경우도 일부 반영 (다른 목표를 위한 tradeoff)
+                    self.player_style['reputation_focused'] += 0.5
+
+            # 예산 중심: 예산 집행률 관리에 신경 쓰는 선택
             if 'budget' in stats:
-                # 예산 집행률 관리에 신경 쓰는 선택
-                self.player_style['budget_focused'] += 1
-            if 'staff_morale' in stats and stats['staff_morale'] > 0:
-                self.player_style['staff_focused'] += 1
-            if 'project_success' in stats and stats['project_success'] > 0:
-                self.player_style['project_focused'] += 1
+                budget_change = stats['budget']
+                if abs(budget_change) >= 10:
+                    self.player_style['budget_focused'] += 2 if budget_change > 0 else 1
+                elif budget_change != 0:
+                    self.player_style['budget_focused'] += 1
+
+            # 직원 중심: 직원 만족도 증가 선택
+            if 'staff_morale' in stats:
+                morale_change = stats['staff_morale']
+                if abs(morale_change) >= 10:
+                    self.player_style['staff_focused'] += 2 if morale_change > 0 else 1
+                elif morale_change > 0:
+                    self.player_style['staff_focused'] += 1
+                elif morale_change <= -5:
+                    self.player_style['staff_focused'] += 0.5
+
+            # 프로젝트 중심: 프로젝트 성공도 증가 선택
+            if 'project_success' in stats:
+                project_change = stats['project_success']
+                if abs(project_change) >= 10:
+                    self.player_style['project_focused'] += 2 if project_change > 0 else 1
+                elif project_change > 0:
+                    self.player_style['project_focused'] += 1
+                elif project_change <= -5:
+                    self.player_style['project_focused'] += 0.5
 
             # 위험 감수 성향 분석 (큰 변화를 선택하는 경우)
             total_change = sum(abs(v) for v in stats.values())
-            if total_change > 20:
+            if total_change >= 30:
+                # 매우 큰 변화
+                self.player_style['risk_taking'] += 2
+            elif total_change >= 20:
+                # 큰 변화
                 self.player_style['risk_taking'] += 1
 
     def get_play_summary(self):
@@ -1483,128 +1518,138 @@ class KOICAGame:
             score += 20
         type_scores["균형잡힌 소장"] = score
 
-        # 5. 온화한 소장 - 직원 중심 + 낮은 스트레스 (점수 상향)
+        # 5. 온화한 소장 - 직원 중심 + 낮은 스트레스
         score = 0
         if most_focused == 'staff':
-            score += 32
-        if style['staff_focused'] >= 5:
-            score += 30
+            score += 35
+        if style['staff_focused'] >= 8:
+            score += 35
+        elif style['staff_focused'] >= 5:
+            score += 20
         elif style['staff_focused'] >= 3:
-            score += 18
+            score += 10
         if stats.stress <= 40:
             score += 30
-        elif stats.stress <= 55:
-            score += 18
-        if work_stats['staff'] >= 60:
-            score += 20
+        elif stats.stress <= 50:
+            score += 15
+        if work_stats['staff'] >= 65:
+            score += 25
+        elif work_stats['staff'] >= 55:
+            score += 15
         type_scores["온화한 소장"] = score
 
         # 6. 사람 중심 소장 - 직원 만족도 우선
         score = 0
         if most_focused == 'staff':
-            score += 35
-        if style['staff_focused'] >= 5:
-            score += 35
+            score += 40
+        if style['staff_focused'] >= 8:
+            score += 40
+        elif style['staff_focused'] >= 5:
+            score += 25
         elif style['staff_focused'] >= 3:
-            score += 20
-        elif style['staff_focused'] >= 1:
-            score += 10
-        if work_stats['staff'] >= 65:
-            score += 30
-        elif work_stats['staff'] >= 55:
-            score += 20
-        elif work_stats['staff'] >= 45:
-            score += 10
+            score += 15
+        if work_stats['staff'] >= 70:
+            score += 35
+        elif work_stats['staff'] >= 60:
+            score += 25
+        elif work_stats['staff'] >= 50:
+            score += 15
         type_scores["사람 중심 소장"] = score
 
         # 7. 신중한 외교가 - 평판 중심 + 낮은 위험
         score = 0
         if most_focused == 'reputation':
+            score += 40
+        if style['reputation_focused'] >= 8:
             score += 35
-        if style['reputation_focused'] >= 5:
-            score += 30
+        elif style['reputation_focused'] >= 5:
+            score += 20
         elif style['reputation_focused'] >= 3:
-            score += 15
+            score += 10
         if risk_ratio < 0.15:
             score += 35
         elif risk_ratio < 0.25:
             score += 20
-        elif risk_ratio < 0.35:
-            score += 10
-        if work_stats['reputation'] >= 60:
-            score += 20
+        if work_stats['reputation'] >= 65:
+            score += 25
+        elif work_stats['reputation'] >= 55:
+            score += 15
         type_scores["신중한 외교가"] = score
 
         # 8. 외교적인 소장 - 평판 우선
         score = 0
         if most_focused == 'reputation':
-            score += 35
-        if style['reputation_focused'] >= 5:
-            score += 35
+            score += 40
+        if style['reputation_focused'] >= 8:
+            score += 40
+        elif style['reputation_focused'] >= 5:
+            score += 25
         elif style['reputation_focused'] >= 3:
-            score += 20
-        elif style['reputation_focused'] >= 1:
-            score += 10
-        if work_stats['reputation'] >= 65:
-            score += 30
-        elif work_stats['reputation'] >= 55:
-            score += 20
-        elif work_stats['reputation'] >= 45:
-            score += 10
+            score += 15
+        if work_stats['reputation'] >= 70:
+            score += 35
+        elif work_stats['reputation'] >= 60:
+            score += 25
+        elif work_stats['reputation'] >= 50:
+            score += 15
         type_scores["외교적인 소장"] = score
 
-        # 9. 진취적인 소장 - 프로젝트 중심 + 높은 위험 (최종 조정)
+        # 9. 진취적인 소장 - 프로젝트 중심 + 높은 위험
         score = 0
         if most_focused == 'project':
-            score += 28
-        if style['project_focused'] >= 5:
-            score += 26
-        elif style['project_focused'] >= 3:
-            score += 16
-        if risk_ratio > 0.32:
+            score += 35
+        if style['project_focused'] >= 8:
             score += 30
-        elif risk_ratio > 0.24:
+        elif style['project_focused'] >= 5:
             score += 20
-        elif risk_ratio > 0.17:
+        elif style['project_focused'] >= 3:
             score += 10
-        if work_stats['project'] >= 60:
-            score += 16
+        if risk_ratio > 0.35:
+            score += 35
+        elif risk_ratio > 0.25:
+            score += 25
+        elif risk_ratio > 0.18:
+            score += 15
+        if work_stats['project'] >= 65:
+            score += 20
+        elif work_stats['project'] >= 55:
+            score += 10
         type_scores["진취적인 소장"] = score
 
-        # 10. 성과 중심 소장 - 프로젝트 성공 우선 (최종 조정)
+        # 10. 성과 중심 소장 - 프로젝트 성공 우선
         score = 0
         if most_focused == 'project':
-            score += 32
-        if style['project_focused'] >= 5:
-            score += 32
+            score += 40
+        if style['project_focused'] >= 8:
+            score += 40
+        elif style['project_focused'] >= 5:
+            score += 25
         elif style['project_focused'] >= 3:
-            score += 22
-        elif style['project_focused'] >= 1:
-            score += 14
-        if work_stats['project'] >= 65:
-            score += 30
-        elif work_stats['project'] >= 55:
-            score += 22
-        elif work_stats['project'] >= 45:
-            score += 14
+            score += 15
+        if work_stats['project'] >= 70:
+            score += 35
+        elif work_stats['project'] >= 60:
+            score += 25
+        elif work_stats['project'] >= 50:
+            score += 15
         type_scores["성과 중심 소장"] = score
 
-        # 11. 실무형 소장 - 예산 집행 우선 (점수 조정)
+        # 11. 실무형 소장 - 예산 집행 우선
         score = 0
         if most_focused == 'budget':
-            score += 28
-        if style['budget_focused'] >= 5:
-            score += 28
-        elif style['budget_focused'] >= 3:
-            score += 18
-        elif style['budget_focused'] >= 1:
-            score += 10
-        if work_stats['budget'] >= 65:
+            score += 40
+        if style['budget_focused'] >= 8:
+            score += 40
+        elif style['budget_focused'] >= 5:
             score += 25
-        elif work_stats['budget'] >= 55:
-            score += 18
-        elif work_stats['budget'] >= 45:
-            score += 10
+        elif style['budget_focused'] >= 3:
+            score += 15
+        if work_stats['budget'] >= 70:
+            score += 35
+        elif work_stats['budget'] >= 60:
+            score += 25
+        elif work_stats['budget'] >= 50:
+            score += 15
         type_scores["실무형 소장"] = score
 
         # 12. 분투한 소장 - 낮은 성과 (폴백)
