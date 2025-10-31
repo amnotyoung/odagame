@@ -3772,6 +3772,125 @@
     ],
     "ascii_art": "🔥 갈등 상황 🔥\n      ⚖️ 문화 vs 원칙\n      ┌─────┐\n      │ 😰  │\n      └─────┘\n    어려운 선택"
   },
+  "deputy_principled_efficiency_concern": {
+    "title": "⚠️ 김태영 부소장의 우려",
+    "description": "김태영 부소장이 조심스럽게 찾아왔습니다. 그의 표정이 평소와 다르게 어두워 보입니다.\n\n\"소장님, 말씀드리기 송구하지만... 현장에서 일정 지연 우려가 커지고 있습니다. 혹시 인력 운영 관련해서 검토해주실 수 있을까요?\"\n\n부소장의 말투는 조심스럽지만, 현장의 어려움이 느껴집니다. 프로젝트 진행 상황을 점검할 필요가 있어 보입니다.",
+    "threshold_type": "efficiency",
+    "threshold_value": 30,
+    "one_time": true,
+    "choices": [
+      {
+        "text": "부소장 의견 경청하고 현장 점검 회의 소집",
+        "result": {
+          "message": "\"좋은 지적입니다. 내일 오전에 실무진 점검 회의를 하죠.\" 부소장이 안도의 표정을 짓습니다. 회의를 통해 병목 구간을 파악하고 실질적인 개선안을 마련했습니다.",
+          "stats": {
+            "project_success": 8,
+            "staff_morale": 6,
+            "stress": 5
+          },
+          "deputy_morale": {
+            "principled": 12
+          },
+          "advance_time": false,
+          "next": null
+        }
+      },
+      {
+        "text": "부소장에게 현장 개선안 준비 요청",
+        "result": {
+          "message": "\"부소장님이 현장을 제일 잘 아시니, 개선안을 정리해주시겠습니까?\" 김태영 부소장이 책임감 있게 현장을 재점검하고 구체적인 해결 방안을 제시했습니다.",
+          "stats": {
+            "project_success": 10,
+            "staff_morale": 4,
+            "reputation": 3
+          },
+          "deputy_morale": {
+            "principled": 15
+          },
+          "advance_time": false,
+          "next": null
+        }
+      },
+      {
+        "text": "본부에 상황 보고하고 지원 요청",
+        "result": {
+          "message": "부소장의 의견을 토대로 본부에 현장 상황을 보고하고 지원을 요청했습니다. 본부에서 일부 지원을 승인했지만, \"관리 부족\"이라는 지적도 받았습니다.",
+          "stats": {
+            "project_success": 6,
+            "budget_execution_rate": 5,
+            "reputation": -4,
+            "stress": 8
+          },
+          "deputy_morale": {
+            "principled": 8
+          },
+          "advance_time": false,
+          "next": null
+        }
+      }
+    ],
+    "ascii_art": "⚠️ 현장 우려 ⚠️\n    김태영 부소장\n      ┌─────┐\n      │ 💼  │\n      │ 😟  │\n      └─────┘\n  조심스러운 보고"
+  },
+  "deputy_local_friendly_transparency_concern": {
+    "title": "🔍 이수진 부소장의 조언",
+    "description": "이수진 부소장이 복도에서 당신을 기다리고 있었습니다. 평소 활발한 그가 오늘은 말을 꺼내기 어려워하는 듯합니다.\n\n\"소장님, 현지 파트너 쪽에서 서류 처리가 좀 불명확한 부분이 있어서요. 본부 감사 나오기 전에 정리가 필요할 것 같습니다.\"\n\n그는 문제를 부드럽게 표현하고 있지만, 투명성 문제가 불거질 수 있다는 경고로 들립니다.",
+    "threshold_type": "transparency",
+    "threshold_value": 30,
+    "one_time": true,
+    "choices": [
+      {
+        "text": "즉시 서류 검토 및 미비점 보완",
+        "result": {
+          "message": "\"고맙습니다. 바로 검토하죠.\" 부소장과 함께 서류를 꼼꼼히 점검하고 미비한 부분을 보완했습니다. 절차가 투명하게 정리되면서 향후 감사 리스크가 줄어들었습니다.",
+          "stats": {
+            "reputation": 10,
+            "project_success": -3,
+            "stress": 8
+          },
+          "deputy_morale": {
+            "local_friendly": 15
+          },
+          "advance_time": false,
+          "next": null
+        }
+      },
+      {
+        "text": "현지 파트너와 협의하여 정리",
+        "result": {
+          "message": "이수진 부소장이 현지 파트너와 협의하여 서류를 정리했습니다. \"현지 방식을 존중하면서도 본부 기준을 충족시켰습니다.\" 양측 모두 만족하는 절충안이었습니다.",
+          "stats": {
+            "reputation": 8,
+            "project_success": 5,
+            "staff_morale": 5
+          },
+          "deputy_morale": {
+            "local_friendly": 18,
+            "principled": 5
+          },
+          "advance_time": false,
+          "next": null
+        }
+      },
+      {
+        "text": "일단 경과 관찰 - 감사 시 대응",
+        "result": {
+          "message": "\"파트너를 믿어봅시다. 문제되면 그때 설명하죠.\" 부소장이 불안한 표정을 지었습니다. 당장은 일정을 지켰지만, 나중에 문제가 불거질 리스크를 안게 되었습니다.",
+          "stats": {
+            "project_success": 3,
+            "reputation": -8,
+            "stress": -5
+          },
+          "deputy_morale": {
+            "local_friendly": -8,
+            "principled": -5
+          },
+          "advance_time": false,
+          "next": null
+        }
+      }
+    ],
+    "ascii_art": "🔍 투명성 점검 🔍\n    이수진 부소장\n      ┌─────┐\n      │ 💼  │\n      │ 🤔  │\n      └─────┘\n  조심스러운 조언"
+  },
   "ending_perfect_balance": {
     "title": "👑 완벽한 균형의 리더",
     "description": "2년의 임기가 끝났습니다. 당신은 기적을 만들어냈습니다.\n\n**최종 성과:**\n- 평판: 최고 수준\n- 사업 성과: 모든 프로젝트 성공\n- 직원 사기: 팀의 신뢰와 존경\n- 예산: 효율적 집행\n- 부소장들: 양측 모두의 지지\n\n본부 총재가 직접 전화를 걸어왔습니다. \"소장님, 정말 대단합니다. 본부와 현지, 성과와 사람, 원칙과 유연성 사이에서 완벽한 균형을 찾으셨습니다. 차기 본부 이사로 모시고 싶습니다.\"\n\n현지 정부 장관이 말합니다. \"당신 같은 파트너는 처음입니다. 당신 덕분에 우리 국가가 발전했습니다.\"\n\n직원들이 눈물을 흘리며 송별회를 준비했습니다. \"소장님이 아니었다면 우리는 이렇게 성장하지 못했을 겁니다.\"\n\n**당신은 KOICA 역사에 남을 전설적인 소장이 되었습니다.**\n\n귀국 후, 당신은 본부 이사로 승진하여 더 많은 해외사무소를 이끄는 리더가 되었습니다. 당신의 리더십 철학은 KOICA의 새로운 표준이 되었습니다.",

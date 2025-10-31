@@ -1247,7 +1247,7 @@ class KOICAGame:
     # ============================================================
 
     def check_deputy_threshold_events(self):
-        """부소장 morale 임계값 이벤트 체크"""
+        """부소장 임계값 이벤트 체크 (morale, 프로젝트 성공도, 평판)"""
         # Backward compatibility: Initialize triggered_deputy_events if it doesn't exist
         if not hasattr(self.state, 'triggered_deputy_events'):
             self.state.triggered_deputy_events = set()
@@ -1258,22 +1258,32 @@ class KOICAGame:
         if not deputy_principled or not deputy_local:
             return None
 
-        # 김원칙 부소장 고충성도 이벤트
+        # 김태영 부소장 효율성 우려 이벤트 (프로젝트 성공도 낮을 때)
+        if (self.state.project_success <= 30 and
+            'deputy_principled_efficiency_concern' not in self.state.triggered_deputy_events):
+            return 'deputy_principled_efficiency_concern'
+
+        # 이수진 부소장 투명성 우려 이벤트 (평판 낮을 때)
+        if (self.state.reputation <= 30 and
+            'deputy_local_friendly_transparency_concern' not in self.state.triggered_deputy_events):
+            return 'deputy_local_friendly_transparency_concern'
+
+        # 김태영 부소장 고충성도 이벤트
         if (deputy_principled['morale'] >= 50 and
             'deputy_principled_high_loyalty' not in self.state.triggered_deputy_events):
             return 'deputy_principled_high_loyalty'
 
-        # 김원칙 부소장 전보 위기 이벤트
+        # 김태영 부소장 전보 위기 이벤트
         if (deputy_principled['morale'] <= 20 and
             'deputy_principled_low_resignation' not in self.state.triggered_deputy_events):
             return 'deputy_principled_low_resignation'
 
-        # 박현지 부소장 네트워크 보너스 이벤트
+        # 이수진 부소장 네트워크 보너스 이벤트
         if (deputy_local['morale'] >= 50 and
             'deputy_local_friendly_network_bonus' not in self.state.triggered_deputy_events):
             return 'deputy_local_friendly_network_bonus'
 
-        # 박현지 부소장 문화 갈등 이벤트
+        # 이수진 부소장 문화 갈등 이벤트
         if (deputy_local['morale'] <= 20 and
             'deputy_local_friendly_cultural_crisis' not in self.state.triggered_deputy_events):
             return 'deputy_local_friendly_cultural_crisis'
