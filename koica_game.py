@@ -65,6 +65,9 @@ class GameState:
         # 발생한 생활 이벤트 추적 (중복 방지)
         self.triggered_life_events = set()
 
+        # 생활 이벤트 발생 횟수 추적 (최대 4회로 제한)
+        self.life_events_count = 0
+
         # 부소장 및 코디네이터 관리 시스템 (부소장 2명, 코디 2명)
         self.deputies = self._initialize_deputies()
         self.coordinators = self._initialize_coordinators()
@@ -974,43 +977,55 @@ class KOICAGame:
                 sys.exit(0)
 
     def check_and_trigger_life_event(self):
-        """주기적 생활 이벤트 발생 확인 - 일년에 두 번씩 발생"""
+        """주기적 생활 이벤트 발생 확인 - 전체 플레이 동안 최대 4회 랜덤 발생"""
         # 운동 습관의 패시브 효과: 웰빙 하락 방어
         if self.state.leisure_choice == "exercise" and self.state.wellbeing < 40:
             # 운동 습관이 웰빙 하락을 방어해 줌
             self.state.update_stats({'wellbeing': 5, 'stress': -5})
             print("\n💪 [운동 습관 효과] 규칙적인 운동으로 정신 건강이 개선되었습니다. (웰빙 +5, 스트레스 -5)")
 
-        # 일년에 두 번씩 생활 이벤트 발생 (period 2와 5)
-        # period 2 = 3-4월 (전반기), period 5 = 9-10월 (후반기)
-        is_event_period = self.state.period in [2, 5]
+        # 이미 4회 발생했으면 더 이상 발생하지 않음
+        if self.state.life_events_count >= 4:
+            return None
 
-        # 기본 확률 30%
-        base_chance = 0.30
+        # 기본 확률 계산 (2년 12 periods 동안 평균 4회 발생하도록 조정)
+        # 남은 횟수에 따라 확률 동적 조정
+        remaining_events = 4 - self.state.life_events_count
+        remaining_periods = (2 - self.state.year) * 6 + (6 - self.state.period) + 1
 
-        # 이벤트 주기(period 2, 5)에는 확률을 매우 높게 설정
-        if is_event_period:
-            base_chance = 0.85  # 85% 확률로 거의 확실하게 발생
+        # 남은 기간이 없으면 발생 안 함
+        if remaining_periods <= 0:
+            return None
+
+        # 기본 확률: 남은 이벤트 수 / 남은 기간 수
+        base_chance = remaining_events / remaining_periods
+
+        # 최소 15%, 최대 50% 확률로 제한
+        base_chance = max(0.15, min(0.50, base_chance))
 
         # 스트레스/웰빙 상태에 따라 확률 조정
         if self.state.stress > 70:
-            base_chance += 0.15  # 스트레스 높으면 이벤트 확률 증가
+            base_chance += 0.10  # 스트레스 높으면 이벤트 확률 증가
         if self.state.wellbeing < 30:
-            base_chance += 0.15  # 웰빙 낮으면 이벤트 확률 증가
+            base_chance += 0.10  # 웰빙 낮으면 이벤트 확률 증가
 
-        # 확률을 100%로 제한
-        base_chance = min(1.0, base_chance)
+        # 확률을 60%로 제한 (너무 자주 발생하지 않도록)
+        base_chance = min(0.60, base_chance)
 
         # 랜덤으로 이벤트 발생 여부 결정
         if random.random() < base_chance:
-            return self.select_life_event()
+            event = self.select_life_event()
+            if event:
+                # 생활 이벤트 발생 횟수 증가
+                self.state.life_events_count += 1
+            return event
         return None
 
     def select_life_event(self):
-        """적절한 생활 이벤트 선택 (기존 생활 이벤트 + 새로운 서사 이벤트)"""
+        """모든 타입의 이벤트 선택 - 생활, 서사, 부소장, 연차별 이벤트 포함 (최대 4회 발생)"""
         available_events = []
 
-        # === 기존 생활 이벤트 (생활 선택과 연동) ===
+        # === 생활 이벤트 (생활 선택과 연동) ===
         # 건강 이벤트 (웰빙 낮을 때) - 음주 습관 + 스트레스 시 확률 증가
         if self.state.wellbeing < 40 and "life_event_health_issue" not in self.state.triggered_life_events:
             weight = 3
@@ -1041,7 +1056,7 @@ class KOICAGame:
                 weight = 3  # 좁고 오래된 집은 문제 발생 확률 3배
             available_events.append(("life_event_housing_issue", weight))
 
-        # === 새로운 서사 이벤트 ===
+        # === 서사 이벤트 ===
 
         # --- 긍정적 이벤트 (높은 stat 요구) ---
         if self.state.project_success >= 70 and self.state.year >= 1 and "narrative_event_project_opening" not in self.state.triggered_life_events:

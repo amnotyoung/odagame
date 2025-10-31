@@ -631,17 +631,17 @@ def game_play_screen():
         st.error("시나리오를 찾을 수 없습니다.")
         return
 
-    # 생활 이벤트 발생 알림
+    # 특별 이벤트 발생 알림
     if hasattr(st.session_state, 'life_event_triggered') and st.session_state.life_event_triggered:
         st.markdown("""
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                     padding: 20px; border-radius: 10px; margin-bottom: 20px;
                     border: 3px solid #5a67d8; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             <h2 style="color: white; text-align: center; margin: 0; font-size: 28px;">
-                🏠 생활 이벤트가 발생했습니다! 🏠
+                ⭐ 특별 이벤트가 발생했습니다! ⭐
             </h2>
             <p style="color: #e0e7ff; text-align: center; margin-top: 10px; font-size: 16px;">
-                예상치 못한 개인적인 문제가 발생했습니다. 신중하게 대응하세요.
+                예상치 못한 상황이 발생했습니다. 신중하게 대응하세요.
             </p>
         </div>
         """, unsafe_allow_html=True)
