@@ -22,6 +22,20 @@ except ImportError:
 # We'll need to refactor the classes to work with Streamlit's state management
 from koica_game import GameState, KOICAGame
 
+
+def get_stat_grade(value):
+    """스탯 변화 값에 따른 등급 반환"""
+    if value >= 10:
+        return "⭐ 우수"
+    elif value >= 5:
+        return "✓ 양호"
+    elif value >= 0:
+        return "✓ 보통"
+    elif value >= -10:
+        return "⚠️ 주의"
+    else:
+        return "❌ 위험"
+
 # Page configuration
 st.set_page_config(
     page_title="내가 소장이 될 상인가",
@@ -213,6 +227,8 @@ def initialize_session_state():
         st.session_state.choice_made = False
     if 'result_message' not in st.session_state:
         st.session_state.result_message = ""
+    if 'trade_off_message' not in st.session_state:
+        st.session_state.trade_off_message = ""
     if 'ai_mode' not in st.session_state:
         st.session_state.ai_mode = False
     if 'lifestyle_step' not in st.session_state:
@@ -629,6 +645,10 @@ def game_play_screen():
         </div>
         """, unsafe_allow_html=True)
 
+        # trade_off_message 표시
+        if hasattr(st.session_state, 'trade_off_message') and st.session_state.trade_off_message:
+            st.info(f"💡 **Trade-off:** {st.session_state.trade_off_message}")
+
         # 스탯 변화 표시
         if hasattr(st.session_state, 'stat_changes') and st.session_state.stat_changes:
             stat_changes = st.session_state.stat_changes
@@ -652,18 +672,19 @@ def game_play_screen():
                     continue
 
                 stat_name = stat_names.get(stat_key, stat_key)
+                grade = get_stat_grade(change)
 
                 # 스트레스는 반대 (증가가 부정적)
                 if stat_key == 'stress':
                     if change > 0:
-                        negative_changes.append((stat_name, change))
+                        negative_changes.append((stat_name, change, grade))
                     else:
-                        positive_changes.append((stat_name, change))
+                        positive_changes.append((stat_name, change, grade))
                 else:
                     if change > 0:
-                        positive_changes.append((stat_name, change))
+                        positive_changes.append((stat_name, change, grade))
                     else:
-                        negative_changes.append((stat_name, change))
+                        negative_changes.append((stat_name, change, grade))
 
             # 변화 표시
             if positive_changes or negative_changes:
@@ -674,23 +695,24 @@ def game_play_screen():
                 with cols[0]:
                     if positive_changes:
                         st.markdown("**✅ 긍정적 변화**")
-                        for stat_name, change in positive_changes:
+                        for stat_name, change, grade in positive_changes:
                             if change >= 0:
-                                st.markdown(f"• {stat_name}: **+{change}**")
+                                st.markdown(f"• {stat_name}: **+{change}** {grade}")
                             else:
-                                st.markdown(f"• {stat_name}: **{change}**")
+                                st.markdown(f"• {stat_name}: **{change}** {grade}")
 
                 with cols[1]:
                     if negative_changes:
                         st.markdown("**⚠️ 부정적 변화**")
-                        for stat_name, change in negative_changes:
+                        for stat_name, change, grade in negative_changes:
                             if change >= 0:
-                                st.markdown(f"• {stat_name}: **+{change}**")
+                                st.markdown(f"• {stat_name}: **+{change}** {grade}")
                             else:
-                                st.markdown(f"• {stat_name}: **{change}**")
+                                st.markdown(f"• {stat_name}: **{change}** {grade}")
 
         if st.button("다음으로", use_container_width=True):
             st.session_state.result_message = ""
+            st.session_state.trade_off_message = ""
             st.session_state.stat_changes = {}
             st.session_state.choice_made = False
             st.rerun()
@@ -839,13 +861,26 @@ def game_play_screen():
             stats.get('wellbeing', 0) < -15
         ])
 
-        if is_risky:
-            st.warning(f"⚠️ 선택 {idx + 1}은 위험할 수 있습니다!")
+        # 선택지 상세 정보 표시
+        with st.container():
+            if st.button(button_text, key=f"choice_{idx}", use_container_width=True):
+                # 선택 처리
+                handle_choice(game, choice, current_scenario_id)
+                st.rerun()
 
-        if st.button(button_text, key=f"choice_{idx}", use_container_width=True):
-            # 선택 처리
-            handle_choice(game, choice, current_scenario_id)
-            st.rerun()
+            # subtext와 trade_off 표시
+            subtext = choice.get('subtext', '')
+            trade_off = choice.get('trade_off', '')
+
+            if subtext or trade_off:
+                with st.expander(f"ℹ️ 선택지 {idx + 1} 상세 정보"):
+                    if subtext:
+                        st.markdown(f"**{subtext}**")
+                    if trade_off:
+                        st.markdown(f"📊 **예상 효과:** {trade_off}")
+
+            if is_risky:
+                st.warning(f"⚠️ 선택 {idx + 1}은 위험할 수 있습니다!")
 
     # AI 모드에서만 자유 답변 버튼 표시
     if st.session_state.ai_mode and game.gemini and game.gemini.enabled:
@@ -944,6 +979,9 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
 
     # 결과 메시지 저장
     st.session_state.result_message = result.get('message', '')
+
+    # trade_off_message 저장
+    st.session_state.trade_off_message = result.get('trade_off_message', '')
 
     # 스탯 변화 저장 (표시용)
     stats = result.get('stats', {})
