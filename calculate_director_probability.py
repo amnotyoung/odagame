@@ -23,7 +23,10 @@ def determine_director_type(
     risk_taking: int,
     total_choices: int
 ) -> str:
-    """소장 유형 결정 로직 (koica_game.py의 _determine_director_types 로직 복제)"""
+    """소장 유형 결정 로직 (koica_game.py의 _determine_director_types 로직 복제)
+
+    점수 기반 시스템으로 12개 유형의 확률을 균등하게 배분합니다.
+    """
 
     work_stats = {
         'reputation': reputation,
@@ -40,15 +43,9 @@ def determine_director_type(
     stat_values = list(work_stats.values())
     avg_stat = sum(stat_values) / len(stat_values) if stat_values else 50
     variance = sum((v - avg_stat) ** 2 for v in stat_values) / len(stat_values) if stat_values else 0
-    is_balanced = variance < 200
 
     # 플레이 스타일 분석
     risk_ratio = risk_taking / total_choices if total_choices > 0 else 0
-
-    # 스트레스와 웰빙으로 생활 패턴 분석
-    is_high_stress = stress >= 70
-    is_high_wellbeing = wellbeing >= 65
-    is_low_stress = stress <= 35
 
     # 가장 중점을 둔 영역 찾기
     focus_areas = {
@@ -60,58 +57,222 @@ def determine_director_type(
     max_focus = max(focus_areas.values()) if focus_areas.values() else 0
     most_focused = max(focus_areas, key=focus_areas.get) if max_focus > 0 else None
 
-    # === 유형 결정 로직 (우선순위 기반) ===
+    # === 점수 기반 유형 결정 (12개 유형) ===
+    type_scores = {}
 
-    # 1. 극단적 특성 먼저 체크
-    if risk_ratio > 0.35 and max_stat >= 55:
-        return "혁신적인 소장"
+    # 1. 혁신적인 소장 - 높은 위험 감수 + 우수한 성과
+    score = 0
+    if risk_ratio > 0.45:
+        score += 50
+    elif risk_ratio > 0.35:
+        score += 30
+    elif risk_ratio > 0.25:
+        score += 10
+    if max_stat >= 70:
+        score += 30
+    elif max_stat >= 60:
+        score += 20
+    elif max_stat >= 50:
+        score += 10
+    type_scores["혁신적인 소장"] = score
 
-    if is_high_wellbeing and is_low_stress and avg_stat >= 55:
-        return "여유로운 소장"
+    # 2. 여유로운 소장 - 높은 웰빙 + 낮은 스트레스
+    score = 0
+    if wellbeing >= 70:
+        score += 40
+    elif wellbeing >= 60:
+        score += 25
+    elif wellbeing >= 50:
+        score += 10
+    if stress <= 30:
+        score += 40
+    elif stress <= 40:
+        score += 25
+    elif stress <= 50:
+        score += 10
+    if avg_stat >= 50:
+        score += 20
+    type_scores["여유로운 소장"] = score
 
-    if is_high_stress and avg_stat >= 65:
-        return "헌신적인 소장"
+    # 3. 헌신적인 소장 - 높은 스트레스 + 높은 성과 (조건 더 완화)
+    score = 0
+    if stress >= 65:
+        score += 40
+    elif stress >= 55:
+        score += 30
+    elif stress >= 45:
+        score += 20
+    if avg_stat >= 60:
+        score += 40
+    elif avg_stat >= 50:
+        score += 30
+    elif avg_stat >= 40:
+        score += 20
+    type_scores["헌신적인 소장"] = score
 
-    # 2. 균형형 체크
-    if is_balanced and avg_stat >= 60:
-        return "균형잡힌 소장"
+    # 4. 균형잡힌 소장 - 낮은 분산 + 좋은 평균 (조건 더 완화)
+    score = 0
+    if variance < 250:
+        score += 45
+    elif variance < 350:
+        score += 35
+    elif variance < 450:
+        score += 25
+    elif variance < 600:
+        score += 15
+    if avg_stat >= 50:
+        score += 40
+    elif avg_stat >= 40:
+        score += 30
+    elif avg_stat >= 30:
+        score += 20
+    type_scores["균형잡힌 소장"] = score
 
-    # 3. 스탯 + 플레이 스타일 조합으로 결정
-    if most_focused == 'staff' and staff_focused >= 3:
-        if is_low_stress and max_stat >= 60:
-            return "온화한 소장"
-        return "사람 중심 소장"
+    # 5. 온화한 소장 - 직원 중심 + 낮은 스트레스 (점수 상향)
+    score = 0
+    if most_focused == 'staff':
+        score += 32
+    if staff_focused >= 5:
+        score += 30
+    elif staff_focused >= 3:
+        score += 18
+    if stress <= 40:
+        score += 30
+    elif stress <= 55:
+        score += 18
+    if work_stats['staff'] >= 60:
+        score += 20
+    type_scores["온화한 소장"] = score
 
-    if most_focused == 'reputation' and reputation_focused >= 3:
-        if risk_ratio < 0.15 and max_stat >= 60:
-            return "신중한 외교가"
-        return "외교적인 소장"
+    # 6. 사람 중심 소장 - 직원 만족도 우선
+    score = 0
+    if most_focused == 'staff':
+        score += 35
+    if staff_focused >= 5:
+        score += 35
+    elif staff_focused >= 3:
+        score += 20
+    elif staff_focused >= 1:
+        score += 10
+    if work_stats['staff'] >= 65:
+        score += 30
+    elif work_stats['staff'] >= 55:
+        score += 20
+    elif work_stats['staff'] >= 45:
+        score += 10
+    type_scores["사람 중심 소장"] = score
 
-    if most_focused == 'project' and project_focused >= 3:
-        if risk_ratio > 0.25:
-            return "진취적인 소장"
-        return "성과 중심 소장"
+    # 7. 신중한 외교가 - 평판 중심 + 낮은 위험
+    score = 0
+    if most_focused == 'reputation':
+        score += 35
+    if reputation_focused >= 5:
+        score += 30
+    elif reputation_focused >= 3:
+        score += 15
+    if risk_ratio < 0.15:
+        score += 35
+    elif risk_ratio < 0.25:
+        score += 20
+    elif risk_ratio < 0.35:
+        score += 10
+    if work_stats['reputation'] >= 60:
+        score += 20
+    type_scores["신중한 외교가"] = score
 
-    if most_focused == 'budget' and budget_focused >= 3:
-        return "실무형 소장"
+    # 8. 외교적인 소장 - 평판 우선
+    score = 0
+    if most_focused == 'reputation':
+        score += 35
+    if reputation_focused >= 5:
+        score += 35
+    elif reputation_focused >= 3:
+        score += 20
+    elif reputation_focused >= 1:
+        score += 10
+    if work_stats['reputation'] >= 65:
+        score += 30
+    elif work_stats['reputation'] >= 55:
+        score += 20
+    elif work_stats['reputation'] >= 45:
+        score += 10
+    type_scores["외교적인 소장"] = score
 
-    # 4. 스탯 기반 결정 (플레이 스타일이 명확하지 않을 때)
-    if max_stat_name == 'staff' and max_stat >= 60:
-        return "사람 중심 소장"
-    elif max_stat_name == 'reputation' and max_stat >= 60:
-        return "외교적인 소장"
-    elif max_stat_name == 'project' and max_stat >= 60:
-        return "성과 중심 소장"
-    elif max_stat_name == 'budget' and max_stat >= 60:
-        return "실무형 소장"
+    # 9. 진취적인 소장 - 프로젝트 중심 + 높은 위험 (최종 조정)
+    score = 0
+    if most_focused == 'project':
+        score += 28
+    if project_focused >= 5:
+        score += 26
+    elif project_focused >= 3:
+        score += 16
+    if risk_ratio > 0.32:
+        score += 30
+    elif risk_ratio > 0.24:
+        score += 20
+    elif risk_ratio > 0.17:
+        score += 10
+    if work_stats['project'] >= 60:
+        score += 16
+    type_scores["진취적인 소장"] = score
 
-    # 5. 기본 유형
-    if avg_stat >= 55:
-        return "안정적인 소장"
-    elif avg_stat >= 45:
-        return "성실한 소장"
-    else:
+    # 10. 성과 중심 소장 - 프로젝트 성공 우선 (최종 조정)
+    score = 0
+    if most_focused == 'project':
+        score += 32
+    if project_focused >= 5:
+        score += 32
+    elif project_focused >= 3:
+        score += 22
+    elif project_focused >= 1:
+        score += 14
+    if work_stats['project'] >= 65:
+        score += 30
+    elif work_stats['project'] >= 55:
+        score += 22
+    elif work_stats['project'] >= 45:
+        score += 14
+    type_scores["성과 중심 소장"] = score
+
+    # 11. 실무형 소장 - 예산 집행 우선 (점수 조정)
+    score = 0
+    if most_focused == 'budget':
+        score += 28
+    if budget_focused >= 5:
+        score += 28
+    elif budget_focused >= 3:
+        score += 18
+    elif budget_focused >= 1:
+        score += 10
+    if work_stats['budget'] >= 65:
+        score += 25
+    elif work_stats['budget'] >= 55:
+        score += 18
+    elif work_stats['budget'] >= 45:
+        score += 10
+    type_scores["실무형 소장"] = score
+
+    # 12. 분투한 소장 - 낮은 성과 (폴백)
+    score = 0
+    if avg_stat < 45:
+        score += 60
+    elif avg_stat < 50:
+        score += 40
+    elif avg_stat < 55:
+        score += 20
+    if max_stat < 50:
+        score += 30
+    type_scores["분투한 소장"] = score
+
+    # 가장 높은 점수를 받은 유형 선택 (동점이면 랜덤)
+    if not type_scores:
         return "분투한 소장"
+
+    max_score = max(type_scores.values())
+    top_types = [t for t, s in type_scores.items() if s == max_score]
+
+    # 동점이면 랜덤 선택
+    return random.choice(top_types)
 
 
 def generate_random_game_state() -> Dict:
@@ -238,7 +399,7 @@ def print_results(probabilities: Dict[str, float], counter: Counter):
 
     print(f"\n📈 통계 요약:")
     print(f"   - 총 유형 수: {len(probabilities)}개")
-    print(f"   - 평균 확률: {avg_prob:.2f}% (균등 분포 시 {100/14:.2f}%)")
+    print(f"   - 평균 확률: {avg_prob:.2f}% (균등 분포 시 {100/12:.2f}%)")
     print(f"   - 최대 확률: {max_prob:.2f}%")
     print(f"   - 최소 확률: {min_prob:.2f}%")
     print(f"   - 확률 편차: {max_prob - min_prob:.2f}%p")
