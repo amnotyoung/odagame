@@ -54,24 +54,6 @@
           "advance_time": true,
           "next": "period_2"
         }
-      },
-      {
-        "text": "ICT 분야 집중 - 전자정부 및 디지털 역량 강화",
-        "result": {
-          "message": "디지털 전환은 현대화의 핵심입니다. 본부에서 긍정적인 피드백을 보냈습니다.",
-          "stats": {
-            "reputation": 6,
-            "project_success": 7,
-            "budget": 6,
-            "staff_morale": 3
-          },
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": -3
-          },
-          "advance_time": true,
-          "next": "period_2"
-        }
       }
     ],
     "ascii_art": "╔════════════════════════════╗\n    ║  🌍 KOICA 해외사무소 🌍   ║\n    ╚════════════════════════════╝\n         ___________________\n        |  ___   ___   ___  |\n        | |   | |   | |   | |\n        | | 📋| | 📊| | 📁| |\n        | |___| |___| |___| |\n        |___________________|\n        |  💻  ☕  📱  ✍️   |\n        |___________________|\n           새로운 시작!"
@@ -155,27 +137,6 @@
         },
         "subtext": "✦ 철학: PMC 약점 보완, 현지 관계 활용",
         "trade_off": "현지 신뢰↑, 장기 파트너십 | 성과 측정 어려움"
-      },
-      {
-        "text": "성과 지표 중심 - 명확한 KPI와 분기 평가",
-        "result": {
-          "message": "PMC와 명확한 성과지표(KPI)를 설정하고 분기별 평가 체계를 수립했습니다. 투명한 성과 관리로 책임성이 강화되었고, PMC도 목표가 명확해져 효율적으로 일할 수 있게 되었습니다. 초기 세팅에 시간이 걸렸으나 체계적인 관리가 가능해졌습니다.",
-          "stats": {
-            "project_success": 8,
-            "reputation": 6,
-            "budget": -6,
-            "staff_morale": -6
-          },
-          "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 3
-          },
-          "advance_time": true,
-          "next": "period_3",
-          "trade_off_message": "✓ 명확한 책임성 확보. ⚠️ 단, 현지 파트너는 '수치 중심'을 불편해할 수 있음."
-        },
-        "subtext": "✦ 철학: 투명한 성과 관리, 책임성 강화",
-        "trade_off": "명확한 목표, 본부 만족 | 관계 경직, 창의성↓"
       }
     ],
     "ascii_art": "┌─────────────────┐\n        │   회의실 Table  │\n        └─────────────────┘\n          _______________\n         /               \\\n        |  📝 계약서 📝   |\n        |  ____________   |\n        | | 서명: ___  |  |\n        | |____________|  |\n         \\_____________/\n           👔  🤝  👔\n         PMC 선정 완료"
@@ -236,24 +197,6 @@
           "advance_time": true,
           "next": "period_4"
         }
-      },
-      {
-        "text": "팀별 분담으로 병행 처리 - 체계적 우선순위 설정",
-        "result": {
-          "message": "부소장들과 긴급 회의를 열어 업무를 분담했습니다. 보고서와 현장 문제를 동시에 처리하며 적절히 균형을 맞췄습니다. 일정은 촉박했지만 모든 일을 마무리했습니다.",
-          "stats": {
-            "reputation": 6,
-            "project_success": 6,
-            "staff_morale": 3,
-            "budget": 3
-          },
-          "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 8
-          },
-          "advance_time": true,
-          "next": "period_4"
-        }
       }
     ],
     "ascii_art": "☀️     ☁️    ☁️\n      🚗 ➡️  현장 방문\n    ═══════════════════════\n        🏗️     👷    🏫\n        |      |     |\n       건설   모니터  학교\n      ___________________\n     /                   \\\n    |  현장 점검 중...    |\n     \\___________________/"
@@ -307,24 +250,6 @@
             "project_success": 7,
             "budget": 6,
             "staff_morale": 6
-          },
-          "advance_time": true,
-          "next": "period_5",
-          "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
-          }
-        }
-      },
-      {
-        "text": "PMC 성과 미흡 경고 - 계약 이행 압박",
-        "result": {
-          "message": "PMC에 강하게 문제를 제기하고 계약 이행을 요구했습니다. PMC가 자체 비용으로 일부 해결했으나 관계가 악화되었습니다. 향후 협력에 어려움이 예상됩니다.",
-          "stats": {
-            "budget": 8,
-            "project_success": 3,
-            "reputation": -6,
-            "staff_morale": -12
           },
           "advance_time": true,
           "next": "period_5",
@@ -416,27 +341,6 @@
         },
         "subtext": "✦ 전략: 미래 준비, 지속가능성",
         "trade_off": "장기 기반↑ | 단기 성과 없음"
-      },
-      {
-        "text": "세 가지 균등 분배 - 모두 '적당히' 진행 (예산 1천만원)",
-        "result": {
-          "message": "세 가지를 모두 진행했습니다. 성과 보고회는 소규모로, 환송식은 간소하게, NGO는 MOU만 체결했습니다. 무난했지만 특별한 것은 없었습니다. 부소장이 조심스럽게 말합니다. \"소장님, 무난했지만... 기회를 살리지는 못한 것 같습니다.\"",
-          "stats": {
-            "staff_morale": 25,
-            "project_success": 15,
-            "reputation": 10,
-            "budget": -5
-          },
-          "deputy_morale": {
-            "principled": 12,
-            "local_friendly": 12
-          },
-          "advance_time": true,
-          "next": "period_6",
-          "trade_off_message": "✓ 안전한 선택. ⚠️ 하지만 '리더십 부재'라는 평가 가능"
-        },
-        "subtext": "✦ 전략: 안전한 선택, 리스크 회피",
-        "trade_off": "실패 없음 | 기회도 못 잡음, 평범함"
       }
     ],
     "ascii_art": "🏗️ 프로젝트 현황 🏗️\n       ┌──────┐  ┌──────┐\n       │  50% │  │  75% │\n       │  ▓▓▓▓│  │▓▓▓▓▓▓│\n       └──────┘  └──────┘\n           👋 봉사단 환송\n         🎓 → ✈️ → 🏠\n        감사와 이별의 시간"
@@ -490,24 +394,6 @@
             "project_success": -6,
             "budget": 3,
             "staff_morale": -12
-          },
-          "advance_time": true,
-          "next": "period_7",
-          "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
-          }
-        }
-      },
-      {
-        "text": "알럼니 총회 집중 - 평가는 부소장에게 위임",
-        "result": {
-          "message": "대규모 알럼니 행사로 네트워크를 확장했습니다. 1년의 성과를 효과적으로 알렸습니다. 하지만 프로젝트 평가를 부소장에게 맡겨 본부에서 '책임 회피'로 비쳤습니다.",
-          "stats": {
-            "reputation": 6,
-            "project_success": 0,
-            "budget": 6,
-            "staff_morale": -6
           },
           "advance_time": true,
           "next": "period_7",
@@ -575,24 +461,6 @@
           "deputy_morale": {
             "principled": 2,
             "local_friendly": 8
-          }
-        }
-      },
-      {
-        "text": "본부와 긴밀 협의 - 전략적 대응 방안 수립",
-        "result": {
-          "message": "본부와 긴밀히 협의하여 중장기 전략을 수립했습니다. 정부 정책 변화와 JICA 경쟁 상황을 종합 분석하고, 차별화된 접근법을 마련했습니다. 시간이 걸렸지만 체계적인 대응이 가능해졌습니다.",
-          "stats": {
-            "reputation": 6,
-            "project_success": 3,
-            "staff_morale": 3,
-            "budget": -6
-          },
-          "advance_time": true,
-          "next": "period_8",
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 3
           }
         }
       }
@@ -665,40 +533,6 @@
         },
         "subtext": "✦ 철학: 객관성과 공정성 확보",
         "trade_off": "공정성↑, 의혹 해소 | 비용과 시간 소요"
-      },
-      {
-        "text": "제3자 감사 + 시스템 개선 병행 - 투명성과 재발 방지",
-        "subtext": "✦ 철학: 투명한 조사 + 장기적 시스템 개선",
-        "trade_off": "신뢰성↑, 재발 방지 | 시간과 비용 소요",
-        "result": {
-          "message": "외부 회계법인에 의뢰해 투명한 조사를 진행하는 동시에, 재발 방지를 위한 내부 통제 시스템을 강화했습니다. 시간과 비용이 들었지만 조직의 신뢰성을 지켰고, 이후 유사 사례가 발생하지 않았습니다. 현지 파트너들도 \"공정한 조사였다\"고 인정했습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 3,
-            "budget": -24,
-            "staff_morale": 6
-          },
-          "trade_off_message": "✓ 투명한 문제 해결과 시스템 개선. ⚠️ 단, 시간과 비용 소요",
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 5
-          },
-          "advance_time": true,
-          "next": "period_9",
-          "delayed_effects": [
-            {
-              "trigger_period": 11,
-              "condition": "always",
-              "message": "✅ 1년 전 구축한 내부 통제 시스템이 완벽하게 작동하고 있습니다. 모든 사업이 투명하게 진행되고, 본부 감사에서도 '모범 사례'로 선정되었습니다. 초기 투자가 장기적으로 큰 자산이 되었습니다.",
-              "stats": {
-                "reputation": 15,
-                "project_success": 8,
-                "staff_morale": 10
-              },
-              "effect_id": "internal_control_success"
-            }
-          ]
-        }
       }
     ],
     "ascii_art": "🏛️ 대사관 협력 🏛️\n       ┌─────────────────┐\n       │   🇰🇷 대한민국   │\n       │      대사관      │\n       └─────────────────┘\n          👥 ↔️ 👥\n        협력 관계 구축\n         🤝 외교 협력"
@@ -781,27 +615,6 @@
         },
         "subtext": "✦ 리스크 분산, 유연한 대응",
         "trade_off": "균형잡힌 대응 | 결정 기준 불명확"
-      },
-      {
-        "text": "수도 등 안전 거점으로 임시 이동 후 상황 주시",
-        "result": {
-          "message": "직원들을 위험 지역에서 수도의 안전 거점으로 임시 이동시켰습니다. 사업은 일시 중단되었지만 완전 철수는 아니므로, 상황이 안정되면 즉시 복귀할 수 있습니다. 신속한 대피로 안전을 확보했으나 현지 파트너들은 다소 실망했습니다.",
-          "stats": {
-            "staff_morale": 6,
-            "project_success": -12,
-            "reputation": 0,
-            "budget": -12
-          },
-          "advance_time": true,
-          "next": "period_10",
-          "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 3
-          },
-          "trade_off_message": "✓ 안전 확보와 복귀 준비. ⚠️ 단, 현지 파트너는 실망"
-        },
-        "subtext": "✦ 안전 확보 + 사업 연속성 준비",
-        "trade_off": "안전 + 복귀 가능성 | 사업 일시 중단, 비용"
       }
     ],
     "ascii_art": "⚠️ 위기관리 ⚠️\n       ┌─────────────────┐\n       │  긴급 상황 발생  │\n       │   ⚡ → 🛡️ → ✅  │\n       │                 │\n       │  신속한 대응     │\n       └─────────────────┘\n         📞 → 🚨 → 💡"
@@ -861,24 +674,6 @@
           "deputy_morale": {
             "principled": 8,
             "local_friendly": 2
-          }
-        }
-      },
-      {
-        "text": "성과 홍보 집중 - 종료평가 대비 문서화",
-        "result": {
-          "message": "프로젝트 성과를 체계적으로 문서화하고 홍보 자료를 제작했습니다. 종료평가에서 발표가 돋보였고, 본부와 타 사무소의 벤치마킹 요청이 쏟아졌습니다. 하지만 일부 미완성 부분이 남았습니다.",
-          "stats": {
-            "reputation": 13,
-            "project_success": 3,
-            "staff_morale": 3,
-            "budget": 8
-          },
-          "advance_time": true,
-          "next": "period_11",
-          "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
           }
         }
       }
@@ -951,27 +746,6 @@
         },
         "subtext": "✦ 전략: 관계 자산 축적",
         "trade_off": "장기 네트워크↑ | 비용, 즉각적 효과 미미"
-      },
-      {
-        "text": "미해결 과제 + 리스크 중심 인계 - 투명하고 책임있는 조언",
-        "result": {
-          "message": "성과보다는 '미해결 과제'와 '잠재적 위험'을 솔직하게 정리해 후임자에게 전달했습니다. 어느 파트너가 신뢰도가 낮은지, 어떤 사업이 위험한지 숨김없이 공유했습니다. 후임자는 \"이런 인수인계는 처음입니다. 정말 감사합니다\"라며 깊이 감사했고, 현지 직원들도 소장님의 책임감에 존경을 표했습니다. 본부는 다소 불편해했지만, 6개월 후 후임자가 \"덕분에 시행착오를 줄였다\"고 보고했습니다.",
-          "stats": {
-            "project_success": 8,
-            "staff_morale": 10,
-            "reputation": 3,
-            "budget": 3
-          },
-          "advance_time": true,
-          "next": "period_12",
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 5
-          },
-          "trade_off_message": "✓ 진정한 책임감. 본부는 처음엔 불편했지만 장기적으로 긍정 평가"
-        },
-        "subtext": "✦ 철학: 후임자의 성공이 진짜 성과",
-        "trade_off": "후임 성공 가능성↑ | 본부는 다소 불편"
       }
     ],
     "ascii_art": "⏰ 마무리 준비 ⏰\n      ┌─────────────────┐\n      │  임기 종료 임박  │\n      │   ░░░░░░▓▓▓▓    │\n      │   90% 완료       │\n      │                 │\n      │  인수인계 준비   │\n      └─────────────────┘"
@@ -1031,24 +805,6 @@
           "deputy_morale": {
             "principled": 2,
             "local_friendly": 8
-          }
-        }
-      },
-      {
-        "text": "본부에 임기 연장 신청 - '아직 할 일이 남았다'",
-        "result": {
-          "message": "현지에서 시작한 일에 애착이 생겨 1년 더 머무르기로 결심했습니다. 본부에 임기 연장을 신청했고, 승인되었습니다. 직원들은 기뻐했지만, 가족들은 언제 돌아오냐고 걱정합니다. 당신은 '진짜 변화는 시간이 필요하다'고 생각합니다.",
-          "stats": {
-            "project_success": 10,
-            "staff_morale": 13,
-            "reputation": 6,
-            "budget": -6
-          },
-          "advance_time": true,
-          "next": "ending_extension",
-          "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 10
           }
         }
       }
@@ -1155,24 +911,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "본부에 연락해서 긴급 귀국 검진을 요청한다",
-        "result": {
-          "message": "본부가 1주일 긴급 귀국을 승인했습니다. 한국에서 정밀 검진을 받고 돌아왔습니다. 건강은 회복되었지만, 업무 공백이 생겼습니다.",
-          "stats": {
-            "wellbeing": 13,
-            "stress": -18,
-            "project_success": -12,
-            "staff_morale": -6
-          },
-          "advance_time": false,
-          "next": "continue_main_scenario",
-          "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
-          }
-        }
       }
     ]
   },
@@ -1228,23 +966,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "참고 현지 생활에 적응하려고 노력한다",
-        "result": {
-          "message": "현지 음식을 먹고, 현지 문화를 받아들이려 노력했습니다. 하지만 마음 한구석이 계속 허전합니다. 향수병은 쉽게 사라지지 않았습니다.",
-          "stats": {
-            "wellbeing": -3,
-            "stress": 3,
-            "reputation": 3
-          },
-          "advance_time": false,
-          "next": "continue_main_scenario",
-          "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
-          }
-        }
       }
     ]
   },
@@ -1292,22 +1013,6 @@
           "stats": {
             "wellbeing": 6,
             "stress": -9
-          },
-          "advance_time": false,
-          "next": "continue_main_scenario",
-          "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
-          }
-        }
-      },
-      {
-        "text": "그냥 참고 버틴다 (소장은 강해야 한다)",
-        "result": {
-          "message": "소장으로서의 체면을 지키려 혼자 감당했습니다. 하지만 상황은 나아지지 않았고, 스트레스는 계속 쌓여갑니다. 언젠가 폭발할 것 같습니다.",
-          "stats": {
-            "wellbeing": -12,
-            "stress": 8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1374,23 +1079,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "현지 정비공을 찾아 수리를 맡긴다",
-        "result": {
-          "message": "현지 정비공을 찾아 수리를 맡겼습니다. 시간이 좀 걸렸지만 비용이 저렴했고, 현지 커뮤니티와의 관계도 돈독해졌습니다. 직원들이 소장님의 현지 친화적 태도를 높이 평가했습니다.",
-          "stats": {
-            "budget": 8,
-            "reputation": 6,
-            "staff_morale": 6
-          },
-          "advance_time": false,
-          "next": "continue_main_scenario",
-          "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 12
-          }
-        }
       }
     ]
   },
@@ -1447,24 +1135,6 @@
           "deputy_morale": {
             "principled": 5,
             "local_friendly": 5
-          }
-        }
-      },
-      {
-        "text": "동료에게 부탁해 임시로 같이 지낸다",
-        "result": {
-          "message": "사무소 동료가 흔쾌히 받아주었습니다. 한 달간 같이 지내며 팀원과 더 가까워졌습니다. 약간 불편했지만 비용을 크게 절약할 수 있었습니다.",
-          "stats": {
-            "budget": -2,
-            "staff_morale": 7,
-            "wellbeing": -3,
-            "stress": 3
-          },
-          "advance_time": false,
-          "next": "continue_main_scenario",
-          "deputy_morale": {
-            "principled": 3,
-            "local_friendly": 10
           }
         }
       }
@@ -1528,22 +1198,6 @@
           "deputy_morale": {
             "principled": 2,
             "local_friendly": 8
-          }
-        }
-      },
-      {
-        "text": "수혜자 참여형 행사 - 주민이 주인공",
-        "result": {
-          "message": "정부 인사 중심이 아닌 수혜자 참여형 행사로 기획했습니다. 주민들이 직접 변화를 이야기하고, 전통 공연과 축제를 곁들였습니다. 정부 인사들도 주민들의 생생한 목소리에 감동받았고, 진정성있는 행사로 평가받았습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 10,
-            "staff_morale": 10,
-            "budget": 6
-          },
-          "deputy_morale": {
-            "principled": 12,
-            "local_friendly": 20
           }
         }
       }
@@ -1611,22 +1265,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "멘토링 프로그램 제도화",
-        "result": {
-          "message": "성공한 단원을 차기 단원들의 멘토로 활용하는 프로그램을 제도화했습니다. 경험과 노하우를 체계적으로 전수하는 시스템을 만들어 모든 단원의 성공 가능성을 높였습니다. 단원들 간의 네트워크도 강화되었습니다.",
-          "stats": {
-            "reputation": 8,
-            "project_success": 10,
-            "staff_morale": 10,
-            "budget": 3
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 15
-          }
-        }
       }
     ]
   },
@@ -1689,22 +1327,6 @@
           "deputy_morale": {
             "principled": 8,
             "local_friendly": 2
-          }
-        }
-      },
-      {
-        "text": "협력 네트워크 확장 - Win-Win 구조",
-        "result": {
-          "message": "파트너사의 성장을 축하하며 더 넓은 협력 네트워크로 확장하자고 제안했습니다. 새로운 파트너들도 소개하고, 함께 성장하는 생태계를 만들었습니다. 모두가 만족하는 Win-Win 구조가 되었습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 10,
-            "staff_morale": 8,
-            "budget": 6
-          },
-          "deputy_morale": {
-            "principled": 12,
-            "local_friendly": 18
           }
         }
       }
@@ -1771,22 +1393,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "임팩트 스토리 북 제작 - 체계적 기록",
-        "result": {
-          "message": "예상치 못한 긍정적 영향들을 체계적으로 기록하여 임팩트 스토리 북을 제작했습니다. 다양한 사례들을 수집하고 분석하여 향후 사업 설계에 반영할 교훈을 도출했습니다. 본부에서 우수 사례로 다른 사무소에 공유했습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 10,
-            "staff_morale": 8,
-            "budget": 3
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 12
-          }
-        }
       }
     ]
   },
@@ -1851,22 +1457,6 @@
             "local_friendly": 2
           }
         }
-      },
-      {
-        "text": "중장기 복구 계획 동시 수립",
-        "result": {
-          "message": "긴급 구호와 함께 중장기 복구 계획을 동시에 수립했습니다. 즉각적 지원과 지속가능한 회복을 병행하는 접근이 정부와 주민 모두에게 호응을 얻었습니다. 업무량이 많았지만 직원들이 의미를 느꼈습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 6,
-            "budget": -18
-          },
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 15
-          }
-        }
       }
     ]
   },
@@ -1928,22 +1518,6 @@
           "deputy_morale": {
             "principled": 2,
             "local_friendly": 8
-          }
-        }
-      },
-      {
-        "text": "팀 전체 참석 - 조직 문화 강화",
-        "result": {
-          "message": "프로젝트 일정을 조정하고 팀 전체가 참석하도록 했습니다. 조직 문화와 팀워크를 중시하는 결정이었습니다. 일정은 다소 지연되었지만, 직원들의 결속력이 크게 강화되었고 이후 업무 효율이 오히려 높아졌습니다.",
-          "stats": {
-            "staff_morale": 13,
-            "project_success": -6,
-            "reputation": 6,
-            "budget": -12
-          },
-          "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 20
           }
         }
       }
@@ -2011,22 +1585,6 @@
             "local_friendly": 2
           }
         }
-      },
-      {
-        "text": "직원 제안 워크숍 - 모두의 목소리 반영",
-        "result": {
-          "message": "2년차 계획을 세우기 전에 전체 직원 워크숍을 열었습니다. 모두의 제안을 듣고 함께 목표를 수립했습니다. 시간이 걸렸지만 직원들이 주인의식을 갖게 되었고, 실행력이 높아졌습니다.",
-          "stats": {
-            "staff_morale": 13,
-            "project_success": 8,
-            "reputation": 6,
-            "budget": -6
-          },
-          "deputy_morale": {
-            "principled": 12,
-            "local_friendly": 12
-          }
-        }
       }
     ]
   },
@@ -2090,22 +1648,6 @@
           "deputy_morale": {
             "principled": 5,
             "local_friendly": 5
-          }
-        }
-      },
-      {
-        "text": "정례 협의체 구축 - 제도화된 협력",
-        "result": {
-          "message": "장관의 신뢰를 바탕으로 정례 협의체를 구축했습니다. 정기적인 소통 채널을 제도화하여 지속가능한 협력 기반을 마련했습니다. 장관 개인의 신뢰를 조직간 협력으로 발전시켰습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 10,
-            "staff_morale": 6,
-            "budget": 8
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 15
           }
         }
       }
@@ -2172,22 +1714,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "워라벨 개선 시스템 도입 - 지속가능성 확보",
-        "result": {
-          "message": "직원들의 헌신에 감사하며, 장기적으로 워라벨을 개선할 시스템을 도입했습니다. 순환 휴가제, 업무 자동화, 효율성 개선 등을 통해 지속가능한 근무 환경을 만들었습니다. 직원들이 소장님의 장기적 배려에 감사했습니다.",
-          "stats": {
-            "staff_morale": 13,
-            "project_success": 6,
-            "reputation": 6,
-            "budget": -12
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 15
-          }
-        }
       }
     ]
   },
@@ -2250,22 +1776,6 @@
           "deputy_morale": {
             "principled": 5,
             "local_friendly": 5
-          }
-        }
-      },
-      {
-        "text": "팀 공동 수상 제안 - 성과 공유",
-        "result": {
-          "message": "개인 수상이 아닌 팀 공동 수상을 제안했습니다. 모두의 노력이 결실을 맺었다며 성과를 나누자고 했습니다. 직원들이 크게 감동했고, 조직의 결속력이 한층 강화되었습니다.",
-          "stats": {
-            "reputation": 8,
-            "staff_morale": 13,
-            "project_success": 6,
-            "budget": 6
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 15
           }
         }
       }
@@ -2331,22 +1841,6 @@
           "deputy_morale": {
             "principled": 5,
             "local_friendly": 5
-          }
-        }
-      },
-      {
-        "text": "다큐멘터리 형식 제안 - 깊이있는 스토리텔링",
-        "result": {
-          "message": "단순 인터뷰가 아닌 다큐멘터리 형식을 제안했습니다. 수혜자들의 삶의 변화를 깊이있게 담은 콘텐츠가 큰 반향을 일으켰습니다. 본부와 현지 모두에서 KOICA의 이미지가 크게 개선되었습니다.",
-          "stats": {
-            "reputation": 13,
-            "project_success": 8,
-            "staff_morale": 6,
-            "budget": -12
-          },
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 15
           }
         }
       }
@@ -2415,22 +1909,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "정책 대화 채널 구축 - 양방향 소통",
-        "result": {
-          "message": "일방적 정책 변화에 대응하는 대신, 정기적인 정책 대화 채널을 구축했습니다. 한국의 개발 경험과 정책 사례를 공유하며, 상호 학습의 기회로 만들었습니다. 정부가 KOICA를 정책 파트너로 인식하게 되었습니다.",
-          "stats": {
-            "reputation": 13,
-            "project_success": 8,
-            "staff_morale": 6,
-            "budget": 6
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 15
-          }
-        }
       }
     ]
   },
@@ -2495,22 +1973,6 @@
           "deputy_morale": {
             "principled": 2,
             "local_friendly": 8
-          }
-        }
-      },
-      {
-        "text": "부처간 협의 - 다자간 예산 조정",
-        "result": {
-          "message": "여러 부처와 협의하여 예산을 재조정했습니다. 단일 사업의 예산은 줄었지만, 전체 포트폴리오는 유지되었습니다. 시간이 많이 걸렸으나 모두가 수용할 수 있는 합의점을 찾았습니다.",
-          "stats": {
-            "budget": -6,
-            "reputation": 6,
-            "project_success": 3,
-            "staff_morale": -6
-          },
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 10
           }
         }
       }
@@ -2579,22 +2041,6 @@
             "local_friendly": 2
           }
         }
-      },
-      {
-        "text": "안전 시스템 전면 개편 - 근본적 해결",
-        "result": {
-          "message": "이번 사고를 계기로 안전 시스템을 전면 개편했습니다. 정기 안전 교육, 위험 지역 모니터링, 비상 연락망 강화, 보험 확대 등 종합적인 안전 대책을 수립했습니다. 본부에서 모범 사례로 인정하고 예산을 지원했습니다.",
-          "stats": {
-            "staff_morale": 13,
-            "reputation": 8,
-            "project_success": 6,
-            "budget": 8
-          },
-          "deputy_morale": {
-            "principled": 20,
-            "local_friendly": 15
-          }
-        }
       }
     ]
   },
@@ -2659,22 +2105,6 @@
             "local_friendly": 2
           }
         }
-      },
-      {
-        "text": "기술적 협력 강조 - 정치적 중립 유지",
-        "result": {
-          "message": "정권과 무관하게 KOICA는 기술적 개발 협력 파트너임을 강조했습니다. 특정 정권이 아닌 국가와 국민을 위한 사업임을 명확히 하며 정치적 중립을 지켰습니다. 양측 정권 모두 이를 존중했습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 6,
-            "budget": 6
-          },
-          "deputy_morale": {
-            "principled": 20,
-            "local_friendly": 10
-          }
-        }
       }
     ]
   },
@@ -2737,22 +2167,6 @@
           "deputy_morale": {
             "principled": 2,
             "local_friendly": 8
-          }
-        }
-      },
-      {
-        "text": "차별화 전략 - 한국의 강점 활용",
-        "result": {
-          "message": "JICA와 경쟁하기보다 한국의 독특한 강점(IT, K-Culture, 새마을운동 등)을 활용한 차별화 전략을 수립했습니다. 현지에서 한국만의 색깔있는 사업으로 인정받았고, 오히려 관심이 높아졌습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 8,
-            "budget": 6
-          },
-          "deputy_morale": {
-            "principled": 12,
-            "local_friendly": 10
           }
         }
       }
@@ -2820,22 +2234,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "프로세스 개선 제안 - 건설적 대응",
-        "result": {
-          "message": "감사 지적사항을 바탕으로 업무 프로세스 개선안을 제시했습니다. 문제를 인정하되, 시스템 개선으로 근본 해결을 도모하는 접근이 감사단의 호평을 받았습니다. 본부에서도 모범 사례로 평가했습니다.",
-          "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": 6,
-            "budget": 3
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 5
-          }
-        }
       }
     ]
   },
@@ -2900,22 +2298,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "균형있는 발표 - 성과와 과제 모두 공유",
-        "result": {
-          "message": "성과를 강조하되 현장의 어려움과 과제도 솔직히 공유했습니다. 국회의원들이 현실적인 보고를 높이 평가했고, 예산 심의에서 긍정적인 피드백을 받았습니다.",
-          "stats": {
-            "reputation": 10,
-            "budget": 10,
-            "project_success": 6,
-            "staff_morale": 6
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 8
-          }
-        }
       }
     ]
   },
@@ -2976,22 +2358,6 @@
           "deputy_morale": {
             "principled": 8,
             "local_friendly": 2
-          }
-        }
-      },
-      {
-        "text": "적응 지원 프로그램 강화",
-        "result": {
-          "message": "YP의 어려움을 계기로 적응 지원 프로그램을 강화했습니다. 멘토링, 정기 상담, 문화 교육 등을 체계화하여 향후 YP들이 더 잘 적응할 수 있는 환경을 만들었습니다. 해당 YP도 지원을 받으며 점차 회복되었습니다.",
-          "stats": {
-            "staff_morale": 10,
-            "reputation": 6,
-            "project_success": 6,
-            "budget": -12
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 15
           }
         }
       }
@@ -3059,25 +2425,6 @@
             "local_friendly": 8
           }
         }
-      },
-      {
-        "text": "현지 자원과 인력을 활용해 비용을 절감한다",
-        "result": {
-          "message": "수입 자재 대신 현지 자재를 활용하고, 현지 인력을 적극 고용하여 비용을 절감했습니다. 예산 문제를 해결했을 뿐 아니라 현지 경제에도 기여했습니다. 파트너 정부와 주민들이 크게 만족했습니다.",
-          "stats": {
-            "budget": 7,
-            "project_success": 6,
-            "reputation": 8,
-            "staff_morale": 6,
-            "stress": 6
-          },
-          "advance_time": false,
-          "next": "continue_main_scenario",
-          "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 15
-          }
-        }
       }
     ]
   },
@@ -3140,22 +2487,6 @@
           "deputy_morale": {
             "principled": 8,
             "local_friendly": 2
-          }
-        }
-      },
-      {
-        "text": "투명성 강화 시스템 구축 제안",
-        "result": {
-          "message": "뇌물 대신 투명성 강화 시스템 구축을 제안했습니다. 제3자 모니터링, 공개 입찰, 주민 참여 등을 통해 부패 위험을 구조적으로 차단하자고 설득했습니다. 공무원은 처음엔 난색을 보였으나, 장기적으로 자신에게도 유리함을 인식하고 수용했습니다.",
-          "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": 8,
-            "budget": -12
-          },
-          "deputy_morale": {
-            "principled": 20,
-            "local_friendly": 5
           }
         }
       }
@@ -3221,22 +2552,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "개선 계획 수립 팀 구성 - 체계적 대응",
-        "result": {
-          "message": "직원들과 함께 개선 계획 수립 팀을 구성했습니다. 평가 결과를 분석하고 실행 가능한 개선안을 마련했습니다. 본부에 제출한 개선 계획이 좋은 평가를 받았고, 직원들도 참여를 통해 동기부여가 되었습니다.",
-          "stats": {
-            "reputation": 6,
-            "project_success": 8,
-            "staff_morale": 8,
-            "budget": 3
-          },
-          "deputy_morale": {
-            "principled": 12,
-            "local_friendly": 12
-          }
-        }
       }
     ]
   },
@@ -3297,22 +2612,6 @@
           "next": "continue_main_scenario",
           "deputy_morale": {
             "principled": 2,
-            "local_friendly": 8
-          }
-        }
-      },
-      {
-        "text": "팩트 기반 대응 - 투명한 정보 공개",
-        "result": {
-          "message": "감정적 대응 대신 모든 사실과 데이터를 투명하게 공개했습니다. 언론에 자료를 제공하고 현장 방문을 초청했습니다. 초기엔 조심스러웠으나, 투명성이 오히려 신뢰를 회복시켰습니다.",
-          "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": 6,
-            "budget": 3
-          },
-          "deputy_morale": {
-            "principled": 20,
             "local_friendly": 8
           }
         }
@@ -3379,22 +2678,6 @@
             "local_friendly": 2
           }
         }
-      },
-      {
-        "text": "공동 연구 제안 - 학습 기회로 활용",
-        "result": {
-          "message": "중국과의 공동 연구를 제안했습니다. 경쟁보다는 상호 학습의 기회로 만들자는 접근이 양측의 호응을 얻었습니다. 본부에서도 창의적인 대응으로 평가했습니다.",
-          "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": 6,
-            "budget": -6
-          },
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 12
-          }
-        }
       }
     ]
   },
@@ -3458,22 +2741,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "단계별 실행 계획 역제안",
-        "result": {
-          "message": "본부의 일정을 존중하되, 현실적인 단계별 실행 계획을 역제안했습니다. 우선순위를 명확히 하고 단계별 마일스톤을 제시하니 본부도 수용했습니다. 팀원들이 소장님의 협상력을 높이 평가했습니다.",
-          "stats": {
-            "project_success": 8,
-            "staff_morale": 8,
-            "reputation": 6,
-            "budget": 3
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 8
-          }
-        }
       }
     ]
   },
@@ -3533,21 +2800,6 @@
           "deputy_morale": {
             "principled": 8,
             "local_friendly": 2
-          }
-        }
-      },
-      {
-        "text": "단계적 인상 로드맵 제시",
-        "result": {
-          "message": "본부와 협의하여 단계적 인상 로드맵을 제시했습니다. 즉각적 전액 인상은 어렵지만, 성과 평가와 연동하여 3년간 단계적으로 인상하는 계획을 수립했습니다. 직원들이 구체적 계획에 수용 의사를 보였습니다.",
-          "stats": {
-            "staff_morale": 8,
-            "reputation": 3,
-            "budget": -18
-          },
-          "deputy_morale": {
-            "principled": 12,
-            "local_friendly": 12
           }
         }
       }
@@ -3614,22 +2866,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "다자 검증 시스템 도입",
-        "result": {
-          "message": "의혹을 해소하기 위해 제3자 검증 기관, 시민사회, 정부가 함께 참여하는 다자 검증 시스템을 도입했습니다. 투명성이 극대화되어 모든 의혹이 해소되었고, 이후 PPP 사업의 모범 사례가 되었습니다.",
-          "stats": {
-            "reputation": 13,
-            "project_success": 8,
-            "staff_morale": 6,
-            "budget": -12
-          },
-          "deputy_morale": {
-            "principled": 20,
-            "local_friendly": 10
-          }
-        }
       }
     ]
   },
@@ -3694,22 +2930,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "문화 감수성 워크숍 개최",
-        "result": {
-          "message": "현지 문화와 성평등 가치를 함께 논의하는 워크숍을 개최했습니다. 현지 여성 리더들과 남성 지도자들이 함께 참여해 상호 이해를 높였습니다. 즉각적 변화는 없었지만, 장기적 변화의 씨앗을 뿌렸습니다.",
-          "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": 8,
-            "budget": -6
-          },
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 10
-          }
-        }
       }
     ]
   },
@@ -3771,22 +2991,6 @@
           "deputy_morale": {
             "principled": 5,
             "local_friendly": 5
-          }
-        }
-      },
-      {
-        "text": "문화 공유 프로그램 - 상호 이해 증진",
-        "result": {
-          "message": "라마단 기간을 상호 문화 이해의 기회로 활용했습니다. 한국 문화와 이슬람 문화를 함께 공유하는 프로그램을 운영하며, 단순한 일정 조정을 넘어 문화 교류의 장으로 만들었습니다. 현지 직원들과 한국 직원들의 유대감이 깊어졌습니다.",
-          "stats": {
-            "staff_morale": 10,
-            "reputation": 8,
-            "project_success": 6,
-            "budget": -6
-          },
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 20
           }
         }
       }
@@ -3853,22 +3057,6 @@
             "local_friendly": 2
           }
         }
-      },
-      {
-        "text": "집단 성찰 워크숍 - 조직 학습으로 전환",
-        "result": {
-          "message": "실패를 조직 학습의 기회로 만들기 위해 전체 직원이 참여하는 성찰 워크숍을 열었습니다. 실패 원인을 함께 분석하고 교훈을 도출했습니다. 직원들이 소장님의 투명한 태도를 높이 평가했고, 조직 문화가 개선되었습니다.",
-          "stats": {
-            "reputation": 6,
-            "staff_morale": 10,
-            "project_success": 3,
-            "budget": -6
-          },
-          "deputy_morale": {
-            "principled": 12,
-            "local_friendly": 8
-          }
-        }
       }
     ]
   },
@@ -3933,22 +3121,6 @@
             "local_friendly": 8
           }
         }
-      },
-      {
-        "text": "소셜벤처 육성 프로그램 연계",
-        "result": {
-          "message": "단원의 사회적 기업을 KOICA 소셜벤처 육성 프로그램과 연계했습니다. 한국과 현지를 잇는 글로벌 소셜 비즈니스 모델로 발전시켜, 단원에게도 기회를 주고 KOICA의 영향력도 확대했습니다. 본부에서 혁신 사례로 주목했습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 10,
-            "staff_morale": 8,
-            "budget": 6
-          },
-          "deputy_morale": {
-            "principled": 12,
-            "local_friendly": 18
-          }
-        }
       }
     ]
   },
@@ -4007,22 +3179,6 @@
           },
           "advance_time": false,
           "next": "continue_main_scenario",
-          "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
-          }
-        }
-      },
-      {
-        "text": "화상회의로 원격 대응 - 업무 연속성 유지",
-        "result": {
-          "message": "가족을 만나되, 주요 일정은 화상회의로 원격 참여하기로 했습니다. 가족도 만나고 업무도 챙겼으나, 두 가지 모두 완벽하지는 못했습니다. 그래도 최선을 다했다는 위안은 있습니다.",
-          "stats": {
-            "staff_morale": 3,
-            "reputation": 0,
-            "project_success": -6,
-            "budget": -12
-          },
           "deputy_morale": {
             "principled": 5,
             "local_friendly": 5
@@ -4094,22 +3250,6 @@
             "local_friendly": 5
           }
         }
-      },
-      {
-        "text": "커뮤니티 회복 프로그램 - 심리사회적 지원",
-        "result": {
-          "message": "물질적 지원과 함께 심리사회적 회복 프로그램을 운영했습니다. 트라우마 치유, 커뮤니티 재건 등 통합적 접근이 주민들에게 큰 도움이 되었습니다. 직원들도 의미있는 일에 참여하며 보람을 느꼈습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 10,
-            "budget": -18
-          },
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 20
-          }
-        }
       }
     ]
   },
@@ -4163,21 +3303,6 @@
           },
           "advance_time": false,
           "next": "continue_main_scenario"
-        }
-      },
-      {
-        "text": "조직 문화 개선 프로그램 도입",
-        "result": {
-          "message": "체계적인 조직 문화 개선 프로그램을 도입했습니다. 정기 팀빌딩, 피드백 세션, 복지 개선 등을 실시하며 장기적 접근을 취했습니다. 즉각적 효과는 미미했지만 직원들이 노력을 인정했습니다.",
-          "stats": {
-            "staff_morale": 8,
-            "budget": -12,
-            "reputation": 3
-          },
-          "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 8
-          }
         }
       }
     ]
@@ -4237,21 +3362,6 @@
           "advance_time": false,
           "next": "continue_main_scenario"
         }
-      },
-      {
-        "text": "외부 중재자 투입 - 전문적 갈등 조정",
-        "result": {
-          "message": "본부에 상황을 보고하고 전문 중재자를 요청했습니다. 객관적인 중재로 갈등이 해소되었으나, 두 부소장이 소장님의 리더십을 의문시하고 있습니다.",
-          "stats": {
-            "staff_morale": 6,
-            "reputation": -12,
-            "budget": -18
-          },
-          "deputy_morale": {
-            "principled": -5,
-            "local_friendly": -5
-          }
-        }
       }
     ]
   },
@@ -4310,22 +3420,6 @@
           "advance_time": false,
           "next": "continue_main_scenario"
         }
-      },
-      {
-        "text": "현지 버디 시스템 도입",
-        "result": {
-          "message": "현지 직원과 한국 직원을 1:1로 매칭하는 버디 시스템을 도입했습니다. 문화 적응을 자연스럽게 돕고, 양측의 상호 이해도 증진시켰습니다. 직원들이 서로에게 배우며 조직 문화가 더욱 통합되었습니다.",
-          "stats": {
-            "staff_morale": 10,
-            "reputation": 6,
-            "project_success": 6,
-            "budget": -6
-          },
-          "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 18
-          }
-        }
       }
     ]
   },
@@ -4383,22 +3477,6 @@
           },
           "advance_time": false,
           "next": "continue_main_scenario"
-        }
-      },
-      {
-        "text": "전사무소 우수사례 공유회 주최",
-        "result": {
-          "message": "우수 감사 결과를 바탕으로 다른 사무소들과 우수사례를 공유하는 컨퍼런스를 주최했습니다. KOICA 전체의 역량 향상에 기여했고, 본부에서도 리더십을 높이 평가했습니다. 다른 사무소 소장들과의 네트워크도 강화되었습니다.",
-          "stats": {
-            "reputation": 13,
-            "project_success": 8,
-            "staff_morale": 8,
-            "budget": -12
-          },
-          "deputy_morale": {
-            "principled": 18,
-            "local_friendly": 12
-          }
         }
       }
     ]
@@ -4462,22 +3540,6 @@
           "advance_time": false,
           "next": "continue_main_scenario"
         }
-      },
-      {
-        "text": "학습 중심 평가 - 교훈 도출과 공유",
-        "result": {
-          "message": "평가를 성적표가 아닌 학습의 기회로 접근했습니다. 성공과 실패 모두에서 교훈을 도출하고, 솔직하게 공유했습니다. 투명하고 성찰적인 태도가 평가단의 극찬을 받았고, 보고서가 KOICA 우수 사례집에 실렸습니다.",
-          "stats": {
-            "reputation": 13,
-            "project_success": 10,
-            "staff_morale": 10,
-            "budget": 8
-          },
-          "deputy_morale": {
-            "principled": 20,
-            "local_friendly": 15
-          }
-        }
       }
     ]
   },
@@ -4534,22 +3596,6 @@
           },
           "advance_time": false,
           "next": "continue_main_scenario"
-        }
-      },
-      {
-        "text": "다양한 이해관계자 참여형 워크숍",
-        "result": {
-          "message": "정부, 시민사회, 민간부문, 학계, 수혜자 등 다양한 이해관계자가 참여하는 워크숍을 개최했습니다. 포괄적인 의견 수렴으로 균형잡힌 CPS를 수립했습니다. 시간이 많이 걸렸지만, 모두가 주인의식을 갖게 되었습니다.",
-          "stats": {
-            "reputation": 13,
-            "project_success": 10,
-            "staff_morale": 6,
-            "budget": -12
-          },
-          "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 20
-          }
         }
       }
     ]
