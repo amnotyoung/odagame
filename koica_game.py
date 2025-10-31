@@ -68,6 +68,15 @@ class GameState:
         # 생활 이벤트 발생 횟수 추적 (최대 4회로 제한)
         self.life_events_count = 0
 
+        # 고급 기능: 부소장 임계값 이벤트 추적
+        self.triggered_deputy_events = set()
+
+        # 고급 기능: 대기 중인 장기 효과 (delayed_effects)
+        self.pending_delayed_effects = []
+
+        # 고급 기능: 윤리 위반 횟수 (새로운 엔딩 조건용)
+        self.ethics_violations = 0
+
         # 부소장 및 코디네이터 관리 시스템 (부소장 2명, 코디 2명)
         self.deputies = self._initialize_deputies()
         self.coordinators = self._initialize_coordinators()
@@ -1233,6 +1242,120 @@ class KOICAGame:
 
         return events[0]  # 폴백
 
+    # ============================================================
+    # 고급 기능: 부소장 임계값 이벤트 체크
+    # ============================================================
+
+    def check_deputy_threshold_events(self):
+        """부소장 morale 임계값 이벤트 체크"""
+        deputy_principled = self.state.get_deputy_by_personality("principled")
+        deputy_local = self.state.get_deputy_by_personality("local_friendly")
+
+        if not deputy_principled or not deputy_local:
+            return None
+
+        # 김원칙 부소장 고충성도 이벤트
+        if (deputy_principled['morale'] >= 50 and
+            'deputy_principled_high_loyalty' not in self.state.triggered_deputy_events):
+            return 'deputy_principled_high_loyalty'
+
+        # 김원칙 부소장 전보 위기 이벤트
+        if (deputy_principled['morale'] <= -30 and
+            'deputy_principled_low_resignation' not in self.state.triggered_deputy_events):
+            return 'deputy_principled_low_resignation'
+
+        # 박현지 부소장 네트워크 보너스 이벤트
+        if (deputy_local['morale'] >= 50 and
+            'deputy_local_friendly_network_bonus' not in self.state.triggered_deputy_events):
+            return 'deputy_local_friendly_network_bonus'
+
+        # 박현지 부소장 문화 갈등 이벤트
+        if (deputy_local['morale'] <= -30 and
+            'deputy_local_friendly_cultural_crisis' not in self.state.triggered_deputy_events):
+            return 'deputy_local_friendly_cultural_crisis'
+
+        return None
+
+    # ============================================================
+    # 고급 기능: 장기 영향(delayed effects) 체크
+    # ============================================================
+
+    def check_delayed_effects(self):
+        """대기 중인 장기 효과 체크 및 발동"""
+        triggered_effects = []
+
+        for effect in self.state.pending_delayed_effects[:]:  # 복사본 순회
+            # trigger_period 체크
+            current_period_number = (self.state.year - 1) * 6 + self.state.period
+            if current_period_number >= effect.get('trigger_period', 0):
+                # condition 체크
+                condition = effect.get('condition', 'always')
+
+                should_trigger = False
+                if condition == 'always':
+                    should_trigger = True
+                elif condition.startswith('random'):
+                    # "random < 0.3" 같은 조건
+                    prob = float(condition.split('<')[1].strip())
+                    if random.random() < prob:
+                        should_trigger = True
+                elif '>=' in condition:
+                    # "project_success >= 50" 같은 조건
+                    stat_name, threshold = condition.split('>=')
+                    stat_name = stat_name.strip()
+                    threshold = int(threshold.strip())
+                    current_value = getattr(self.state, stat_name, 0)
+                    if current_value >= threshold:
+                        should_trigger = True
+                elif '<=' in condition:
+                    stat_name, threshold = condition.split('<=')
+                    stat_name = stat_name.strip()
+                    threshold = int(threshold.strip())
+                    current_value = getattr(self.state, stat_name, 0)
+                    if current_value <= threshold:
+                        should_trigger = True
+
+                if should_trigger:
+                    triggered_effects.append(effect)
+                    self.state.pending_delayed_effects.remove(effect)
+
+        return triggered_effects
+
+    # ============================================================
+    # 고급 기능: 게임 오버 조건 확장
+    # ============================================================
+
+    def check_advanced_endings(self):
+        """고급 엔딩 조건 체크"""
+        # 번아웃 엔딩
+        if self.state.stress >= 100 or self.state.wellbeing <= 0:
+            return 'ending_burnout'
+
+        # 평판 추락 엔딩
+        if self.state.reputation <= 0:
+            return 'ending_reputation_collapse'
+
+        # 윤리 위반 엔딩
+        if self.state.ethics_violations >= 3:
+            return 'ending_ethical_crisis'
+
+        # 완벽한 균형 엔딩 (임기 종료 시)
+        if self.state.year >= 2 and self.state.period >= 6:
+            # 모든 스탯이 80 이상
+            if (self.state.reputation >= 80 and
+                self.state.project_success >= 80 and
+                self.state.staff_morale >= 80 and
+                self.state.budget_execution_rate >= 70):
+                # 양측 부소장 모두 높은 morale
+                deputy_principled = self.state.get_deputy_by_personality("principled")
+                deputy_local = self.state.get_deputy_by_personality("local_friendly")
+                if (deputy_principled and deputy_local and
+                    deputy_principled['morale'] >= 40 and
+                    deputy_local['morale'] >= 40):
+                    return 'ending_perfect_balance'
+
+        return None
+
     def display_scenario(self, scenario_id):
         """시나리오 표시 (AI 생성 지원)"""
         # AI 모드에서 'ai_generated' 시나리오 ID인 경우 동적 생성
@@ -1403,6 +1526,12 @@ class KOICAGame:
                 if deputy:
                     change_str = f"+{change}" if change > 0 else str(change)
                     print(f"  • {deputy['name']}: {change_str} (현재 사기: {deputy['morale']})")
+
+        # 고급 기능: 장기 영향(delayed_effects) 추가
+        if 'delayed_effects' in result:
+            for effect in result['delayed_effects']:
+                self.state.pending_delayed_effects.append(effect.copy())
+            print(f"\n⏰ 장기 영향 {len(result['delayed_effects'])}개가 등록되었습니다.")
 
         if 'advance_time' in result and result['advance_time']:
             self.state.advance_time()
@@ -2212,6 +2341,51 @@ class KOICAGame:
 
                                 if self.state.check_game_over():
                                     break
+
+                    # 고급 기능: 부소장 임계값 이벤트 체크
+                    deputy_event_id = self.check_deputy_threshold_events()
+                    if deputy_event_id:
+                        self.state.triggered_deputy_events.add(deputy_event_id)
+                        deputy_event_scenario = self.display_scenario(deputy_event_id)
+                        if deputy_event_scenario and 'choices' in deputy_event_scenario:
+                            print("\n" + "="*60)
+                            print("👥 부소장 관련 특별 이벤트가 발생했습니다!")
+                            print("="*60)
+                            if not self.demo_mode:
+                                input("\nEnter를 눌러 계속...")
+                            else:
+                                time.sleep(1)
+
+                            # 부소장 이벤트 선택 처리
+                            deputy_choice_index = self.display_choices(deputy_event_scenario['choices'])
+                            if deputy_choice_index >= 0:
+                                deputy_selected = deputy_event_scenario['choices'][deputy_choice_index]
+                                self.state.record_choice(deputy_event_id, deputy_selected['text'], deputy_choice_index, deputy_selected['result'])
+                                self.apply_choice_result(deputy_selected['result'])
+
+                                if self.state.check_game_over():
+                                    break
+
+                    # 고급 기능: 장기 영향(delayed effects) 체크
+                    triggered_effects = self.check_delayed_effects()
+                    for effect in triggered_effects:
+                        print("\n" + "="*60)
+                        print("⏰ 과거 선택의 장기 영향이 나타났습니다!")
+                        print("="*60)
+                        print(f"\n💬 {effect.get('message', '과거의 선택이 영향을 미치고 있습니다.')}")
+                        if 'stats' in effect:
+                            self.state.update_stats(effect['stats'])
+                        if not self.demo_mode:
+                            input("\nEnter를 눌러 계속...")
+                        else:
+                            time.sleep(1.5)
+
+                    # 고급 기능: 고급 엔딩 조건 체크
+                    advanced_ending = self.check_advanced_endings()
+                    if advanced_ending:
+                        self.state.game_over = True
+                        self.state.ending = advanced_ending
+                        break
 
                 if 'next' in selected_choice['result']:
                     self.state.current_scenario = selected_choice['result']['next']

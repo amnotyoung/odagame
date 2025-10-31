@@ -710,6 +710,13 @@ def game_play_screen():
                             else:
                                 st.markdown(f"• {stat_name}: **{change}** {grade}")
 
+        # 고급 기능: delayed effects 표시
+        if hasattr(st.session_state, 'delayed_effects') and st.session_state.delayed_effects:
+            st.markdown("---")
+            for effect in st.session_state.delayed_effects:
+                st.info(f"⏰ **과거 선택의 장기 영향:** {effect.get('message', '')}")
+            st.session_state.delayed_effects = None
+
         if st.button("다음으로", use_container_width=True):
             st.session_state.result_message = ""
             st.session_state.trade_off_message = ""
@@ -990,6 +997,16 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
     # 스탯 업데이트
     game.state.update_stats(stats)
 
+    # 부소장 사기 변경 처리
+    if 'deputy_morale' in result:
+        for personality, change in result['deputy_morale'].items():
+            game.state.update_deputy_morale(personality, change)
+
+    # 고급 기능: delayed_effects 처리
+    if 'delayed_effects' in result:
+        for effect in result['delayed_effects']:
+            game.state.pending_delayed_effects.append(effect.copy())
+
     # 시나리오 방문 기록
     if scenario_id not in game.state.visited_scenarios:
         game.state.visited_scenarios.append(scenario_id)
@@ -1057,6 +1074,25 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
             game.state.current_scenario = life_event_id
             # 생활 이벤트 발생 플래그 설정
             st.session_state.life_event_triggered = True
+
+        # 고급 기능: 부소장 임계값 이벤트 체크
+        deputy_event_id = game.check_deputy_threshold_events()
+        if deputy_event_id:
+            game.state.triggered_deputy_events.add(deputy_event_id)
+            st.session_state.pending_next_scenario = game.state.current_scenario
+            game.state.current_scenario = deputy_event_id
+            st.session_state.deputy_event_triggered = True
+
+        # 고급 기능: 장기 영향(delayed effects) 체크
+        triggered_effects = game.check_delayed_effects()
+        if triggered_effects:
+            st.session_state.delayed_effects = triggered_effects
+
+        # 고급 기능: 고급 엔딩 조건 체크
+        advanced_ending = game.check_advanced_endings()
+        if advanced_ending:
+            game.state.game_over = True
+            game.state.ending = advanced_ending
 
     # 게임 오버 체크
     if (game.state.reputation <= 0 or
