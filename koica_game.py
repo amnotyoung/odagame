@@ -1022,10 +1022,10 @@ class KOICAGame:
         return None
 
     def select_life_event(self):
-        """순수 생활 이벤트만 선택 (개인적 문제들) - 최대 4회 발생"""
+        """모든 타입의 이벤트 선택 - 생활, 서사, 부소장, 연차별 이벤트 포함 (최대 4회 발생)"""
         available_events = []
 
-        # === 순수 생활 이벤트 (생활 선택과 연동) ===
+        # === 생활 이벤트 (생활 선택과 연동) ===
         # 건강 이벤트 (웰빙 낮을 때) - 음주 습관 + 스트레스 시 확률 증가
         if self.state.wellbeing < 40 and "life_event_health_issue" not in self.state.triggered_life_events:
             weight = 3
@@ -1056,7 +1056,137 @@ class KOICAGame:
                 weight = 3  # 좁고 오래된 집은 문제 발생 확률 3배
             available_events.append(("life_event_housing_issue", weight))
 
-        # 사용 가능한 생활 이벤트가 없으면 None 반환
+        # === 서사 이벤트 ===
+
+        # --- 긍정적 이벤트 (높은 stat 요구) ---
+        if self.state.project_success >= 70 and self.state.year >= 1 and "narrative_event_project_opening" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_project_opening", 2))
+
+        if self.state.staff_morale >= 60 and "narrative_event_volunteer_success" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_volunteer_success", 2))
+
+        if self.state.project_success >= 60 and self.state.year >= 1 and "narrative_event_partner_growth" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_partner_growth", 2))
+
+        if self.state.project_success >= 65 and "narrative_event_unexpected_impact" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_unexpected_impact", 2))
+
+        if self.state.reputation >= 60 and "narrative_event_emergency_relief" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_emergency_relief", 1))
+
+        if self.state.staff_morale >= 60 and self.state.year >= 1 and "narrative_event_staff_wedding" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_staff_wedding", 2))
+
+        if self.state.reputation >= 60 and self.state.period >= 1 and "narrative_event_new_year_letters" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_new_year_letters", 1))
+
+        if self.state.reputation >= 70 and self.state.year >= 1 and "narrative_event_minister_trust" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_minister_trust", 2))
+
+        if self.state.staff_morale >= 65 and "narrative_event_staff_dedication" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_staff_dedication", 2))
+
+        if self.state.project_success >= 75 and self.state.reputation >= 75 and "narrative_event_international_award" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_international_award", 1))
+
+        if self.state.reputation >= 70 and "narrative_event_media_interview" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_media_interview", 2))
+
+        # --- 부정적 이벤트 (낮은 stat 또는 위기 상황) ---
+        if self.state.period == 6 and "narrative_event_policy_shift" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_policy_shift", 2))
+
+        if self.state.period >= 10 and self.state.budget_execution_rate < 70 and "narrative_event_budget_pressure" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_budget_pressure", 3))
+
+        if "narrative_event_volunteer_safety" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_volunteer_safety", 1))
+
+        if self.state.year >= 1 and "narrative_event_regime_change" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_regime_change", 1))
+
+        if self.state.reputation < 60 and "narrative_event_jica_competition" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_jica_competition", 2))
+
+        if (self.state.period == 9 or self.state.period == 3) and "narrative_event_audit" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_audit", 2))
+
+        if (self.state.period == 5 or self.state.period == 11) and "narrative_event_congress_visit" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_congress_visit", 2))
+
+        if self.state.stress > 50 and self.state.staff_morale < 50 and "narrative_event_yp_adaptation_failure" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_yp_adaptation_failure", 2))
+
+        if "narrative_event_currency_crisis" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_currency_crisis", 1))
+
+        if "narrative_event_corruption_pressure" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_corruption_pressure", 1))
+
+        if self.state.project_success < 60 and "narrative_event_harsh_evaluation" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_harsh_evaluation", 2))
+
+        if self.state.reputation < 50 and "narrative_event_media_attack" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_media_attack", 2))
+
+        # --- 양면적 이벤트 (복잡한 선택지) ---
+        if "narrative_event_china_proposal" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_china_proposal", 1))
+
+        if "narrative_event_hq_unrealistic_schedule" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_hq_unrealistic_schedule", 1))
+
+        if self.state.year >= 1 and "narrative_event_staff_salary_demand" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_staff_salary_demand", 2))
+
+        if "narrative_event_ppp_suspicion" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_ppp_suspicion", 1))
+
+        if "narrative_event_gender_culture" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_gender_culture", 1))
+
+        if (self.state.period == 4 or self.state.period == 10) and "narrative_event_ramadan_schedule" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_ramadan_schedule", 1))
+
+        if self.state.project_success < 50 and "narrative_event_admitting_failure" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_admitting_failure", 2))
+
+        if self.state.staff_morale >= 50 and "narrative_event_volunteer_social_enterprise" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_volunteer_social_enterprise", 1))
+
+        if "narrative_event_family_emergency" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_family_emergency", 1))
+
+        if "narrative_event_local_crisis_support" not in self.state.triggered_life_events:
+            available_events.append(("narrative_event_local_crisis_support", 1))
+
+        # === 부소장 관련 이벤트 ===
+        # 특정 부소장의 사기가 낮을 때
+        low_morale_deputies = self.state.get_low_morale_deputies(threshold=30)
+        if low_morale_deputies and "deputy_event_low_morale" not in self.state.triggered_life_events:
+            available_events.append(("deputy_event_low_morale", 3))
+
+        # 부소장 간 갈등
+        if self.state.year >= 1 and self.state.period >= 3 and "deputy_event_conflict" not in self.state.triggered_life_events:
+            available_events.append(("deputy_event_conflict", 2))
+
+        # === 연차별 특화 이벤트 ===
+        # 1년차 전용: 신임 소장 적응
+        if self.state.year == 1 and self.state.period <= 3 and "year1_event_adaptation" not in self.state.triggered_life_events:
+            available_events.append(("year1_event_adaptation", 2))
+
+        # 2년차 전용: 본부 정기 감사
+        if self.state.year == 2 and self.state.period >= 2 and "year2_event_audit" not in self.state.triggered_life_events:
+            available_events.append(("year2_event_audit", 3))
+
+        # 2년차 전용: 임기 말 평가 압박
+        if self.state.year == 2 and self.state.period >= 9 and "year2_event_final_evaluation" not in self.state.triggered_life_events:
+            available_events.append(("year2_event_final_evaluation", 4))
+
+        # 2년차 전용: 차기 CPS 구상
+        if self.state.year == 2 and self.state.period >= 6 and "year2_event_cps_planning" not in self.state.triggered_life_events:
+            available_events.append(("year2_event_cps_planning", 2))
+
         if not available_events:
             return None
 
