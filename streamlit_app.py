@@ -1004,6 +1004,9 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
 
     # 고급 기능: delayed_effects 처리
     if 'delayed_effects' in result:
+        # Backward compatibility: Initialize pending_delayed_effects if it doesn't exist
+        if not hasattr(game.state, 'pending_delayed_effects'):
+            game.state.pending_delayed_effects = []
         for effect in result['delayed_effects']:
             game.state.pending_delayed_effects.append(effect.copy())
 
