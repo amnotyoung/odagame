@@ -1,0 +1,617 @@
+{
+  "budget_errors": [
+    {
+      "scenario_id": "period_2",
+      "choice_index": 0,
+      "current": { "budget": -18 },
+      "recommended": {},
+      "reason": "Granting PMC autonomy is a management decision, not a financial expenditure. Budget change doesn't make sense here."
+    },
+    {
+      "scenario_id": "period_2",
+      "choice_index": 1,
+      "current": { "budget": 3 },
+      "recommended": {},
+      "reason": "Close monitoring is internal management, shouldn't generate budget. If anything, it costs staff time."
+    },
+    {
+      "scenario_id": "period_2",
+      "choice_index": 2,
+      "current": { "budget": 3 },
+      "recommended": {},
+      "reason": "Networking/introductions don't generate budget directly. This is relationship building."
+    },
+    {
+      "scenario_id": "period_3",
+      "choice_index": 1,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Conflict mediation at project site doesn't generate budget. This is crisis management."
+    },
+    {
+      "scenario_id": "period_3",
+      "choice_index": 2,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Writing reports doesn't generate budget. This is administrative work."
+    },
+    {
+      "scenario_id": "period_4",
+      "choice_index": 1,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Reducing project scope to fit budget shouldn't GENERATE budget. The scope is smaller, budget stays same or decreases slightly."
+    },
+    {
+      "scenario_id": "period_4",
+      "choice_index": 2,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Minister visit and securing local government material support doesn't directly add to YOUR budget allocation."
+    },
+    {
+      "scenario_id": "period_5",
+      "choice_index": 0,
+      "current": { "budget": 8 },
+      "recommended": { "budget": -15 },
+      "reason": "Large conference costs 20M won as stated in description. Should be budget decrease, not increase."
+    },
+    {
+      "scenario_id": "period_5",
+      "choice_index": 1,
+      "current": { "budget": 3 },
+      "recommended": { "budget": -5 },
+      "reason": "Volunteer farewell event costs 5M won as stated. Should decrease budget, not increase."
+    },
+    {
+      "scenario_id": "period_5",
+      "choice_index": 2,
+      "current": { "budget": 3 },
+      "recommended": { "budget": -10 },
+      "reason": "NGO network MOU costs 10M won as stated. Should decrease budget, not increase."
+    },
+    {
+      "scenario_id": "period_6",
+      "choice_index": 0,
+      "current": { "budget": 3 },
+      "recommended": {},
+      "reason": "Defending PMC in evaluation doesn't involve financial transactions."
+    },
+    {
+      "scenario_id": "period_6",
+      "choice_index": 1,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Objective evaluation and reporting doesn't generate budget."
+    },
+    {
+      "scenario_id": "period_6",
+      "choice_index": 2,
+      "current": { "budget": 3 },
+      "recommended": {},
+      "reason": "Pressuring PMC for better performance doesn't affect budget."
+    },
+    {
+      "scenario_id": "period_7",
+      "choice_index": 0,
+      "current": { "budget": -12 },
+      "recommended": {},
+      "reason": "Policy direction change itself doesn't directly cost budget. The NEW projects might, but not the decision."
+    },
+    {
+      "scenario_id": "period_7",
+      "choice_index": 1,
+      "current": { "budget": 3 },
+      "recommended": {},
+      "reason": "Maintaining existing projects and persuading government doesn't generate budget."
+    },
+    {
+      "scenario_id": "period_7",
+      "choice_index": 2,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "JICA cooperation MOU is a framework, doesn't directly generate budget allocation."
+    },
+    {
+      "scenario_id": "period_11",
+      "choice_index": 0,
+      "current": { "budget": 8 },
+      "recommended": { "budget": -20 },
+      "reason": "Large 200-person conference COSTS money for venue, catering, materials. Should decrease budget significantly."
+    },
+    {
+      "scenario_id": "period_11",
+      "choice_index": 1,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Internal handover documentation doesn't generate budget."
+    },
+    {
+      "scenario_id": "period_12",
+      "choice_index": 0,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Personal career decision (returning to HQ) doesn't affect office budget."
+    },
+    {
+      "scenario_id": "period_12",
+      "choice_index": 1,
+      "current": { "budget": 3 },
+      "recommended": {},
+      "reason": "Personal career decision (leaving KOICA) doesn't affect office budget."
+    },
+    {
+      "scenario_id": "narrative_event_project_opening",
+      "choice_index": 0,
+      "current": { "budget": null },
+      "recommended": {},
+      "reason": "Speech at opening ceremony doesn't generate budget. Event already funded."
+    },
+    {
+      "scenario_id": "narrative_event_project_opening",
+      "choice_index": 2,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Proposing future cooperation at ceremony doesn't generate current budget."
+    },
+    {
+      "scenario_id": "narrative_event_volunteer_success",
+      "choice_index": 2,
+      "current": { "budget": 3 },
+      "recommended": {},
+      "reason": "Press release and media promotion don't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_partner_growth",
+      "choice_index": 2,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Reporting success story to HQ doesn't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_unexpected_impact",
+      "choice_index": 0,
+      "current": { "budget": 8 },
+      "recommended": { "budget": -20 },
+      "reason": "UN FAO presentation in Rome costs significant travel/accommodation. Should decrease budget."
+    },
+    {
+      "scenario_id": "narrative_event_unexpected_impact",
+      "choice_index": 1,
+      "current": { "budget": 10 },
+      "recommended": {},
+      "reason": "HQ reporting doesn't generate budget. Future budget increase is delayed effect, not immediate."
+    },
+    {
+      "scenario_id": "narrative_event_emergency_relief",
+      "choice_index": 2,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Reporting emergency relief success to HQ/media doesn't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_new_year_letters",
+      "choice_index": 1,
+      "current": { "budget": 6 },
+      "recommended": { "budget": -8 },
+      "reason": "Formalizing alumni network (launching association) costs money for events, materials, system setup."
+    },
+    {
+      "scenario_id": "narrative_event_new_year_letters",
+      "choice_index": 2,
+      "current": { "budget": 8 },
+      "recommended": {},
+      "reason": "Sharing story with HQ doesn't generate budget. Future budget increase is delayed, not immediate."
+    },
+    {
+      "scenario_id": "narrative_event_minister_trust",
+      "choice_index": 1,
+      "current": { "budget": 8 },
+      "recommended": {},
+      "reason": "Providing policy advice based on Korean experience doesn't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_minister_trust",
+      "choice_index": 2,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Coordinating with other donors doesn't directly generate budget allocation."
+    },
+    {
+      "scenario_id": "narrative_event_staff_dedication",
+      "choice_index": 2,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Creating organizational culture from crisis experience doesn't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_international_award",
+      "choice_index": 0,
+      "current": { "budget": 10 },
+      "recommended": { "budget": -30 },
+      "reason": "Attending award ceremony in Paris costs significant international travel. Should decrease budget."
+    },
+    {
+      "scenario_id": "narrative_event_international_award",
+      "choice_index": 2,
+      "current": { "budget": 13 },
+      "recommended": {},
+      "reason": "PR campaign might lead to future budget, but immediate effect shouldn't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_media_interview",
+      "choice_index": 0,
+      "current": { "budget": 8 },
+      "recommended": {},
+      "reason": "Proposing new projects doesn't immediately generate budget allocation."
+    },
+    {
+      "scenario_id": "narrative_event_media_interview",
+      "choice_index": 1,
+      "current": { "budget": 10 },
+      "recommended": {},
+      "reason": "Media coverage doesn't directly generate budget allocation."
+    },
+    {
+      "scenario_id": "narrative_event_policy_shift",
+      "choice_index": 0,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Forced policy shift to digital (which fails) shouldn't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_jica_competition",
+      "choice_index": 0,
+      "current": { "budget": 3 },
+      "recommended": {},
+      "reason": "Signing cooperation MOU with JICA doesn't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_audit",
+      "choice_index": 0,
+      "current": { "budget": 8 },
+      "recommended": {},
+      "reason": "Passing audit doesn't generate budget. It just avoids penalties."
+    },
+    {
+      "scenario_id": "narrative_event_congress_visit",
+      "choice_index": 0,
+      "current": { "budget": 8 },
+      "recommended": {},
+      "reason": "Successfully hosting congressional visit doesn't generate budget immediately."
+    },
+    {
+      "scenario_id": "narrative_event_regime_change",
+      "choice_index": 2,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Using diplomatic pressure doesn't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_ppp_suspicion",
+      "choice_index": 0,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Transparent bidding process doesn't generate budget."
+    },
+    {
+      "scenario_id": "narrative_event_volunteer_social_enterprise",
+      "choice_index": 0,
+      "current": { "budget": 6 },
+      "recommended": { "budget": -10 },
+      "reason": "Expanding social enterprise model to other regions costs money for training and setup."
+    },
+    {
+      "scenario_id": "narrative_event_admitting_failure",
+      "choice_index": 0,
+      "current": { "budget": 6 },
+      "recommended": {},
+      "reason": "Admitting failure and terminating project doesn't generate budget. Savings are returned to HQ."
+    },
+    {
+      "scenario_id": "deputy_event_low_morale",
+      "choice_index": 0,
+      "current": { "reputation": 3 },
+      "recommended": { "reputation": 0 },
+      "reason": "Internal 1:1 conversation with deputy doesn't affect external reputation."
+    },
+    {
+      "scenario_id": "deputy_event_conflict",
+      "choice_index": 0,
+      "current": { "reputation": 3 },
+      "recommended": { "reputation": 0 },
+      "reason": "Internal mediation between two deputies doesn't affect external reputation."
+    },
+    {
+      "scenario_id": "year1_event_adaptation",
+      "choice_index": 0,
+      "current": { "reputation": 6 },
+      "recommended": { "reputation": 0 },
+      "reason": "Internal decision to slow down and adapt doesn't directly affect external reputation."
+    },
+    {
+      "scenario_id": "deputy_principled_low_resignation",
+      "choice_index": 0,
+      "current": { "reputation": 3 },
+      "recommended": { "reputation": 0 },
+      "reason": "Internal retention conversation doesn't affect external reputation."
+    },
+    {
+      "scenario_id": "deputy_principled_efficiency_concern",
+      "choice_index": 1,
+      "current": { "reputation": 3 },
+      "recommended": { "reputation": 0 },
+      "reason": "Internal task assignment to deputy doesn't affect external reputation."
+    }
+  ],
+
+  "stress_errors": [
+    {
+      "scenario_id": "period_9",
+      "choice_index": 0,
+      "current": {},
+      "recommended": { "stress": 15 },
+      "reason": "Emergency evacuation during armed conflict is extremely stressful. Missing stress stat entirely."
+    },
+    {
+      "scenario_id": "period_9",
+      "choice_index": 1,
+      "current": {},
+      "recommended": { "stress": 18 },
+      "reason": "Monitoring dangerous security situation daily is highly stressful. Missing stress stat entirely."
+    },
+    {
+      "scenario_id": "period_9",
+      "choice_index": 2,
+      "current": {},
+      "recommended": { "stress": 12 },
+      "reason": "Making life-or-death decisions about selective evacuation is stressful. Missing stress stat entirely."
+    },
+    {
+      "scenario_id": "narrative_event_volunteer_safety",
+      "choice_index": 0,
+      "current": { "stress": -12 },
+      "recommended": { "stress": 12 },
+      "reason": "Medical emergency and evacuation decision is stressful, not stress-relieving. Wrong direction."
+    },
+    {
+      "scenario_id": "period_3",
+      "choice_index": 2,
+      "current": {},
+      "recommended": { "stress": 10 },
+      "reason": "Working all-in on reports while delegating field problems causes stress. Missing stress stat."
+    },
+    {
+      "scenario_id": "period_5",
+      "choice_index": 0,
+      "current": {},
+      "recommended": { "stress": 8 },
+      "reason": "Organizing major 200-person conference with limited resources is stressful. Missing stress."
+    },
+    {
+      "scenario_id": "period_10",
+      "choice_index": 0,
+      "current": {},
+      "recommended": { "stress": 12 },
+      "reason": "All-out effort to reach 90% KPI with exhausted team is stressful. Missing stress."
+    },
+    {
+      "scenario_id": "period_11",
+      "choice_index": 0,
+      "current": {},
+      "recommended": { "stress": 8 },
+      "reason": "Organizing large farewell conference while managing handover is stressful. Missing stress."
+    }
+  ],
+
+  "principled_local_conflicts": [
+    {
+      "scenario_id": "period_2",
+      "choice_index": 0,
+      "current": { "principled": 10, "local_friendly": 3 },
+      "recommended": { "principled": 10, "local_friendly": 8 },
+      "reason": "Trusting experts and giving autonomy aligns with both principle AND good partnership. Local partners appreciate trust."
+    },
+    {
+      "scenario_id": "period_3",
+      "choice_index": 0,
+      "current": { "principled": -3, "local_friendly": 8 },
+      "recommended": { "principled": 8, "local_friendly": 8 },
+      "reason": "Prioritizing staff welfare is a principled leadership decision. Caring for volunteers is both ethical AND builds local relationships."
+    },
+    {
+      "scenario_id": "period_4",
+      "choice_index": 0,
+      "current": { "principled": 8, "local_friendly": 2 },
+      "recommended": { "principled": 8, "local_friendly": 6 },
+      "reason": "Requesting budget to maintain quality benefits local beneficiaries too. Quality work helps both sides."
+    },
+    {
+      "scenario_id": "period_7",
+      "choice_index": 2,
+      "current": { "principled": 2, "local_friendly": 8 },
+      "recommended": { "principled": 7, "local_friendly": 8 },
+      "reason": "International cooperation with JICA is a principled approach to development. Collaboration is both professional AND locally beneficial."
+    },
+    {
+      "scenario_id": "period_8",
+      "choice_index": 0,
+      "current": { "principled": 8, "local_friendly": 2 },
+      "recommended": { "principled": 8, "local_friendly": 5 },
+      "reason": "Transparent investigation ultimately benefits everyone. Short-term friction but long-term trust with honest locals."
+    },
+    {
+      "scenario_id": "period_10",
+      "choice_index": 1,
+      "current": { "principled": 8, "local_friendly": 2 },
+      "recommended": { "principled": 8, "local_friendly": 7 },
+      "reason": "Sustainability planning is principled AND directly benefits local partners who continue the work."
+    },
+    {
+      "scenario_id": "period_11",
+      "choice_index": 2,
+      "current": { "principled": 2, "local_friendly": 8 },
+      "recommended": { "principled": 6, "local_friendly": 8 },
+      "reason": "Systematically building partner networks is a principled capacity-building approach. Not just personal favors."
+    },
+    {
+      "scenario_id": "narrative_event_project_opening",
+      "choice_index": 1,
+      "current": { "principled": 2, "local_friendly": 8 },
+      "recommended": { "principled": 7, "local_friendly": 8 },
+      "reason": "Highlighting local contribution is principled recognition of their work. Giving credit where due is ethical."
+    },
+    {
+      "scenario_id": "narrative_event_project_opening",
+      "choice_index": 2,
+      "current": { "principled": 2, "local_friendly": 8 },
+      "recommended": { "principled": 6, "local_friendly": 8 },
+      "reason": "Forward-thinking expansion planning is a principled long-term approach. Strategic thinking is professional."
+    },
+    {
+      "scenario_id": "narrative_event_partner_growth",
+      "choice_index": 1,
+      "current": { "principled": 2, "local_friendly": 8 },
+      "recommended": { "principled": 7, "local_friendly": 8 },
+      "reason": "Promoting capable local partner to leadership is principled capacity building. Merit-based advancement is ethical."
+    }
+  ],
+
+  "project_success_overvalued": [
+    {
+      "scenario_id": "period_5",
+      "choice_index": 0,
+      "current": { "project_success": 8 },
+      "recommended": { "project_success": 3 },
+      "reason": "PR conference is visibility, not actual project achievement. Should be much lower than concrete work."
+    },
+    {
+      "scenario_id": "period_11",
+      "choice_index": 0,
+      "current": { "project_success": 8 },
+      "recommended": { "project_success": 3 },
+      "reason": "Farewell conference is reputation/legacy building, not project success. Compare to choice 1 (handover=6)."
+    },
+    {
+      "scenario_id": "narrative_event_partner_growth",
+      "choice_index": 0,
+      "current": { "project_success": 8 },
+      "recommended": { "project_success": 4 },
+      "reason": "Speaking at conference is networking, not project completion. Compare to choice 1 (promoting partner=10)."
+    },
+    {
+      "scenario_id": "narrative_event_unexpected_impact",
+      "choice_index": 0,
+      "current": { "project_success": 10 },
+      "recommended": { "project_success": 5 },
+      "reason": "UN presentation is prestige/recognition, not actual project work. Choice 2 (joint expansion=13) is actual work."
+    }
+  ],
+
+  "missing_wellbeing": [
+    {
+      "scenario_id": "period_2",
+      "choice_index": 1,
+      "current": {},
+      "recommended": { "wellbeing": -12 },
+      "reason": "Weekly meetings + monthly monitoring greatly increases workload and exhaustion. Text says 'intensive' and 'staff exhausted'."
+    },
+    {
+      "scenario_id": "period_3",
+      "choice_index": 2,
+      "current": {},
+      "recommended": { "wellbeing": -15 },
+      "reason": "All-in on report writing while delegating field issues is overwork. Staff_morale -12 suggests burnout."
+    },
+    {
+      "scenario_id": "period_5",
+      "choice_index": 0,
+      "current": {},
+      "recommended": { "wellbeing": -10 },
+      "reason": "Major conference preparation with 15-person team and limited time affects health/wellbeing."
+    },
+    {
+      "scenario_id": "period_6",
+      "choice_index": 2,
+      "current": {},
+      "recommended": { "wellbeing": -12 },
+      "reason": "Strongly pressuring PMC creates conflict and stress, affecting wellbeing. Staff_morale -12 indicates strain."
+    },
+    {
+      "scenario_id": "period_7",
+      "choice_index": 0,
+      "current": {},
+      "recommended": { "wellbeing": -15 },
+      "reason": "Complete project pivot causes chaos and exhaustion. Staff_morale -12, participants confused - major disruption."
+    },
+    {
+      "scenario_id": "period_10",
+      "choice_index": 0,
+      "current": {},
+      "recommended": { "wellbeing": -18 },
+      "reason": "All-out push to 92% KPI. Text says 'exhausted team' and staff_morale -12. Physical/mental toll."
+    },
+    {
+      "scenario_id": "period_11",
+      "choice_index": 0,
+      "current": {},
+      "recommended": { "wellbeing": -12 },
+      "reason": "Large 200-person conference preparation. Staff_morale -6 suggests they're tired from event prep."
+    }
+  ],
+
+  "reputation_internal_only": [
+    {
+      "scenario_id": "deputy_event_low_morale",
+      "choice_index": 0,
+      "current": { "reputation": 3 },
+      "recommended": {},
+      "reason": "Private 1:1 meeting with deputy about morale is purely internal. External stakeholders don't know."
+    },
+    {
+      "scenario_id": "deputy_event_conflict",
+      "choice_index": 0,
+      "current": { "reputation": 3 },
+      "recommended": {},
+      "reason": "Internal mediation between two deputies is internal management. External partners aren't involved."
+    },
+    {
+      "scenario_id": "year1_event_adaptation",
+      "choice_index": 0,
+      "current": { "reputation": 6 },
+      "recommended": {},
+      "reason": "Internal decision to slow pace and adapt is internal management style. External stakeholders don't see this."
+    },
+    {
+      "scenario_id": "deputy_principled_low_resignation",
+      "choice_index": 0,
+      "current": { "reputation": 3 },
+      "recommended": {},
+      "reason": "Sincere conversation to retain deputy is internal HR. External stakeholders don't know about it."
+    },
+    {
+      "scenario_id": "deputy_local_friendly_transparency_concern",
+      "choice_index": 0,
+      "current": { "reputation": 10 },
+      "recommended": {},
+      "reason": "Internal document review with deputy is internal compliance. External reputation would come from audit results, not the review itself."
+    }
+  ],
+
+  "budget_adjustment_paradox": [
+    {
+      "scenario_id": "period_4",
+      "choice_index": 0,
+      "current": { "budget": 8 },
+      "recommended": { "budget": -6 },
+      "reason": "Requesting additional budget should first cost time/delay (negative), then later gain budget via delayed_effects. Immediate gain is paradoxical."
+    },
+    {
+      "scenario_id": "narrative_event_china_proposal",
+      "choice_index": 2,
+      "current": { "budget": 8 },
+      "recommended": { "budget": 3 },
+      "reason": "Requesting budget increase shouldn't immediately grant it. Should be smaller gain or delayed effect, as it requires HQ approval process."
+    }
+  ]
+}
