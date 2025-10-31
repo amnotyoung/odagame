@@ -450,21 +450,9 @@ def lifestyle_setup_screen():
             st.session_state.lifestyle_step = 3
             st.rerun()
 
-        if st.button("4. 작문/블로그 (경험 기록, 창의적 표현)", key="leisure_4", use_container_width=True):
-            game.state.leisure_choice = "writing"
-            game.state.update_stats({"stress": -7, "wellbeing": 8})
-            st.session_state.lifestyle_step = 3
-            st.rerun()
-
-        if st.button("5. 집에서 뒹굴기 (편안한 휴식)", key="leisure_5", use_container_width=True):
+        if st.button("4. 집에서 뒹굴기 (편안한 휴식)", key="leisure_4", use_container_width=True):
             game.state.leisure_choice = "gaming"
             game.state.update_stats({"stress": -12, "wellbeing": -3})
-            st.session_state.lifestyle_step = 3
-            st.rerun()
-
-        if st.button("6. 온라인 강의 듣기 (자기계발)", key="leisure_6", use_container_width=True):
-            game.state.leisure_choice = "online_courses"
-            game.state.update_stats({"stress": -3, "wellbeing": 5, "project_success": 3})
             st.session_state.lifestyle_step = 3
             st.rerun()
 
@@ -488,7 +476,7 @@ def lifestyle_setup_screen():
             st.session_state.lifestyle_step = 4
             st.rerun()
 
-        if st.button("3. 혼합 (집+외식, 균형잡힌 선택)", key="meal_3", use_container_width=True):
+        if st.button("3. 배달&포장", key="meal_3", use_container_width=True):
             game.state.meal_choice = "mixed"
             game.state.update_stats({"wellbeing": 5})
             st.session_state.lifestyle_step = 4

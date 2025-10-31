@@ -874,24 +874,20 @@ class KOICAGame:
         print("1. 독서 (조용하고 지적인 시간)")
         print("2. 운동 (건강 관리와 스트레스 해소)")
         print("3. 음주 (직원들과 친목, 하지만 건강 염려)")
-        print("4. 작문/블로그 (경험 기록, 창의적 표현)")
-        print("5. 집에서 뒹굴기 (편안한 휴식)")
-        print("6. 온라인 강의 듣기 (자기계발)")
+        print("4. 집에서 뒹굴기 (편안한 휴식)")
 
         if self.demo_mode:
-            leisure_choice = random.randint(1, 6)
+            leisure_choice = random.randint(1, 4)
             print(f"\n🤖 [데모 모드] 선택: {leisure_choice}")
             time.sleep(1)
         else:
-            leisure_choice = self._get_choice_input(6)
+            leisure_choice = self._get_choice_input(4)
 
         leisure_effects = {
             1: {"stress": -8, "wellbeing": 5, "choice": "reading"},
             2: {"stress": -10, "wellbeing": 15, "choice": "exercise"},
             3: {"stress": -5, "wellbeing": -5, "staff_morale": 5, "choice": "drinking"},
-            4: {"stress": -7, "wellbeing": 8, "reputation": 3, "choice": "writing"},
-            5: {"stress": -3, "wellbeing": 3, "choice": "gaming"},
-            6: {"stress": 3, "wellbeing": 5, "project_success": 5, "choice": "online_courses"}
+            4: {"stress": -3, "wellbeing": 3, "choice": "gaming"}
         }
         self.state.leisure_choice = leisure_effects[leisure_choice]["choice"]
         self.state.update_stats({k: v for k, v in leisure_effects[leisure_choice].items() if k != "choice"})
@@ -902,7 +898,7 @@ class KOICAGame:
         print("="*60)
         print("1. 집에서 직접 요리 (건강하지만 시간 소요)")
         print("2. 외식 위주 (편리하지만 비용과 건강)")
-        print("3. 혼합 (적절한 균형)")
+        print("3. 배달&포장")
 
         if self.demo_mode:
             meal_choice = random.randint(1, 3)
@@ -939,14 +935,12 @@ class KOICAGame:
             "reading": "독서",
             "exercise": "운동",
             "drinking": "음주",
-            "writing": "작문/블로그",
-            "gaming": "집에서 뒹굴기",
-            "online_courses": "온라인 강의"
+            "gaming": "집에서 뒹굴기"
         }
         meal_desc = {
             "cook_at_home": "집에서 요리",
             "eat_out": "외식 위주",
-            "mixed": "혼합"
+            "mixed": "배달&포장"
         }
 
         print(f"🚗 자동차: {car_desc[self.state.car_choice]}")
