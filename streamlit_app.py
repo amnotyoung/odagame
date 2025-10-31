@@ -476,7 +476,7 @@ def lifestyle_setup_screen():
             st.session_state.lifestyle_step = 4
             st.rerun()
 
-        if st.button("3. 배달&포장", key="meal_3", use_container_width=True):
+        if st.button("3. 배달&포장 (편리하고 시간 절약, 하지만 배달비 부담)", key="meal_3", use_container_width=True):
             game.state.meal_choice = "mixed"
             game.state.update_stats({"wellbeing": 5})
             st.session_state.lifestyle_step = 4
