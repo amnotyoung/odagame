@@ -365,6 +365,24 @@
             "local_friendly": 8
           }
         }
+      },
+      {
+        "text": "직원 제안 워크숍 - 모두의 목소리 반영",
+        "result": {
+          "message": "2년차 계획을 세우기 전에 전체 직원 워크숍을 열었습니다. 모두의 제안을 듣고 함께 목표를 수립했습니다. 시간이 걸렸지만 직원들이 주인의식을 갖게 되었고, 실행력이 높아졌습니다.",
+          "stats": {
+            "staff_morale": 25,
+            "project_success": 15,
+            "reputation": 10,
+            "budget": -5
+          },
+          "deputy_morale": {
+            "principled": 12,
+            "local_friendly": 12
+          },
+          "advance_time": true,
+          "next": "period_6"
+        }
       }
     ]
   },
@@ -2855,8 +2873,8 @@
           "message": "사업 범위를 30% 축소했습니다. 재정은 안정되었지만, 당초 약속한 성과를 달성하지 못했습니다. 현지 정부가 실망했습니다.",
           "stats": {
             "budget": 6,
-            "project_success": -24,
-            "reputation": -18,
+            "project_success": -15,
+            "reputation": -10,
             "staff_morale": -12,
             "stress": 10,
             "wellbeing": -12
