@@ -947,8 +947,6 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
         # 생활 이벤트 체크 (시간이 진행되었으므로)
         life_event_id = game.check_and_trigger_life_event()
         if life_event_id:
-            # 생활 이벤트 발생 - 중복 방지를 위해 추적 세트에 추가
-            game.state.triggered_life_events.add(life_event_id)
             # 원래 다음 시나리오를 저장하고, 생활 이벤트를 먼저 표시
             st.session_state.pending_next_scenario = game.state.current_scenario
             game.state.current_scenario = life_event_id
@@ -1076,8 +1074,6 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
     if result.get('advance_time', False):
         life_event_id = game.check_and_trigger_life_event()
         if life_event_id:
-            # 생활 이벤트 발생 - 중복 방지를 위해 추적 세트에 추가
-            game.state.triggered_life_events.add(life_event_id)
             # 원래 다음 시나리오를 저장하고, 생활 이벤트를 먼저 표시
             st.session_state.pending_next_scenario = game.state.current_scenario
             game.state.current_scenario = life_event_id
@@ -1087,7 +1083,6 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
         # 고급 기능: 부소장 임계값 이벤트 체크
         deputy_event_id = game.check_deputy_threshold_events()
         if deputy_event_id:
-            game.state.triggered_deputy_events.add(deputy_event_id)
             st.session_state.pending_next_scenario = game.state.current_scenario
             game.state.current_scenario = deputy_event_id
             st.session_state.deputy_event_triggered = True
