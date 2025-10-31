@@ -3620,7 +3620,7 @@
             "principled": 20
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       },
       {
@@ -3638,7 +3638,7 @@
             "local_friendly": 0
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       }
     ],
@@ -3666,7 +3666,7 @@
             "local_friendly": 15
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       },
       {
@@ -3681,7 +3681,7 @@
             "local_friendly": 5
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       }
     ],
@@ -3707,7 +3707,7 @@
             "local_friendly": 15
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       },
       {
@@ -3724,7 +3724,7 @@
             "principled": 5
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       }
     ],
@@ -3750,7 +3750,7 @@
             "principled": 12
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       },
       {
@@ -3766,7 +3766,7 @@
             "principled": 15
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       },
       {
@@ -3783,7 +3783,7 @@
             "principled": 8
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       }
     ],
@@ -3809,7 +3809,7 @@
             "local_friendly": 15
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       },
       {
@@ -3826,7 +3826,7 @@
             "principled": 5
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       },
       {
@@ -3843,7 +3843,7 @@
             "principled": -5
           },
           "advance_time": false,
-          "next": null
+          "next": "continue_main_scenario"
         }
       }
     ],

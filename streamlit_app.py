@@ -1044,6 +1044,19 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
             st.session_state.life_event_triggered = False
     else:
         next_scenario = result.get('next')
+
+        # 'continue_main_scenario' 또는 next가 없으면 현재 period의 메인 시나리오로 이동
+        if next_scenario == 'continue_main_scenario' or not next_scenario:
+            period_number = (game.state.year - 1) * 6 + game.state.period
+            if period_number == 1:
+                next_scenario = 'start'
+            elif period_number <= 12:
+                next_scenario = f'period_{period_number}'
+            else:
+                # 게임이 끝났으면 엔딩으로
+                game.state.game_over = True
+                st.session_state.game_over = True
+
         if next_scenario and next_scenario in game.scenarios:
             # 다음 시나리오가 존재하는 경우에만 설정
             game.state.current_scenario = next_scenario

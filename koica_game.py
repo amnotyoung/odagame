@@ -2415,10 +2415,32 @@ class KOICAGame:
                         break
 
                 if 'next' in selected_choice['result']:
-                    self.state.current_scenario = selected_choice['result']['next']
+                    next_scenario = selected_choice['result']['next']
+
+                    # 'continue_main_scenario'는 현재 period의 메인 시나리오로 이동
+                    if next_scenario == 'continue_main_scenario':
+                        period_number = (self.state.year - 1) * 6 + self.state.period
+                        if period_number == 1:
+                            next_scenario = 'start'
+                        elif period_number <= 12:
+                            next_scenario = f'period_{period_number}'
+                        else:
+                            # 게임이 끝났으면 엔딩으로
+                            self.state.game_over = True
+                            break
+
+                    self.state.current_scenario = next_scenario
                 else:
-                    print("\n오류: 다음 시나리오가 지정되지 않았습니다.")
-                    break
+                    # 'next'가 없으면 현재 period의 메인 시나리오로 이동
+                    period_number = (self.state.year - 1) * 6 + self.state.period
+                    if period_number == 1:
+                        self.state.current_scenario = 'start'
+                    elif period_number <= 12:
+                        self.state.current_scenario = f'period_{period_number}'
+                    else:
+                        # 게임이 끝났으면 엔딩으로
+                        self.state.game_over = True
+                        break
 
         self.display_ending()
 
