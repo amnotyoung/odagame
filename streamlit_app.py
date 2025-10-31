@@ -406,7 +406,7 @@ def lifestyle_setup_screen():
             st.session_state.lifestyle_step = 2
             st.rerun()
 
-        if st.button("2. 좋은 집 (새 건물, 고급 시설, 하지만 비싼 임대료)", key="house_2", use_container_width=True):
+        if st.button("2. 좋은 집 (새 건물, 고급 시설, 하지만 월세 부분 자부담)", key="house_2", use_container_width=True):
             game.state.housing_choice = "nice"
             game.state.update_stats({"stress": -5, "wellbeing": 10, "budget": -5})
             st.session_state.lifestyle_step = 2
