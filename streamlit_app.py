@@ -631,6 +631,21 @@ def game_play_screen():
         st.error("시나리오를 찾을 수 없습니다.")
         return
 
+    # 생활 이벤트 발생 알림
+    if hasattr(st.session_state, 'life_event_triggered') and st.session_state.life_event_triggered:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    padding: 20px; border-radius: 10px; margin-bottom: 20px;
+                    border: 3px solid #5a67d8; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h2 style="color: white; text-align: center; margin: 0; font-size: 28px;">
+                🏠 생활 이벤트가 발생했습니다! 🏠
+            </h2>
+            <p style="color: #e0e7ff; text-align: center; margin-top: 10px; font-size: 16px;">
+                예상치 못한 개인적인 문제가 발생했습니다. 신중하게 대응하세요.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
     # 시나리오 제목 및 설명
     st.subheader(f"📋 {scenario['title']}")
     st.markdown(f"""
@@ -770,6 +785,17 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
             [s for s in game.scenarios.keys() if not s.startswith("ending_") and s != "start"]
         )
 
+        # 생활 이벤트 체크 (시간이 진행되었으므로)
+        life_event_id = game.check_and_trigger_life_event()
+        if life_event_id:
+            # 생활 이벤트 발생 - 중복 방지를 위해 추적 세트에 추가
+            game.state.triggered_life_events.add(life_event_id)
+            # 원래 다음 시나리오를 저장하고, 생활 이벤트를 먼저 표시
+            st.session_state.pending_next_scenario = game.state.current_scenario
+            game.state.current_scenario = life_event_id
+            # 생활 이벤트 발생 플래그 설정
+            st.session_state.life_event_triggered = True
+
         # 게임 오버 체크
         if (game.state.reputation <= 0 or
             game.state.staff_morale <= 0 or
@@ -824,32 +850,52 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
             game.state.year += 1
 
     # 다음 시나리오 설정
-    next_scenario = result.get('next')
-    if next_scenario and next_scenario in game.scenarios:
-        # 다음 시나리오가 존재하는 경우에만 설정
-        game.state.current_scenario = next_scenario
+    # 생활 이벤트 이후 pending_next_scenario가 있으면 그걸로 이동
+    if hasattr(st.session_state, 'pending_next_scenario') and st.session_state.pending_next_scenario:
+        game.state.current_scenario = st.session_state.pending_next_scenario
+        st.session_state.pending_next_scenario = None
+        # 생활 이벤트 플래그 제거
+        if hasattr(st.session_state, 'life_event_triggered'):
+            st.session_state.life_event_triggered = False
     else:
-        # AI 모드인 경우 AI가 생성한 시나리오 사용
-        if st.session_state.ai_mode and game.gemini and game.gemini.enabled:
-            game.state.current_scenario = 'ai_generated'
+        next_scenario = result.get('next')
+        if next_scenario and next_scenario in game.scenarios:
+            # 다음 시나리오가 존재하는 경우에만 설정
+            game.state.current_scenario = next_scenario
         else:
-            # 다음 시나리오가 없거나 존재하지 않으면 랜덤 시나리오 선택
-            # 엔딩 시나리오는 제외
-            available = [s for s in game.scenarios.keys()
-                        if s not in game.state.visited_scenarios
-                        and s != "start"
-                        and not s.startswith("ending_")]
-            if available:
-                game.state.current_scenario = random.choice(available)
+            # AI 모드인 경우 AI가 생성한 시나리오 사용
+            if st.session_state.ai_mode and game.gemini and game.gemini.enabled:
+                game.state.current_scenario = 'ai_generated'
             else:
-                # 모든 시나리오를 방문했으면 리셋 (엔딩 시나리오는 여전히 제외)
-                game.state.visited_scenarios = []
-                non_ending_scenarios = [s for s in game.scenarios.keys()
-                                       if not s.startswith("ending_") and s != "start"]
-                if non_ending_scenarios:
-                    game.state.current_scenario = random.choice(non_ending_scenarios)
+                # 다음 시나리오가 없거나 존재하지 않으면 랜덤 시나리오 선택
+                # 엔딩 시나리오는 제외
+                available = [s for s in game.scenarios.keys()
+                            if s not in game.state.visited_scenarios
+                            and s != "start"
+                            and not s.startswith("ending_")]
+                if available:
+                    game.state.current_scenario = random.choice(available)
                 else:
-                    game.state.current_scenario = "start"
+                    # 모든 시나리오를 방문했으면 리셋 (엔딩 시나리오는 여전히 제외)
+                    game.state.visited_scenarios = []
+                    non_ending_scenarios = [s for s in game.scenarios.keys()
+                                           if not s.startswith("ending_") and s != "start"]
+                    if non_ending_scenarios:
+                        game.state.current_scenario = random.choice(non_ending_scenarios)
+                    else:
+                        game.state.current_scenario = "start"
+
+    # 생활 이벤트 체크 (advance_time이 true인 경우에만)
+    if result.get('advance_time', False):
+        life_event_id = game.check_and_trigger_life_event()
+        if life_event_id:
+            # 생활 이벤트 발생 - 중복 방지를 위해 추적 세트에 추가
+            game.state.triggered_life_events.add(life_event_id)
+            # 원래 다음 시나리오를 저장하고, 생활 이벤트를 먼저 표시
+            st.session_state.pending_next_scenario = game.state.current_scenario
+            game.state.current_scenario = life_event_id
+            # 생활 이벤트 발생 플래그 설정
+            st.session_state.life_event_triggered = True
 
     # 게임 오버 체크
     if (game.state.reputation <= 0 or
