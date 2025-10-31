@@ -924,7 +924,7 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
         stats = result.get('stats', {})
         game.state.update_stats(stats)
 
-        # 선택 히스토리 기록 (시간 증가 전에 기록)
+        # 선택 히스토리 기록
         game.state.choice_history.append({
             'year': game.state.year,
             'period': game.state.period,
@@ -932,16 +932,17 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
             'custom': True
         })
 
-        # 시간 진행
-        game.state.period += 1
-        if game.state.period > 6:
-            game.state.period = 1
-            game.state.year += 1
-
         # 다음 시나리오는 AI 생성 또는 랜덤
         game.state.current_scenario = 'ai_generated' if game.gemini.enabled else random.choice(
             [s for s in game.scenarios.keys() if not s.startswith("ending_") and s != "start"]
         )
+
+        # AI 자유 입력은 항상 시간을 진행시킴
+        # 다음 period_N 시나리오를 예측하여 시간 설정
+        game.state.period += 1
+        if game.state.period > 6:
+            game.state.period = 1
+            game.state.year += 1
 
         # 생활 이벤트 체크 (시간이 진행되었으므로)
         life_event_id = game.check_and_trigger_life_event()
@@ -987,6 +988,23 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
     # 스탯 업데이트
     game.state.update_stats(stats)
 
+    # 시나리오 ID와 year/period 매핑 (동기화)
+    scenario_period_map = {
+        'start': (1, 1),
+        'period_2': (1, 2), 'period_3': (1, 3), 'period_4': (1, 4),
+        'period_5': (1, 5), 'period_6': (1, 6),
+        'period_7': (2, 1), 'period_8': (2, 2), 'period_9': (2, 3),
+        'period_10': (2, 4), 'period_11': (2, 5), 'period_12': (2, 6)
+    }
+
+    # 다음 시나리오의 year/period 동기화
+    next_scenario = result.get('next')
+    if next_scenario and next_scenario in scenario_period_map:
+        expected_year, expected_period = scenario_period_map[next_scenario]
+        if game.state.year != expected_year or game.state.period != expected_period:
+            game.state.year = expected_year
+            game.state.period = expected_period
+
     # 부소장 사기 변경 처리
     if 'deputy_morale' in result:
         for personality, change in result['deputy_morale'].items():
@@ -1004,7 +1022,7 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
     if scenario_id not in game.state.visited_scenarios:
         game.state.visited_scenarios.append(scenario_id)
 
-    # 선택 히스토리 기록 (시간 증가 전에 기록)
+    # 선택 히스토리 기록
     game.state.choice_history.append({
         'scenario_id': scenario_id,
         'choice_text': choice.get('text', ''),
@@ -1013,17 +1031,15 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
         'result': result
     })
 
-    # 시간 진행
-    if result.get('advance_time', False):
-        game.state.period += 1
-        if game.state.period > 6:
-            game.state.period = 1
-            game.state.year += 1
-
     # 다음 시나리오 설정
     # 생활 이벤트 이후 pending_next_scenario가 있으면 그걸로 이동
     if hasattr(st.session_state, 'pending_next_scenario') and st.session_state.pending_next_scenario:
         game.state.current_scenario = st.session_state.pending_next_scenario
+        # 생활 이벤트 복귀 후 year/period 재동기화
+        if game.state.current_scenario in scenario_period_map:
+            expected_year, expected_period = scenario_period_map[game.state.current_scenario]
+            game.state.year = expected_year
+            game.state.period = expected_period
         st.session_state.pending_next_scenario = None
         # 생활 이벤트 플래그 제거
         if hasattr(st.session_state, 'life_event_triggered'):
