@@ -1054,6 +1054,8 @@ class KOICAGame:
         if random.random() < base_chance:
             event = self.select_life_event()
             if event:
+                # 중복 방지를 위해 추적 세트에 즉시 추가
+                self.state.triggered_life_events.add(event)
                 # 생활 이벤트 발생 횟수 증가
                 self.state.life_events_count += 1
             return event
@@ -1252,43 +1254,49 @@ class KOICAGame:
         if not hasattr(self.state, 'triggered_deputy_events'):
             self.state.triggered_deputy_events = set()
 
+        # 전체 이벤트 발생 횟수 제한 체크 (4회)
+        if self.state.life_events_count >= 4:
+            return None
+
         deputy_principled = self.state.get_deputy_by_personality("principled")
         deputy_local = self.state.get_deputy_by_personality("local_friendly")
 
         if not deputy_principled or not deputy_local:
             return None
 
+        event_id = None
+
         # 김태영 부소장 효율성 우려 이벤트 (프로젝트 성공도 낮을 때)
         if (self.state.project_success <= 30 and
             'deputy_principled_efficiency_concern' not in self.state.triggered_deputy_events):
-            return 'deputy_principled_efficiency_concern'
-
+            event_id = 'deputy_principled_efficiency_concern'
         # 이수진 부소장 투명성 우려 이벤트 (평판 낮을 때)
-        if (self.state.reputation <= 30 and
+        elif (self.state.reputation <= 30 and
             'deputy_local_friendly_transparency_concern' not in self.state.triggered_deputy_events):
-            return 'deputy_local_friendly_transparency_concern'
-
+            event_id = 'deputy_local_friendly_transparency_concern'
         # 김태영 부소장 고충성도 이벤트
-        if (deputy_principled['morale'] >= 50 and
+        elif (deputy_principled['morale'] >= 50 and
             'deputy_principled_high_loyalty' not in self.state.triggered_deputy_events):
-            return 'deputy_principled_high_loyalty'
-
+            event_id = 'deputy_principled_high_loyalty'
         # 김태영 부소장 전보 위기 이벤트
-        if (deputy_principled['morale'] <= 20 and
+        elif (deputy_principled['morale'] <= 20 and
             'deputy_principled_low_resignation' not in self.state.triggered_deputy_events):
-            return 'deputy_principled_low_resignation'
-
+            event_id = 'deputy_principled_low_resignation'
         # 이수진 부소장 네트워크 보너스 이벤트
-        if (deputy_local['morale'] >= 50 and
+        elif (deputy_local['morale'] >= 50 and
             'deputy_local_friendly_network_bonus' not in self.state.triggered_deputy_events):
-            return 'deputy_local_friendly_network_bonus'
-
+            event_id = 'deputy_local_friendly_network_bonus'
         # 이수진 부소장 문화 갈등 이벤트
-        if (deputy_local['morale'] <= 20 and
+        elif (deputy_local['morale'] <= 20 and
             'deputy_local_friendly_cultural_crisis' not in self.state.triggered_deputy_events):
-            return 'deputy_local_friendly_cultural_crisis'
+            event_id = 'deputy_local_friendly_cultural_crisis'
 
-        return None
+        # 이벤트가 선택되면 카운트 증가 및 추적 세트에 추가
+        if event_id:
+            self.state.triggered_deputy_events.add(event_id)
+            self.state.life_events_count += 1
+
+        return event_id
 
     # ============================================================
     # 고급 기능: 장기 영향(delayed effects) 체크
@@ -2344,8 +2352,6 @@ class KOICAGame:
                 if selected_choice['result'].get('advance_time', False):
                     life_event_id = self.check_and_trigger_life_event()
                     if life_event_id:
-                        # 생활 이벤트 발생 - 중복 방지를 위해 추적 리스트에 추가
-                        self.state.triggered_life_events.add(life_event_id)
                         # 생활 이벤트 발생
                         life_event_scenario = self.display_scenario(life_event_id)
                         if life_event_scenario and 'choices' in life_event_scenario:
