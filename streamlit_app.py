@@ -640,6 +640,10 @@ def game_play_screen():
         </div>
         """, unsafe_allow_html=True)
 
+    # ASCII 아트 표시 (있는 경우)
+    if 'ascii_art' in scenario:
+        st.code(scenario['ascii_art'], language=None)
+
     # 시나리오 제목 및 설명
     st.subheader(f"📋 {scenario['title']}")
     st.markdown(f"""

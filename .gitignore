@@ -38,5 +38,9 @@ Thumbs.db
 *.sav
 save_*.json
 
+# Backup files
+*.backup
+*.backup_*
+
 # Streamlit
 .streamlit/secrets.toml
