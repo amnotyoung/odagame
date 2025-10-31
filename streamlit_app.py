@@ -230,7 +230,12 @@ def display_stats(state: GameState):
         st.progress(state.wellbeing / 100)
 
         # 시간
-        st.markdown(f"**📅 {state.year}년차 {state.period}기**")
+        period_months = {
+            1: "1-2월", 2: "3-4월", 3: "5-6월",
+            4: "7-8월", 5: "9-10월", 6: "11-12월"
+        }
+        period_str = period_months.get(state.period, f"{state.period}기")
+        st.markdown(f"**📅 {state.year}년차 {period_str}**")
 
         # 경고 표시
         warnings = []
@@ -527,8 +532,63 @@ def game_play_screen():
         </div>
         """, unsafe_allow_html=True)
 
+        # 스탯 변화 표시
+        if hasattr(st.session_state, 'stat_changes') and st.session_state.stat_changes:
+            stat_changes = st.session_state.stat_changes
+
+            # 스탯 이름 매핑
+            stat_names = {
+                'reputation': '평판',
+                'budget': '예산 집행률',
+                'staff_morale': '직원 사기',
+                'project_success': '사업 성과',
+                'stress': '스트레스',
+                'wellbeing': '웰빙'
+            }
+
+            # 긍정적/부정적 변화 분류
+            positive_changes = []
+            negative_changes = []
+
+            for stat_key, change in stat_changes.items():
+                if change == 0:
+                    continue
+
+                stat_name = stat_names.get(stat_key, stat_key)
+
+                # 스트레스는 반대 (증가가 부정적)
+                if stat_key == 'stress':
+                    if change > 0:
+                        negative_changes.append((stat_name, change))
+                    else:
+                        positive_changes.append((stat_name, change))
+                else:
+                    if change > 0:
+                        positive_changes.append((stat_name, change))
+                    else:
+                        negative_changes.append((stat_name, change))
+
+            # 변화 표시
+            if positive_changes or negative_changes:
+                st.markdown("### 📊 스탯 변화")
+
+                cols = st.columns(2)
+
+                with cols[0]:
+                    if positive_changes:
+                        st.markdown("**✅ 긍정적 변화**")
+                        for stat_name, change in positive_changes:
+                            st.markdown(f"• {stat_name}: **+{abs(change)}**")
+
+                with cols[1]:
+                    if negative_changes:
+                        st.markdown("**⚠️ 부정적 변화**")
+                        for stat_name, change in negative_changes:
+                            st.markdown(f"• {stat_name}: **-{abs(change)}**")
+
         if st.button("다음으로", use_container_width=True):
             st.session_state.result_message = ""
+            st.session_state.stat_changes = {}
             st.session_state.choice_made = False
             st.rerun()
 
@@ -736,8 +796,11 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
     # 결과 메시지 저장
     st.session_state.result_message = result.get('message', '')
 
-    # 스탯 업데이트
+    # 스탯 변화 저장 (표시용)
     stats = result.get('stats', {})
+    st.session_state.stat_changes = stats.copy() if stats else {}
+
+    # 스탯 업데이트
     game.state.update_stats(stats)
 
     # 시나리오 방문 기록
@@ -814,11 +877,17 @@ def game_over_screen():
     elif state.wellbeing <= 0:
         reason = "건강 위기로 의료 후송되었습니다."
 
+    period_months = {
+        1: "1-2월", 2: "3-4월", 3: "5-6월",
+        4: "7-8월", 5: "9-10월", 6: "11-12월"
+    }
+    period_str = period_months.get(state.period, f"{state.period}기")
+
     st.markdown(f"""
     <div class="warning-box">
     <h3>{reason}</h3>
 
-    <b>재임 기간:</b> {state.year}년 {state.period}기
+    <b>재임 기간:</b> {state.year}년 {period_str}
 
     <b>최종 스탯:</b>
     - 평판: {state.reputation}

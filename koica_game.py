@@ -509,6 +509,11 @@ class GeminiIntegration:
 4. 4개의 선택지를 제공하되, 각각 명확한 장단점이 있어야 합니다
 5. 각 선택의 결과로 스탯 변화를 제안하세요 (reputation, budget, staff_morale, project_success)
    - budget 값은 예산 집행률 변화를 의미 (양수=집행률 상승, 음수=집행률 하락)
+6. 결과 메시지(result.message)는 3-5문장으로 풍부하게 작성하세요:
+   - 선택한 행동이 어떻게 실행되었는지
+   - 이해관계자들(직원, 파트너, 본부 등)의 구체적인 반응
+   - 최종적으로 어떤 결과와 영향이 발생했는지
+   - 인과관계를 명확히 보여주세요
 
 ## 응답 형식 (반드시 JSON 형식으로)
 {{
@@ -599,10 +604,14 @@ class GeminiIntegration:
 
 ## 요구사항
 1. 플레이어의 행동을 최대한 수용하세요. 사무소장으로서 할 수 있는 다양한 창의적 시도를 긍정적으로 해석하세요
-2. 행동의 결과를 2-4문장으로 설명하세요
+2. 행동의 결과를 3-5문장으로 풍부하게 설명하세요:
+   - 첫 문장: 즉각적인 결과나 반응
+   - 중간 문장들: 구체적인 과정과 영향 (누가 어떻게 반응했는지, 어떤 변화가 일어났는지)
+   - 마지막 문장: 최종 결과와 조직/개인에 미친 영향
 3. 4가지 스탯에 미치는 영향을 계산하세요 (합리적인 범위 내에서)
 4. 창의적이고 전략적인 행동은 적극 보상하세요
 5. 극단적으로 비윤리적이거나 범죄적인 행동이 아닌 이상 success: true로 처리하세요
+6. 인과관계를 명확히: "이 행동으로 인해 → 이런 일이 발생 → 그 결과" 흐름을 자연스럽게 서술하세요
 
 ## 응답 형식 (반드시 JSON 형식으로)
 {{
@@ -965,21 +974,32 @@ class KOICAGame:
                 sys.exit(0)
 
     def check_and_trigger_life_event(self):
-        """주기적 생활 이벤트 발생 확인"""
+        """주기적 생활 이벤트 발생 확인 - 일년에 두 번씩 발생"""
         # 운동 습관의 패시브 효과: 웰빙 하락 방어
         if self.state.leisure_choice == "exercise" and self.state.wellbeing < 40:
             # 운동 습관이 웰빙 하락을 방어해 줌
             self.state.update_stats({'wellbeing': 5, 'stress': -5})
             print("\n💪 [운동 습관 효과] 규칙적인 운동으로 정신 건강이 개선되었습니다. (웰빙 +5, 스트레스 -5)")
 
+        # 일년에 두 번씩 생활 이벤트 발생 (period 2와 5)
+        # period 2 = 3-4월 (전반기), period 5 = 9-10월 (후반기)
+        is_event_period = self.state.period in [2, 5]
+
         # 기본 확률 30%
         base_chance = 0.30
 
+        # 이벤트 주기(period 2, 5)에는 확률을 매우 높게 설정
+        if is_event_period:
+            base_chance = 0.85  # 85% 확률로 거의 확실하게 발생
+
         # 스트레스/웰빙 상태에 따라 확률 조정
         if self.state.stress > 70:
-            base_chance += 0.2  # 스트레스 높으면 이벤트 확률 증가
+            base_chance += 0.15  # 스트레스 높으면 이벤트 확률 증가
         if self.state.wellbeing < 30:
-            base_chance += 0.2  # 웰빙 낮으면 이벤트 확률 증가
+            base_chance += 0.15  # 웰빙 낮으면 이벤트 확률 증가
+
+        # 확률을 100%로 제한
+        base_chance = min(1.0, base_chance)
 
         # 랜덤으로 이벤트 발생 여부 결정
         if random.random() < base_chance:
