@@ -1274,10 +1274,6 @@ class KOICAGame:
         elif (self.state.reputation <= 30 and
             'deputy_local_friendly_transparency_concern' not in self.state.triggered_deputy_events):
             event_id = 'deputy_local_friendly_transparency_concern'
-        # 김태영 부소장 고충성도 이벤트
-        elif (deputy_principled['morale'] >= 50 and
-            'deputy_principled_high_loyalty' not in self.state.triggered_deputy_events):
-            event_id = 'deputy_principled_high_loyalty'
         # 김태영 부소장 전보 위기 이벤트
         elif (deputy_principled['morale'] <= 20 and
             'deputy_principled_low_resignation' not in self.state.triggered_deputy_events):
@@ -2419,10 +2415,32 @@ class KOICAGame:
                         break
 
                 if 'next' in selected_choice['result']:
-                    self.state.current_scenario = selected_choice['result']['next']
+                    next_scenario = selected_choice['result']['next']
+
+                    # 'continue_main_scenario'는 현재 period의 메인 시나리오로 이동
+                    if next_scenario == 'continue_main_scenario':
+                        period_number = (self.state.year - 1) * 6 + self.state.period
+                        if period_number == 1:
+                            next_scenario = 'start'
+                        elif period_number <= 12:
+                            next_scenario = f'period_{period_number}'
+                        else:
+                            # 게임이 끝났으면 엔딩으로
+                            self.state.game_over = True
+                            break
+
+                    self.state.current_scenario = next_scenario
                 else:
-                    print("\n오류: 다음 시나리오가 지정되지 않았습니다.")
-                    break
+                    # 'next'가 없으면 현재 period의 메인 시나리오로 이동
+                    period_number = (self.state.year - 1) * 6 + self.state.period
+                    if period_number == 1:
+                        self.state.current_scenario = 'start'
+                    elif period_number <= 12:
+                        self.state.current_scenario = f'period_{period_number}'
+                    else:
+                        # 게임이 끝났으면 엔딩으로
+                        self.state.game_over = True
+                        break
 
         self.display_ending()
 
