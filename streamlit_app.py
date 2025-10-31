@@ -227,8 +227,6 @@ def initialize_session_state():
         st.session_state.choice_made = False
     if 'result_message' not in st.session_state:
         st.session_state.result_message = ""
-    if 'trade_off_message' not in st.session_state:
-        st.session_state.trade_off_message = ""
     if 'ai_mode' not in st.session_state:
         st.session_state.ai_mode = False
     if 'lifestyle_step' not in st.session_state:
@@ -329,7 +327,7 @@ def welcome_screen():
 
     📊 <b>당신의 조직 (총 17명)</b>
     - 사무소장: 1명 (당신)
-    - 부소장: 2명 (분야별 책임자)
+    - 부소장: 2명
     - 코디네이터: 2명
     - YP(영프로페셔널): 2명
     - 현지 직원: 10명
@@ -645,10 +643,6 @@ def game_play_screen():
         </div>
         """, unsafe_allow_html=True)
 
-        # trade_off_message 표시
-        if hasattr(st.session_state, 'trade_off_message') and st.session_state.trade_off_message:
-            st.info(f"💡 **Trade-off:** {st.session_state.trade_off_message}")
-
         # 스탯 변화 표시
         if hasattr(st.session_state, 'stat_changes') and st.session_state.stat_changes:
             stat_changes = st.session_state.stat_changes
@@ -719,7 +713,6 @@ def game_play_screen():
 
         if st.button("다음으로", use_container_width=True):
             st.session_state.result_message = ""
-            st.session_state.trade_off_message = ""
             st.session_state.stat_changes = {}
             st.session_state.choice_made = False
             st.rerun()
@@ -986,9 +979,6 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
 
     # 결과 메시지 저장
     st.session_state.result_message = result.get('message', '')
-
-    # trade_off_message 저장
-    st.session_state.trade_off_message = result.get('trade_off_message', '')
 
     # 스탯 변화 저장 (표시용)
     stats = result.get('stats', {})
