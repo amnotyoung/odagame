@@ -3670,14 +3670,14 @@
         "result": {
           "message": "밤을 새워 추가 제안서를 작성해 제출했습니다. 일주일 후, 정부로부터 사업 확대 승인이 떨어졌습니다. 이수진 부소장의 네트워크가 만든 기적입니다.",
           "stats": {
-            "project_success": 20,
-            "reputation": 15,
-            "budget": 25,
-            "staff_morale": -8,
-            "stress": 15
+            "project_success": 15,
+            "reputation": 12,
+            "budget": 15,
+            "staff_morale": -10,
+            "stress": 12
           },
           "deputy_morale": {
-            "local_friendly": 15
+            "local_friendly": 12
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3688,11 +3688,11 @@
         "result": {
           "message": "\"이번엔 준비가 부족합니다. 다음 기회를 더 잘 준비하죠.\" 이수진 부소장이 이해하며 고개를 끄덕입니다. 무리하지 않은 현명한 판단이었습니다.",
           "stats": {
-            "staff_morale": 5,
-            "reputation": 3
+            "staff_morale": 8,
+            "reputation": 5
           },
           "deputy_morale": {
-            "local_friendly": 5
+            "local_friendly": 8
           },
           "advance_time": false,
           "next": "continue_main_scenario"
