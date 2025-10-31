@@ -566,13 +566,19 @@ def game_play_screen():
                     if positive_changes:
                         st.markdown("**✅ 긍정적 변화**")
                         for stat_name, change in positive_changes:
-                            st.markdown(f"• {stat_name}: **+{abs(change)}**")
+                            if change >= 0:
+                                st.markdown(f"• {stat_name}: **+{change}**")
+                            else:
+                                st.markdown(f"• {stat_name}: **{change}**")
 
                 with cols[1]:
                     if negative_changes:
                         st.markdown("**⚠️ 부정적 변화**")
                         for stat_name, change in negative_changes:
-                            st.markdown(f"• {stat_name}: **-{abs(change)}**")
+                            if change >= 0:
+                                st.markdown(f"• {stat_name}: **+{change}**")
+                            else:
+                                st.markdown(f"• {stat_name}: **{change}**")
 
         if st.button("다음으로", use_container_width=True):
             st.session_state.result_message = ""
