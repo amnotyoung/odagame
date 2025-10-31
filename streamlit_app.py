@@ -137,6 +137,28 @@ st.markdown("""
         margin-top: 0.5rem;
     }
 
+    /* 시나리오 배지 스타일 */
+    .scenario-badge {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem 1.5rem;
+        border-radius: 1rem;
+        text-align: center;
+        margin: 1rem 0 2rem 0;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .scenario-badge-emoji {
+        font-size: 3.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .scenario-badge-title {
+        color: white;
+        margin: 0;
+        font-size: 1.6rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
     /* 모바일에서 사이드바 숨기기 */
     @media (max-width: 768px) {
         .main {
@@ -162,6 +184,19 @@ st.markdown("""
 
         .loading-subtext {
             font-size: 0.9rem;
+        }
+
+        /* 모바일에서 시나리오 배지 최적화 */
+        .scenario-badge {
+            padding: 1.5rem 1rem;
+        }
+
+        .scenario-badge-emoji {
+            font-size: 2.5rem;
+        }
+
+        .scenario-badge-title {
+            font-size: 1.3rem;
         }
     }
 </style>
@@ -500,6 +535,70 @@ def lifestyle_setup_screen():
             st.rerun()
 
 
+def get_scenario_visual_style(scenario_id: str, scenario: dict) -> dict:
+    """시나리오 ID와 내용을 기반으로 비주얼 스타일 반환
+
+    Returns:
+        dict: {
+            'emoji': 이모지,
+            'gradient': CSS 그라디언트,
+            'border_color': 테두리 색상
+        }
+    """
+    # 키워드 기반 분류
+    title_lower = scenario.get('title', '').lower()
+    desc_lower = scenario.get('description', '').lower()
+
+    # 위기/문제 상황
+    crisis_keywords = ['위기', '갈등', '문제', '충돌', '압력', '긴급', '비상', '파탄', '붕괴', '번아웃']
+    if any(keyword in title_lower or keyword in desc_lower for keyword in crisis_keywords):
+        return {
+            'emoji': '🚨',
+            'gradient': 'linear-gradient(135deg, #ff6b6b 0%, #c92a2a 100%)',
+            'border_color': '#c92a2a'
+        }
+
+    # 엔딩 (긍정적)
+    positive_ending_keywords = ['성공', '승진', '완료', '달성', '전문가', '변화']
+    if scenario_id.startswith('ending_') and any(keyword in title_lower or keyword in desc_lower for keyword in positive_ending_keywords):
+        return {
+            'emoji': '🎉',
+            'gradient': 'linear-gradient(135deg, #51cf66 0%, #2f9e44 100%)',
+            'border_color': '#2f9e44'
+        }
+
+    # 엔딩 (부정적)
+    if scenario_id.startswith('ending_'):
+        return {
+            'emoji': '💔',
+            'gradient': 'linear-gradient(135deg, #868e96 0%, #495057 100%)',
+            'border_color': '#495057'
+        }
+
+    # 생활 이벤트
+    if scenario_id.startswith('life_event_'):
+        return {
+            'emoji': '⭐',
+            'gradient': 'linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%)',
+            'border_color': '#7c3aed'
+        }
+
+    # 시작
+    if scenario_id == 'start':
+        return {
+            'emoji': '🌍',
+            'gradient': 'linear-gradient(135deg, #339af0 0%, #1864ab 100%)',
+            'border_color': '#1864ab'
+        }
+
+    # 기본 (일상적인 업무)
+    return {
+        'emoji': '📋',
+        'gradient': 'linear-gradient(135deg, #748ffc 0%, #5c7cfa 100%)',
+        'border_color': '#5c7cfa'
+    }
+
+
 def game_play_screen():
     """게임 플레이 화면"""
     game = st.session_state.game
@@ -650,12 +749,28 @@ def game_play_screen():
         </div>
         """, unsafe_allow_html=True)
 
-    # ASCII 아트 표시 (있는 경우)
-    if 'ascii_art' in scenario:
-        st.code(scenario['ascii_art'], language=None)
+    # 시나리오 비주얼 스타일 가져오기
+    visual_style = get_scenario_visual_style(current_scenario_id, scenario)
 
-    # 시나리오 제목 및 설명
-    st.subheader(f"📋 {scenario['title']}")
+    # 컬러 배지 표시
+    st.markdown(f"""
+    <div style="background: {visual_style['gradient']};
+                padding: 2rem 1.5rem;
+                border-radius: 1rem;
+                text-align: center;
+                margin: 1rem 0 2rem 0;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+                border: 3px solid {visual_style['border_color']};">
+        <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">
+            {visual_style['emoji']}
+        </div>
+        <h2 style="color: white; margin: 0; font-size: 1.6rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            {scenario['title']}
+        </h2>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 시나리오 설명
     st.markdown(f"""
     <div class="scenario-text">
     {scenario['description']}
