@@ -866,23 +866,12 @@ def game_play_screen():
             stats.get('wellbeing', 0) < -15
         ])
 
-        # 선택지 상세 정보 표시
+        # 선택지 버튼
         with st.container():
             if st.button(button_text, key=f"choice_{idx}", use_container_width=True):
                 # 선택 처리
                 handle_choice(game, choice, current_scenario_id)
                 st.rerun()
-
-            # subtext와 trade_off 표시
-            subtext = choice.get('subtext', '')
-            trade_off = choice.get('trade_off', '')
-
-            if subtext or trade_off:
-                with st.expander(f"ℹ️ 선택지 {idx + 1} 상세 정보"):
-                    if subtext:
-                        st.markdown(f"**{subtext}**")
-                    if trade_off:
-                        st.markdown(f"📊 **예상 효과:** {trade_off}")
 
             if is_risky:
                 st.warning(f"⚠️ 선택 {idx + 1}은 위험할 수 있습니다!")
@@ -1063,8 +1052,12 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
                 st.session_state.game_over = True
 
         if next_scenario and next_scenario in game.scenarios:
-            # 다음 시나리오가 존재하는 경우에만 설정
-            game.state.current_scenario = next_scenario
+            # 엔딩 시나리오인 경우 year를 증가시켜 바로 엔딩 화면으로 이동
+            if next_scenario.startswith('ending_'):
+                game.state.year = 3  # 2년 완료로 설정하여 엔딩 화면으로 이동
+            else:
+                # 다음 시나리오가 존재하는 경우에만 설정
+                game.state.current_scenario = next_scenario
         else:
             # AI 모드인 경우 AI가 생성한 시나리오 사용
             if st.session_state.ai_mode and game.gemini and game.gemini.enabled:
@@ -1088,13 +1081,16 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
                     else:
                         game.state.current_scenario = "start"
 
-    # 생활 이벤트 체크 (advance_time이 true인 경우에만)
+    # 생활 이벤트 체크 (advance_time이 true이고, 엔딩 시나리오가 아닌 경우에만)
     if result.get('advance_time', False):
-        life_event_id = game.check_and_trigger_life_event()
-        if life_event_id:
-            # 원래 다음 시나리오를 저장하고, 생활 이벤트를 먼저 표시
-            st.session_state.pending_next_scenario = game.state.current_scenario
-            game.state.current_scenario = life_event_id
+        # 엔딩 시나리오로 가는 경우 생활 이벤트 발생 방지
+        next_scenario = result.get('next')
+        if not next_scenario or not next_scenario.startswith('ending_'):
+            life_event_id = game.check_and_trigger_life_event()
+            if life_event_id:
+                # 원래 다음 시나리오를 저장하고, 생활 이벤트를 먼저 표시
+                st.session_state.pending_next_scenario = game.state.current_scenario
+                game.state.current_scenario = life_event_id
             # 생활 이벤트 발생 플래그 설정
             st.session_state.life_event_triggered = True
 
