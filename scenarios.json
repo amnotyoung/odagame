@@ -1220,7 +1220,7 @@
         }
       },
       {
-        "text": "현지 정비공 찾기 - 지역 경제 지원",
+        "text": "현지 정비공을 찾아 수리를 맡긴다",
         "result": {
           "message": "현지 정비공을 찾아 수리를 맡겼습니다. 시간이 좀 걸렸지만 비용이 저렴했고, 현지 커뮤니티와의 관계도 돈독해졌습니다. 직원들이 소장님의 현지 친화적 태도를 높이 평가했습니다.",
           "stats": {
@@ -1228,7 +1228,10 @@
             "reputation": 8,
             "staff_morale": 10
           },
+          "advance_time": false,
+          "next": "continue_main_scenario",
           "deputy_morale": {
+            "principled": 5,
             "local_friendly": 12
           }
         }
@@ -1292,17 +1295,20 @@
         }
       },
       {
-        "text": "단기 호텔 체류 - 신중한 결정",
+        "text": "동료에게 부탁해 임시로 같이 지낸다",
         "result": {
-          "message": "단기간 호텔에 머물며 신중하게 결정하기로 했습니다. 시간을 두고 여러 옵션을 비교할 수 있었지만, 호텔 비용이 누적되고 있습니다.",
+          "message": "사무소 동료가 흔쾌히 받아주었습니다. 한 달간 같이 지내며 팀원과 더 가까워졌습니다. 약간 불편했지만 비용을 크게 절약할 수 있었습니다.",
           "stats": {
-            "budget": -20,
-            "staff_morale": 5,
-            "reputation": 0
+            "budget": -2,
+            "staff_morale": 12,
+            "wellbeing": -3,
+            "stress": 3
           },
+          "advance_time": false,
+          "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 0
+            "principled": 3,
+            "local_friendly": 10
           }
         }
       }
@@ -2899,18 +2905,21 @@
         }
       },
       {
-        "text": "헤징 전략 - 금융 리스크 관리",
+        "text": "현지 자원과 인력을 활용해 비용을 절감한다",
         "result": {
-          "message": "본부 재무팀과 협의하여 환율 헤징 전략을 수립했습니다. 전문적인 금융 리스크 관리로 손실을 최소화했고, 사업은 안정적으로 진행되었습니다. 본부에서 선제적 대응을 높이 평가했습니다.",
+          "message": "수입 자재 대신 현지 자재를 활용하고, 현지 인력을 적극 고용하여 비용을 절감했습니다. 예산 문제를 해결했을 뿐 아니라 현지 경제에도 기여했습니다. 파트너 정부와 주민들이 크게 만족했습니다.",
           "stats": {
-            "budget": 15,
-            "project_success": 15,
-            "reputation": 20,
-            "staff_morale": 5
+            "budget": 12,
+            "project_success": 10,
+            "reputation": 15,
+            "staff_morale": 8,
+            "stress": 8
           },
+          "advance_time": false,
+          "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 15,
-            "local_friendly": 5
+            "principled": 5,
+            "local_friendly": 15
           }
         }
       }
