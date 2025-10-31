@@ -251,10 +251,15 @@ def display_stats(state: GameState):
         st.markdown(f"**평판**: {state.reputation}/100")
         st.progress(state.reputation / 100)
 
-        # 예산 집행률
+        # 예산 집행률 (세목별)
         budget_color = "normal"
-        st.markdown(f"**예산 집행률**: {state.budget_execution_rate}/100")
-        st.progress(state.budget_execution_rate / 100)
+        avg_budget = int(state.budget_execution_rate)
+        st.markdown(f"**예산 집행률(평균)**: {avg_budget}/100")
+        st.progress(avg_budget / 100)
+        st.markdown(f"<small>인건비: {int(state.budget_execution_rates['인건비'])}/100 | "
+                   f"사업비: {int(state.budget_execution_rates['사업비'])}/100 | "
+                   f"운영비: {int(state.budget_execution_rates['운영비'])}/100</small>",
+                   unsafe_allow_html=True)
 
         # 직원 만족도
         morale_color = "normal" if state.staff_morale > 30 else "inverse"
@@ -1151,7 +1156,8 @@ def game_over_screen():
 
     <b>최종 스탯:</b>
     - 평판: {state.reputation}
-    - 예산 집행률: {state.budget_execution_rate}
+    - 예산 집행률(평균): {int(state.budget_execution_rate)}
+      * 인건비: {int(state.budget_execution_rates['인건비'])} | 사업비: {int(state.budget_execution_rates['사업비'])} | 운영비: {int(state.budget_execution_rates['운영비'])}
     - 직원 만족도: {state.staff_morale}
     - 프로젝트 성공도: {state.project_success}
     - 스트레스: {state.stress}
@@ -1201,7 +1207,13 @@ def ending_screen():
     <h3>📊 영역별 성과</h3>
     <ul>
     <li>🌟 평판: {state.reputation}/100</li>
-    <li>💰 예산 집행률: {state.budget_execution_rate}/100</li>
+    <li>💰 예산 집행률(평균): {int(state.budget_execution_rate)}/100
+        <ul style="margin-top: 5px;">
+        <li>인건비: {int(state.budget_execution_rates['인건비'])}/100</li>
+        <li>사업비: {int(state.budget_execution_rates['사업비'])}/100</li>
+        <li>운영비: {int(state.budget_execution_rates['운영비'])}/100</li>
+        </ul>
+    </li>
     <li>😊 직원 만족도: {state.staff_morale}/100</li>
     <li>📊 프로젝트 성공도: {state.project_success}/100</li>
     </ul>
