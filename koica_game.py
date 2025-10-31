@@ -1248,6 +1248,10 @@ class KOICAGame:
 
     def check_deputy_threshold_events(self):
         """부소장 morale 임계값 이벤트 체크"""
+        # Backward compatibility: Initialize triggered_deputy_events if it doesn't exist
+        if not hasattr(self.state, 'triggered_deputy_events'):
+            self.state.triggered_deputy_events = set()
+
         deputy_principled = self.state.get_deputy_by_personality("principled")
         deputy_local = self.state.get_deputy_by_personality("local_friendly")
 
@@ -1260,7 +1264,7 @@ class KOICAGame:
             return 'deputy_principled_high_loyalty'
 
         # 김원칙 부소장 전보 위기 이벤트
-        if (deputy_principled['morale'] <= -30 and
+        if (deputy_principled['morale'] <= 20 and
             'deputy_principled_low_resignation' not in self.state.triggered_deputy_events):
             return 'deputy_principled_low_resignation'
 
@@ -1270,7 +1274,7 @@ class KOICAGame:
             return 'deputy_local_friendly_network_bonus'
 
         # 박현지 부소장 문화 갈등 이벤트
-        if (deputy_local['morale'] <= -30 and
+        if (deputy_local['morale'] <= 20 and
             'deputy_local_friendly_cultural_crisis' not in self.state.triggered_deputy_events):
             return 'deputy_local_friendly_cultural_crisis'
 
@@ -1282,6 +1286,10 @@ class KOICAGame:
 
     def check_delayed_effects(self):
         """대기 중인 장기 효과 체크 및 발동"""
+        # Backward compatibility: Initialize pending_delayed_effects if it doesn't exist
+        if not hasattr(self.state, 'pending_delayed_effects'):
+            self.state.pending_delayed_effects = []
+
         triggered_effects = []
 
         for effect in self.state.pending_delayed_effects[:]:  # 복사본 순회
@@ -1327,6 +1335,10 @@ class KOICAGame:
 
     def check_advanced_endings(self):
         """고급 엔딩 조건 체크"""
+        # Backward compatibility: Initialize ethics_violations if it doesn't exist
+        if not hasattr(self.state, 'ethics_violations'):
+            self.state.ethics_violations = 0
+
         # 번아웃 엔딩
         if self.state.stress >= 100 or self.state.wellbeing <= 0:
             return 'ending_burnout'
@@ -1529,6 +1541,9 @@ class KOICAGame:
 
         # 고급 기능: 장기 영향(delayed_effects) 추가
         if 'delayed_effects' in result:
+            # Backward compatibility: Initialize pending_delayed_effects if it doesn't exist
+            if not hasattr(self.state, 'pending_delayed_effects'):
+                self.state.pending_delayed_effects = []
             for effect in result['delayed_effects']:
                 self.state.pending_delayed_effects.append(effect.copy())
             print(f"\n⏰ 장기 영향 {len(result['delayed_effects'])}개가 등록되었습니다.")
