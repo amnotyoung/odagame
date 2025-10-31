@@ -1292,17 +1292,20 @@
         }
       },
       {
-        "text": "단기 호텔 체류 - 신중한 결정",
+        "text": "동료에게 부탁해 임시로 같이 지낸다",
         "result": {
-          "message": "단기간 호텔에 머물며 신중하게 결정하기로 했습니다. 시간을 두고 여러 옵션을 비교할 수 있었지만, 호텔 비용이 누적되고 있습니다.",
+          "message": "사무소 동료가 흔쾌히 받아주었습니다. 한 달간 같이 지내며 팀원과 더 가까워졌습니다. 약간 불편했지만 비용을 크게 절약할 수 있었습니다.",
           "stats": {
-            "budget": -20,
-            "staff_morale": 5,
-            "reputation": 0
+            "budget": -2,
+            "staff_morale": 12,
+            "wellbeing": -3,
+            "stress": 3
           },
+          "advance_time": false,
+          "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 0
+            "principled": 3,
+            "local_friendly": 10
           }
         }
       }
