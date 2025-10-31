@@ -869,9 +869,32 @@ def game_play_screen():
         # 선택지 버튼
         with st.container():
             if st.button(button_text, key=f"choice_{idx}", use_container_width=True):
+                # 선택 인덱스를 명시적으로 저장하여 올바른 선택이 처리되도록 보장
+                st.session_state.last_choice_idx = idx
+                st.session_state.last_choice_text = choice.get('text', '')
                 # 선택 처리
                 handle_choice(game, choice, current_scenario_id)
                 st.rerun()
+
+            # AI 모드에서 예상 스탯 변화 표시
+            if st.session_state.ai_mode and stats:
+                stat_names = {
+                    'reputation': '평판',
+                    'budget': '예산',
+                    'staff_morale': '직원사기',
+                    'project_success': '사업성과'
+                }
+
+                # 스탯 변화를 간결하게 표시
+                changes = []
+                for key, value in stats.items():
+                    if value != 0 and key in stat_names:
+                        sign = '+' if value > 0 else ''
+                        changes.append(f"{stat_names[key]} {sign}{value}")
+
+                if changes:
+                    changes_text = " / ".join(changes)
+                    st.caption(f"📊 예상 효과: {changes_text}")
 
             if is_risky:
                 st.warning(f"⚠️ 선택 {idx + 1}은 위험할 수 있습니다!")
@@ -1083,6 +1106,9 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
 
     # 생활 이벤트 체크 (advance_time이 true이고, 엔딩 시나리오가 아닌 경우에만)
     if result.get('advance_time', False):
+        # 시간 진행
+        game.state.advance_time()
+
         # 엔딩 시나리오로 가는 경우 생활 이벤트 발생 방지
         next_scenario = result.get('next')
         if not next_scenario or not next_scenario.startswith('ending_'):
@@ -1091,15 +1117,16 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
                 # 원래 다음 시나리오를 저장하고, 생활 이벤트를 먼저 표시
                 st.session_state.pending_next_scenario = game.state.current_scenario
                 game.state.current_scenario = life_event_id
-            # 생활 이벤트 발생 플래그 설정
-            st.session_state.life_event_triggered = True
-
-        # 고급 기능: 부소장 임계값 이벤트 체크
-        deputy_event_id = game.check_deputy_threshold_events()
-        if deputy_event_id:
-            st.session_state.pending_next_scenario = game.state.current_scenario
-            game.state.current_scenario = deputy_event_id
-            st.session_state.deputy_event_triggered = True
+                # 생활 이벤트 발생 플래그 설정
+                st.session_state.life_event_triggered = True
+            else:
+                # 생활 이벤트가 없는 경우에만 부소장 이벤트 체크
+                # (한 턴에 하나의 이벤트만 발생하도록)
+                deputy_event_id = game.check_deputy_threshold_events()
+                if deputy_event_id:
+                    st.session_state.pending_next_scenario = game.state.current_scenario
+                    game.state.current_scenario = deputy_event_id
+                    st.session_state.deputy_event_triggered = True
 
         # 고급 기능: 장기 영향(delayed effects) 체크
         triggered_effects = game.check_delayed_effects()
