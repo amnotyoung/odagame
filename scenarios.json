@@ -3600,48 +3600,6 @@
       }
     ]
   },
-  "deputy_principled_high_loyalty": {
-    "title": "🌟 김태영 부소장의 적극적 협조",
-    "description": "김태영 부소장의 태도가 눈에 띄게 달라졌습니다. 최근 회의에서 당신의 의견에 별다른 이의 없이 동의했고, 이전에 소극적이던 프로젝트 건도 직접 챙기기 시작했습니다.\n\n본부에서 온 메일을 보니 부소장이 긍정적인 보고를 올린 것 같습니다. 막혔던 예산 건도 어느새 처리되어 있습니다. 직원들도 부소장이 이전보다 적극적으로 협조하는 모습에 업무가 수월해졌다고 합니다.",
-    "threshold_type": "principled",
-    "threshold_value": 50,
-    "one_time": true,
-    "choices": [
-      {
-        "text": "특별한 반응 없이 업무 진행",
-        "result": {
-          "message": "굳이 언급하지 않고 업무를 진행합니다. 나중에 복도에서 부소장과 마주쳤을 때, 그가 가볍게 고개를 끄덕이는 것을 봅니다. 이 정도면 충분합니다.",
-          "stats": {
-            "reputation": 5,
-            "staff_morale": 8,
-            "project_success": 3
-          },
-          "deputy_morale": {
-            "principled": 8
-          },
-          "advance_time": false,
-          "next": null
-        }
-      },
-      {
-        "text": "다음 회의에서 부소장 의견 적극 반영",
-        "result": {
-          "message": "다음 기획회의에서 부소장의 의견을 적극 수용했습니다. 그의 현장 경험이 반영되면서 사업 계획이 더 현실적으로 다듬어졌고, 회의 분위기도 한결 협조적으로 바뀌었습니다.",
-          "stats": {
-            "project_success": 10,
-            "reputation": 6,
-            "staff_morale": 4
-          },
-          "deputy_morale": {
-            "principled": 12
-          },
-          "advance_time": false,
-          "next": null
-        }
-      }
-    ],
-    "ascii_art": "⭐ 부소장 충성도 ⭐\n    김태영 부소장\n      ┌─────┐\n      │ 💼  │\n      │ 😊  │\n      └─────┘\n    ✨ 전폭 지지 ✨"
-  },
   "deputy_principled_low_resignation": {
     "title": "⚠️ 김태영 부소장의 전보 신청",
     "description": "본부에서 긴급 연락이 왔습니다. 김태영 부소장이 전보 신청서를 제출했다는 것입니다. 그는 \"소장님의 리더십 방식과 제 가치관이 맞지 않는 것 같다\"는 사유를 적었습니다.\n\n현지 직원들 사이에서도 \"부소장님이 떠나신다\"는 소문이 돌면서 불안감이 커지고 있습니다. 이대로 두면 조직 분위기가 크게 악화될 것입니다.",

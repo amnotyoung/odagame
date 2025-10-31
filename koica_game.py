@@ -1274,10 +1274,6 @@ class KOICAGame:
         elif (self.state.reputation <= 30 and
             'deputy_local_friendly_transparency_concern' not in self.state.triggered_deputy_events):
             event_id = 'deputy_local_friendly_transparency_concern'
-        # 김태영 부소장 고충성도 이벤트
-        elif (deputy_principled['morale'] >= 50 and
-            'deputy_principled_high_loyalty' not in self.state.triggered_deputy_events):
-            event_id = 'deputy_principled_high_loyalty'
         # 김태영 부소장 전보 위기 이벤트
         elif (deputy_principled['morale'] <= 20 and
             'deputy_principled_low_resignation' not in self.state.triggered_deputy_events):
