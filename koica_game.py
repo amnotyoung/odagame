@@ -30,7 +30,14 @@ class GameState:
         self.year = 1
         self.period = 1  # 격월 단위 (1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
         self.reputation = 25  # 평판 (0-100) - 더 어려운 시작점
-        self.budget_execution_rate = 25  # 예산 집행률 (0-100), 80-100%가 이상적 - 더 어려운 시작점
+
+        # KOICA 예산은 세목별로 관리됨 (인건비, 사업비, 운영비는 별도 세목)
+        self.budget_execution_rates = {
+            '인건비': 25,  # 현지직원 급여 등
+            '사업비': 25,  # 프로젝트 사업비
+            '운영비': 25   # 사무소 운영비
+        }
+
         self.staff_morale = 30  # 직원 만족도 (0-100) - 더 어려운 시작점
         self.project_success = 25  # 프로젝트 성공도 (0-100) - 더 어려운 시작점
 
@@ -85,6 +92,17 @@ class GameState:
         self.yps = self._initialize_yps()
         self.local_staff = self._initialize_local_staff()
 
+    @property
+    def budget_execution_rate(self):
+        """세목별 예산 집행률의 평균 (호환성을 위한 프로퍼티)"""
+        return sum(self.budget_execution_rates.values()) / len(self.budget_execution_rates)
+
+    @budget_execution_rate.setter
+    def budget_execution_rate(self, value):
+        """모든 세목의 예산 집행률을 동일한 값으로 설정 (호환성을 위한 setter)"""
+        for key in self.budget_execution_rates:
+            self.budget_execution_rates[key] = value
+
     def update_stats(self, changes):
         """스탯 업데이트 및 히스토리 기록"""
         old_stats = {
@@ -98,9 +116,31 @@ class GameState:
 
         if 'reputation' in changes:
             self.reputation = max(0, min(100, self.reputation + changes['reputation']))
+
+        # 세목별 예산 집행률 처리
+        if 'budget_personnel' in changes or 'budget_인건비' in changes:
+            # 인건비 세목
+            change_value = changes.get('budget_personnel', changes.get('budget_인건비', 0))
+            self.budget_execution_rates['인건비'] = max(0, min(100,
+                self.budget_execution_rates['인건비'] + change_value))
+
+        if 'budget_project' in changes or 'budget_사업비' in changes:
+            # 사업비 세목
+            change_value = changes.get('budget_project', changes.get('budget_사업비', 0))
+            self.budget_execution_rates['사업비'] = max(0, min(100,
+                self.budget_execution_rates['사업비'] + change_value))
+
+        if 'budget_operation' in changes or 'budget_운영비' in changes:
+            # 운영비 세목
+            change_value = changes.get('budget_operation', changes.get('budget_운영비', 0))
+            self.budget_execution_rates['운영비'] = max(0, min(100,
+                self.budget_execution_rates['운영비'] + change_value))
+
         if 'budget' in changes:
-            # budget 변화값을 예산 집행률로 변환
-            self.budget_execution_rate = max(0, min(100, self.budget_execution_rate + changes['budget']))
+            # 기존 호환성을 위해 'budget'은 사업비로 처리
+            self.budget_execution_rates['사업비'] = max(0, min(100,
+                self.budget_execution_rates['사업비'] + changes['budget']))
+
         if 'staff_morale' in changes:
             self.staff_morale = max(0, min(100, self.staff_morale + changes['staff_morale']))
         if 'project_success' in changes:
@@ -119,6 +159,7 @@ class GameState:
             'new': {
                 'reputation': self.reputation,
                 'budget_execution_rate': self.budget_execution_rate,
+                'budget_execution_rates': self.budget_execution_rates.copy(),  # 세목별 예산 집행률
                 'staff_morale': self.staff_morale,
                 'project_success': self.project_success,
                 'stress': self.stress,
@@ -453,7 +494,11 @@ class GameState:
         print("-"*60)
         print("💼 업무 스탯")
         print(f"🌟 평판: {self.reputation}/100 {'■' * (self.reputation//5)}{'□' * (20-self.reputation//5)}")
-        print(f"💰 예산 집행률: {self.budget_execution_rate}/100 {'■' * (self.budget_execution_rate//5)}{'□' * (20-self.budget_execution_rate//5)}")
+        avg_budget = int(self.budget_execution_rate)
+        print(f"💰 예산 집행률(평균): {avg_budget}/100 {'■' * (avg_budget//5)}{'□' * (20-avg_budget//5)}")
+        print(f"   ├ 인건비: {int(self.budget_execution_rates['인건비'])}/100")
+        print(f"   ├ 사업비: {int(self.budget_execution_rates['사업비'])}/100")
+        print(f"   └ 운영비: {int(self.budget_execution_rates['운영비'])}/100")
         print(f"😊 직원 만족도: {self.staff_morale}/100 {'■' * (self.staff_morale//5)}{'□' * (20-self.staff_morale//5)}")
         print(f"📊 프로젝트 성공도: {self.project_success}/100 {'■' * (self.project_success//5)}{'□' * (20-self.project_success//5)}")
         print("-"*60)
@@ -1877,17 +1922,21 @@ class KOICAGame:
 
         print("\n📊 영역별 성과:")
         print(f"   🌟 평판: {self.state.reputation}/100")
-        print(f"   💰 예산 집행률: {self.state.budget_execution_rate}/100")
+        avg_budget = int(self.state.budget_execution_rate)
+        print(f"   💰 예산 집행률(평균): {avg_budget}/100")
+        print(f"      ├ 인건비: {int(self.state.budget_execution_rates['인건비'])}/100")
+        print(f"      ├ 사업비: {int(self.state.budget_execution_rates['사업비'])}/100")
+        print(f"      └ 운영비: {int(self.state.budget_execution_rates['운영비'])}/100")
         print(f"   😊 직원 만족도: {self.state.staff_morale}/100")
         print(f"   📊 프로젝트 성공도: {self.state.project_success}/100")
 
         # 예산 집행률 평가 표시
-        if 80 <= self.state.budget_execution_rate <= 100:
-            print(f"\n   💰 예산 집행: 우수 ({self.state.budget_execution_rate}%)")
-        elif self.state.budget_execution_rate >= 60:
-            print(f"\n   💰 예산 집행: 양호 ({self.state.budget_execution_rate}%)")
+        if 80 <= avg_budget <= 100:
+            print(f"\n   💰 예산 집행: 우수 ({avg_budget}%)")
+        elif avg_budget >= 60:
+            print(f"\n   💰 예산 집행: 양호 ({avg_budget}%)")
         else:
-            print(f"\n   💰 예산 집행: 미흡 ({self.state.budget_execution_rate}%)")
+            print(f"\n   💰 예산 집행: 미흡 ({avg_budget}%)")
 
         # 플레이 스타일 요약 (AI 모드)
         if self.ai_mode and len(self.state.choice_history) > 0:
