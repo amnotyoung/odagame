@@ -365,24 +365,6 @@
             "local_friendly": 8
           }
         }
-      },
-      {
-        "text": "세 가지 병행 - 타임 매니지먼트 전략 실행",
-        "result": {
-          "message": "모든 일정을 체계적으로 관리하며 병행하기로 했습니다. 성과 보고회는 간소화하고, 환송식은 의미있게, NGO와는 실무진 교류부터 시작했습니다. 효율적이었으나 직원들이 피로감을 느꼈습니다.",
-          "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": -5,
-            "budget": 10
-          },
-          "advance_time": true,
-          "next": "period_6",
-          "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 8
-          }
-        }
       }
     ]
   },
