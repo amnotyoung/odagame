@@ -898,7 +898,7 @@ class KOICAGame:
         print("="*60)
         print("1. 집에서 직접 요리 (건강하지만 시간 소요)")
         print("2. 외식 위주 (편리하지만 비용과 건강)")
-        print("3. 배달&포장")
+        print("3. 배달&포장 (편리하고 시간 절약, 하지만 배달비 부담)")
 
         if self.demo_mode:
             meal_choice = random.randint(1, 3)
