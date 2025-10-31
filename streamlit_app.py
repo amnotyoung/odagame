@@ -230,7 +230,12 @@ def display_stats(state: GameState):
         st.progress(state.wellbeing / 100)
 
         # 시간
-        st.markdown(f"**📅 {state.year}년차 {state.period}기**")
+        period_months = {
+            1: "1-2월", 2: "3-4월", 3: "5-6월",
+            4: "7-8월", 5: "9-10월", 6: "11-12월"
+        }
+        period_str = period_months.get(state.period, f"{state.period}기")
+        st.markdown(f"**📅 {state.year}년차 {period_str}**")
 
         # 경고 표시
         warnings = []
@@ -872,11 +877,17 @@ def game_over_screen():
     elif state.wellbeing <= 0:
         reason = "건강 위기로 의료 후송되었습니다."
 
+    period_months = {
+        1: "1-2월", 2: "3-4월", 3: "5-6월",
+        4: "7-8월", 5: "9-10월", 6: "11-12월"
+    }
+    period_str = period_months.get(state.period, f"{state.period}기")
+
     st.markdown(f"""
     <div class="warning-box">
     <h3>{reason}</h3>
 
-    <b>재임 기간:</b> {state.year}년 {state.period}기
+    <b>재임 기간:</b> {state.year}년 {period_str}
 
     <b>최종 스탯:</b>
     - 평판: {state.reputation}
