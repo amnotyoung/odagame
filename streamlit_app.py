@@ -24,7 +24,7 @@ from koica_game import GameState, KOICAGame
 
 # Page configuration
 st.set_page_config(
-    page_title="KOICA 소장 시뮬레이터",
+    page_title="내가 소장이 될 상인가",
     page_icon="🌍",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -255,7 +255,17 @@ def display_stats(state: GameState):
 
 def welcome_screen():
     """환영 화면"""
-    st.title("🌍 KOICA 해외사무소장 시뮬레이터")
+    st.title("🌍 내가 소장이 될 상인가")
+
+    # 허구 disclaimer
+    st.markdown("""
+    <div class="warning-box">
+    <p style="text-align: center; margin: 0; font-size: 0.95rem;">
+    ⚠️ <b>이 게임의 모든 내용은 허구입니다.</b><br>
+    실제 기관, 인물, 사건과 무관하며 교육 및 재미를 위한 시뮬레이션입니다.
+    </p>
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="scenario-text">
@@ -333,7 +343,7 @@ def ai_setup_screen():
 
 def game_intro_screen():
     """게임 시작 안내"""
-    st.title("🌍 KOICA 소장 시뮬레이터")
+    st.title("🌍 내가 소장이 될 상인가")
 
     st.markdown("""
     <div class="scenario-text">
