@@ -4563,39 +4563,39 @@
     ]
   },
   "deputy_principled_high_loyalty": {
-    "title": "🌟 김원칙 부소장의 전폭적 지지",
-    "description": "김원칙 부소장이 찾아옵니다. \"소장님, 그동안 함께 일하면서 많이 배웠습니다. 소장님의 원칙적인 리더십 덕분에 KOICA의 진정한 가치를 깨달았습니다.\"\n\n그는 자신의 네트워크를 총동원하여 어려운 프로젝트를 성사시켰고, 본부에 당신의 업적을 적극 홍보했습니다. 직원들도 부소장의 헌신적인 모습에 감동받아 사기가 크게 올랐습니다.",
+    "title": "🌟 김원칙 부소장의 적극적 협조",
+    "description": "김원칙 부소장이 찾아옵니다. \"소장님, 최근 소장님과 함께 일하면서 KOICA 사업의 방향성에 대해 공감하게 됐습니다. 소장님의 원칙적인 접근이 인상적입니다.\"\n\n그는 자신의 네트워크를 활용하여 난항이던 프로젝트를 원활히 진행시켰고, 본부에도 긍정적인 보고를 올렸습니다. 직원들도 부소장의 적극적인 모습을 보며 사기가 올랐습니다.",
     "threshold_type": "principled",
     "threshold_value": 50,
     "one_time": true,
     "choices": [
       {
-        "text": "감사를 표하고 함께 더 나은 조직을 만들자고 격려",
+        "text": "감사를 표하고 앞으로도 협력을 부탁",
         "result": {
-          "message": "\"우리가 함께라면 더 큰 일을 해낼 수 있습니다.\" 당신의 말에 김원칙 부소장이 고개를 끄덕입니다. 팀 전체가 하나로 뭉쳤습니다.",
+          "message": "\"부소장님 덕분에 많은 도움이 됩니다. 앞으로도 잘 부탁드립니다.\" 당신의 말에 김원칙 부소장이 미소 지으며 고개를 끄덕입니다.",
           "stats": {
-            "reputation": 8,
-            "staff_morale": 10,
-            "project_success": 5
+            "reputation": 5,
+            "staff_morale": 8,
+            "project_success": 3
           },
           "deputy_morale": {
-            "principled": 10
+            "principled": 8
           },
           "advance_time": false,
           "next": null
         }
       },
       {
-        "text": "부소장에게 중요한 프로젝트 전권 위임",
+        "text": "부소장에게 다음 핵심 사업 총괄 맡기기",
         "result": {
-          "message": "김원칙 부소장에게 차기 주요 사업의 전권을 위임했습니다. 그는 이 신뢰에 보답하듯 완벽한 성과를 냈고, 본부에서도 극찬했습니다.",
+          "message": "김원칙 부소장에게 다음 주요 사업의 총괄을 맡겼습니다. 그는 책임감을 갖고 사업을 잘 이끌었고, 프로젝트는 성공적으로 진행됐습니다.",
           "stats": {
-            "project_success": 15,
-            "reputation": 10,
-            "staff_morale": 5
+            "project_success": 10,
+            "reputation": 6,
+            "staff_morale": 4
           },
           "deputy_morale": {
-            "principled": 15
+            "principled": 12
           },
           "advance_time": false,
           "next": null
