@@ -834,9 +834,9 @@ class KOICAGame:
             car_choice = self._get_choice_input(3)
 
         car_effects = {
-            1: {"stress": -5, "wellbeing": 5, "choice": "bring_from_korea"},
-            2: {"stress": 5, "wellbeing": -3, "choice": "buy_local"},
-            3: {"stress": 8, "wellbeing": -5, "choice": "no_car"}
+            1: {"stress": -3, "wellbeing": 4, "choice": "bring_from_korea"},
+            2: {"stress": 4, "wellbeing": -2, "choice": "buy_local"},
+            3: {"stress": 6, "wellbeing": -4, "choice": "no_car"}
         }
         self.state.car_choice = car_effects[car_choice]["choice"]
         self.state.update_stats({"stress": car_effects[car_choice]["stress"],
@@ -859,10 +859,10 @@ class KOICAGame:
             housing_choice = self._get_choice_input(4)
 
         housing_effects = {
-            1: {"stress": -3, "wellbeing": 8, "choice": "spacious"},
-            2: {"stress": -5, "wellbeing": 10, "budget": -5, "choice": "nice"},
-            3: {"stress": -10, "wellbeing": -5, "choice": "near_office"},
-            4: {"stress": -5, "wellbeing": 3, "choice": "secure"}
+            1: {"stress": -2, "wellbeing": 6, "choice": "spacious"},
+            2: {"stress": -3, "wellbeing": 7, "budget": -3, "choice": "nice"},
+            3: {"stress": -6, "wellbeing": -3, "choice": "near_office"},
+            4: {"stress": -3, "wellbeing": 2, "choice": "secure"}
         }
         self.state.housing_choice = housing_effects[housing_choice]["choice"]
         self.state.update_stats({k: v for k, v in housing_effects[housing_choice].items() if k != "choice"})
@@ -884,10 +884,10 @@ class KOICAGame:
             leisure_choice = self._get_choice_input(4)
 
         leisure_effects = {
-            1: {"stress": -8, "wellbeing": 5, "choice": "reading"},
-            2: {"stress": -10, "wellbeing": 15, "choice": "exercise"},
-            3: {"stress": -5, "wellbeing": -5, "staff_morale": 5, "choice": "drinking"},
-            4: {"stress": -3, "wellbeing": 3, "choice": "gaming"}
+            1: {"stress": -5, "wellbeing": 4, "choice": "reading"},
+            2: {"stress": -6, "wellbeing": 10, "choice": "exercise"},
+            3: {"stress": -3, "wellbeing": -3, "staff_morale": 4, "choice": "drinking"},
+            4: {"stress": -2, "wellbeing": 2, "choice": "gaming"}
         }
         self.state.leisure_choice = leisure_effects[leisure_choice]["choice"]
         self.state.update_stats({k: v for k, v in leisure_effects[leisure_choice].items() if k != "choice"})
@@ -908,9 +908,9 @@ class KOICAGame:
             meal_choice = self._get_choice_input(3)
 
         meal_effects = {
-            1: {"stress": 5, "wellbeing": 10, "choice": "cook_at_home"},
-            2: {"stress": -3, "wellbeing": -5, "budget": -5, "choice": "eat_out"},
-            3: {"stress": 0, "wellbeing": 3, "budget": -2, "choice": "mixed"}
+            1: {"stress": 3, "wellbeing": 7, "choice": "cook_at_home"},
+            2: {"stress": -2, "wellbeing": -3, "budget": -3, "choice": "eat_out"},
+            3: {"stress": 0, "wellbeing": 2, "budget": -1, "choice": "mixed"}
         }
         self.state.meal_choice = meal_effects[meal_choice]["choice"]
         self.state.update_stats({k: v for k, v in meal_effects[meal_choice].items() if k != "choice"})
