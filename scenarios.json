@@ -213,11 +213,11 @@
       {
         "text": "본부에 추가 예산 요청 - 사업 품질 유지",
         "result": {
-          "message": "본부에 상황을 보고하고 예산 추가 배정을 요청했습니다. 2주 후 승인이 났고, PMC와 함께 수정 계획을 수립했습니다. 프로젝트 품질은 유지되었으나 본부 평가에서 '계획 미흡'으로 지적받았습니다.",
+          "message": "본부 지역실에 상황을 보고하고 예산 추가 배정을 요청했습니다. 2주 후 승인이 났고, PMC와 함께 수정 계획을 수립했습니다. 프로젝트 품질은 유지되었고, 적극적인 사업 관리로 평가받았습니다. 다만 예산 증액으로 인해 집행률 관리가 필요합니다.",
           "stats": {
             "project_success": 7,
-            "budget": -7,
-            "reputation": -7,
+            "budget": -3,
+            "reputation": 2,
             "staff_morale": 4
           },
           "advance_time": true,
@@ -2410,13 +2410,13 @@
       {
         "text": "본부를 지속적으로 설득해 추가 예산을 받는다",
         "result": {
-          "message": "3개월간 본부를 설득한 끝에 추가 예산을 받아냈습니다. 사업을 정상 진행할 수 있게 되었지만, 스트레스가 극심했습니다.",
+          "message": "본부 지역실을 3개월간 설득한 끝에 추가 예산을 받아냈습니다. 사업을 정상 진행할 수 있게 되었고, 위기 상황에서 적극적인 대응으로 평가받았습니다. 다만 설득 과정에서 체력 소모가 있었습니다.",
           "stats": {
             "budget": 10,
             "project_success": 8,
-            "reputation": -1,
-            "stress": 15,
-            "wellbeing": -15
+            "reputation": 2,
+            "stress": 10,
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
