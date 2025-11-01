@@ -957,6 +957,9 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
         # 결과 메시지 저장
         st.session_state.result_message = result.get('message', '행동을 수행했습니다.')
 
+        # 선택한 행동 텍스트 저장 (결과 화면에 표시용)
+        st.session_state.last_choice_text = action
+
         # 스탯 업데이트
         stats = result.get('stats', {})
         # 스탯 변화 저장 (표시용)
