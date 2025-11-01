@@ -445,19 +445,19 @@ def lifestyle_setup_screen():
 
         if st.button("1. 한국에서 자동차를 가져간다 (익숙하지만 비용과 수리가 문제)", key="car_1", use_container_width=True):
             game.state.car_choice = "bring_from_korea"
-            game.state.update_stats({"stress": -5, "wellbeing": 5})
+            game.state.update_stats({"stress": -3, "wellbeing": 6})
             st.session_state.lifestyle_step = 1
             st.rerun()
 
         if st.button("2. 현지에서 중고차를 구입한다 (저렴하지만 품질이 불확실)", key="car_2", use_container_width=True):
             game.state.car_choice = "buy_local"
-            game.state.update_stats({"stress": 5, "wellbeing": -3})
+            game.state.update_stats({"stress": 4, "wellbeing": 0})
             st.session_state.lifestyle_step = 1
             st.rerun()
 
         if st.button("3. 자동차 없이 택시와 대중교통 이용 (자유롭지만 불편)", key="car_3", use_container_width=True):
             game.state.car_choice = "no_car"
-            game.state.update_stats({"stress": 8, "wellbeing": -5})
+            game.state.update_stats({"stress": 6, "wellbeing": -2})
             st.session_state.lifestyle_step = 1
             st.rerun()
 
@@ -471,25 +471,25 @@ def lifestyle_setup_screen():
 
         if st.button("1. 넓은 집 (여유 공간, 하지만 먼 거리)", key="house_1", use_container_width=True):
             game.state.housing_choice = "spacious"
-            game.state.update_stats({"stress": -3, "wellbeing": 8})
+            game.state.update_stats({"stress": -2, "wellbeing": 8})
             st.session_state.lifestyle_step = 2
             st.rerun()
 
         if st.button("2. 좋은 집 (새 건물, 고급 시설, 하지만 월세 부분 자부담)", key="house_2", use_container_width=True):
             game.state.housing_choice = "nice"
-            game.state.update_stats({"stress": -5, "wellbeing": 10, "budget": -5})
+            game.state.update_stats({"stress": -3, "wellbeing": 10, "budget": -3})
             st.session_state.lifestyle_step = 2
             st.rerun()
 
         if st.button("3. 사무소 가까운 집 (출퇴근 편리, 하지만 좁고 오래됨)", key="house_3", use_container_width=True):
             game.state.housing_choice = "near_office"
-            game.state.update_stats({"stress": -10, "wellbeing": -5})
+            game.state.update_stats({"stress": -6, "wellbeing": -2})
             st.session_state.lifestyle_step = 2
             st.rerun()
 
         if st.button("4. 치안 좋은 동네 집 (안전, 하지만 시내에서 멀고 심심함)", key="house_4", use_container_width=True):
             game.state.housing_choice = "secure"
-            game.state.update_stats({"stress": -5, "wellbeing": 3})
+            game.state.update_stats({"stress": -3, "wellbeing": 4})
             st.session_state.lifestyle_step = 2
             st.rerun()
 
@@ -503,25 +503,25 @@ def lifestyle_setup_screen():
 
         if st.button("1. 독서 (조용하고 지적인 시간)", key="leisure_1", use_container_width=True):
             game.state.leisure_choice = "reading"
-            game.state.update_stats({"stress": -8, "wellbeing": 5})
+            game.state.update_stats({"stress": -5, "wellbeing": 6})
             st.session_state.lifestyle_step = 3
             st.rerun()
 
         if st.button("2. 운동 (건강 관리와 스트레스 해소)", key="leisure_2", use_container_width=True):
             game.state.leisure_choice = "exercise"
-            game.state.update_stats({"stress": -10, "wellbeing": 15})
+            game.state.update_stats({"stress": -6, "wellbeing": 15})
             st.session_state.lifestyle_step = 3
             st.rerun()
 
         if st.button("3. 음주 (직원들과 친목, 하지만 건강 염려)", key="leisure_3", use_container_width=True):
             game.state.leisure_choice = "drinking"
-            game.state.update_stats({"stress": -5, "staff_morale": 8, "wellbeing": -8})
+            game.state.update_stats({"stress": -3, "staff_morale": 4, "wellbeing": -2})
             st.session_state.lifestyle_step = 3
             st.rerun()
 
         if st.button("4. 집에서 뒹굴기 (편안한 휴식)", key="leisure_4", use_container_width=True):
             game.state.leisure_choice = "gaming"
-            game.state.update_stats({"stress": -12, "wellbeing": -3})
+            game.state.update_stats({"stress": -2, "wellbeing": 4})
             st.session_state.lifestyle_step = 3
             st.rerun()
 
@@ -541,13 +541,13 @@ def lifestyle_setup_screen():
 
         if st.button("2. 주로 외식 (편리하지만 건강과 예산 부담)", key="meal_2", use_container_width=True):
             game.state.meal_choice = "eat_out"
-            game.state.update_stats({"stress": -5, "wellbeing": -5, "reputation": 3})
+            game.state.update_stats({"stress": -2, "wellbeing": -2, "budget": -3})
             st.session_state.lifestyle_step = 4
             st.rerun()
 
         if st.button("3. 배달&포장 (편리하고 시간 절약, 하지만 배달비 부담)", key="meal_3", use_container_width=True):
             game.state.meal_choice = "mixed"
-            game.state.update_stats({"wellbeing": 5})
+            game.state.update_stats({"wellbeing": 4, "budget": -1})
             st.session_state.lifestyle_step = 4
             st.rerun()
 

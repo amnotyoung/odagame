@@ -103,7 +103,7 @@
             "project_success": 9,
             "reputation": 4,
             "staff_morale": -4,
-            "wellbeing": -6
+            "wellbeing": -5
           },
           "deputy_morale": {
             "principled": 7,
@@ -189,7 +189,7 @@
             "project_success": 5,
             "staff_morale": -4,
             "stress": 5,
-            "wellbeing": -10
+            "wellbeing": -7
           },
           "deputy_morale": {
             "principled": 12,
@@ -279,7 +279,7 @@
             "budget": -9,
             "staff_morale": -3,
             "stress": 5,
-            "wellbeing": -9
+            "wellbeing": -7
           },
           "advance_time": true,
           "next": "period_6",
@@ -401,7 +401,7 @@
             "reputation": 9,
             "project_success": -3,
             "staff_morale": -4,
-            "wellbeing": -6
+            "wellbeing": -5
           },
           "advance_time": true,
           "next": "period_7",
@@ -429,7 +429,7 @@
             "reputation": 13,
             "project_success": -5,
             "staff_morale": -4,
-            "wellbeing": -10
+            "wellbeing": -7
           },
           "advance_time": true,
           "next": "period_8",
@@ -657,7 +657,7 @@
             "staff_morale": -8,
             "budget": 10,
             "stress": 12,
-            "wellbeing": -15
+            "wellbeing": -10
           },
           "advance_time": true,
           "next": "period_11",
@@ -901,7 +901,7 @@
         "result": {
           "message": "현지 병원에서 진료를 받았습니다. 의사는 스트레스와 식습관 문제를 지적했습니다. 약을 처방받았지만, 하루 업무를 쉬어야 했습니다.",
           "stats": {
-            "wellbeing": 7,
+            "wellbeing": 8,
             "stress": 2,
             "project_success": -2
           },
@@ -918,7 +918,7 @@
         "result": {
           "message": "대사관 의무관이 친절하게 상담해주었습니다. 응급약을 받았고, 필요하면 한국 원격 진료도 가능하다고 했습니다. 안심이 되었습니다.",
           "stats": {
-            "wellbeing": 8,
+            "wellbeing": 10,
             "stress": -4,
             "reputation": 1
           },
@@ -957,7 +957,7 @@
         "result": {
           "message": "현지 한인 교민이 운영하는 작은 한식당을 찾았습니다. 김치찌개를 먹으며 주인과 이야기를 나눴습니다. 맛은 한국만큼은 아니지만, 마음이 위로되었습니다.",
           "stats": {
-            "wellbeing": 6,
+            "wellbeing": 7,
             "stress": -13,
             "budget": -3
           },
@@ -974,7 +974,7 @@
         "result": {
           "message": "현지 마트에서 재료를 구해 부대찌개를 만들어봤습니다. 맛은... 실패했지만, 만드는 과정 자체가 치유가 되었습니다. 다음엔 더 잘 만들 수 있을 것 같습니다.",
           "stats": {
-            "wellbeing": 8,
+            "wellbeing": 10,
             "stress": -8
           },
           "advance_time": false,
@@ -990,7 +990,7 @@
         "result": {
           "message": "가족과 1시간 동안 통화했습니다. 한국의 거리, 익숙한 얼굴들을 보니 눈물이 났습니다. 가족들이 응원해주었습니다. 힘이 났습니다.",
           "stats": {
-            "wellbeing": 6,
+            "wellbeing": 7,
             "stress": -11
           },
           "advance_time": false,
@@ -1012,7 +1012,7 @@
         "result": {
           "message": "심리 상담사와 화상으로 1시간 동안 이야기를 나눴습니다. 당신의 감정이 정상적이고 이해할 만하다는 말에 안심했습니다. 정기 상담을 예약했습니다.",
           "stats": {
-            "wellbeing": 14,
+            "wellbeing": 17,
             "stress": -15
           },
           "advance_time": false,
@@ -1028,7 +1028,7 @@
         "result": {
           "message": "부소장에게 솔직하게 마음을 털어놓았습니다. 그도 비슷한 경험이 있다며 공감해주었습니다. 직원들이 업무 분담을 자청하며 도와주었습니다.",
           "stats": {
-            "wellbeing": 7,
+            "wellbeing": 8,
             "stress": -15,
             "staff_morale": 6
           },
@@ -1045,7 +1045,7 @@
         "result": {
           "message": "매일 아침 30분씩 조깅을 시작했습니다. 명상 앱을 다운받아 저녁에 명상을 합니다. 조금씩 나아지는 것 같지만, 근본적인 해결은 아직 멀었습니다.",
           "stats": {
-            "wellbeing": 4,
+            "wellbeing": 5,
             "stress": -14
           },
           "advance_time": false,
@@ -1102,7 +1102,7 @@
           "message": "갑작스러운 일정 연기로 파트너 기관이 불쾌해했습니다. 하지만 당신은 하루를 쉬며 재충전할 수 있었습니다.",
           "stats": {
             "stress": -12,
-            "wellbeing": 6,
+            "wellbeing": 7,
             "reputation": -9,
             "project_success": -6
           },
@@ -1142,7 +1142,7 @@
         "result": {
           "message": "사무소 직원들이 도와 합리적인 가격의 서비스 아파트를 찾았습니다. 호텔보다 저렴하고 생활하기 편했습니다. 팀원들의 도움에 감사했습니다.",
           "stats": {
-            "wellbeing": 6,
+            "wellbeing": 7,
             "stress": 3,
             "staff_morale": 5,
             "budget": -8
@@ -1160,7 +1160,7 @@
         "result": {
           "message": "집주인과 크게 다퉜습니다. 결국 2주 만에 수리가 완료되었지만, 관계가 불편해졌습니다.",
           "stats": {
-            "wellbeing": -6,
+            "wellbeing": -5,
             "stress": 3,
             "reputation": -2
           },
@@ -1187,7 +1187,7 @@
             "project_success": 7,
             "staff_morale": 5,
             "stress": -11,
-            "wellbeing": 4
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1206,7 +1206,7 @@
             "project_success": 6,
             "staff_morale": 6,
             "stress": -9,
-            "wellbeing": 10
+            "wellbeing": 12
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1224,7 +1224,7 @@
             "reputation": 8,
             "project_success": 11,
             "stress": -7,
-            "wellbeing": 6
+            "wellbeing": 7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1250,7 +1250,7 @@
             "reputation": 8,
             "budget": -12,
             "stress": 2,
-            "wellbeing": 8
+            "wellbeing": 10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1269,7 +1269,7 @@
             "project_success": 4,
             "reputation": 2,
             "stress": -9,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1288,7 +1288,7 @@
             "project_success": 5,
             "staff_morale": 6,
             "stress": -5,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1313,7 +1313,7 @@
             "project_success": 5,
             "staff_morale": 10,
             "stress": 2,
-            "wellbeing": 8
+            "wellbeing": 10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1332,7 +1332,7 @@
             "reputation": 6,
             "staff_morale": 7,
             "stress": -7,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1351,7 +1351,7 @@
             "project_success": 7,
             "staff_morale": 7,
             "stress": -6,
-            "wellbeing": 6
+            "wellbeing": 7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1376,7 +1376,7 @@
             "project_success": 7,
             "budget": -12,
             "stress": 4,
-            "wellbeing": 14
+            "wellbeing": 17
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1439,7 +1439,7 @@
             "project_success": 8,
             "staff_morale": 10,
             "stress": 6,
-            "wellbeing": 9
+            "wellbeing": 11
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1458,7 +1458,7 @@
             "project_success": 13,
             "budget": -15,
             "stress": -8,
-            "wellbeing": 6
+            "wellbeing": 7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1477,7 +1477,7 @@
             "project_success": 5,
             "staff_morale": 5,
             "stress": -6,
-            "wellbeing": 8
+            "wellbeing": 10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1502,7 +1502,7 @@
             "reputation": 9,
             "budget": -5,
             "stress": -14,
-            "wellbeing": 11
+            "wellbeing": 13
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1521,7 +1521,7 @@
             "reputation": 6,
             "project_success": 3,
             "stress": -12,
-            "wellbeing": 9
+            "wellbeing": 11
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1540,7 +1540,7 @@
             "staff_morale": 10,
             "project_success": 3,
             "stress": -9,
-            "wellbeing": 8
+            "wellbeing": 10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1565,7 +1565,7 @@
             "project_success": 9,
             "staff_morale": 9,
             "stress": 2,
-            "wellbeing": 8
+            "wellbeing": 10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1585,7 +1585,7 @@
             "staff_morale": 9,
             "budget": -8,
             "stress": -6,
-            "wellbeing": 8
+            "wellbeing": 10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1604,7 +1604,7 @@
             "project_success": 7,
             "staff_morale": 6,
             "stress": -8,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1629,7 +1629,7 @@
             "project_success": 11,
             "staff_morale": 9,
             "stress": 3,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1648,7 +1648,7 @@
             "project_success": 9,
             "staff_morale": 7,
             "stress": -5,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1667,7 +1667,7 @@
             "project_success": 11,
             "staff_morale": 7,
             "stress": 6,
-            "wellbeing": 9
+            "wellbeing": 11
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1692,7 +1692,7 @@
             "project_success": 8,
             "reputation": 5,
             "stress": -14,
-            "wellbeing": 3
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1711,7 +1711,7 @@
             "project_success": 15,
             "reputation": 10,
             "stress": 3,
-            "wellbeing": 4
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1730,7 +1730,7 @@
             "project_success": 9,
             "reputation": 9,
             "stress": -10,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1755,7 +1755,7 @@
             "project_success": 14,
             "budget": -15,
             "stress": -2,
-            "wellbeing": 15
+            "wellbeing": 18
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1774,7 +1774,7 @@
             "reputation": 8,
             "project_success": 5,
             "stress": -8,
-            "wellbeing": 4
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1818,7 +1818,7 @@
             "project_success": 15,
             "staff_morale": 10,
             "stress": 2,
-            "wellbeing": 7
+            "wellbeing": 8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1837,7 +1837,7 @@
             "project_success": 8,
             "staff_morale": 9,
             "stress": -9,
-            "wellbeing": 4
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1856,7 +1856,7 @@
             "project_success": 8,
             "reputation": 7,
             "stress": -12,
-            "wellbeing": 12
+            "wellbeing": 14
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1881,7 +1881,7 @@
             "reputation": -10,
             "staff_morale": -4,
             "stress": 3,
-            "wellbeing": -3
+            "wellbeing": -2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1921,7 +1921,7 @@
             "staff_morale": 5,
             "budget": -15,
             "stress": 9,
-            "wellbeing": -8
+            "wellbeing": -6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1947,7 +1947,7 @@
             "project_success": -12,
             "staff_morale": -8,
             "stress": 9,
-            "wellbeing": -11
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1987,7 +1987,7 @@
             "reputation": 3,
             "staff_morale": 1,
             "stress": 15,
-            "wellbeing": -6
+            "wellbeing": -5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2013,7 +2013,7 @@
             "budget": -15,
             "reputation": 2,
             "stress": 14,
-            "wellbeing": -15
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2036,7 +2036,7 @@
             "budget": -15,
             "reputation": 1,
             "stress": 13,
-            "wellbeing": -12
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2081,7 +2081,7 @@
             "project_success": 3,
             "staff_morale": 3,
             "stress": 12,
-            "wellbeing": -5
+            "wellbeing": -4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2100,7 +2100,7 @@
             "reputation": -5,
             "staff_morale": 3,
             "stress": 9,
-            "wellbeing": -12
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2119,7 +2119,7 @@
             "reputation": -9,
             "staff_morale": -3,
             "stress": 7,
-            "wellbeing": -10
+            "wellbeing": -7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2144,7 +2144,7 @@
             "project_success": 4,
             "staff_morale": 3,
             "stress": -3,
-            "wellbeing": 3
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2182,7 +2182,7 @@
             "project_success": 5,
             "staff_morale": -2,
             "stress": 4,
-            "wellbeing": -3
+            "wellbeing": -2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2207,7 +2207,7 @@
             "project_success": 4,
             "staff_morale": -10,
             "stress": 14,
-            "wellbeing": -15
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2226,7 +2226,7 @@
             "project_success": 0,
             "staff_morale": 0,
             "stress": 15,
-            "wellbeing": -4
+            "wellbeing": -3
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2246,7 +2246,7 @@
             "project_success": 3,
             "staff_morale": -7,
             "stress": 5,
-            "wellbeing": -15
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2271,7 +2271,7 @@
             "project_success": 7,
             "staff_morale": -9,
             "stress": 10,
-            "wellbeing": -14
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2309,7 +2309,7 @@
             "project_success": -4,
             "staff_morale": -6,
             "stress": 7,
-            "wellbeing": -9
+            "wellbeing": -7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2333,7 +2333,7 @@
             "staff_morale": 3,
             "project_success": -10,
             "stress": 14,
-            "wellbeing": -15
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2352,7 +2352,7 @@
             "project_success": -11,
             "reputation": -7,
             "stress": 6,
-            "wellbeing": -11
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2371,7 +2371,7 @@
             "project_success": -12,
             "reputation": -6,
             "stress": 6,
-            "wellbeing": -6
+            "wellbeing": -5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2397,7 +2397,7 @@
             "reputation": -4,
             "staff_morale": -4,
             "stress": 4,
-            "wellbeing": -7
+            "wellbeing": -6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2416,7 +2416,7 @@
             "project_success": 8,
             "reputation": 2,
             "stress": 10,
-            "wellbeing": -8
+            "wellbeing": -6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2436,7 +2436,7 @@
             "budget": 1,
             "staff_morale": 1,
             "stress": 11,
-            "wellbeing": 6
+            "wellbeing": 7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2461,7 +2461,7 @@
             "project_success": -15,
             "staff_morale": 6,
             "stress": 10,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2481,7 +2481,7 @@
             "staff_morale": 6,
             "budget": -15,
             "stress": 9,
-            "wellbeing": 3
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2500,7 +2500,7 @@
             "reputation": -8,
             "staff_morale": -4,
             "stress": 5,
-            "wellbeing": -5
+            "wellbeing": -4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2525,7 +2525,7 @@
             "project_success": 3,
             "staff_morale": -10,
             "stress": 8,
-            "wellbeing": -10
+            "wellbeing": -7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2544,7 +2544,7 @@
             "project_success": 3,
             "staff_morale": 3,
             "stress": 15,
-            "wellbeing": -15
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2588,7 +2588,7 @@
             "project_success": -2,
             "staff_morale": -3,
             "stress": 5,
-            "wellbeing": -7
+            "wellbeing": -6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2607,7 +2607,7 @@
             "project_success": 0,
             "staff_morale": 3,
             "stress": 11,
-            "wellbeing": -13
+            "wellbeing": -9
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2650,7 +2650,7 @@
             "reputation": 5,
             "project_success": 5,
             "stress": 4,
-            "wellbeing": -6
+            "wellbeing": -5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2670,7 +2670,7 @@
             "staff_morale": 3,
             "budget": 3,
             "stress": 9,
-            "wellbeing": 6
+            "wellbeing": 7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2689,7 +2689,7 @@
             "project_success": 8,
             "reputation": 4,
             "stress": 7,
-            "wellbeing": -5
+            "wellbeing": -4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2733,7 +2733,7 @@
             "project_success": -2,
             "staff_morale": -6,
             "stress": 6,
-            "wellbeing": -8
+            "wellbeing": -6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2813,7 +2813,7 @@
             "reputation": 4,
             "budget_personnel": 15,
             "stress": 7,
-            "wellbeing": -5
+            "wellbeing": -4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2838,7 +2838,7 @@
             "project_success": 3,
             "staff_morale": 7,
             "stress": 7,
-            "wellbeing": -5
+            "wellbeing": -4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2857,7 +2857,7 @@
             "project_success": 3,
             "staff_morale": -4,
             "stress": 10,
-            "wellbeing": -8
+            "wellbeing": -6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2901,7 +2901,7 @@
             "project_success": 5,
             "staff_morale": 11,
             "stress": 11,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2920,7 +2920,7 @@
             "project_success": 11,
             "staff_morale": -8,
             "stress": 5,
-            "wellbeing": -11
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2940,7 +2940,7 @@
             "staff_morale": 6,
             "budget": -8,
             "stress": 8,
-            "wellbeing": 4
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2984,7 +2984,7 @@
             "reputation": -4,
             "staff_morale": -5,
             "stress": 5,
-            "wellbeing": -7
+            "wellbeing": -6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3047,7 +3047,7 @@
             "budget": -15,
             "reputation": -4,
             "stress": 10,
-            "wellbeing": -12
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3066,7 +3066,7 @@
             "project_success": -10,
             "staff_morale": -10,
             "stress": 8,
-            "wellbeing": -9
+            "wellbeing": -7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3092,7 +3092,7 @@
             "staff_morale": 6,
             "budget": -15,
             "stress": 9,
-            "wellbeing": 3
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3111,7 +3111,7 @@
             "project_success": -4,
             "staff_morale": -4,
             "stress": 2,
-            "wellbeing": -4
+            "wellbeing": -3
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3155,7 +3155,7 @@
             "staff_morale": 9,
             "reputation": -5,
             "stress": 9,
-            "wellbeing": -13
+            "wellbeing": -9
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3174,7 +3174,7 @@
             "reputation": 4,
             "staff_morale": -10,
             "stress": 15,
-            "wellbeing": -15
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3193,7 +3193,7 @@
             "reputation": 0,
             "staff_morale": 2,
             "stress": 15,
-            "wellbeing": -12
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3219,7 +3219,7 @@
             "budget": -15,
             "staff_morale": 10,
             "stress": 11,
-            "wellbeing": -15
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3239,7 +3239,7 @@
             "budget": -15,
             "staff_morale": -4,
             "stress": 3,
-            "wellbeing": 9
+            "wellbeing": 11
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3259,7 +3259,7 @@
             "budget": -15,
             "staff_morale": 3,
             "stress": 10,
-            "wellbeing": 7
+            "wellbeing": 8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3450,7 +3450,7 @@
             "reputation": 5,
             "budget_execution_rate": 10,
             "stress": 15,
-            "wellbeing": -15
+            "wellbeing": -10
           },
           "deputy_morale": {
             "principled": 13
@@ -3467,7 +3467,7 @@
             "reputation": -2,
             "staff_morale": -2,
             "stress": 7,
-            "wellbeing": 6
+            "wellbeing": 7
           },
           "deputy_morale": {
             "principled": -2,
@@ -3485,7 +3485,7 @@
             "reputation": -4,
             "budget_execution_rate": -10,
             "stress": 2,
-            "wellbeing": -3
+            "wellbeing": -2
           },
           "deputy_morale": {
             "principled": -2
@@ -3510,7 +3510,7 @@
             "budget_execution_rate": 15,
             "staff_morale": -4,
             "stress": 5,
-            "wellbeing": -9
+            "wellbeing": -7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3547,7 +3547,7 @@
             "project_success": 4,
             "staff_morale": 6,
             "stress": -5,
-            "wellbeing": 3
+            "wellbeing": 4
           },
           "deputy_morale": {
             "local_friendly": 9
@@ -3588,7 +3588,7 @@
             "budget": 10,
             "project_success": 8,
             "staff_morale": 7,
-            "wellbeing": -3
+            "wellbeing": -2
           },
           "deputy_morale": {
             "principled": 15
@@ -3606,7 +3606,7 @@
             "project_success": 5,
             "staff_morale": 6,
             "stress": -8,
-            "wellbeing": 5
+            "wellbeing": 6
           },
           "deputy_morale": {
             "principled": 7,
