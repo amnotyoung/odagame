@@ -774,8 +774,14 @@ def game_play_screen():
 
     # AI 모드에서 'ai_generated' 시나리오 처리
     if st.session_state.ai_mode and current_scenario_id == 'ai_generated':
+        # 마지막 기간 (2년차 6기 = period_12)에는 임기 종료 시나리오 제공
+        period_number = (state.year - 1) * 6 + state.period
+        if period_number >= 12:
+            st.markdown("### 📅 임기가 종료되어 마지막 선택의 시간입니다...")
+            current_scenario_id = 'period_12'
+            scenario = game.scenarios.get(current_scenario_id)
         # 먼저 세션 상태에 저장된 AI 시나리오가 있는지 확인
-        if st.session_state.current_ai_scenario:
+        elif st.session_state.current_ai_scenario:
             # 이미 생성된 시나리오가 있으면 재사용 (중요: 사용자가 보는 시나리오와 선택 시 시나리오가 동일하도록)
             scenario = st.session_state.current_ai_scenario
         else:
