@@ -24,17 +24,16 @@ from koica_game import GameState, KOICAGame
 
 
 def get_stat_grade(value):
-    """스탯 변화 값에 따른 등급 반환"""
-    if value >= 10:
-        return "⭐ 우수"
-    elif value >= 5:
-        return "✓ 양호"
-    elif value >= 0:
-        return "✓ 보통"
-    elif value >= -10:
-        return "⚠️ 주의"
+    """스탯 변화 값에 따른 등급 반환 (절대값 기준)"""
+    abs_value = abs(value)
+    if abs_value >= 10:
+        return "⭐ 큰 변화"
+    elif abs_value >= 5:
+        return "✓ 중간 변화"
+    elif abs_value > 0:
+        return "✓ 작은 변화"
     else:
-        return "❌ 위험"
+        return ""
 
 # Page configuration
 st.set_page_config(
@@ -1038,6 +1037,11 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
     # 스탯 업데이트
     game.state.update_stats(stats)
 
+    # 시간 진행 (advance_time이 true인 경우)
+    # 주의: year/period 동기화보다 먼저 실행해야 함
+    if result.get('advance_time', False):
+        game.state.advance_time()
+
     # 시나리오 ID와 year/period 매핑 (동기화)
     scenario_period_map = {
         'start': (1, 1),
@@ -1051,9 +1055,9 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
     next_scenario = result.get('next')
     if next_scenario and next_scenario in scenario_period_map:
         expected_year, expected_period = scenario_period_map[next_scenario]
-        if game.state.year != expected_year or game.state.period != expected_period:
-            game.state.year = expected_year
-            game.state.period = expected_period
+        # 동기화가 필요한 경우에만 덮어씀
+        game.state.year = expected_year
+        game.state.period = expected_period
 
     # 부소장 사기 변경 처리
     if 'deputy_morale' in result:
@@ -1141,9 +1145,6 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
 
     # 생활 이벤트 체크 (advance_time이 true이고, 엔딩 시나리오가 아닌 경우에만)
     if result.get('advance_time', False):
-        # 시간 진행
-        game.state.advance_time()
-
         # 엔딩 시나리오로 가는 경우 생활 이벤트 발생 방지
         next_scenario = result.get('next')
         if not next_scenario or not next_scenario.startswith('ending_'):

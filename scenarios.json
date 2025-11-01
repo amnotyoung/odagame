@@ -2826,63 +2826,63 @@
     ]
   },
   "narrative_event_ppp_suspicion": {
-    "title": "서사 이벤트: 민관협력 vs 특혜 의심",
-    "description": "한국 기업이 PPP(민관협력) 사업을 제안했습니다. 아이디어는 매우 좋습니다. 현지 인프라 건설과 한국 기술 이전을 동시에 달성할 수 있습니다.\n\n- 문제는 그 기업의 CEO가 당신의 대학 선배라는 점입니다. 공정한 절차를 밟더라도 의혹의 눈초리를 피할 수 없을 것 같습니다. 투명성을 어떻게 증명할 것인가?",
+    "title": "서사 이벤트: 민관협력 vs 내부자료 요청",
+    "description": "대학 선배가 연락을 해왔습니다. 그가 CEO로 있는 기업에서 PPP(민관협력) 사업을 본부에 제안하려고 기획 중이라고 합니다.\n\n\"후배, 도와줘. 현지 정부 협의록이랑 인프라 현황 자료 좀 보내줄 수 있어? 타당성 검토에 꼭 필요해. 사업만 성사되면 현지에도 도움이 될 거야.\"\n\n공개된 자료는 줄 수 있지만, 선배가 요청하는 건 사무소 내부 협의록과 검토 자료들입니다. 개인적으로 제공하면 문제가 될 수 있습니다. 계속되는 연락에 어떻게 대응할 것인가?",
     "choices": [
       {
-        "text": "공개 입찰로 진행하고 투명성을 최대한 확보한다",
+        "text": "공개 가능한 자료만 제공하고 나머지는 정중히 거절한다",
         "result": {
-          "message": "완전 공개 입찰로 진행했습니다. 해당 기업이 정당하게 선정되었고, 모든 과정을 투명하게 공개했습니다. 의혹을 불식시켰습니다.",
+          "message": "\"선배님, 공개된 자료는 드릴 수 있지만 내부 자료는 어렵습니다. 양해 부탁드립니다.\" 선배는 섭섭해했지만 이해했습니다. 원칙을 지켰고, 마음은 불편하지만 옳은 선택이었습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "stress": 8,
-            "wellbeing": -6
+            "reputation": 9,
+            "project_success": 3,
+            "staff_morale": 6,
+            "stress": 7,
+            "wellbeing": -5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 2
           }
         }
       },
       {
-        "text": "관계를 이유로 아예 참여를 배제한다",
+        "text": "선배를 믿고 내부 자료도 제공한다",
         "result": {
-          "message": "이해상충을 피하기 위해 해당 기업의 참여를 배제했습니다. 원칙을 지켰지만, 좋은 사업 기회를 놓쳤고 선배와의 관계도 어색해졌습니다.",
+          "message": "\"선배님이니까 믿고 드립니다. 조심히 다뤄주세요.\" 선배는 고마워하며 꼭 좋은 사업 만들겠다고 약속했습니다. 하지만 나중에 다른 직원이 이 사실을 알게 되면서 문제가 되었습니다. \"소장님, 이건 규정 위반 아닙니까?\"",
           "stats": {
-            "reputation": 12,
-            "project_success": -6,
-            "staff_morale": 4,
-            "stress": 3,
-            "wellbeing": -10
+            "reputation": -8,
+            "project_success": 3,
+            "staff_morale": -6,
+            "stress": 10,
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 3,
-            "local_friendly": 12
+            "principled": -8,
+            "local_friendly": -3
           }
         }
       },
       {
-        "text": "외부 전문가 심사위원회를 구성한다",
+        "text": "본부에 문의해서 정보 제공 가이드라인을 확인한다",
         "result": {
-          "message": "중립적인 외부 전문가 5명으로 심사위원회를 구성했습니다. 객관적 평가로 의혹을 차단했고, 최선의 업체가 선정되었습니다. 균형잡힌 접근이었습니다.",
+          "message": "\"본부에 먼저 문의해보겠습니다.\" 본부는 '공개 자료 목록'을 보내주며 \"민간 사업자에게는 이 범위 내에서만 제공하세요\"라고 안내했습니다. 선배에게 정중히 설명했고, 절차를 따른 덕에 문제없이 해결되었습니다.",
           "stats": {
-            "reputation": 5,
-            "project_success": 5,
-            "budget": 1,
-            "staff_morale": 3,
-            "stress": 9,
-            "wellbeing": 4
+            "reputation": 7,
+            "project_success": 4,
+            "staff_morale": 5,
+            "stress": 5,
+            "wellbeing": -2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 3,
-            "local_friendly": 3
+            "principled": 6,
+            "local_friendly": 2
           }
         }
       }
