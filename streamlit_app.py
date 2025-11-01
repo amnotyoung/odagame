@@ -979,6 +979,8 @@ def handle_free_form_action(game: KOICAGame, action: str) -> bool:
 
         # 스탯 업데이트
         stats = result.get('stats', {})
+        # 스탯 변화 저장 (표시용)
+        st.session_state.stat_changes = stats.copy() if stats else {}
         game.state.update_stats(stats)
 
         # 선택 히스토리 기록
