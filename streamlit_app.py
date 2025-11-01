@@ -911,16 +911,6 @@ def game_play_screen():
     for idx, choice in enumerate(scenario['choices']):
         button_text = f"{idx + 1}. {choice['text']}"
 
-        # 위험한 선택 경고
-        result = choice.get('result', {})
-        stats = result.get('stats', {})
-        is_risky = any([
-            stats.get('reputation', 0) < -15,
-            stats.get('staff_morale', 0) < -15,
-            stats.get('stress', 0) > 15,
-            stats.get('wellbeing', 0) < -15
-        ])
-
         # 선택지 버튼
         with st.container():
             if st.button(button_text, key=f"choice_{idx}", use_container_width=True):
@@ -928,29 +918,6 @@ def game_play_screen():
                 st.session_state.selected_choice_idx = idx
                 st.session_state.selected_scenario_id = current_scenario_id
                 st.rerun()
-
-            # AI 모드에서 예상 스탯 변화 표시
-            if st.session_state.ai_mode and stats:
-                stat_names = {
-                    'reputation': '평판',
-                    'budget': '예산',
-                    'staff_morale': '직원사기',
-                    'project_success': '사업성과'
-                }
-
-                # 스탯 변화를 간결하게 표시
-                changes = []
-                for key, value in stats.items():
-                    if value != 0 and key in stat_names:
-                        sign = '+' if value > 0 else ''
-                        changes.append(f"{stat_names[key]} {sign}{value}")
-
-                if changes:
-                    changes_text = " / ".join(changes)
-                    st.caption(f"📊 예상 효과: {changes_text}")
-
-            if is_risky:
-                st.warning(f"⚠️ 선택 {idx + 1}은 위험할 수 있습니다!")
 
     # AI 모드에서만 자유 답변 버튼 표시
     if st.session_state.ai_mode and game.gemini and game.gemini.enabled:
