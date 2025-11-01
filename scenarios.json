@@ -26,7 +26,7 @@
           "message": "보건 사업은 주민들의 즉각적인 삶의 질을 개선합니다. 지역사회가 크게 환영합니다.",
           "stats": {
             "reputation": 6,
-            "staff_morale": 6,
+            "staff_morale": 7,
             "budget": 6
           },
           "deputy_morale": {
@@ -102,7 +102,7 @@
           "stats": {
             "project_success": 9,
             "reputation": 4,
-            "staff_morale": -6,
+            "staff_morale": -4,
             "wellbeing": -6
           },
           "deputy_morale": {
@@ -151,7 +151,7 @@
         "result": {
           "message": "단원과의 면담에서 건강 문제를 파악하고 임무를 조정했습니다. 단원이 감사하며 말합니다. \"소장님 덕분에 임무를 마칠 수 있을 것 같습니다.\" 직원들이 소장의 세심한 배려에 감동했습니다.",
           "stats": {
-            "staff_morale": 7,
+            "staff_morale": 9,
             "reputation": -8,
             "project_success": -4
           },
@@ -170,7 +170,7 @@
           "stats": {
             "reputation": 3,
             "project_success": 3,
-            "staff_morale": -6
+            "staff_morale": -4
           },
           "deputy_morale": {
             "principled": 2,
@@ -187,7 +187,7 @@
           "stats": {
             "reputation": 9,
             "project_success": 5,
-            "staff_morale": -5,
+            "staff_morale": -4,
             "stress": 5,
             "wellbeing": -10
           },
@@ -218,7 +218,7 @@
             "project_success": 7,
             "budget": -3,
             "reputation": 2,
-            "staff_morale": 4
+            "staff_morale": 5
           },
           "advance_time": true,
           "next": "period_5",
@@ -235,7 +235,7 @@
           "stats": {
             "project_success": -3,
             "reputation": -2,
-            "staff_morale": -6
+            "staff_morale": -4
           },
           "advance_time": true,
           "next": "period_5",
@@ -252,7 +252,7 @@
           "stats": {
             "reputation": 2,
             "project_success": 2,
-            "staff_morale": 4
+            "staff_morale": 5
           },
           "advance_time": true,
           "next": "period_5",
@@ -277,7 +277,7 @@
             "reputation": 14,
             "project_success": 4,
             "budget": -9,
-            "staff_morale": -4,
+            "staff_morale": -3,
             "stress": 5,
             "wellbeing": -9
           },
@@ -302,7 +302,7 @@
         "result": {
           "message": "환송식이 감동적이었습니다. 봉사단원들이 SNS에 감사 메시지를 올렸고, 조직 분위기가 매우 좋아졌습니다. \"KOICA는 사람을 소중히 여긴다\"는 평판이 퍼져 다음 기수 지원자가 크게 늘었습니다. 하지만 성과 보고 기회는 놓쳤습니다.",
           "stats": {
-            "staff_morale": 8,
+            "staff_morale": 10,
             "reputation": 3,
             "project_success": 1,
             "budget": -8
@@ -364,7 +364,7 @@
         "result": {
           "message": "평가단에게 우기와 현지 상황의 어려움을 설명했습니다. PMC와의 관계는 좋아졌으나, 평가단은 '관리 감독 미흡'을 지적했습니다. 본부 평가에서 감점을 받았습니다.",
           "stats": {
-            "staff_morale": 8,
+            "staff_morale": 10,
             "project_success": 3,
             "reputation": -13
           },
@@ -400,7 +400,7 @@
           "stats": {
             "reputation": 9,
             "project_success": -3,
-            "staff_morale": -6,
+            "staff_morale": -4,
             "wellbeing": -6
           },
           "advance_time": true,
@@ -428,7 +428,7 @@
           "stats": {
             "reputation": 13,
             "project_success": -5,
-            "staff_morale": -5,
+            "staff_morale": -4,
             "wellbeing": -10
           },
           "advance_time": true,
@@ -449,7 +449,7 @@
           "stats": {
             "project_success": 5,
             "reputation": -7,
-            "staff_morale": 4
+            "staff_morale": 5
           },
           "advance_time": true,
           "next": "period_8",
@@ -466,7 +466,7 @@
           "stats": {
             "reputation": 2,
             "project_success": 2,
-            "staff_morale": 4
+            "staff_morale": 5
           },
           "advance_time": true,
           "next": "period_8",
@@ -490,7 +490,7 @@
           "stats": {
             "reputation": 15,
             "project_success": -15,
-            "staff_morale": -8,
+            "staff_morale": -6,
             "budget": -11
           },
           "advance_time": true,
@@ -533,7 +533,7 @@
             "reputation": 10,
             "project_success": -5,
             "budget": -15,
-            "staff_morale": -9
+            "staff_morale": -6
           },
           "advance_time": true,
           "next": "period_9",
@@ -597,7 +597,7 @@
           "stats": {
             "reputation": 4,
             "project_success": 5,
-            "staff_morale": -15,
+            "staff_morale": -10,
             "budget": -7,
             "stress": 15
           },
@@ -654,7 +654,7 @@
           "stats": {
             "project_success": 13,
             "reputation": 8,
-            "staff_morale": -12,
+            "staff_morale": -8,
             "budget": 10,
             "stress": 12,
             "wellbeing": -15
@@ -678,7 +678,7 @@
           "stats": {
             "reputation": 0,
             "project_success": 0,
-            "staff_morale": 4,
+            "staff_morale": 5,
             "budget": 0
           },
           "advance_time": true,
@@ -696,7 +696,7 @@
           "stats": {
             "project_success": -2,
             "reputation": -5,
-            "staff_morale": -6,
+            "staff_morale": -4,
             "budget": -3
           },
           "advance_time": true,
@@ -722,7 +722,7 @@
             "reputation": 15,
             "project_success": 4,
             "budget": -12,
-            "staff_morale": -4,
+            "staff_morale": -3,
             "stress": 5,
             "wellbeing": -1
           },
@@ -814,7 +814,7 @@
           "stats": {
             "reputation": 10,
             "project_success": 5,
-            "staff_morale": -6
+            "staff_morale": -4
           },
           "advance_time": true,
           "next": "ending_new_challenge",
@@ -1030,7 +1030,7 @@
           "stats": {
             "wellbeing": 7,
             "stress": -15,
-            "staff_morale": 5
+            "staff_morale": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1144,7 +1144,7 @@
           "stats": {
             "wellbeing": 6,
             "stress": 3,
-            "staff_morale": 4,
+            "staff_morale": 5,
             "budget": -8
           },
           "advance_time": false,
@@ -1185,7 +1185,7 @@
           "stats": {
             "reputation": 9,
             "project_success": 7,
-            "staff_morale": 4,
+            "staff_morale": 5,
             "stress": -11,
             "wellbeing": 4
           },
@@ -1204,7 +1204,7 @@
           "stats": {
             "reputation": 8,
             "project_success": 6,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "stress": -9,
             "wellbeing": 10
           },
@@ -1286,7 +1286,7 @@
           "stats": {
             "reputation": 11,
             "project_success": 5,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "stress": -5,
             "wellbeing": 5
           },
@@ -1311,7 +1311,7 @@
           "stats": {
             "reputation": 13,
             "project_success": 5,
-            "staff_morale": 8,
+            "staff_morale": 10,
             "stress": 2,
             "wellbeing": 8
           },
@@ -1330,7 +1330,7 @@
           "stats": {
             "project_success": 8,
             "reputation": 6,
-            "staff_morale": 6,
+            "staff_morale": 7,
             "stress": -7,
             "wellbeing": 5
           },
@@ -1349,7 +1349,7 @@
           "stats": {
             "reputation": 10,
             "project_success": 7,
-            "staff_morale": 6,
+            "staff_morale": 7,
             "stress": -6,
             "wellbeing": 6
           },
@@ -1393,7 +1393,7 @@
           "stats": {
             "reputation": 9,
             "project_success": 7,
-            "staff_morale": 4,
+            "staff_morale": 5,
             "stress": -4,
             "wellbeing": 1
           },
@@ -1412,7 +1412,7 @@
           "stats": {
             "reputation": 12,
             "project_success": 10,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "stress": 4,
             "wellbeing": 0
           },
@@ -1437,7 +1437,7 @@
           "stats": {
             "reputation": 9,
             "project_success": 8,
-            "staff_morale": 8,
+            "staff_morale": 10,
             "stress": 6,
             "wellbeing": 9
           },
@@ -1475,7 +1475,7 @@
           "stats": {
             "reputation": 9,
             "project_success": 5,
-            "staff_morale": 4,
+            "staff_morale": 5,
             "stress": -6,
             "wellbeing": 8
           },
@@ -1563,7 +1563,7 @@
           "stats": {
             "reputation": 12,
             "project_success": 9,
-            "staff_morale": 7,
+            "staff_morale": 9,
             "stress": 2,
             "wellbeing": 8
           },
@@ -1582,7 +1582,7 @@
           "stats": {
             "reputation": 13,
             "project_success": 10,
-            "staff_morale": 7,
+            "staff_morale": 9,
             "budget": -8,
             "stress": -6,
             "wellbeing": 8
@@ -1602,7 +1602,7 @@
           "stats": {
             "reputation": 9,
             "project_success": 7,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "stress": -8,
             "wellbeing": 5
           },
@@ -1627,7 +1627,7 @@
           "stats": {
             "reputation": 15,
             "project_success": 11,
-            "staff_morale": 7,
+            "staff_morale": 9,
             "stress": 3,
             "wellbeing": 5
           },
@@ -1646,7 +1646,7 @@
           "stats": {
             "reputation": 13,
             "project_success": 9,
-            "staff_morale": 6,
+            "staff_morale": 7,
             "stress": -5,
             "wellbeing": 5
           },
@@ -1665,7 +1665,7 @@
           "stats": {
             "reputation": 15,
             "project_success": 11,
-            "staff_morale": 6,
+            "staff_morale": 7,
             "stress": 6,
             "wellbeing": 9
           },
@@ -1791,7 +1791,7 @@
           "stats": {
             "reputation": 15,
             "project_success": 8,
-            "staff_morale": 6,
+            "staff_morale": 7,
             "stress": -5,
             "wellbeing": 0
           },
@@ -1816,7 +1816,7 @@
           "stats": {
             "reputation": 13,
             "project_success": 15,
-            "staff_morale": 8,
+            "staff_morale": 10,
             "stress": 2,
             "wellbeing": 7
           },
@@ -1835,7 +1835,7 @@
           "stats": {
             "reputation": 14,
             "project_success": 8,
-            "staff_morale": 7,
+            "staff_morale": 9,
             "stress": -9,
             "wellbeing": 4
           },
@@ -1852,7 +1852,7 @@
         "result": {
           "message": "화려한 홍보보다 실질적 성과에 집중했습니다. 직원들이 당신의 겸손함을 존경했고, 현지에서 '말보다 행동하는 리더'로 기억되었습니다.",
           "stats": {
-            "staff_morale": 8,
+            "staff_morale": 10,
             "project_success": 8,
             "reputation": 7,
             "stress": -12,
@@ -1879,7 +1879,7 @@
           "stats": {
             "project_success": -8,
             "reputation": -10,
-            "staff_morale": -5,
+            "staff_morale": -4,
             "stress": 3,
             "wellbeing": -3
           },
@@ -1898,7 +1898,7 @@
           "stats": {
             "project_success": 4,
             "reputation": 2,
-            "staff_morale": 4,
+            "staff_morale": 5,
             "budget": -15,
             "stress": 13,
             "wellbeing": -2
@@ -1918,7 +1918,7 @@
           "stats": {
             "project_success": 5,
             "reputation": 4,
-            "staff_morale": 4,
+            "staff_morale": 5,
             "budget": -15,
             "stress": 9,
             "wellbeing": -8
@@ -1945,7 +1945,7 @@
             "budget": 15,
             "reputation": 8,
             "project_success": -12,
-            "staff_morale": -12,
+            "staff_morale": -8,
             "stress": 9,
             "wellbeing": -11
           },
@@ -1965,7 +1965,7 @@
             "project_success": 8,
             "reputation": -12,
             "budget": -12,
-            "staff_morale": 6,
+            "staff_morale": 7,
             "stress": 8,
             "wellbeing": -1
           },
@@ -2008,7 +2008,7 @@
         "result": {
           "message": "즉시 의료 후송 절차를 밟았습니다. 단원이 한국에서 완치되었고, 다른 단원들도 안심했습니다. 안전 관리 책임을 다했습니다.",
           "stats": {
-            "staff_morale": 4,
+            "staff_morale": 5,
             "project_success": -14,
             "budget": -15,
             "reputation": 2,
@@ -2051,7 +2051,7 @@
         "result": {
           "message": "본부 결정을 기다렸습니다. 결정이 늦어지는 동안 단원과 가족들이 불안해했습니다. 결국 이송했지만 초기 대응이 미흡했다는 비판을 받았습니다.",
           "stats": {
-            "staff_morale": -15,
+            "staff_morale": -10,
             "project_success": -7,
             "budget": -15,
             "reputation": -11,
@@ -2117,7 +2117,7 @@
           "stats": {
             "project_success": 13,
             "reputation": -9,
-            "staff_morale": -4,
+            "staff_morale": -3,
             "stress": 7,
             "wellbeing": -10
           },
@@ -2161,7 +2161,7 @@
           "stats": {
             "project_success": 7,
             "reputation": 4,
-            "staff_morale": 4,
+            "staff_morale": 5,
             "stress": 5,
             "wellbeing": 0
           },
@@ -2180,7 +2180,7 @@
           "stats": {
             "reputation": 12,
             "project_success": 5,
-            "staff_morale": -3,
+            "staff_morale": -2,
             "stress": 4,
             "wellbeing": -3
           },
@@ -2205,7 +2205,7 @@
           "stats": {
             "reputation": 7,
             "project_success": 4,
-            "staff_morale": -15,
+            "staff_morale": -10,
             "stress": 14,
             "wellbeing": -15
           },
@@ -2244,7 +2244,7 @@
             "reputation": 8,
             "budget": -15,
             "project_success": 3,
-            "staff_morale": -10,
+            "staff_morale": -7,
             "stress": 5,
             "wellbeing": -15
           },
@@ -2269,7 +2269,7 @@
           "stats": {
             "reputation": 15,
             "project_success": 7,
-            "staff_morale": -14,
+            "staff_morale": -9,
             "stress": 10,
             "wellbeing": -14
           },
@@ -2307,7 +2307,7 @@
           "stats": {
             "reputation": 13,
             "project_success": -4,
-            "staff_morale": -9,
+            "staff_morale": -6,
             "stress": 7,
             "wellbeing": -9
           },
@@ -2348,7 +2348,7 @@
         "result": {
           "message": "엄격한 태도로 책임을 강조했습니다. 한 명은 버티고 있지만, 다른 한 명은 결국 조기 귀국했습니다. 조직 분위기가 경직되었습니다.",
           "stats": {
-            "staff_morale": -15,
+            "staff_morale": -10,
             "project_success": -11,
             "reputation": -7,
             "stress": 6,
@@ -2367,7 +2367,7 @@
         "result": {
           "message": "본부에 상황을 보고했습니다. 본부가 조기 귀국을 승인했습니다. 절차는 맞았지만, 다른 YP들이 '우리도 힘들면 버려질까?'라고 불안해합니다.",
           "stats": {
-            "staff_morale": -15,
+            "staff_morale": -10,
             "project_success": -12,
             "reputation": -6,
             "stress": 6,
@@ -2395,7 +2395,7 @@
             "budget": 9,
             "project_success": -7,
             "reputation": -4,
-            "staff_morale": -5,
+            "staff_morale": -4,
             "stress": 4,
             "wellbeing": -7
           },
@@ -2459,7 +2459,7 @@
           "stats": {
             "reputation": 6,
             "project_success": -15,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "stress": 10,
             "wellbeing": 5
           },
@@ -2478,7 +2478,7 @@
           "stats": {
             "reputation": 6,
             "project_success": 5,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "budget": -15,
             "stress": 9,
             "wellbeing": 3
@@ -2498,7 +2498,7 @@
           "stats": {
             "project_success": 9,
             "reputation": -8,
-            "staff_morale": -5,
+            "staff_morale": -4,
             "stress": 5,
             "wellbeing": -5
           },
@@ -2523,7 +2523,7 @@
           "stats": {
             "reputation": 3,
             "project_success": 3,
-            "staff_morale": -15,
+            "staff_morale": -10,
             "stress": 8,
             "wellbeing": -10
           },
@@ -2561,7 +2561,7 @@
           "stats": {
             "reputation": -7,
             "project_success": -7,
-            "staff_morale": -13,
+            "staff_morale": -9,
             "stress": 3,
             "wellbeing": 1
           },
@@ -2586,7 +2586,7 @@
           "stats": {
             "reputation": -7,
             "project_success": -2,
-            "staff_morale": -4,
+            "staff_morale": -3,
             "stress": 5,
             "wellbeing": -7
           },
@@ -2731,7 +2731,7 @@
           "stats": {
             "reputation": 10,
             "project_success": -2,
-            "staff_morale": -8,
+            "staff_morale": -6,
             "stress": 6,
             "wellbeing": -8
           },
@@ -2773,7 +2773,7 @@
         "result": {
           "message": "물가 상승률만큼만 인상했습니다. 직원들이 아쉬워했지만 이해했습니다. 합리적인 선택이었습니다. 인건비 집행률이 적절히 상승했습니다.",
           "stats": {
-            "staff_morale": 6,
+            "staff_morale": 7,
             "budget_personnel": 12,
             "stress": 3,
             "wellbeing": 0
@@ -2836,7 +2836,7 @@
           "stats": {
             "reputation": 9,
             "project_success": 3,
-            "staff_morale": 6,
+            "staff_morale": 7,
             "stress": 7,
             "wellbeing": -5
           },
@@ -2855,7 +2855,7 @@
           "stats": {
             "reputation": -8,
             "project_success": 3,
-            "staff_morale": -6,
+            "staff_morale": -4,
             "stress": 10,
             "wellbeing": -8
           },
@@ -2874,7 +2874,7 @@
           "stats": {
             "reputation": 7,
             "project_success": 4,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "stress": 5,
             "wellbeing": -2
           },
@@ -2899,7 +2899,7 @@
           "stats": {
             "reputation": -7,
             "project_success": 5,
-            "staff_morale": 9,
+            "staff_morale": 11,
             "stress": 11,
             "wellbeing": 5
           },
@@ -2918,7 +2918,7 @@
           "stats": {
             "reputation": 11,
             "project_success": 11,
-            "staff_morale": -11,
+            "staff_morale": -8,
             "stress": 5,
             "wellbeing": -11
           },
@@ -2937,7 +2937,7 @@
           "stats": {
             "reputation": 4,
             "project_success": 6,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "budget": -8,
             "stress": 8,
             "wellbeing": 4
@@ -2963,7 +2963,7 @@
           "stats": {
             "reputation": 6,
             "project_success": -15,
-            "staff_morale": 8,
+            "staff_morale": 10,
             "stress": 8,
             "wellbeing": 2
           },
@@ -2982,7 +2982,7 @@
           "stats": {
             "project_success": 5,
             "reputation": -4,
-            "staff_morale": -7,
+            "staff_morale": -5,
             "stress": 5,
             "wellbeing": -7
           },
@@ -3064,7 +3064,7 @@
           "stats": {
             "reputation": 4,
             "project_success": -10,
-            "staff_morale": -15,
+            "staff_morale": -10,
             "stress": 8,
             "wellbeing": -9
           },
@@ -3089,7 +3089,7 @@
           "stats": {
             "reputation": 5,
             "project_success": 6,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "budget": -15,
             "stress": 9,
             "wellbeing": 3
@@ -3109,7 +3109,7 @@
           "stats": {
             "reputation": -2,
             "project_success": -4,
-            "staff_morale": -6,
+            "staff_morale": -4,
             "stress": 2,
             "wellbeing": -4
           },
@@ -3152,7 +3152,7 @@
           "message": "어머니 곁으로 갔습니다. 부소장이 평가를 맡았고 결과는 양호했습니다. 가족이 더 중요하다는 것을 깨달았습니다. 직원들도 이해해주었습니다.",
           "stats": {
             "project_success": -10,
-            "staff_morale": 7,
+            "staff_morale": 9,
             "reputation": -5,
             "stress": 9,
             "wellbeing": -13
@@ -3172,7 +3172,7 @@
           "stats": {
             "project_success": 11,
             "reputation": 4,
-            "staff_morale": -15,
+            "staff_morale": -10,
             "stress": 15,
             "wellbeing": -15
           },
@@ -3217,7 +3217,7 @@
             "reputation": 15,
             "project_success": 5,
             "budget": -15,
-            "staff_morale": 8,
+            "staff_morale": 10,
             "stress": 11,
             "wellbeing": -15
           },
@@ -3237,7 +3237,7 @@
             "reputation": -2,
             "project_success": -2,
             "budget": -15,
-            "staff_morale": -5,
+            "staff_morale": -4,
             "stress": 3,
             "wellbeing": 9
           },
@@ -3273,7 +3273,7 @@
   },
   "deputy_event_low_morale": {
     "title": "부소장 사기 저하",
-    "description": "김태영 부소장이 최근 회의에서 소극적인 태도를 보이고 있습니다. 다른 직원들이 전하길, 그가 소장님의 최근 결정에 불만을 품고 있다고 합니다.\n\n- 사무실 분위기가 미묘하게 경직되어 있습니다. 부소장은 조직의 핵심 인력이기 때문에, 이 문제를 방치하면 업무 효율성과 팀 사기에 악영향을 미칠 수 있습니다.",
+    "description": "김유영 부소장이 최근 회의에서 소극적인 태도를 보이고 있습니다. 다른 직원들이 전하길, 그가 소장님의 최근 결정에 불만을 품고 있다고 합니다.\n\n- 사무실 분위기가 미묘하게 경직되어 있습니다. 부소장은 조직의 핵심 인력이기 때문에, 이 문제를 방치하면 업무 효율성과 팀 사기에 악영향을 미칠 수 있습니다.",
     "choices": [
       {
         "text": "개별 면담을 통해 진솔한 대화를 나눈다",
@@ -3326,14 +3326,14 @@
   },
   "deputy_event_conflict": {
     "title": "부소장 간 갈등",
-    "description": "이수진 부소장과 김태영 부소장이 프로젝트 방향을 두고 공개적으로 충돌했습니다.\n\n이수진 부소장은 \"현지 파트너의 의견을 더 존중해야 한다\"고 주장하고, 김태영 부소장은 \"본부 방침과 원칙을 지켜야 한다\"고 맞섰습니다. 다른 직원들도 두 진영으로 나뉘기 시작했습니다.",
+    "description": "이수진 부소장과 김유영 부소장이 프로젝트 방향을 두고 공개적으로 충돌했습니다.\n\n이수진 부소장은 \"현지 파트너의 의견을 더 존중해야 한다\"고 주장하고, 김유영 부소장은 \"본부 방침과 원칙을 지켜야 한다\"고 맞섰습니다. 다른 직원들도 두 진영으로 나뉘기 시작했습니다.",
     "choices": [
       {
         "text": "두 부소장을 모두 불러 중재 회의를 연다",
         "result": {
           "message": "양측의 의견을 경청하고 절충안을 제시했습니다. \"현지 파트너와 협력하되, 본부 원칙도 지키자\"는 방향으로 합의했습니다. 갈등은 해소되었습니다.",
           "stats": {
-            "staff_morale": -3,
+            "staff_morale": -2,
             "project_success": 1,
             "stress": 5
           },
@@ -3348,7 +3348,7 @@
       {
         "text": "이수진 부소장의 손을 들어준다 (현지 파트너 중시)",
         "result": {
-          "message": "현지 파트너와의 신뢰 관계가 더욱 돈독해졌습니다. 하지만 김태영 부소장은 불만을 품게 되었습니다.",
+          "message": "현지 파트너와의 신뢰 관계가 더욱 돈독해졌습니다. 하지만 김유영 부소장은 불만을 품게 되었습니다.",
           "stats": {
             "reputation": 9,
             "project_success": -5,
@@ -3363,7 +3363,7 @@
         }
       },
       {
-        "text": "김태영 부소장의 손을 들어준다 (원칙과 방침 우선)",
+        "text": "김유영 부소장의 손을 들어준다 (원칙과 방침 우선)",
         "result": {
           "message": "본부 방침과 원칙에 따라 프로젝트를 재정비했습니다. 절차는 명확해졌지만, 현지 파트너들이 불만을 표시하고 협력이 어려워졌습니다.",
           "stats": {
@@ -3508,7 +3508,7 @@
             "reputation": 15,
             "project_success": 15,
             "budget_execution_rate": 15,
-            "staff_morale": -5,
+            "staff_morale": -4,
             "stress": 5,
             "wellbeing": -9
           },
@@ -3528,7 +3528,7 @@
             "reputation": 4,
             "stress": -8,
             "wellbeing": 2,
-            "staff_morale": 4
+            "staff_morale": 5
           },
           "deputy_morale": {
             "principled": 6,
@@ -3545,7 +3545,7 @@
           "stats": {
             "reputation": 1,
             "project_success": 4,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "stress": -5,
             "wellbeing": 3
           },
@@ -3587,7 +3587,7 @@
             "reputation": 10,
             "budget": 10,
             "project_success": 8,
-            "staff_morale": 6,
+            "staff_morale": 7,
             "wellbeing": -3
           },
           "deputy_morale": {
@@ -3604,7 +3604,7 @@
           "stats": {
             "reputation": 7,
             "project_success": 5,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "stress": -8,
             "wellbeing": 5
           },
@@ -3619,8 +3619,8 @@
     ]
   },
   "deputy_principled_low_resignation": {
-    "title": "⚠️ 김태영 부소장의 전보 신청",
-    "description": "본부에서 긴급 연락이 왔습니다. 김태영 부소장이 전보 신청서를 제출했다는 것입니다. 그는 \"소장님의 리더십 방식과 제 가치관이 맞지 않는 것 같다\"는 사유를 적었습니다.\n\n현지 직원들 사이에서도 \"부소장님이 떠나신다\"는 소문이 돌면서 불안감이 커지고 있습니다. 이대로 두면 조직 분위기가 크게 악화될 것입니다.",
+    "title": "⚠️ 김유영 부소장의 전보 신청",
+    "description": "본부에서 긴급 연락이 왔습니다. 김유영 부소장이 전보 신청서를 제출했다는 것입니다. 그는 \"소장님의 리더십 방식과 제 가치관이 맞지 않는 것 같다\"는 사유를 적었습니다.\n\n현지 직원들 사이에서도 \"부소장님이 떠나신다\"는 소문이 돌면서 불안감이 커지고 있습니다. 이대로 두면 조직 분위기가 크게 악화될 것입니다.",
     "threshold_type": "principled",
     "threshold_value": -30,
     "one_time": true,
@@ -3630,7 +3630,7 @@
         "result": {
           "message": "부소장을 찾아가 진솔한 대화를 나눴습니다. \"제가 소통이 부족했습니다.\" 당신의 솔직함에 부소장도 마음을 열었고, 전보 신청을 철회했습니다. 하지만 관계 회복에는 시간이 필요합니다.",
           "stats": {
-            "staff_morale": -3,
+            "staff_morale": -2,
             "stress": 15
           },
           "deputy_morale": {
@@ -3676,7 +3676,7 @@
             "project_success": 5,
             "reputation": 3,
             "budget": 6,
-            "staff_morale": -6,
+            "staff_morale": -4,
             "stress": 8
           },
           "deputy_morale": {
@@ -3691,7 +3691,7 @@
         "result": {
           "message": "\"이번엔 준비가 부족합니다. 다음 기회를 더 잘 준비하죠.\" 이수진 부소장이 이해하며 고개를 끄덕입니다. 무리하지 않은 현명한 판단이었습니다.",
           "stats": {
-            "staff_morale": -5,
+            "staff_morale": -4,
             "reputation": 3
           },
           "deputy_morale": {
@@ -3716,7 +3716,7 @@
         "result": {
           "message": "본부에 현지 문화를 설명하고 부소장을 적극 옹호했습니다. 조사 결과 문제가 없었고, 이수진 부소장은 감사했지만 본부는 당신의 '느슨한 관리'를 우려합니다.",
           "stats": {
-            "staff_morale": 6,
+            "staff_morale": 7,
             "reputation": -15,
             "project_success": 2
           },
@@ -3733,7 +3733,7 @@
           "message": "부소장에게 본부 규정을 상기시키고 행동 수정을 요구했습니다. 그는 서운해했지만 따랐고, 본부는 당신의 원칙적 대응을 높이 평가했습니다.",
           "stats": {
             "reputation": 14,
-            "staff_morale": -5,
+            "staff_morale": -4,
             "project_success": -4
           },
           "deputy_morale": {
@@ -3748,8 +3748,8 @@
     "ascii_art": "🔥 갈등 상황 🔥\n      ⚖️ 문화 vs 원칙\n      ┌─────┐\n      │ 😰  │\n      └─────┘\n    어려운 선택"
   },
   "deputy_principled_efficiency_concern": {
-    "title": "⚠️ 김태영 부소장의 우려",
-    "description": "김태영 부소장이 조심스럽게 찾아왔습니다. 그의 표정이 평소와 다르게 어두워 보입니다.\n\n\"소장님, 말씀드리기 송구하지만... 현장에서 일정 지연 우려가 커지고 있습니다. 혹시 인력 운영 관련해서 검토해주실 수 있을까요?\"\n\n부소장의 말투는 조심스럽지만, 현장의 어려움이 느껴집니다. 프로젝트 진행 상황을 점검할 필요가 있어 보입니다.",
+    "title": "⚠️ 김유영 부소장의 우려",
+    "description": "김유영 부소장이 조심스럽게 찾아왔습니다. 그의 표정이 평소와 다르게 어두워 보입니다.\n\n\"소장님, 말씀드리기 송구하지만... 현장에서 일정 지연 우려가 커지고 있습니다. 혹시 인력 운영 관련해서 검토해주실 수 있을까요?\"\n\n부소장의 말투는 조심스럽지만, 현장의 어려움이 느껴집니다. 프로젝트 진행 상황을 점검할 필요가 있어 보입니다.",
     "threshold_type": "efficiency",
     "threshold_value": 30,
     "one_time": true,
@@ -3760,7 +3760,7 @@
           "message": "\"좋은 지적입니다. 내일 오전에 실무진 점검 회의를 하죠.\" 부소장이 안도의 표정을 짓습니다. 회의를 통해 병목 구간을 파악하고 실질적인 개선안을 마련했습니다.",
           "stats": {
             "project_success": 7,
-            "staff_morale": 5,
+            "staff_morale": 6,
             "stress": 5
           },
           "deputy_morale": {
@@ -3773,7 +3773,7 @@
       {
         "text": "부소장에게 현장 개선안 준비 요청",
         "result": {
-          "message": "\"부소장님이 현장을 제일 잘 아시니, 개선안을 정리해주시겠습니까?\" 김태영 부소장이 책임감 있게 현장을 재점검하고 구체적인 해결 방안을 제시했습니다.",
+          "message": "\"부소장님이 현장을 제일 잘 아시니, 개선안을 정리해주시겠습니까?\" 김유영 부소장이 책임감 있게 현장을 재점검하고 구체적인 해결 방안을 제시했습니다.",
           "stats": {
             "project_success": 5,
             "staff_morale": 2,
@@ -3804,7 +3804,7 @@
         }
       }
     ],
-    "ascii_art": "⚠️ 현장 우려 ⚠️\n    김태영 부소장\n      ┌─────┐\n      │ 💼  │\n      │ 😟  │\n      └─────┘\n  조심스러운 보고"
+    "ascii_art": "⚠️ 현장 우려 ⚠️\n    김유영 부소장\n      ┌─────┐\n      │ 💼  │\n      │ 😟  │\n      └─────┘\n  조심스러운 보고"
   },
   "deputy_local_friendly_transparency_concern": {
     "title": "🔍 이수진 부소장의 조언",

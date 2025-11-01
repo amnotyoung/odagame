@@ -38,7 +38,7 @@ class GameState:
             '운영비': 25   # 사무소 운영비
         }
 
-        self.staff_morale = 30  # 직원 만족도 (0-100) - 더 어려운 시작점
+        self.staff_morale = 50  # 직원 만족도 (0-100) - 밸런스 개선
         self.project_success = 25  # 프로젝트 성공도 (0-100) - 더 어려운 시작점
 
         # 생활 스탯 추가
@@ -1328,7 +1328,7 @@ class KOICAGame:
 
         event_id = None
 
-        # 김태영 부소장 효율성 우려 이벤트 (프로젝트 성공도 낮을 때)
+        # 김유영 부소장 효율성 우려 이벤트 (프로젝트 성공도 낮을 때)
         if (self.state.project_success <= 30 and
             'deputy_principled_efficiency_concern' not in self.state.triggered_deputy_events):
             event_id = 'deputy_principled_efficiency_concern'
@@ -1336,7 +1336,7 @@ class KOICAGame:
         elif (self.state.reputation <= 30 and
             'deputy_local_friendly_transparency_concern' not in self.state.triggered_deputy_events):
             event_id = 'deputy_local_friendly_transparency_concern'
-        # 김태영 부소장 전보 위기 이벤트
+        # 김유영 부소장 전보 위기 이벤트
         elif (deputy_principled['morale'] <= 20 and
             'deputy_principled_low_resignation' not in self.state.triggered_deputy_events):
             event_id = 'deputy_principled_low_resignation'
