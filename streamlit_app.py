@@ -634,15 +634,18 @@ def game_play_screen():
         selected_idx = st.session_state.selected_choice_idx
         selected_scenario_id = st.session_state.selected_scenario_id
 
-        # 현재 시나리오 가져오기
-        if st.session_state.ai_mode and state.current_scenario == 'ai_generated':
+        # 현재 시나리오 가져오기 - selected_scenario_id 기준으로 확인
+        if st.session_state.ai_mode and selected_scenario_id == 'ai_generated':
             # AI 생성 시나리오인 경우, 세션 상태에서 가져오기
-            if hasattr(st.session_state, 'current_ai_scenario'):
-                scenario = st.session_state.current_ai_scenario
-            else:
-                scenario = None
+            scenario = st.session_state.current_ai_scenario
+            if not scenario:
+                st.error("AI 시나리오를 찾을 수 없습니다. 다시 시도해주세요.")
+                st.session_state.selected_choice_idx = None
+                st.session_state.selected_scenario_id = None
+                st.rerun()
+                return
         else:
-            scenario = game.scenarios.get(state.current_scenario)
+            scenario = game.scenarios.get(selected_scenario_id)
 
         if scenario and 'choices' in scenario and selected_idx < len(scenario['choices']):
             choice = scenario['choices'][selected_idx]
@@ -679,6 +682,10 @@ def game_play_screen():
 
     # 결과 메시지 표시
     if st.session_state.result_message:
+        # 선택한 텍스트 표시 (디버깅용 - AI 모드에서만)
+        if st.session_state.ai_mode and hasattr(st.session_state, 'last_choice_text') and st.session_state.last_choice_text:
+            st.info(f"📌 **선택한 행동:** {st.session_state.last_choice_text}")
+
         st.markdown(f"""
         <div class="scenario-text">
         {st.session_state.result_message}
@@ -768,34 +775,40 @@ def game_play_screen():
 
     # AI 모드에서 'ai_generated' 시나리오 처리
     if st.session_state.ai_mode and current_scenario_id == 'ai_generated':
-        # 로딩 인디케이터 표시
-        st.markdown("""
-        <div class="loading-overlay">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">🤖 AI가 맞춤형 시나리오를 생성중입니다</div>
-            <div class="loading-subtext">플레이어의 선택을 분석하여 최적의 시나리오를 준비하고 있습니다...</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        # AI 시나리오 생성
-        scenario = game.gemini.generate_scenario(state)
-
-        if not scenario:
-            st.warning("AI 시나리오 생성 실패. 기본 시나리오를 사용합니다.")
-            # 폴백: 랜덤 시나리오 선택
-            fallback_scenarios = ['budget_crisis_1', 'cultural_conflict', 'staff_problem_1']
-            available_fallbacks = [s for s in fallback_scenarios if s in game.scenarios]
-            if available_fallbacks:
-                current_scenario_id = random.choice(available_fallbacks)
-                scenario = game.scenarios.get(current_scenario_id)
-            else:
-                # 모든 폴백이 없으면 아무 시나리오나 선택
-                current_scenario_id = random.choice([s for s in game.scenarios.keys()
-                                                     if not s.startswith("ending_") and s != "start"])
-                scenario = game.scenarios.get(current_scenario_id)
+        # 먼저 세션 상태에 저장된 AI 시나리오가 있는지 확인
+        if st.session_state.current_ai_scenario:
+            # 이미 생성된 시나리오가 있으면 재사용 (중요: 사용자가 보는 시나리오와 선택 시 시나리오가 동일하도록)
+            scenario = st.session_state.current_ai_scenario
         else:
-            # AI 생성 시나리오를 세션 상태에 저장
-            st.session_state.current_ai_scenario = scenario
+            # 새로운 AI 시나리오 생성
+            # 로딩 인디케이터 표시
+            st.markdown("""
+            <div class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">🤖 AI가 맞춤형 시나리오를 생성중입니다</div>
+                <div class="loading-subtext">플레이어의 선택을 분석하여 최적의 시나리오를 준비하고 있습니다...</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            # AI 시나리오 생성
+            scenario = game.gemini.generate_scenario(state)
+
+            if not scenario:
+                st.warning("AI 시나리오 생성 실패. 기본 시나리오를 사용합니다.")
+                # 폴백: 랜덤 시나리오 선택
+                fallback_scenarios = ['budget_crisis_1', 'cultural_conflict', 'staff_problem_1']
+                available_fallbacks = [s for s in fallback_scenarios if s in game.scenarios]
+                if available_fallbacks:
+                    current_scenario_id = random.choice(available_fallbacks)
+                    scenario = game.scenarios.get(current_scenario_id)
+                else:
+                    # 모든 폴백이 없으면 아무 시나리오나 선택
+                    current_scenario_id = random.choice([s for s in game.scenarios.keys()
+                                                         if not s.startswith("ending_") and s != "start"])
+                    scenario = game.scenarios.get(current_scenario_id)
+            else:
+                # AI 생성 시나리오를 세션 상태에 저장
+                st.session_state.current_ai_scenario = scenario
     else:
         scenario = game.scenarios.get(current_scenario_id)
 
