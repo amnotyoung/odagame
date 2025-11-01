@@ -237,6 +237,12 @@ def initialize_session_state():
         st.session_state.free_form_action = ""
     if 'is_generating_ai' not in st.session_state:
         st.session_state.is_generating_ai = False
+    if 'selected_choice_idx' not in st.session_state:
+        st.session_state.selected_choice_idx = None
+    if 'selected_scenario_id' not in st.session_state:
+        st.session_state.selected_scenario_id = None
+    if 'current_ai_scenario' not in st.session_state:
+        st.session_state.current_ai_scenario = None
 
 
 def display_stats(state: GameState):
@@ -623,6 +629,37 @@ def game_play_screen():
     game = st.session_state.game
     state = game.state
 
+    # 선택 처리 (세션 상태에서 선택 인덱스 확인)
+    if hasattr(st.session_state, 'selected_choice_idx') and st.session_state.selected_choice_idx is not None:
+        selected_idx = st.session_state.selected_choice_idx
+        selected_scenario_id = st.session_state.selected_scenario_id
+
+        # 현재 시나리오 가져오기
+        if st.session_state.ai_mode and state.current_scenario == 'ai_generated':
+            # AI 생성 시나리오인 경우, 세션 상태에서 가져오기
+            if hasattr(st.session_state, 'current_ai_scenario'):
+                scenario = st.session_state.current_ai_scenario
+            else:
+                scenario = None
+        else:
+            scenario = game.scenarios.get(state.current_scenario)
+
+        if scenario and 'choices' in scenario and selected_idx < len(scenario['choices']):
+            choice = scenario['choices'][selected_idx]
+
+            # 선택한 텍스트와 결과 메시지를 로깅 (디버깅용)
+            st.session_state.last_choice_idx = selected_idx
+            st.session_state.last_choice_text = choice.get('text', '')
+
+            # 선택 처리
+            handle_choice(game, choice, selected_scenario_id)
+
+        # 선택 상태 초기화
+        st.session_state.selected_choice_idx = None
+        st.session_state.selected_scenario_id = None
+        st.rerun()
+        return
+
     # 게임 오버 체크
     if state.game_over:
         st.session_state.current_screen = 'game_over'
@@ -720,6 +757,8 @@ def game_play_screen():
             st.session_state.result_message = ""
             st.session_state.stat_changes = {}
             st.session_state.choice_made = False
+            # AI 시나리오 초기화 (새로운 시나리오를 위해)
+            st.session_state.current_ai_scenario = None
             st.rerun()
 
         return
@@ -754,6 +793,9 @@ def game_play_screen():
                 current_scenario_id = random.choice([s for s in game.scenarios.keys()
                                                      if not s.startswith("ending_") and s != "start"])
                 scenario = game.scenarios.get(current_scenario_id)
+        else:
+            # AI 생성 시나리오를 세션 상태에 저장
+            st.session_state.current_ai_scenario = scenario
     else:
         scenario = game.scenarios.get(current_scenario_id)
 
@@ -869,11 +911,9 @@ def game_play_screen():
         # 선택지 버튼
         with st.container():
             if st.button(button_text, key=f"choice_{idx}", use_container_width=True):
-                # 선택 인덱스를 명시적으로 저장하여 올바른 선택이 처리되도록 보장
-                st.session_state.last_choice_idx = idx
-                st.session_state.last_choice_text = choice.get('text', '')
-                # 선택 처리
-                handle_choice(game, choice, current_scenario_id)
+                # 선택 인덱스를 세션 상태에 저장
+                st.session_state.selected_choice_idx = idx
+                st.session_state.selected_scenario_id = current_scenario_id
                 st.rerun()
 
             # AI 모드에서 예상 스탯 변화 표시
@@ -993,8 +1033,18 @@ def handle_choice(game: KOICAGame, choice: dict, scenario_id: str):
     """선택 처리"""
     result = choice.get('result', {})
 
+    # 디버깅: 선택한 텍스트와 결과 메시지 로깅
+    choice_text = choice.get('text', '')
+    result_message = result.get('message', '')
+
+    # 로그를 위해 정보 저장 (개발자 도구에서 확인 가능)
+    if st.session_state.ai_mode:
+        # AI 모드에서는 매핑이 올바른지 확인
+        print(f"[DEBUG] 선택한 텍스트: {choice_text[:50]}...")
+        print(f"[DEBUG] 결과 메시지: {result_message[:50]}...")
+
     # 결과 메시지 저장
-    st.session_state.result_message = result.get('message', '')
+    st.session_state.result_message = result_message
 
     # 스탯 변화 저장 (표시용)
     stats = result.get('stats', {})
