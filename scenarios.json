@@ -8,7 +8,7 @@
         "result": {
           "message": "교육은 장기적 발전의 핵심입니다. 현지 교육부 장관이 환영의 뜻을 전했습니다.",
           "stats": {
-            "reputation": 6,
+            "reputation": 7,
             "project_success": 6,
             "budget": 6
           },
@@ -25,13 +25,13 @@
         "result": {
           "message": "보건 사업은 주민들의 즉각적인 삶의 질을 개선합니다. 지역사회가 크게 환영합니다.",
           "stats": {
-            "reputation": 7,
-            "staff_morale": 3,
-            "budget": 7
+            "reputation": 6,
+            "staff_morale": 6,
+            "budget": 6
           },
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 10
+            "principled": 4,
+            "local_friendly": 9
           },
           "advance_time": true,
           "next": "period_2"
@@ -42,14 +42,14 @@
         "result": {
           "message": "농업은 지속 가능한 경제 발전의 토대입니다. 농민 단체들이 적극 협력을 약속했습니다.",
           "stats": {
-            "reputation": 3,
-            "project_success": 6,
-            "budget": 3,
-            "staff_morale": 3
+            "reputation": 4,
+            "project_success": 7,
+            "budget": 4,
+            "staff_morale": 0
           },
           "deputy_morale": {
-            "principled": 3,
-            "local_friendly": 8
+            "principled": 4,
+            "local_friendly": 9
           },
           "advance_time": true,
           "next": "period_2"
@@ -67,13 +67,13 @@
         "result": {
           "message": "PMC에게 최대한의 자율성을 부여하기로 했습니다. 착수보고회에서 A사의 체계적인 계획이 발표되었고, 본부와 현지 정부 모두 만족스러워합니다. PMC팀도 사무소의 신뢰에 감사를 표하며 \"기대에 부응하겠다\"고 다짐합니다.",
           "stats": {
-            "project_success": 8,
-            "reputation": 6,
-            "staff_morale": 3
+            "project_success": 4,
+            "reputation": 3,
+            "staff_morale": 1
           },
           "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 8
+            "principled": 5,
+            "local_friendly": 4
           },
           "advance_time": true,
           "next": "period_3",
@@ -100,14 +100,14 @@
         "result": {
           "message": "주간 회의와 월간 모니터링을 통해 PMC와 밀착 협력하기로 했습니다. 초기에는 다소 부담스러워했으나, 현지 정부와의 소통 과정에서 사무소의 적극적 지원이 큰 도움이 되었습니다. 당신의 업무 강도는 상당히 높아졌습니다.",
           "stats": {
-            "project_success": 6,
-            "reputation": 3,
-            "staff_morale": -12,
-            "wellbeing": -12
+            "project_success": 9,
+            "reputation": 4,
+            "staff_morale": -6,
+            "wellbeing": -6
           },
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 8
+            "principled": 7,
+            "local_friendly": 12
           },
           "advance_time": true,
           "next": "period_3",
@@ -124,13 +124,13 @@
         "result": {
           "message": "PMC와 현지 이해관계자를 연결하는 데 집중하기로 했습니다. 현지 정부 부처, 시민사회, 대학 등을 PMC팀에게 소개했습니다. PMC 팀장이 감사를 표합니다. \"사무소의 네트워크가 큰 자산입니다. 혼자서는 불가능했을 겁니다.\"",
           "stats": {
-            "project_success": 7,
-            "reputation": 3,
-            "staff_morale": 3
+            "project_success": 6,
+            "reputation": 2,
+            "staff_morale": 2
           },
           "deputy_morale": {
-            "principled": 3,
-            "local_friendly": 8
+            "principled": 2,
+            "local_friendly": 6
           },
           "advance_time": true,
           "next": "period_3",
@@ -151,13 +151,13 @@
         "result": {
           "message": "단원과의 면담에서 건강 문제를 파악하고 임무를 조정했습니다. 단원이 감사하며 말합니다. \"소장님 덕분에 임무를 마칠 수 있을 것 같습니다.\" 직원들이 소장의 세심한 배려에 감동했습니다.",
           "stats": {
-            "staff_morale": 10,
-            "reputation": -6,
-            "project_success": -3
+            "staff_morale": 7,
+            "reputation": -8,
+            "project_success": -4
           },
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 8
+            "principled": 5,
+            "local_friendly": 5
           },
           "advance_time": true,
           "next": "period_4"
@@ -168,13 +168,13 @@
         "result": {
           "message": "현장을 직접 방문해 주민 간담회를 열었습니다. 마을 이장이 말합니다. \"소장님이 직접 오셔서 우리 이야기를 들어주니 고맙습니다.\" 신속한 중재로 갈등을 해결했고, 프로젝트가 정상화되었습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 8,
+            "reputation": 3,
+            "project_success": 3,
             "staff_morale": -6
           },
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 10
+            "principled": 2,
+            "local_friendly": 4
           },
           "advance_time": true,
           "next": "period_4"
@@ -185,15 +185,15 @@
         "result": {
           "message": "부소장에게 현장 문제를 맡기고 보고서 작성에 집중했습니다. 완벽한 보고서로 본부의 극찬을 받았습니다. 하지만 부소장이 한숨을 쉽니다. \"소장님, 현장 문제들은 임시방편으로만 처리했습니다.\"",
           "stats": {
-            "reputation": 6,
-            "project_success": 3,
-            "staff_morale": -12,
-            "stress": 10,
-            "wellbeing": -15
+            "reputation": 9,
+            "project_success": 5,
+            "staff_morale": -5,
+            "stress": 5,
+            "wellbeing": -10
           },
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": -5
+            "principled": 12,
+            "local_friendly": -2
           },
           "advance_time": true,
           "next": "period_4"
@@ -215,16 +215,16 @@
         "result": {
           "message": "본부에 상황을 보고하고 예산 추가 배정을 요청했습니다. 2주 후 승인이 났고, PMC와 함께 수정 계획을 수립했습니다. 프로젝트 품질은 유지되었으나 본부 평가에서 '계획 미흡'으로 지적받았습니다.",
           "stats": {
-            "project_success": 8,
-            "budget": -6,
-            "reputation": -6,
-            "staff_morale": 3
+            "project_success": 7,
+            "budget": -7,
+            "reputation": -7,
+            "staff_morale": 4
           },
           "advance_time": true,
           "next": "period_5",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 6
+            "principled": 7,
+            "local_friendly": 5
           }
         }
       },
@@ -233,15 +233,15 @@
         "result": {
           "message": "PMC와 긴밀히 협의하여 일부 사업 범위를 축소했습니다. 예산 내에서 완수 가능하지만, 당초 목표 대비 성과가 줄어들었습니다. 현지 정부가 약간 실망했습니다.",
           "stats": {
-            "project_success": -12,
-            "reputation": -9,
+            "project_success": -3,
+            "reputation": -2,
             "staff_morale": -6
           },
           "advance_time": true,
           "next": "period_5",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 9,
+            "local_friendly": 9
           }
         }
       },
@@ -250,15 +250,15 @@
         "result": {
           "message": "장관 현장 방문을 계기로 현지 정부의 자재 지원을 이끌어냈습니다. 창의적인 해결책으로 PMC도 사기가 올랐고, 본부에서도 긍정적으로 평가했습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 7,
-            "staff_morale": 6
+            "reputation": 2,
+            "project_success": 2,
+            "staff_morale": 4
           },
           "advance_time": true,
           "next": "period_5",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 1,
+            "local_friendly": 1
           }
         }
       }
@@ -274,18 +274,18 @@
         "result": {
           "message": "프로젝트 성과가 널리 알려졌습니다. 현지 언론이 크게 보도했고, 평판이 급상승했습니다. 정부 고위층도 참석해 차년도 협력 확대를 약속했습니다. 하지만 봉사단 환송식은 간소하게 진행되어 일부 단원들이 아쉬워했습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 3,
-            "budget": -15,
-            "staff_morale": -6,
-            "stress": 8,
-            "wellbeing": -10
+            "reputation": 14,
+            "project_success": 4,
+            "budget": -9,
+            "staff_morale": -4,
+            "stress": 5,
+            "wellbeing": -9
           },
           "advance_time": true,
           "next": "period_6",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           },
           "trade_off_message": "✓ 대외적 성공. ⚠️ 단, 조직 내부는 \"외부만 신경쓴다\"고 느낌"
         },
@@ -302,16 +302,16 @@
         "result": {
           "message": "환송식이 감동적이었습니다. 봉사단원들이 SNS에 감사 메시지를 올렸고, 조직 분위기가 매우 좋아졌습니다. \"KOICA는 사람을 소중히 여긴다\"는 평판이 퍼져 다음 기수 지원자가 크게 늘었습니다. 하지만 성과 보고 기회는 놓쳤습니다.",
           "stats": {
-            "staff_morale": 10,
-            "reputation": 6,
-            "project_success": 3,
-            "budget": -5
+            "staff_morale": 8,
+            "reputation": 3,
+            "project_success": 1,
+            "budget": -8
           },
           "advance_time": true,
           "next": "period_6",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 2,
+            "local_friendly": 2
           },
           "trade_off_message": "✓ 조직 문화 강화. ⚠️ 단, 대외 성과 홍보 기회는 아쉬움"
         },
@@ -323,16 +323,16 @@
         "result": {
           "message": "5개 NGO와 MOU를 체결했습니다. 향후 사업 확장의 발판이 되었으나, 당장의 눈에 띄는 성과는 미미합니다. 본부에서는 \"이게 뭐가 중요한 거냐\"는 반응이고, 직원들도 \"이게 무슨 의미인지\" 의문을 품습니다.",
           "stats": {
-            "project_success": 6,
+            "project_success": 5,
             "reputation": 3,
-            "staff_morale": 3,
-            "budget": -10
+            "staff_morale": 2,
+            "budget": -12
           },
           "advance_time": true,
           "next": "period_6",
           "deputy_morale": {
             "principled": 2,
-            "local_friendly": 8
+            "local_friendly": 7
           },
           "trade_off_message": "✓ 장기 투자. ⚠️ 단, 1-2년 내 성과로 드러나지 않음",
           "delayed_effects": [
@@ -366,7 +366,7 @@
           "stats": {
             "staff_morale": 8,
             "project_success": 3,
-            "reputation": -12
+            "reputation": -13
           },
           "advance_time": true,
           "next": "period_7",
@@ -381,15 +381,15 @@
         "result": {
           "message": "평가단에게 상황을 객관적으로 보고했습니다. PMC의 일부 관리 미흡도 인정하고 개선 계획을 제시했습니다. 평가단이 '투명하고 책임감 있는 관리'라고 평가했고, 본부에서도 긍정적으로 봤습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": 3
+            "reputation": 2,
+            "project_success": 1,
+            "staff_morale": 1
           },
           "advance_time": true,
           "next": "period_7",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 1,
+            "local_friendly": 1
           }
         }
       },
@@ -398,16 +398,16 @@
         "result": {
           "message": "PMC에 2년차 진도 만회를 강력히 요구했습니다. PMC 총괄이 불만스러워하며 '계약 조건 재검토'를 언급했습니다. 평가단은 소장의 강한 의지를 긍정적으로 봤으나, PMC와 갈등이 깊어졌습니다.",
           "stats": {
-            "reputation": 6,
-            "project_success": -6,
-            "staff_morale": -12,
-            "wellbeing": -12
+            "reputation": 9,
+            "project_success": -3,
+            "staff_morale": -6,
+            "wellbeing": -6
           },
           "advance_time": true,
           "next": "period_7",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         },
         "statChanges": {
@@ -426,16 +426,16 @@
         "result": {
           "message": "신속한 방향 전환으로 정부와의 관계를 유지했습니다. 하지만 기존 프로젝트 참여자들이 혼란스러워합니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": -12,
-            "staff_morale": -12,
-            "wellbeing": -15
+            "reputation": 13,
+            "project_success": -5,
+            "staff_morale": -5,
+            "wellbeing": -10
           },
           "advance_time": true,
           "next": "period_8",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 8
           }
         },
         "statChanges": {
@@ -447,15 +447,15 @@
         "result": {
           "message": "원칙을 지키며 사업의 가치를 설명했습니다. 정부가 일부 이해했으나, 관계는 다소 소원해졌습니다.",
           "stats": {
-            "project_success": 6,
-            "reputation": -6,
-            "staff_morale": 3
+            "project_success": 5,
+            "reputation": -7,
+            "staff_morale": 4
           },
           "advance_time": true,
           "next": "period_8",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -464,15 +464,15 @@
         "result": {
           "message": "창의적인 접근이었습니다. JICA와의 공동 사업 가능성을 열었고, 언론도 긍정적으로 보도했습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 6
+            "reputation": 2,
+            "project_success": 2,
+            "staff_morale": 4
           },
           "advance_time": true,
           "next": "period_8",
           "deputy_morale": {
-            "principled": 7,
-            "local_friendly": 8
+            "principled": 2,
+            "local_friendly": 2
           }
         }
       }
@@ -488,16 +488,16 @@
         "result": {
           "message": "원칙적인 대응이었습니다. 감사 결과 일부 부정이 확인되어 파트너를 교체했습니다. 평판은 올랐지만 사업은 지연되었습니다.",
           "stats": {
-            "reputation": 13,
-            "project_success": -18,
-            "staff_morale": -12,
-            "budget": -12
+            "reputation": 15,
+            "project_success": -15,
+            "staff_morale": -8,
+            "budget": -11
           },
           "advance_time": true,
           "next": "period_9",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 5
+            "principled": 9,
+            "local_friendly": 6
           },
           "trade_off_message": "✓ 원칙적 대응으로 신뢰 확보. ⚠️ 단, 사업 지연과 관계 악화"
         },
@@ -509,16 +509,16 @@
         "result": {
           "message": "조용히 문제를 해결했습니다. 파트너가 반환 및 시정 조치를 했으나, 본부 감사팀의 의심은 여전합니다.",
           "stats": {
-            "project_success": 3,
-            "reputation": -12,
-            "staff_morale": 3,
-            "budget": 6
+            "project_success": 1,
+            "reputation": -15,
+            "staff_morale": 2,
+            "budget": 3
           },
           "advance_time": true,
           "next": "period_9",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 1,
+            "local_friendly": 3
           },
           "trade_off_message": "✓ 조용한 해결로 관계 유지. ⚠️ 단, 본부의 의심과 감사 리스크"
         },
@@ -530,16 +530,16 @@
         "result": {
           "message": "현지 공인 회계법인에 의뢰했습니다. 객관적인 결과로 의혹을 해소했으나, 비용과 시간이 소요되었습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": -6,
-            "budget": -24,
-            "staff_morale": -6
+            "reputation": 10,
+            "project_success": -5,
+            "budget": -15,
+            "staff_morale": -9
           },
           "advance_time": true,
           "next": "period_9",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           },
           "trade_off_message": "✓ 객관적 조사로 의혹 해소. ⚠️ 단, 비용과 시간 필요"
         },
@@ -558,17 +558,17 @@
         "result": {
           "message": "신속한 철수로 인명 피해는 없었습니다. 본부와 가족들이 안도했습니다. 하지만 현지에서는 \"실제 위험은 멀었는데 너무 겁을 먹었다\", \"우리는 여기서 계속 살아야 하는데...\"라는 비판이 나왔습니다. 현지 파트너들이 서운해하며 \"진짜 위기였다면 이해하지만, 이번은 과했다\"고 말합니다.",
           "stats": {
-            "staff_morale": 8,
-            "reputation": -18,
-            "project_success": -24,
-            "budget": -18,
-            "stress": 15
+            "staff_morale": 14,
+            "reputation": -11,
+            "project_success": -15,
+            "budget": -11,
+            "stress": 9
           },
           "advance_time": true,
           "next": "period_10",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 11,
+            "local_friendly": 3
           },
           "trade_off_message": "✓ 생명 보호. ❌ 단, 현지에서 '신뢰 잃은 파트너'로 인식",
           "delayed_effects": [
@@ -595,17 +595,17 @@
         "result": {
           "message": "신중한 판단이었습니다. 매일 안보 상황을 모니터링하며 대기했고, 다행히 상황이 악화되지 않아 사업을 유지했습니다. 현지 평판도 지켰습니다. 하지만 직원들은 \"만약 악화됐다면?\"이라는 불안 속에 긴장된 시간을 보냈습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": -12,
-            "budget": -6,
-            "stress": 18
+            "reputation": 4,
+            "project_success": 5,
+            "staff_morale": -15,
+            "budget": -7,
+            "stress": 15
           },
           "advance_time": true,
           "next": "period_10",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           },
           "trade_off_message": "✓ 균형잡힌 판단. ⚠️ 단, 직원들의 심리적 부담 컸음"
         },
@@ -620,17 +620,17 @@
         "result": {
           "message": "균형잡힌 대응이었습니다. YP 2명만 일시 철수시키고 사업은 계속했습니다. 대부분이 이해했지만 일부는 우려했습니다.",
           "stats": {
-            "project_success": 3,
-            "reputation": 3,
+            "project_success": 1,
+            "reputation": 1,
             "staff_morale": 0,
-            "budget": -6,
-            "stress": 12
+            "budget": -10,
+            "stress": 15
           },
           "advance_time": true,
           "next": "period_10",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 2,
+            "local_friendly": 2
           },
           "trade_off_message": "✓ 균형잡힌 대응. ⚠️ 단, 일관성 부족 우려"
         },
@@ -657,7 +657,7 @@
             "staff_morale": -12,
             "budget": 10,
             "stress": 12,
-            "wellbeing": -18
+            "wellbeing": -15
           },
           "advance_time": true,
           "next": "period_11",
@@ -676,16 +676,16 @@
         "result": {
           "message": "프로젝트 완료보다 사후관리에 집중했습니다. 현지 정부와 사후관리 협약(MOU)을 체결하고, 5년 모니터링 체계를 수립했습니다. 종료평가단은 '미래 지향적 접근'을 높이 평가했습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 6,
-            "budget": 6
+            "reputation": 0,
+            "project_success": 0,
+            "staff_morale": 4,
+            "budget": 0
           },
           "advance_time": true,
           "next": "period_11",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 7
+            "principled": 0,
+            "local_friendly": 0
           }
         }
       },
@@ -694,16 +694,16 @@
         "result": {
           "message": "본부에 3개월 계약 연장을 건의했습니다. 본부가 거부하며 '원래 계획대로 종료'를 지시했습니다. PMC는 실망했고, 평가단은 '계획 관리 능력 미흡'을 지적했습니다.",
           "stats": {
-            "project_success": -6,
-            "reputation": -18,
-            "staff_morale": -12,
-            "budget": -12
+            "project_success": -2,
+            "reputation": -5,
+            "staff_morale": -6,
+            "budget": -3
           },
           "advance_time": true,
           "next": "period_11",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 14,
+            "local_friendly": 3
           }
         }
       }
@@ -719,18 +719,18 @@
         "result": {
           "message": "200명 규모의 컨퍼런스를 열었습니다. 2년간의 성과를 체계적으로 발표했고, 현지 언론이 크게 보도했습니다.",
           "stats": {
-            "reputation": 18,
-            "project_success": 3,
-            "budget": -20,
-            "staff_morale": -6,
-            "stress": 8,
-            "wellbeing": -12
+            "reputation": 15,
+            "project_success": 4,
+            "budget": -12,
+            "staff_morale": -4,
+            "stress": 5,
+            "wellbeing": -1
           },
           "advance_time": true,
           "next": "period_12",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           },
           "trade_off_message": "✓ 화려한 마무리. ⚠️ 단, 내실보다 외형"
         },
@@ -747,15 +747,15 @@
         "result": {
           "message": "화려하지는 않지만, 후임자가 바로 업무를 시작할 수 있도록 완벽한 자료를 준비했습니다. 직원들이 안정감을 느꼈습니다.",
           "stats": {
-            "project_success": 6,
-            "staff_morale": 10,
-            "reputation": 3
+            "project_success": 2,
+            "staff_morale": 2,
+            "reputation": 1
           },
           "advance_time": true,
           "next": "period_12",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 2,
+            "local_friendly": 2
           },
           "trade_off_message": "✓ 내실있는 인계. ⚠️ 단, 대외적으로는 조용함"
         },
@@ -767,16 +767,16 @@
         "result": {
           "message": "정부, NGO, 알럼니 네트워크를 체계화하고 후임자에게 인맥을 소개했습니다. 관계 자산을 남겼습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 6,
-            "staff_morale": 8,
-            "budget": -12
+            "reputation": 7,
+            "project_success": 4,
+            "staff_morale": 2,
+            "budget": -15
           },
           "advance_time": true,
           "next": "period_12",
           "deputy_morale": {
-            "principled": 6,
-            "local_friendly": 8
+            "principled": 4,
+            "local_friendly": 6
           },
           "trade_off_message": "✓ 관계의 유산. ⚠️ 단, 비용과 시간 필요"
         },
@@ -812,15 +812,15 @@
         "result": {
           "message": "2년간의 경험을 바탕으로 새로운 도전을 하기로 결심했습니다. 여러 국제기구와 컨설팅 회사에서 제안이 들어왔습니다. 동료들이 아쉬워하지만 당신의 선택을 존중합니다.",
           "stats": {
-            "reputation": 6,
-            "project_success": 3,
+            "reputation": 10,
+            "project_success": 5,
             "staff_morale": -6
           },
           "advance_time": true,
           "next": "ending_new_challenge",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 8
           }
         }
       },
@@ -829,16 +829,16 @@
         "result": {
           "message": "2년으로는 부족하다고 느꼈습니다. 현지 대학 총장이 제안합니다. \"우리 대학의 자문교수로 계속 함께 해주시겠습니까?\" 당신은 이곳에서 계속 일하기로 했습니다.",
           "stats": {
-            "reputation": 6,
-            "project_success": 10,
-            "staff_morale": 13,
+            "reputation": 4,
+            "project_success": 6,
+            "staff_morale": 12,
             "budget": 0
           },
           "advance_time": true,
           "next": "ending_local_advisor",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 1,
+            "local_friendly": 5
           }
         }
       }
@@ -901,15 +901,15 @@
         "result": {
           "message": "현지 병원에서 진료를 받았습니다. 의사는 스트레스와 식습관 문제를 지적했습니다. 약을 처방받았지만, 하루 업무를 쉬어야 했습니다.",
           "stats": {
-            "wellbeing": 6,
-            "stress": 3,
-            "project_success": -3
+            "wellbeing": 7,
+            "stress": 2,
+            "project_success": -2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 3,
+            "local_friendly": 10
           }
         }
       },
@@ -919,14 +919,14 @@
           "message": "대사관 의무관이 친절하게 상담해주었습니다. 응급약을 받았고, 필요하면 한국 원격 진료도 가능하다고 했습니다. 안심이 되었습니다.",
           "stats": {
             "wellbeing": 8,
-            "stress": -9,
-            "reputation": 3
+            "stress": -4,
+            "reputation": 1
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 2,
+            "local_friendly": 2
           }
         }
       },
@@ -935,14 +935,14 @@
         "result": {
           "message": "약국에서 진통제와 소화제를 샀습니다. 당장은 나아진 것 같지만, 근본적인 해결은 아닌 것 같습니다. 건강이 더 악화될 수 있습니다.",
           "stats": {
-            "wellbeing": 3,
-            "stress": 6
+            "wellbeing": 2,
+            "stress": 3
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 8
           }
         }
       }
@@ -958,7 +958,7 @@
           "message": "현지 한인 교민이 운영하는 작은 한식당을 찾았습니다. 김치찌개를 먹으며 주인과 이야기를 나눴습니다. 맛은 한국만큼은 아니지만, 마음이 위로되었습니다.",
           "stats": {
             "wellbeing": 6,
-            "stress": -12,
+            "stress": -13,
             "budget": -3
           },
           "advance_time": false,
@@ -974,14 +974,14 @@
         "result": {
           "message": "현지 마트에서 재료를 구해 부대찌개를 만들어봤습니다. 맛은... 실패했지만, 만드는 과정 자체가 치유가 되었습니다. 다음엔 더 잘 만들 수 있을 것 같습니다.",
           "stats": {
-            "wellbeing": 6,
-            "stress": -6
+            "wellbeing": 8,
+            "stress": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -990,14 +990,14 @@
         "result": {
           "message": "가족과 1시간 동안 통화했습니다. 한국의 거리, 익숙한 얼굴들을 보니 눈물이 났습니다. 가족들이 응원해주었습니다. 힘이 났습니다.",
           "stats": {
-            "wellbeing": 8,
-            "stress": -14
+            "wellbeing": 6,
+            "stress": -11
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       }
@@ -1012,14 +1012,14 @@
         "result": {
           "message": "심리 상담사와 화상으로 1시간 동안 이야기를 나눴습니다. 당신의 감정이 정상적이고 이해할 만하다는 말에 안심했습니다. 정기 상담을 예약했습니다.",
           "stats": {
-            "wellbeing": 10,
-            "stress": -24
+            "wellbeing": 14,
+            "stress": -15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -1028,15 +1028,15 @@
         "result": {
           "message": "부소장에게 솔직하게 마음을 털어놓았습니다. 그도 비슷한 경험이 있다며 공감해주었습니다. 직원들이 업무 분담을 자청하며 도와주었습니다.",
           "stats": {
-            "wellbeing": 8,
-            "stress": -18,
-            "staff_morale": 6
+            "wellbeing": 7,
+            "stress": -15,
+            "staff_morale": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -1045,14 +1045,14 @@
         "result": {
           "message": "매일 아침 30분씩 조깅을 시작했습니다. 명상 앱을 다운받아 저녁에 명상을 합니다. 조금씩 나아지는 것 같지만, 근본적인 해결은 아직 멀었습니다.",
           "stats": {
-            "wellbeing": 6,
-            "stress": -9
+            "wellbeing": 4,
+            "stress": -14
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 8
           }
         }
       }
@@ -1067,15 +1067,15 @@
         "result": {
           "message": "택시를 이용해 일정을 무사히 마쳤습니다. 비용이 들었지만, 업무에는 지장이 없었습니다.",
           "stats": {
-            "stress": 3,
-            "budget": -3,
-            "project_success": 3
+            "stress": 2,
+            "budget": -2,
+            "project_success": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       },
@@ -1084,15 +1084,15 @@
         "result": {
           "message": "부소장이 자신의 차를 빌려주었습니다. 동료의 배려에 감사했고, 팀워크가 더 돈독해졌습니다.",
           "stats": {
-            "stress": -3,
-            "staff_morale": 6,
-            "project_success": 3
+            "stress": -2,
+            "staff_morale": 3,
+            "project_success": 2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 3,
+            "local_friendly": 3
           }
         }
       },
@@ -1125,9 +1125,9 @@
         "result": {
           "message": "한 달간 호텔에 머물렀습니다. 편안하지만 비용이 많이 들었습니다. 집은 완벽하게 수리되어 돌아왔습니다.",
           "stats": {
-            "wellbeing": 3,
-            "stress": -6,
-            "budget": -12
+            "wellbeing": 2,
+            "stress": -5,
+            "budget": -13
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1142,16 +1142,16 @@
         "result": {
           "message": "사무소 직원들이 도와 합리적인 가격의 서비스 아파트를 찾았습니다. 호텔보다 저렴하고 생활하기 편했습니다. 팀원들의 도움에 감사했습니다.",
           "stats": {
-            "wellbeing": 3,
-            "stress": 2,
-            "staff_morale": 6,
-            "budget": -6
+            "wellbeing": 6,
+            "stress": 3,
+            "staff_morale": 4,
+            "budget": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 3,
+            "local_friendly": 3
           }
         }
       },
@@ -1161,14 +1161,14 @@
           "message": "집주인과 크게 다퉜습니다. 결국 2주 만에 수리가 완료되었지만, 관계가 불편해졌습니다.",
           "stats": {
             "wellbeing": -6,
-            "stress": 6,
-            "reputation": -3
+            "stress": 3,
+            "reputation": -2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       }
@@ -1183,17 +1183,17 @@
         "result": {
           "message": "한국 정부와 KOICA의 노력을 강조했습니다. 본부에서 매우 만족스러워하며 좋은 평가를 받았습니다. 언론 보도도 한국의 기여를 크게 다뤘습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": 3,
-            "stress": -9,
-            "wellbeing": 6
+            "reputation": 9,
+            "project_success": 7,
+            "staff_morale": 4,
+            "stress": -11,
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -1202,17 +1202,17 @@
         "result": {
           "message": "현지 주민들의 헌신과 노력을 중심으로 연설했습니다. 주민들이 눈물을 흘리며 감사했고, 협력국 정부와의 관계가 더욱 돈독해졌습니다. '진정한 협력자'라는 평을 들었습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 6,
-            "stress": -12,
-            "wellbeing": 8
+            "reputation": 8,
+            "project_success": 6,
+            "staff_morale": 5,
+            "stress": -9,
+            "wellbeing": 10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 7,
-            "local_friendly": 8
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -1221,16 +1221,16 @@
         "result": {
           "message": "이번 성공을 바탕으로 추가 협력 프로젝트를 제안했습니다. 교육부 장관이 긍정적으로 검토하겠다고 답했습니다. 새로운 사업 기회가 열렸습니다.",
           "stats": {
-            "reputation": 7,
-            "project_success": 10,
-            "stress": -6,
+            "reputation": 8,
+            "project_success": 11,
+            "stress": -7,
             "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 6,
-            "local_friendly": 8
+            "principled": 7,
+            "local_friendly": 9
           }
         }
       }
@@ -1245,18 +1245,18 @@
         "result": {
           "message": "본부에 추가 예산을 요청해 3개 지역에 동일 모델을 확대했습니다. 단원들의 사기가 올랐고, 프로젝트 성과도 배가되었습니다. 예산은 들었지만 가치있는 투자였습니다.",
           "stats": {
-            "project_success": 10,
-            "staff_morale": 8,
-            "reputation": 6,
-            "budget": -18,
-            "stress": 3,
-            "wellbeing": 6
+            "project_success": 14,
+            "staff_morale": 11,
+            "reputation": 8,
+            "budget": -12,
+            "stress": 2,
+            "wellbeing": 8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       },
@@ -1265,17 +1265,17 @@
         "result": {
           "message": "김지영 단원의 임기를 6개월 연장했습니다. 그녀가 감격했고, 다른 단원들도 자신의 일에 더욱 헌신하게 되었습니다. 조직 분위기가 매우 좋아졌습니다.",
           "stats": {
-            "staff_morale": 13,
-            "project_success": 6,
-            "reputation": 3,
-            "stress": -12,
-            "wellbeing": 7
+            "staff_morale": 10,
+            "project_success": 4,
+            "reputation": 2,
+            "stress": -9,
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -1284,17 +1284,17 @@
         "result": {
           "message": "주요 언론사에 보도 자료를 배포했습니다. 한국과 현지 모두에서 긍정적인 보도가 이어졌습니다. KOICA의 브랜드 가치가 크게 상승했습니다.",
           "stats": {
-            "reputation": 13,
-            "project_success": 6,
-            "staff_morale": 6,
-            "stress": -6,
-            "wellbeing": 6
+            "reputation": 11,
+            "project_success": 5,
+            "staff_morale": 5,
+            "stress": -5,
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       }
@@ -1309,17 +1309,17 @@
         "result": {
           "message": "150명의 개발 전문가 앞에서 발표했습니다. 당신의 파트너십 접근법이 큰 호응을 얻었고, 여러 기관에서 협력 제안이 들어왔습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 4,
-            "staff_morale": 6,
-            "stress": 3,
-            "wellbeing": 6
+            "reputation": 13,
+            "project_success": 5,
+            "staff_morale": 8,
+            "stress": 2,
+            "wellbeing": 8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       },
@@ -1328,17 +1328,17 @@
         "result": {
           "message": "그에게 메인 프로젝트의 현지 책임자 역할을 맡겼습니다. 그는 기대 이상의 성과를 보여주었고, 다른 현지 직원들에게도 좋은 롤모델이 되었습니다.",
           "stats": {
-            "project_success": 10,
-            "reputation": 8,
-            "staff_morale": 8,
-            "stress": -9,
-            "wellbeing": 7
+            "project_success": 8,
+            "reputation": 6,
+            "staff_morale": 6,
+            "stress": -7,
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 7,
-            "local_friendly": 8
+            "principled": 5,
+            "local_friendly": 6
           }
         }
       },
@@ -1372,17 +1372,17 @@
         "result": {
           "message": "로마 FAO 본부에서 사례를 발표했습니다. 전 세계 개발 전문가들이 한국 ODA의 효과성을 인정했습니다. 국제적 명성이 크게 올랐습니다.",
           "stats": {
-            "reputation": 18,
-            "project_success": 5,
-            "budget": -20,
-            "stress": 6,
-            "wellbeing": 6
+            "reputation": 15,
+            "project_success": 7,
+            "budget": -12,
+            "stress": 4,
+            "wellbeing": 14
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       },
@@ -1391,17 +1391,17 @@
         "result": {
           "message": "본부에 먼저 상세히 보고하고 승인을 받았습니다. 본부에서 이를 정부 ODA 성과로 공식화했습니다. 조직 내 평가가 매우 좋아졌습니다.",
           "stats": {
-            "reputation": 13,
-            "project_success": 10,
-            "staff_morale": 6,
-            "stress": -6,
-            "wellbeing": 3
+            "reputation": 9,
+            "project_success": 7,
+            "staff_morale": 4,
+            "stress": -4,
+            "wellbeing": 1
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 6,
+            "local_friendly": 1
           }
         }
       },
@@ -1410,17 +1410,17 @@
         "result": {
           "message": "농림부와 5개년 확대 계획을 함께 수립했습니다. 한국이 기술 자문을, 현지가 예산을 담당하는 완벽한 파트너십 모델이 만들어졌습니다.",
           "stats": {
-            "reputation": 15,
-            "project_success": 13,
-            "staff_morale": 7,
-            "stress": 3,
-            "wellbeing": 6
+            "reputation": 12,
+            "project_success": 10,
+            "staff_morale": 5,
+            "stress": 4,
+            "wellbeing": 0
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       }
@@ -1435,11 +1435,11 @@
         "result": {
           "message": "위험을 무릅쓰고 현장을 방문했습니다. 주민들이 당신의 손을 잡고 눈물을 흘렸습니다. 평생 잊을 수 없는 경험이 되었습니다.",
           "stats": {
-            "reputation": 10,
+            "reputation": 9,
             "project_success": 8,
             "staff_morale": 8,
             "stress": 6,
-            "wellbeing": 10
+            "wellbeing": 9
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1454,17 +1454,17 @@
         "result": {
           "message": "긴급 예산을 활용해 의약품과 식량을 추가로 지원했습니다. 위기 지역이 빠르게 안정되었고, 한국의 인도주의적 가치가 빛났습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 10,
-            "budget": -24,
-            "stress": -6,
-            "wellbeing": 8
+            "reputation": 13,
+            "project_success": 13,
+            "budget": -15,
+            "stress": -8,
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -1473,17 +1473,17 @@
         "result": {
           "message": "긴급구호 성공 사례를 본부와 언론에 알렸습니다. 한국 언론이 크게 보도했고, KOICA의 긴급구호 역량이 재조명되었습니다.",
           "stats": {
-            "reputation": 13,
-            "project_success": 7,
-            "staff_morale": 6,
-            "stress": -9,
-            "wellbeing": 6
+            "reputation": 9,
+            "project_success": 5,
+            "staff_morale": 4,
+            "stress": -6,
+            "wellbeing": 8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 6,
+            "local_friendly": 1
           }
         }
       }
@@ -1498,17 +1498,17 @@
         "result": {
           "message": "한국 전통 선물과 축의금을 정성스럽게 준비했습니다. 파티마와 그녀의 가족이 깊이 감동했습니다. 현지 직원들이 당신을 진심으로 존경하게 되었습니다.",
           "stats": {
-            "staff_morale": 10,
-            "reputation": 8,
-            "budget": -6,
-            "stress": -12,
-            "wellbeing": 10
+            "staff_morale": 11,
+            "reputation": 9,
+            "budget": -5,
+            "stress": -14,
+            "wellbeing": 11
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -1517,17 +1517,17 @@
         "result": {
           "message": "전체 직원들과 함께 결혼식에 참석했습니다. 팀이 하나라는 것을 보여주는 순간이었고, 조직 결속력이 크게 강화되었습니다.",
           "stats": {
-            "staff_morale": 13,
-            "reputation": 7,
+            "staff_morale": 11,
+            "reputation": 6,
             "project_success": 3,
-            "stress": -14,
-            "wellbeing": 10
+            "stress": -12,
+            "wellbeing": 9
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -1561,17 +1561,17 @@
         "result": {
           "message": "모든 연수생에게 답장을 보냈습니다. 이들과의 네트워크가 향후 사업에 큰 자산이 되었고, 협력이 훨씬 수월해졌습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 6,
-            "stress": 3,
-            "wellbeing": 7
+            "reputation": 12,
+            "project_success": 9,
+            "staff_morale": 7,
+            "stress": 2,
+            "wellbeing": 8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -1600,16 +1600,16 @@
         "result": {
           "message": "연수 사업의 장기적 성과를 본부에 보고했습니다. 본부에서 연수 사업 확대를 결정했고, 당신의 사례가 벤치마크가 되었습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 6,
-            "stress": -9,
-            "wellbeing": 6
+            "reputation": 9,
+            "project_success": 7,
+            "staff_morale": 5,
+            "stress": -8,
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
+            "principled": 7,
             "local_friendly": 2
           }
         }
@@ -1625,17 +1625,17 @@
         "result": {
           "message": "외교적 수사 없이 전문가적 조언을 했습니다. 장관이 진심으로 감사하며 당신의 의견을 정책에 반영했습니다. 신뢰가 더욱 깊어졌습니다.",
           "stats": {
-            "reputation": 13,
-            "project_success": 10,
-            "staff_morale": 6,
+            "reputation": 15,
+            "project_success": 11,
+            "staff_morale": 7,
             "stress": 3,
-            "wellbeing": 7
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -1644,17 +1644,17 @@
         "result": {
           "message": "한국의 경험을 바탕으로 구체적 실행 방안을 제시했습니다. 장관이 이를 국가 계획에 포함시켰고, 한-협력국 전략적 파트너십이 강화되었습니다.",
           "stats": {
-            "reputation": 15,
-            "project_success": 11,
-            "staff_morale": 7,
-            "stress": -6,
-            "wellbeing": 6
+            "reputation": 13,
+            "project_success": 9,
+            "staff_morale": 6,
+            "stress": -5,
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -1663,11 +1663,11 @@
         "result": {
           "message": "JICA, USAID 등 다른 공여국과의 공조를 제안했습니다. 장관이 이를 수용해 공여국 협의체가 만들어졌고, 당신이 의장을 맡게 되었습니다.",
           "stats": {
-            "reputation": 18,
-            "project_success": 10,
+            "reputation": 15,
+            "project_success": 11,
             "staff_morale": 6,
             "stress": 6,
-            "wellbeing": 6
+            "wellbeing": 9
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1688,17 +1688,17 @@
         "result": {
           "message": "직원들의 헌신에 깊이 감사하며 특별 보상을 약속했습니다. 위기를 극복했고, 조직의 결속력이 최고조에 달했습니다.",
           "stats": {
-            "staff_morale": 18,
-            "project_success": 10,
-            "reputation": 6,
-            "stress": -18,
-            "wellbeing": 10
+            "staff_morale": 14,
+            "project_success": 8,
+            "reputation": 5,
+            "stress": -14,
+            "wellbeing": 3
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -1707,17 +1707,17 @@
         "result": {
           "message": "직원들과 함께 밤을 새워 일했습니다. 피곤하지만 함께한 시간이 팀을 더욱 단단하게 만들었습니다. 리더십이 빛났습니다.",
           "stats": {
-            "staff_morale": 13,
-            "project_success": 13,
-            "reputation": 7,
-            "stress": 6,
-            "wellbeing": -6
+            "staff_morale": 15,
+            "project_success": 15,
+            "reputation": 10,
+            "stress": 3,
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       },
@@ -1726,17 +1726,17 @@
         "result": {
           "message": "이 경험을 사무소의 문화로 정착시켰습니다. '위기 때 함께하는 조직'이라는 정체성이 만들어졌고, 다른 사무소의 롤모델이 되었습니다.",
           "stats": {
-            "staff_morale": 15,
-            "project_success": 10,
-            "reputation": 10,
-            "stress": -12,
-            "wellbeing": 8
+            "staff_morale": 13,
+            "project_success": 9,
+            "reputation": 9,
+            "stress": -10,
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       }
@@ -1751,17 +1751,17 @@
         "result": {
           "message": "시상식에서 수상 소감을 발표했습니다. 한국의 효과적인 ODA 모델이 국제적으로 인정받았고, 여러 나라에서 벤치마킹 요청이 들어왔습니다.",
           "stats": {
-            "reputation": 21,
-            "project_success": 10,
-            "budget": -30,
-            "stress": 6,
-            "wellbeing": 8
+            "reputation": 15,
+            "project_success": 14,
+            "budget": -15,
+            "stress": -2,
+            "wellbeing": 15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       },
@@ -1770,17 +1770,17 @@
         "result": {
           "message": "부소장과 현지 파트너를 대신 보냈습니다. 그들이 깊이 감동했고, 당신의 리더십이 더욱 존경받게 되었습니다. 겸손한 리더로 기억됩니다.",
           "stats": {
-            "staff_morale": 18,
-            "reputation": 13,
-            "project_success": 8,
-            "stress": -12,
-            "wellbeing": 10
+            "staff_morale": 12,
+            "reputation": 8,
+            "project_success": 5,
+            "stress": -8,
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 1,
+            "local_friendly": 5
           }
         }
       },
@@ -1789,17 +1789,17 @@
         "result": {
           "message": "한국과 현지 언론에 대대적으로 알렸습니다. 본부에서 매우 만족했고, 사무소 예산이 증액되었습니다. KOICA의 브랜드 가치가 상승했습니다.",
           "stats": {
-            "reputation": 18,
-            "project_success": 10,
-            "staff_morale": 8,
-            "stress": -6,
-            "wellbeing": 7
+            "reputation": 15,
+            "project_success": 8,
+            "staff_morale": 6,
+            "stress": -5,
+            "wellbeing": 0
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       }
@@ -1814,17 +1814,17 @@
         "result": {
           "message": "높아진 여론을 바탕으로 새로운 사업을 제안했습니다. 현지 정부가 적극 환영하며 신속하게 승인했습니다. 사업 확장의 기회를 잡았습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 13,
-            "staff_morale": 6,
-            "stress": 3,
-            "wellbeing": 6
+            "reputation": 13,
+            "project_success": 15,
+            "staff_morale": 8,
+            "stress": 2,
+            "wellbeing": 7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -1833,11 +1833,11 @@
         "result": {
           "message": "한국 언론이 역보도하며 국내에서도 주목받았습니다. 국민들이 ODA 세금 사용에 대해 긍정적으로 인식하게 되었고, 본부의 평가도 매우 좋았습니다.",
           "stats": {
-            "reputation": 15,
+            "reputation": 14,
             "project_success": 8,
             "staff_morale": 7,
             "stress": -9,
-            "wellbeing": 7
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1852,17 +1852,17 @@
         "result": {
           "message": "화려한 홍보보다 실질적 성과에 집중했습니다. 직원들이 당신의 겸손함을 존경했고, 현지에서 '말보다 행동하는 리더'로 기억되었습니다.",
           "stats": {
-            "staff_morale": 10,
-            "project_success": 10,
-            "reputation": 8,
-            "stress": -14,
-            "wellbeing": 10
+            "staff_morale": 8,
+            "project_success": 8,
+            "reputation": 7,
+            "stress": -12,
+            "wellbeing": 12
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       }
@@ -1877,17 +1877,17 @@
         "result": {
           "message": "본부 방침에 따랐습니다. 디지털 사업을 시작했지만 현지 상황과 맞지 않아 난항을 겪고 있습니다. 현지 정부와의 관계도 소원해졌습니다.",
           "stats": {
-            "project_success": -18,
-            "reputation": -24,
-            "staff_morale": -12,
-            "stress": 8,
-            "wellbeing": -12
+            "project_success": -8,
+            "reputation": -10,
+            "staff_morale": -5,
+            "stress": 3,
+            "wellbeing": -3
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 13,
+            "local_friendly": 3
           }
         }
       },
@@ -1896,18 +1896,18 @@
         "result": {
           "message": "데이터를 근거로 본부를 설득했습니다. 결국 \"현지 맞춤형 디지털화\" 방식을 승인받았습니다. 시간이 걸렸지만 균형잡힌 해결책을 찾았습니다.",
           "stats": {
-            "project_success": 6,
-            "reputation": 3,
-            "staff_morale": 6,
-            "budget": -12,
-            "stress": 10,
-            "wellbeing": -6
+            "project_success": 4,
+            "reputation": 2,
+            "staff_morale": 4,
+            "budget": -15,
+            "stress": 13,
+            "wellbeing": -2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -1916,18 +1916,18 @@
         "result": {
           "message": "창의적인 절충안을 만들었습니다. 식수 시설에 태양광과 IoT를 결합한 모델을 제시해 본부와 현지 모두 만족시켰습니다. 혁신적 접근으로 평가받았습니다.",
           "stats": {
-            "project_success": 10,
-            "reputation": 8,
-            "staff_morale": 8,
-            "budget": -18,
-            "stress": 6,
-            "wellbeing": 3
+            "project_success": 5,
+            "reputation": 4,
+            "staff_morale": 4,
+            "budget": -15,
+            "stress": 9,
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 2,
+            "local_friendly": 2
           }
         }
       }
@@ -1942,18 +1942,18 @@
         "result": {
           "message": "서둘러 집행했습니다. 85%를 달성해 본부는 만족했지만, 일부 사업이 부실하게 진행되었습니다. 장기적으로 문제가 될 수 있습니다.",
           "stats": {
-            "budget": 13,
-            "reputation": 6,
-            "project_success": -18,
-            "staff_morale": -18,
-            "stress": 13,
-            "wellbeing": -18
+            "budget": 15,
+            "reputation": 8,
+            "project_success": -12,
+            "staff_morale": -12,
+            "stress": 9,
+            "wellbeing": -11
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       },
@@ -1967,7 +1967,7 @@
             "budget": -12,
             "staff_morale": 6,
             "stress": 8,
-            "wellbeing": 3
+            "wellbeing": -1
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -1982,18 +1982,18 @@
         "result": {
           "message": "창의적 해법을 찾았습니다. 현지 정부와 협의해 신속 집행 가능하면서도 효과적인 사업들을 발굴했습니다. 위기를 기회로 만들었습니다.",
           "stats": {
-            "budget": 10,
-            "project_success": 8,
-            "reputation": 8,
-            "staff_morale": 3,
-            "stress": 10,
+            "budget": 4,
+            "project_success": 3,
+            "reputation": 3,
+            "staff_morale": 1,
+            "stress": 15,
             "wellbeing": -6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 1,
+            "local_friendly": 3
           }
         }
       }
@@ -2008,18 +2008,18 @@
         "result": {
           "message": "즉시 의료 후송 절차를 밟았습니다. 단원이 한국에서 완치되었고, 다른 단원들도 안심했습니다. 안전 관리 책임을 다했습니다.",
           "stats": {
-            "staff_morale": 10,
-            "project_success": -12,
-            "budget": -30,
-            "reputation": 3,
-            "stress": 12,
-            "wellbeing": -6
+            "staff_morale": 4,
+            "project_success": -14,
+            "budget": -15,
+            "reputation": 2,
+            "stress": 14,
+            "wellbeing": -15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         },
         "statChanges": {
@@ -2031,18 +2031,18 @@
         "result": {
           "message": "의무관과 협의해 수도의 좋은 병원으로 이송했습니다. 치료는 성공적이었지만 회복 기간이 더 길어졌습니다. 비용은 절감되었습니다.",
           "stats": {
-            "staff_morale": 3,
-            "project_success": -6,
-            "budget": -12,
-            "reputation": 3,
-            "stress": 8,
+            "staff_morale": 1,
+            "project_success": -9,
+            "budget": -15,
+            "reputation": 1,
+            "stress": 13,
             "wellbeing": -12
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 1,
+            "local_friendly": 3
           }
         }
       },
@@ -2051,18 +2051,18 @@
         "result": {
           "message": "본부 결정을 기다렸습니다. 결정이 늦어지는 동안 단원과 가족들이 불안해했습니다. 결국 이송했지만 초기 대응이 미흡했다는 비판을 받았습니다.",
           "stats": {
-            "staff_morale": -24,
-            "project_success": -12,
-            "budget": -24,
-            "reputation": -18,
-            "stress": 10,
-            "wellbeing": -18
+            "staff_morale": -15,
+            "project_success": -7,
+            "budget": -15,
+            "reputation": -11,
+            "stress": 6,
+            "wellbeing": -2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 11,
+            "local_friendly": 3
           }
         }
       }
@@ -2077,17 +2077,17 @@
         "result": {
           "message": "취임 직후 바쁜 장관을 만나 2시간 동안 사업 성과를 설명했습니다. 장관이 이해하며 \"재검토하되 긍정적으로 보겠다\"고 약속했습니다. 위기를 넘겼습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": 6,
-            "stress": 8,
-            "wellbeing": -6
+            "reputation": 4,
+            "project_success": 3,
+            "staff_morale": 3,
+            "stress": 12,
+            "wellbeing": -5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 3,
+            "local_friendly": 3
           }
         }
       },
@@ -2096,17 +2096,17 @@
         "result": {
           "message": "프로젝트 수혜자들이 자발적으로 청원을 냈습니다. 여론의 압력으로 신정부도 사업 중단을 철회했습니다. 하지만 정부와의 관계가 다소 불편해졌습니다.",
           "stats": {
-            "project_success": 8,
-            "reputation": -6,
+            "project_success": 9,
+            "reputation": -5,
             "staff_morale": 3,
-            "stress": 10,
+            "stress": 9,
             "wellbeing": -12
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
             "principled": 2,
-            "local_friendly": 8
+            "local_friendly": 9
           }
         }
       },
@@ -2115,17 +2115,17 @@
         "result": {
           "message": "한국 정부 차원의 외교적 노력으로 사업이 재승인되었습니다. 효과적이었지만, 현지에서 '압력을 넣은 나라'라는 이미지가 생겼습니다.",
           "stats": {
-            "project_success": 10,
-            "reputation": -12,
-            "staff_morale": -6,
-            "stress": 10,
-            "wellbeing": -9
+            "project_success": 13,
+            "reputation": -9,
+            "staff_morale": -4,
+            "stress": 7,
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 10,
+            "local_friendly": 3
           }
         }
       }
@@ -2140,17 +2140,17 @@
         "result": {
           "message": "JICA와 역할 분담 MOU를 체결했습니다. 한국은 기술 자문, 일본은 인프라에 집중하기로 했습니다. 현지 정부가 '공여국 간 협력 모범 사례'라고 극찬했습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 10,
-            "staff_morale": 6,
-            "stress": -6,
-            "wellbeing": 6
+            "reputation": 4,
+            "project_success": 4,
+            "staff_morale": 3,
+            "stress": -3,
+            "wellbeing": 3
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 1,
+            "local_friendly": 3
           }
         }
       },
@@ -2159,17 +2159,17 @@
         "result": {
           "message": "한국만의 강점(IT, 교육 등)으로 차별화했습니다. JICA와는 거리를 두었지만, 한국의 정체성을 명확히 했습니다. 경쟁 구도는 여전합니다.",
           "stats": {
-            "project_success": 6,
-            "reputation": 3,
-            "staff_morale": 3,
-            "stress": 6,
+            "project_success": 7,
+            "reputation": 4,
+            "staff_morale": 4,
+            "stress": 5,
             "wellbeing": 0
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -2178,17 +2178,17 @@
         "result": {
           "message": "한국의 성과를 적극 홍보했습니다. 언론도 관심을 보였으나, JICA가 불편해하며 관계가 경색되었습니다. 경쟁이 더 치열해졌습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 3,
-            "staff_morale": -6,
-            "stress": 8,
-            "wellbeing": -6
+            "reputation": 12,
+            "project_success": 5,
+            "staff_morale": -3,
+            "stress": 4,
+            "wellbeing": -3
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 3,
+            "local_friendly": 12
           }
         }
       }
@@ -2203,17 +2203,17 @@
         "result": {
           "message": "주말을 반납하고 모든 서류를 완벽히 준비했습니다. 감사 결과 경미한 지적만 받았습니다. 하지만 직원들이 극도로 지쳤습니다.",
           "stats": {
-            "reputation": 6,
-            "project_success": 3,
-            "staff_morale": -24,
-            "stress": 18,
-            "wellbeing": -24
+            "reputation": 7,
+            "project_success": 4,
+            "staff_morale": -15,
+            "stress": 14,
+            "wellbeing": -15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -2222,17 +2222,17 @@
         "result": {
           "message": "현재 상태를 솔직히 보여주고 개선 계획을 제시했습니다. 몇 가지 지적을 받았지만 '투명한 운영'으로 평가받았습니다. 직원들은 덜 지쳤습니다.",
           "stats": {
-            "reputation": 3,
+            "reputation": 0,
             "project_success": 0,
-            "staff_morale": 3,
-            "stress": 8,
-            "wellbeing": -6
+            "staff_morale": 0,
+            "stress": 15,
+            "wellbeing": -4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 0,
+            "local_friendly": 0
           }
         }
       },
@@ -2241,18 +2241,18 @@
         "result": {
           "message": "감사 대응 전문 컨설턴트를 고용했습니다. 전문적인 대응으로 좋은 평가를 받았지만, 비용이 많이 들었고 직원들은 무력감을 느꼈습니다.",
           "stats": {
-            "reputation": 7,
-            "budget": -30,
+            "reputation": 8,
+            "budget": -15,
             "project_success": 3,
-            "staff_morale": -12,
-            "stress": 6,
-            "wellbeing": -9
+            "staff_morale": -10,
+            "stress": 5,
+            "wellbeing": -15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       }
@@ -2267,17 +2267,17 @@
         "result": {
           "message": "주말을 반납하고 완벽히 준비했습니다. 의원단이 매우 만족하며 국회에서 좋은 평가를 했습니다. 하지만 직원들은 지쳤습니다.",
           "stats": {
-            "reputation": 13,
-            "project_success": 6,
-            "staff_morale": -18,
-            "stress": 13,
-            "wellbeing": -18
+            "reputation": 15,
+            "project_success": 7,
+            "staff_morale": -14,
+            "stress": 10,
+            "wellbeing": -14
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -2286,17 +2286,17 @@
         "result": {
           "message": "본부에 현실적 일정 조정을 건의했습니다. 본부가 일부 수용했고, 직원들은 덜 지쳤습니다. 의원단도 무리한 일정보다 내실있는 시찰에 만족했습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 6,
-            "staff_morale": 6,
-            "stress": 6,
-            "wellbeing": 3
+            "reputation": 1,
+            "project_success": 1,
+            "staff_morale": 1,
+            "stress": 11,
+            "wellbeing": 0
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 1,
+            "local_friendly": 1
           }
         }
       },
@@ -2305,17 +2305,17 @@
         "result": {
           "message": "가장 성공적인 현장만 집중적으로 보여줬습니다. 의원단이 만족했지만, 직원들은 '진실을 숨긴다'는 불편함을 느꼈습니다. 현실과의 괴리가 있습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": -6,
-            "staff_morale": -12,
-            "stress": 10,
-            "wellbeing": -12
+            "reputation": 13,
+            "project_success": -4,
+            "staff_morale": -9,
+            "stress": 7,
+            "wellbeing": -9
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       }
@@ -2330,16 +2330,16 @@
         "result": {
           "message": "매일 1:1 멘토링 시간을 가졌습니다. 심리 상담도 연결해주었습니다. 두 YP가 점차 회복되어 업무에 복귀했습니다. 시간이 걸렸지만 문제를 해결했습니다.",
           "stats": {
-            "staff_morale": 10,
-            "project_success": -6,
-            "stress": 8,
-            "wellbeing": -12
+            "staff_morale": 3,
+            "project_success": -10,
+            "stress": 14,
+            "wellbeing": -15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 1,
+            "local_friendly": 1
           }
         }
       },
@@ -2348,17 +2348,17 @@
         "result": {
           "message": "엄격한 태도로 책임을 강조했습니다. 한 명은 버티고 있지만, 다른 한 명은 결국 조기 귀국했습니다. 조직 분위기가 경직되었습니다.",
           "stats": {
-            "staff_morale": -24,
-            "project_success": -18,
-            "reputation": -12,
-            "stress": 10,
-            "wellbeing": -18
+            "staff_morale": -15,
+            "project_success": -11,
+            "reputation": -7,
+            "stress": 6,
+            "wellbeing": -11
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       },
@@ -2367,7 +2367,7 @@
         "result": {
           "message": "본부에 상황을 보고했습니다. 본부가 조기 귀국을 승인했습니다. 절차는 맞았지만, 다른 YP들이 '우리도 힘들면 버려질까?'라고 불안해합니다.",
           "stats": {
-            "staff_morale": -18,
+            "staff_morale": -15,
             "project_success": -12,
             "reputation": -6,
             "stress": 6,
@@ -2392,18 +2392,18 @@
         "result": {
           "message": "사업 범위를 30% 축소했습니다. 재정은 안정되었지만, 당초 약속한 성과를 달성하지 못했습니다. 현지 정부가 실망했습니다.",
           "stats": {
-            "budget": 6,
-            "project_success": -15,
-            "reputation": -10,
-            "staff_morale": -12,
-            "stress": 10,
-            "wellbeing": -12
+            "budget": 9,
+            "project_success": -7,
+            "reputation": -4,
+            "staff_morale": -5,
+            "stress": 4,
+            "wellbeing": -7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 8
           }
         }
       },
@@ -2414,9 +2414,9 @@
           "stats": {
             "budget": 10,
             "project_success": 8,
-            "reputation": 3,
-            "stress": 18,
-            "wellbeing": -18
+            "reputation": -1,
+            "stress": 15,
+            "wellbeing": -15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2431,18 +2431,18 @@
         "result": {
           "message": "현지 정부에 비용 분담을 제안했습니다. 놀랍게도 정부가 수용했습니다. 진정한 파트너십이 만들어졌고, 사업도 정상 진행되었습니다.",
           "stats": {
-            "project_success": 10,
-            "reputation": 10,
-            "budget": 6,
-            "staff_morale": 6,
-            "stress": 6,
-            "wellbeing": 3
+            "project_success": 1,
+            "reputation": 1,
+            "budget": 1,
+            "staff_morale": 1,
+            "stress": 11,
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 0,
+            "local_friendly": 1
           }
         }
       }
@@ -2457,16 +2457,16 @@
         "result": {
           "message": "명확히 거절했습니다. 국장이 불쾌해하며 승인을 지연시켰지만, 결국 정상 절차로 통과되었습니다. 원칙을 지킨 것에 자부심을 느낍니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": -12,
-            "staff_morale": 6,
-            "stress": 8,
-            "wellbeing": 6
+            "reputation": 6,
+            "project_success": -15,
+            "staff_morale": 5,
+            "stress": 10,
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
+            "principled": 6,
             "local_friendly": 2
           }
         }
@@ -2476,18 +2476,18 @@
         "result": {
           "message": "\"공개 선발을 통한 연수 프로그램\"을 제안했습니다. 국장도 수용했고, 투명한 절차를 만들었습니다. 창의적인 해결책이었습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 8,
-            "staff_morale": 8,
-            "budget": -12,
-            "stress": 6,
-            "wellbeing": 6
+            "reputation": 6,
+            "project_success": 5,
+            "staff_morale": 5,
+            "budget": -15,
+            "stress": 9,
+            "wellbeing": 3
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 3,
+            "local_friendly": 3
           }
         }
       },
@@ -2496,17 +2496,17 @@
         "result": {
           "message": "본부와 대사관에 보고했습니다. 외교적 압력으로 문제를 해결했지만, 현지에서 당신을 '고자질하는 사람'으로 보기 시작했습니다. 관계가 불편해졌습니다.",
           "stats": {
-            "project_success": 6,
-            "reputation": -18,
-            "staff_morale": -12,
-            "stress": 10,
-            "wellbeing": -12
+            "project_success": 9,
+            "reputation": -8,
+            "staff_morale": -5,
+            "stress": 5,
+            "wellbeing": -5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 12,
+            "local_friendly": 3
           }
         }
       }
@@ -2523,9 +2523,9 @@
           "stats": {
             "reputation": 3,
             "project_success": 3,
-            "staff_morale": -18,
+            "staff_morale": -15,
             "stress": 8,
-            "wellbeing": -12
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2540,17 +2540,17 @@
         "result": {
           "message": "현지 맥락과 정성적 성과를 담은 50페이지 반박 보고서를 제출했습니다. 본부가 재검토해 일부 평가가 수정되었습니다. 원칙을 지켰습니다.",
           "stats": {
-            "reputation": 6,
-            "project_success": 8,
-            "staff_morale": 8,
-            "stress": 13,
-            "wellbeing": -6
+            "reputation": 2,
+            "project_success": 3,
+            "staff_morale": 3,
+            "stress": 15,
+            "wellbeing": -15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 3,
+            "local_friendly": 1
           }
         }
       },
@@ -2559,17 +2559,17 @@
         "result": {
           "message": "논쟁을 피하고 묵묵히 일했습니다. 평가는 그대로 남았지만, 갈등은 피했습니다. 직원들은 리더십에 실망했습니다.",
           "stats": {
-            "reputation": -12,
-            "project_success": -12,
-            "staff_morale": -24,
-            "stress": 6,
-            "wellbeing": -6
+            "reputation": -7,
+            "project_success": -7,
+            "staff_morale": -13,
+            "stress": 3,
+            "wellbeing": 1
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 7,
+            "local_friendly": 7
           }
         }
       }
@@ -2584,17 +2584,17 @@
         "result": {
           "message": "침묵으로 일관했습니다. 논란은 1주일 후 잠잠해졌지만, 당신의 명예에 흠집이 남았습니다. 억울하지만 조직의 방침을 따랐습니다.",
           "stats": {
-            "reputation": -18,
-            "project_success": -6,
-            "staff_morale": -12,
-            "stress": 13,
-            "wellbeing": -18
+            "reputation": -7,
+            "project_success": -2,
+            "staff_morale": -4,
+            "stress": 5,
+            "wellbeing": -7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 13,
+            "local_friendly": 3
           }
         }
       },
@@ -2606,8 +2606,8 @@
             "reputation": 3,
             "project_success": 0,
             "staff_morale": 3,
-            "stress": 10,
-            "wellbeing": -12
+            "stress": 11,
+            "wellbeing": -13
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -2622,17 +2622,17 @@
         "result": {
           "message": "프로젝트 수혜자들의 감사 영상을 SNS에 올렸습니다. 여론이 반전되며 오히려 긍정적 평가를 받았습니다. 진실의 힘을 믿었습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 6,
-            "staff_morale": 10,
-            "stress": 8,
-            "wellbeing": 6
+            "reputation": 1,
+            "project_success": 1,
+            "staff_morale": 1,
+            "stress": 15,
+            "wellbeing": 1
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 0,
+            "local_friendly": 1
           }
         }
       }
@@ -2647,16 +2647,16 @@
         "result": {
           "message": "\"돈이 아니라 파트너십\"을 강조했습니다. 현지 정부 일부가 공감했지만, 대규모 인프라를 원하는 쪽이 더 강했습니다. 한계를 느낍니다.",
           "stats": {
-            "reputation": 3,
-            "project_success": 3,
-            "stress": 8,
+            "reputation": 5,
+            "project_success": 5,
+            "stress": 4,
             "wellbeing": -6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 8
           }
         }
       },
@@ -2665,18 +2665,18 @@
         "result": {
           "message": "중국 대사와 만나 역할 분담을 제안했습니다. 의외로 수용되었고, 한-중 공동 프로젝트가 만들어졌습니다. 창의적 접근이었습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 10,
-            "staff_morale": 6,
-            "budget": 6,
-            "stress": 6,
-            "wellbeing": 3
+            "reputation": 5,
+            "project_success": 5,
+            "staff_morale": 3,
+            "budget": 3,
+            "stress": 9,
+            "wellbeing": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 1,
+            "local_friendly": 4
           }
         }
       },
@@ -2685,17 +2685,17 @@
         "result": {
           "message": "중국과의 경쟁을 근거로 예산 증액을 요청했습니다. 본부가 일부 증액을 승인했지만, 여전히 중국의 1/3 수준입니다. 근본적 해결은 아닙니다.",
           "stats": {
-            "budget": 3,
-            "project_success": 6,
-            "reputation": 3,
-            "stress": 10,
-            "wellbeing": -6
+            "budget": 4,
+            "project_success": 8,
+            "reputation": 4,
+            "stress": 7,
+            "wellbeing": -5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 10,
+            "local_friendly": 3
           }
         }
       }
@@ -2710,17 +2710,17 @@
         "result": {
           "message": "현실적인 일정(3-4개 현장)을 제안했습니다. 본부가 수용했고, 내실있는 시찰이 되었습니다. 직원들도 덜 지쳤습니다.",
           "stats": {
-            "project_success": 6,
-            "staff_morale": 8,
-            "reputation": 3,
-            "stress": 3,
-            "wellbeing": 6
+            "project_success": 1,
+            "staff_morale": 1,
+            "reputation": 0,
+            "stress": 6,
+            "wellbeing": 1
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 1,
+            "local_friendly": 1
           }
         }
       },
@@ -2729,17 +2729,17 @@
         "result": {
           "message": "8개 현장을 모두 다녔습니다. 하루 18시간씩 이동했고, 피상적인 시찰이 되었습니다. 본부는 만족했지만, 모두가 지쳤습니다.",
           "stats": {
-            "reputation": 6,
-            "project_success": -6,
-            "staff_morale": -24,
-            "stress": 18,
-            "wellbeing": -24
+            "reputation": 10,
+            "project_success": -2,
+            "staff_morale": -8,
+            "stress": 6,
+            "wellbeing": -8
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 8
           }
         }
       },
@@ -2748,17 +2748,17 @@
         "result": {
           "message": "핵심 3개만 직접 방문하고 나머지는 상세 보고서로 대체했습니다. 효율적이었고, 본부도 이해했습니다. 균형잡힌 접근이었습니다.",
           "stats": {
-            "project_success": 6,
-            "reputation": 6,
-            "staff_morale": 6,
-            "stress": 6,
-            "wellbeing": 3
+            "project_success": 2,
+            "reputation": 2,
+            "staff_morale": 2,
+            "stress": 10,
+            "wellbeing": 1
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 2,
+            "local_friendly": 2
           }
         }
       }
@@ -2791,16 +2791,16 @@
         "result": {
           "message": "전액 인상을 승인했습니다. 직원들이 매우 감사해하며 헌신도가 올랐습니다. 인건비 집행률이 크게 상승했습니다. 인건비와 사업비는 별도 세목이므로 사업 예산에는 영향이 없습니다.",
           "stats": {
-            "staff_morale": 13,
+            "staff_morale": 10,
             "budget_personnel": 20,
-            "stress": 6,
-            "wellbeing": 3
+            "stress": 7,
+            "wellbeing": 2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -2809,16 +2809,16 @@
         "result": {
           "message": "본부를 설득해 특별 예산을 받아냈습니다. 20% 인상이 가능해졌고, 인건비 집행률도 적절히 상승했습니다. 사업비에는 영향이 없습니다. 노력한 보람이 있었습니다.",
           "stats": {
-            "staff_morale": 10,
-            "reputation": 3,
+            "staff_morale": 12,
+            "reputation": 4,
             "budget_personnel": 15,
-            "stress": 8,
-            "wellbeing": -6
+            "stress": 7,
+            "wellbeing": -5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
+            "principled": 9,
             "local_friendly": 2
           }
         }
@@ -2852,17 +2852,17 @@
         "result": {
           "message": "이해상충을 피하기 위해 해당 기업의 참여를 배제했습니다. 원칙을 지켰지만, 좋은 사업 기회를 놓쳤고 선배와의 관계도 어색해졌습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": -12,
-            "staff_morale": 3,
-            "stress": 6,
-            "wellbeing": -12
+            "reputation": 12,
+            "project_success": -6,
+            "staff_morale": 4,
+            "stress": 3,
+            "wellbeing": -10
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 3,
+            "local_friendly": 12
           }
         }
       },
@@ -2871,18 +2871,18 @@
         "result": {
           "message": "중립적인 외부 전문가 5명으로 심사위원회를 구성했습니다. 객관적 평가로 의혹을 차단했고, 최선의 업체가 선정되었습니다. 균형잡힌 접근이었습니다.",
           "stats": {
-            "reputation": 11,
-            "project_success": 10,
-            "budget": 3,
-            "staff_morale": 6,
-            "stress": 6,
-            "wellbeing": 3
+            "reputation": 5,
+            "project_success": 5,
+            "budget": 1,
+            "staff_morale": 3,
+            "stress": 9,
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 3,
+            "local_friendly": 3
           }
         }
       }
@@ -2897,16 +2897,16 @@
         "result": {
           "message": "성평등 원칙을 지켰습니다. 처음엔 반발이 있었지만, 그녀의 능력을 보며 현지 정부도 점차 인정했습니다. 변화의 씨앗을 뿌렸습니다.",
           "stats": {
-            "reputation": -6,
-            "project_success": 6,
-            "staff_morale": 10,
-            "stress": 10,
-            "wellbeing": 6
+            "reputation": -7,
+            "project_success": 5,
+            "staff_morale": 9,
+            "stress": 11,
+            "wellbeing": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
+            "principled": 7,
             "local_friendly": 2
           }
         }
@@ -2916,17 +2916,17 @@
         "result": {
           "message": "현지 관습을 존중했습니다. 사업은 원활히 진행되었지만, 여성 직원들이 실망했고 당신도 찜찜합니다. 원칙을 굽힌 것 같아 괴롭습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 8,
-            "staff_morale": -18,
-            "stress": 8,
-            "wellbeing": -18
+            "reputation": 11,
+            "project_success": 11,
+            "staff_morale": -11,
+            "stress": 5,
+            "wellbeing": -11
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 3,
+            "local_friendly": 11
           }
         }
       },
@@ -2935,18 +2935,18 @@
         "result": {
           "message": "남녀 공동 책임자 체제를 제안했습니다. 현지 정부도 수용했고, 실질적으로는 여성 전문가가 주도했습니다. 창의적 절충안이었습니다.",
           "stats": {
-            "reputation": 7,
-            "project_success": 10,
-            "staff_morale": 8,
-            "budget": -6,
-            "stress": 6,
-            "wellbeing": 6
+            "reputation": 4,
+            "project_success": 6,
+            "staff_morale": 5,
+            "budget": -8,
+            "stress": 8,
+            "wellbeing": 4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 3,
+            "local_friendly": 3
           }
         }
       }
@@ -2961,17 +2961,17 @@
         "result": {
           "message": "라마단을 존중해 일정을 2개월 연기했습니다. 현지 직원들이 깊이 감사했고, 착수식도 더 성대하게 진행되었습니다. 존중이 신뢰를 낳았습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": -12,
-            "staff_morale": 13,
-            "stress": 6,
-            "wellbeing": 3
+            "reputation": 6,
+            "project_success": -15,
+            "staff_morale": 8,
+            "stress": 8,
+            "wellbeing": 2
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 3,
+            "local_friendly": 3
           }
         }
       },
@@ -2980,17 +2980,17 @@
         "result": {
           "message": "오전 중심으로 일정을 재편성했습니다. 일정은 맞췄지만 모두가 피곤했고, 행사의 품질도 다소 떨어졌습니다. 문화적 배려가 부족했습니다.",
           "stats": {
-            "project_success": 3,
-            "reputation": -12,
-            "staff_morale": -18,
-            "stress": 13,
-            "wellbeing": -18
+            "project_success": 5,
+            "reputation": -4,
+            "staff_morale": -7,
+            "stress": 5,
+            "wellbeing": -7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 8
           }
         }
       },
@@ -2999,17 +2999,17 @@
         "result": {
           "message": "핵심 인원만으로 간소한 착수식을 진행했습니다. 본부는 아쉬워했지만 현지 직원들은 고마워했습니다. 균형을 찾았습니다.",
           "stats": {
-            "project_success": 6,
-            "reputation": 6,
-            "staff_morale": 8,
-            "stress": 8,
+            "project_success": 2,
+            "reputation": 2,
+            "staff_morale": 2,
+            "stress": 14,
             "wellbeing": 0
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 2,
+            "local_friendly": 2
           }
         }
       }
@@ -3024,17 +3024,17 @@
         "result": {
           "message": "실패를 투명하게 보고하고 사업을 종료했습니다. 본부에서 일부 질책했지만, 실패 보고서가 다른 사무소에 귀중한 교훈이 되었습니다. 정직함을 선택했습니다.",
           "stats": {
-            "reputation": 6,
-            "project_success": -18,
-            "staff_morale": 6,
-            "stress": 8,
-            "wellbeing": 3
+            "reputation": 2,
+            "project_success": -15,
+            "staff_morale": 2,
+            "stress": 14,
+            "wellbeing": -1
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 1,
+            "local_friendly": 1
           }
         }
       },
@@ -3043,17 +3043,17 @@
         "result": {
           "message": "추가 예산을 투입하고 접근법을 바꿨습니다. 6개월 후 일부 성과가 나왔지만, 여전히 투입 대비 성과는 미흡합니다. 매몰 비용의 함정에 빠졌을지도 모릅니다.",
           "stats": {
-            "project_success": 3,
-            "budget": -36,
-            "reputation": -6,
-            "stress": 13,
+            "project_success": 4,
+            "budget": -15,
+            "reputation": -4,
+            "stress": 10,
             "wellbeing": -12
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -3062,16 +3062,16 @@
         "result": {
           "message": "일부 긍정적인 부분만 강조해 보고했습니다. 당장은 책임을 피했지만, 직원들이 당신의 정직성을 의심하기 시작했습니다. 마음이 편치 않습니다.",
           "stats": {
-            "reputation": 3,
-            "project_success": -12,
-            "staff_morale": -24,
-            "stress": 10,
-            "wellbeing": -18
+            "reputation": 4,
+            "project_success": -10,
+            "staff_morale": -15,
+            "stress": 8,
+            "wellbeing": -9
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
+            "principled": 10,
             "local_friendly": 2
           }
         }
@@ -3087,18 +3087,18 @@
         "result": {
           "message": "사회적 기업 모델로 공식 인정하고 다른 단원에게도 확대했습니다. 본부가 혁신 사례로 선정했고, 규정도 개정되었습니다. 변화를 만들었습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 13,
-            "staff_morale": 10,
-            "budget": -10,
-            "stress": 6,
-            "wellbeing": 6
+            "reputation": 5,
+            "project_success": 6,
+            "staff_morale": 5,
+            "budget": -15,
+            "stress": 9,
+            "wellbeing": 3
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 2,
+            "local_friendly": 2
           }
         }
       },
@@ -3107,17 +3107,17 @@
         "result": {
           "message": "규정을 지키기 위해 사업을 중단시켰습니다. 법적으로는 맞았지만, 봉사단원들이 실망했고 현지 청년들도 일자리를 잃었습니다. 원칙주의의 한계를 느낍니다.",
           "stats": {
-            "reputation": -12,
-            "project_success": -18,
-            "staff_morale": -30,
-            "stress": 8,
-            "wellbeing": -18
+            "reputation": -2,
+            "project_success": -4,
+            "staff_morale": -6,
+            "stress": 2,
+            "wellbeing": -4
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 14,
+            "local_friendly": 4
           }
         }
       },
@@ -3126,17 +3126,17 @@
         "result": {
           "message": "사업을 현지 NGO에 이관했습니다. 규정도 지키고 사업도 계속됩니다. 단원은 자문 역할로 전환했습니다. 창의적 해법이었습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 10,
-            "staff_morale": 8,
-            "stress": 3,
-            "wellbeing": 6
+            "reputation": 1,
+            "project_success": 1,
+            "staff_morale": 1,
+            "stress": 6,
+            "wellbeing": 0
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 2,
-            "local_friendly": 8
+            "principled": 0,
+            "local_friendly": 1
           }
         }
       }
@@ -3151,17 +3151,17 @@
         "result": {
           "message": "어머니 곁으로 갔습니다. 부소장이 평가를 맡았고 결과는 양호했습니다. 가족이 더 중요하다는 것을 깨달았습니다. 직원들도 이해해주었습니다.",
           "stats": {
-            "project_success": -12,
-            "staff_morale": 6,
-            "reputation": -6,
-            "stress": 10,
-            "wellbeing": -24
+            "project_success": -10,
+            "staff_morale": 7,
+            "reputation": -5,
+            "stress": 9,
+            "wellbeing": -13
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 6,
+            "local_friendly": 6
           }
         }
       },
@@ -3170,11 +3170,11 @@
         "result": {
           "message": "평가를 완수한 후 귀국했습니다. 프로젝트는 성공적이었지만, 어머니 상태가 더 악화되어 평생 후회가 남았습니다. 무엇이 더 중요한지 혼란스럽습니다.",
           "stats": {
-            "project_success": 10,
-            "reputation": 6,
-            "staff_morale": -12,
-            "stress": 18,
-            "wellbeing": -30
+            "project_success": 11,
+            "reputation": 4,
+            "staff_morale": -15,
+            "stress": 15,
+            "wellbeing": -15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
@@ -3189,17 +3189,17 @@
         "result": {
           "message": "화상으로 핵심만 참여하고 즉시 귀국했습니다. 완벽하지는 않았지만 양쪽을 모두 챙겼습니다. 균형을 찾으려 노력했습니다.",
           "stats": {
-            "project_success": 3,
+            "project_success": 2,
             "reputation": 0,
-            "staff_morale": 3,
-            "stress": 13,
-            "wellbeing": -18
+            "staff_morale": 2,
+            "stress": 15,
+            "wellbeing": -12
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 3,
+            "local_friendly": 3
           }
         }
       }
@@ -3214,18 +3214,18 @@
         "result": {
           "message": "생명이 우선이라 판단해 즉시 지원했습니다. 1,000명을 구했습니다. 본부에서 절차 문제를 지적했지만, 언론과 현지 정부가 극찬하며 상황이 역전되었습니다.",
           "stats": {
-            "reputation": 18,
-            "project_success": 6,
-            "budget": -48,
-            "staff_morale": 10,
-            "stress": 10,
-            "wellbeing": 6
+            "reputation": 15,
+            "project_success": 5,
+            "budget": -15,
+            "staff_morale": 8,
+            "stress": 11,
+            "wellbeing": -15
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 4,
+            "local_friendly": 4
           }
         }
       },
@@ -3234,18 +3234,18 @@
         "result": {
           "message": "본부에 보고하고 승인을 기다렸습니다. 3일 후 승인이 났지만 이미 피해가 커진 후였습니다. 절차는 지켰지만 마음이 무겁습니다.",
           "stats": {
-            "reputation": -6,
-            "project_success": -6,
-            "budget": -36,
-            "staff_morale": -12,
-            "stress": 8,
-            "wellbeing": -18
+            "reputation": -2,
+            "project_success": -2,
+            "budget": -15,
+            "staff_morale": -5,
+            "stress": 3,
+            "wellbeing": 9
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 2
+            "principled": 13,
+            "local_friendly": 3
           }
         }
       },
@@ -3254,18 +3254,18 @@
         "result": {
           "message": "JICA, USAID 등과 공동 대응팀을 구성했습니다. 빠르게 지원했고 비용도 분담했습니다. 협력의 힘을 보여줬습니다.",
           "stats": {
-            "reputation": 13,
-            "project_success": 8,
-            "budget": -18,
-            "staff_morale": 8,
-            "stress": 6,
-            "wellbeing": 6
+            "reputation": 5,
+            "project_success": 3,
+            "budget": -15,
+            "staff_morale": 3,
+            "stress": 10,
+            "wellbeing": 7
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 2,
+            "local_friendly": 2
           }
         }
       }
@@ -3280,11 +3280,11 @@
         "result": {
           "message": "부소장과 개별 면담을 가졌습니다. 그의 입장을 경청하고 이해를 구하니, 표정이 부드러워졌습니다. 완전히 해결되지는 않았지만 관계가 개선되었습니다.",
           "stats": {
-            "staff_morale": 6,
-            "stress": -6
+            "staff_morale": 1,
+            "stress": -1
           },
           "deputy_morale": {
-            "principled": 15
+            "principled": 3
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3295,12 +3295,12 @@
         "result": {
           "message": "부소장의 전문성을 살릴 수 있는 새로운 프로젝트를 맡겼습니다. 그는 다시 활기를 되찾았고, 팀 전체가 긍정적인 변화를 느꼈습니다.",
           "stats": {
-            "staff_morale": 8,
-            "project_success": 6,
-            "stress": 3
+            "staff_morale": 2,
+            "project_success": 2,
+            "stress": 5
           },
           "deputy_morale": {
-            "principled": 20
+            "principled": 6
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3311,12 +3311,12 @@
         "result": {
           "message": "시간이 해결해 줄 것이라 생각했지만, 부소장의 불만은 다른 직원들에게 전파되기 시작했습니다. 사무실 분위기가 더욱 나빠졌습니다.",
           "stats": {
-            "staff_morale": -18,
-            "reputation": -6,
-            "stress": 6
+            "staff_morale": 3,
+            "reputation": 1,
+            "stress": -1
           },
           "deputy_morale": {
-            "principled": -10
+            "principled": 2
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3333,13 +3333,13 @@
         "result": {
           "message": "양측의 의견을 경청하고 절충안을 제시했습니다. \"현지 파트너와 협력하되, 본부 원칙도 지키자\"는 방향으로 합의했습니다. 갈등은 해소되었습니다.",
           "stats": {
-            "staff_morale": 6,
-            "project_success": 3,
-            "stress": 3
+            "staff_morale": -3,
+            "project_success": 1,
+            "stress": 5
           },
           "deputy_morale": {
-            "local_friendly": 10,
-            "principled": 10
+            "local_friendly": 5,
+            "principled": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3350,13 +3350,13 @@
         "result": {
           "message": "현지 파트너와의 신뢰 관계가 더욱 돈독해졌습니다. 하지만 김태영 부소장은 불만을 품게 되었습니다.",
           "stats": {
-            "reputation": 8,
+            "reputation": 9,
             "project_success": -5,
-            "staff_morale": -3
+            "staff_morale": -1
           },
           "deputy_morale": {
-            "local_friendly": 20,
-            "principled": -15
+            "local_friendly": 15,
+            "principled": -14
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3367,13 +3367,13 @@
         "result": {
           "message": "본부 방침과 원칙에 따라 프로젝트를 재정비했습니다. 절차는 명확해졌지만, 현지 파트너들이 불만을 표시하고 협력이 어려워졌습니다.",
           "stats": {
-            "project_success": 5,
-            "reputation": -8,
-            "staff_morale": -3
+            "project_success": 6,
+            "reputation": -6,
+            "staff_morale": 2
           },
           "deputy_morale": {
-            "principled": 20,
-            "local_friendly": -15
+            "principled": 15,
+            "local_friendly": -11
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3390,12 +3390,12 @@
         "result": {
           "message": "현지 방식을 존중하며 천천히 진행하니, 직원들과 현지 파트너들이 마음을 열기 시작했습니다. 시간은 걸리지만 탄탄한 기반을 다지고 있습니다.",
           "stats": {
-            "staff_morale": 8,
-            "stress": -12,
-            "wellbeing": 6
+            "staff_morale": 2,
+            "stress": -3,
+            "wellbeing": 1
           },
           "deputy_morale": {
-            "local_friendly": 15
+            "local_friendly": 3
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3406,13 +3406,13 @@
         "result": {
           "message": "효율적으로 일을 처리했지만, 현지 직원들이 거부감을 느꼈습니다. \"또 한국에서 온 사람이 우리 방식을 무시하네\"라는 불만이 들립니다.",
           "stats": {
-            "project_success": 3,
-            "reputation": -12,
-            "staff_morale": -18,
-            "stress": 8
+            "project_success": 6,
+            "reputation": 1,
+            "staff_morale": 2,
+            "stress": -1
           },
           "deputy_morale": {
-            "local_friendly": -15
+            "local_friendly": 2
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3423,14 +3423,14 @@
         "result": {
           "message": "다른 국가의 선배 소장들과 화상회의를 가졌습니다. 그들의 경험담이 큰 도움이 되었고, 실수를 줄일 수 있었습니다. 네트워크의 중요성을 깨달았습니다.",
           "stats": {
-            "reputation": 3,
-            "stress": -18,
-            "wellbeing": 6,
-            "staff_morale": 3
+            "reputation": 1,
+            "stress": -5,
+            "wellbeing": 2,
+            "staff_morale": 1
           },
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 1,
+            "local_friendly": 1
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3447,13 +3447,13 @@
         "result": {
           "message": "밤을 새워 모든 서류를 점검하고 준비했습니다. 감사 결과 경미한 지적 몇 건만 있었고, 감사팀도 만족했습니다. 본부의 신뢰를 얻었습니다.",
           "stats": {
-            "reputation": 10,
+            "reputation": 5,
             "budget_execution_rate": 10,
-            "stress": 10,
-            "wellbeing": -18
+            "stress": 15,
+            "wellbeing": -15
           },
           "deputy_morale": {
-            "principled": 15
+            "principled": 13
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3464,14 +3464,14 @@
         "result": {
           "message": "부소장과 직원들에게 감사 준비를 분담했습니다. 팀워크가 빛을 발해 무난히 감사를 통과했습니다. 직원들의 역량이 돋보였습니다.",
           "stats": {
-            "reputation": 8,
-            "staff_morale": 8,
-            "stress": 3,
-            "wellbeing": 3
+            "reputation": -2,
+            "staff_morale": -2,
+            "stress": 7,
+            "wellbeing": 6
           },
           "deputy_morale": {
-            "principled": 8,
-            "local_friendly": 8
+            "principled": -2,
+            "local_friendly": -2
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3482,13 +3482,13 @@
         "result": {
           "message": "자신감 있게 감사를 맞이했지만, 예상치 못한 부분에서 문제가 발견되었습니다. 감사팀의 지적 사항이 많았고, 본부에 보고되었습니다.",
           "stats": {
-            "reputation": -24,
+            "reputation": -4,
             "budget_execution_rate": -10,
-            "stress": 13,
-            "wellbeing": -12
+            "stress": 2,
+            "wellbeing": -3
           },
           "deputy_morale": {
-            "principled": -15
+            "principled": -2
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3505,18 +3505,18 @@
         "result": {
           "message": "마지막 3개월간 부족한 부분에 역량을 집중했습니다. 직원들도 헌신적으로 일했고, 결국 모든 지표를 달성했습니다. 하지만 모두가 지쳐 있습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 10,
+            "reputation": 15,
+            "project_success": 15,
             "budget_execution_rate": 15,
-            "staff_morale": -12,
-            "stress": 13,
-            "wellbeing": -24
+            "staff_morale": -5,
+            "stress": 5,
+            "wellbeing": -9
           },
           "advance_time": false,
           "next": "continue_main_scenario",
           "deputy_morale": {
-            "principled": 5,
-            "local_friendly": 5
+            "principled": 8,
+            "local_friendly": 8
           }
         }
       },
@@ -3525,14 +3525,14 @@
         "result": {
           "message": "본부에 현지 상황을 상세히 보고하고 평가 기준 조정을 건의했습니다. 일부가 받아들여져 현실적인 목표로 조정되었습니다. 합리적인 접근이었습니다.",
           "stats": {
-            "reputation": 6,
-            "stress": -12,
-            "wellbeing": 3,
-            "staff_morale": 6
+            "reputation": 4,
+            "stress": -8,
+            "wellbeing": 2,
+            "staff_morale": 4
           },
           "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 8
+            "principled": 6,
+            "local_friendly": 5
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3543,14 +3543,14 @@
         "result": {
           "message": "단기 지표보다 사업의 지속가능성과 현지 역량 강화에 집중했습니다. 평가는 중위권이었지만, 현지에서는 \"진정한 협력자\"로 기억될 것입니다.",
           "stats": {
-            "reputation": 3,
-            "project_success": 8,
-            "staff_morale": 10,
-            "stress": -12,
-            "wellbeing": 6
+            "reputation": 1,
+            "project_success": 4,
+            "staff_morale": 5,
+            "stress": -5,
+            "wellbeing": 3
           },
           "deputy_morale": {
-            "local_friendly": 20
+            "local_friendly": 9
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3569,10 +3569,11 @@
           "stats": {
             "reputation": 10,
             "project_success": 6,
-            "staff_morale": 6
+            "staff_morale": 12,
+            "wellbeing": 0
           },
           "deputy_morale": {
-            "local_friendly": 20
+            "local_friendly": 15
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3583,12 +3584,14 @@
         "result": {
           "message": "한국이 강점을 가진 ICT, 새마을운동, 직업훈련 중심의 CPS를 제안했습니다. 본부가 크게 만족했고, 예산 증액 가능성도 언급되었습니다.",
           "stats": {
-            "reputation": 8,
-            "budget_execution_rate": 15,
-            "project_success": 8
+            "reputation": 10,
+            "budget": 10,
+            "project_success": 8,
+            "staff_morale": 6,
+            "wellbeing": -3
           },
           "deputy_morale": {
-            "principled": 10
+            "principled": 15
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3599,15 +3602,15 @@
         "result": {
           "message": "과도한 목표보다 실현 가능한 사업 중심의 CPS를 제안했습니다. \"소장의 현장 경험이 담긴 균형잡힌 제안\"이라는 평가를 받았습니다.",
           "stats": {
-            "reputation": 10,
-            "project_success": 7,
-            "staff_morale": 8,
-            "stress": -12,
-            "wellbeing": 6
+            "reputation": 7,
+            "project_success": 5,
+            "staff_morale": 5,
+            "stress": -8,
+            "wellbeing": 5
           },
           "deputy_morale": {
-            "principled": 10,
-            "local_friendly": 10
+            "principled": 7,
+            "local_friendly": 7
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3627,11 +3630,11 @@
         "result": {
           "message": "부소장을 찾아가 진솔한 대화를 나눴습니다. \"제가 소통이 부족했습니다.\" 당신의 솔직함에 부소장도 마음을 열었고, 전보 신청을 철회했습니다. 하지만 관계 회복에는 시간이 필요합니다.",
           "stats": {
-            "staff_morale": 8,
-            "stress": 12
+            "staff_morale": -3,
+            "stress": 15
           },
           "deputy_morale": {
-            "principled": 20
+            "principled": 3
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3642,10 +3645,10 @@
         "result": {
           "message": "부소장의 전보를 받아들였습니다. 새로운 부소장이 왔지만, 조직에는 \"소장님이 사람을 버렸다\"는 인식이 퍼졌고, 직원들의 신뢰가 크게 떨어졌습니다.",
           "stats": {
-            "staff_morale": -18,
-            "reputation": -12,
-            "project_success": -12,
-            "stress": 8
+            "staff_morale": -2,
+            "reputation": -4,
+            "project_success": -4,
+            "stress": 2
           },
           "deputy_morale": {
             "principled": 0,
@@ -3670,14 +3673,14 @@
         "result": {
           "message": "밤을 새워 추가 제안서를 작성해 제출했습니다. 일주일 후, 정부로부터 사업 확대 승인이 떨어졌습니다. 이수진 부소장의 네트워크가 만든 기적입니다.",
           "stats": {
-            "project_success": 20,
-            "reputation": 15,
-            "budget": 25,
-            "staff_morale": -8,
-            "stress": 15
+            "project_success": 14,
+            "reputation": 11,
+            "budget": 14,
+            "staff_morale": -11,
+            "stress": 13
           },
           "deputy_morale": {
-            "local_friendly": 15
+            "local_friendly": 11
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3688,11 +3691,11 @@
         "result": {
           "message": "\"이번엔 준비가 부족합니다. 다음 기회를 더 잘 준비하죠.\" 이수진 부소장이 이해하며 고개를 끄덕입니다. 무리하지 않은 현명한 판단이었습니다.",
           "stats": {
-            "staff_morale": 5,
-            "reputation": 3
+            "staff_morale": 11,
+            "reputation": 7
           },
           "deputy_morale": {
-            "local_friendly": 5
+            "local_friendly": 11
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3713,12 +3716,12 @@
         "result": {
           "message": "본부에 현지 문화를 설명하고 부소장을 적극 옹호했습니다. 조사 결과 문제가 없었고, 이수진 부소장은 감사했지만 본부는 당신의 '느슨한 관리'를 우려합니다.",
           "stats": {
-            "staff_morale": 10,
-            "reputation": -12,
-            "project_success": 3
+            "staff_morale": 6,
+            "reputation": -15,
+            "project_success": 2
           },
           "deputy_morale": {
-            "local_friendly": 15
+            "local_friendly": 10
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3729,13 +3732,13 @@
         "result": {
           "message": "부소장에게 본부 규정을 상기시키고 행동 수정을 요구했습니다. 그는 서운해했지만 따랐고, 본부는 당신의 원칙적 대응을 높이 평가했습니다.",
           "stats": {
-            "reputation": 10,
-            "staff_morale": -8,
-            "project_success": -6
+            "reputation": 14,
+            "staff_morale": -5,
+            "project_success": -4
           },
           "deputy_morale": {
-            "local_friendly": -10,
-            "principled": 5
+            "local_friendly": -6,
+            "principled": 7
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3756,12 +3759,12 @@
         "result": {
           "message": "\"좋은 지적입니다. 내일 오전에 실무진 점검 회의를 하죠.\" 부소장이 안도의 표정을 짓습니다. 회의를 통해 병목 구간을 파악하고 실질적인 개선안을 마련했습니다.",
           "stats": {
-            "project_success": 8,
-            "staff_morale": 6,
+            "project_success": 7,
+            "staff_morale": 5,
             "stress": 5
           },
           "deputy_morale": {
-            "principled": 12
+            "principled": 11
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3772,12 +3775,12 @@
         "result": {
           "message": "\"부소장님이 현장을 제일 잘 아시니, 개선안을 정리해주시겠습니까?\" 김태영 부소장이 책임감 있게 현장을 재점검하고 구체적인 해결 방안을 제시했습니다.",
           "stats": {
-            "project_success": 10,
-            "staff_morale": 4,
-            "reputation": 3
+            "project_success": 5,
+            "staff_morale": 2,
+            "reputation": 2
           },
           "deputy_morale": {
-            "principled": 15
+            "principled": 8
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3788,13 +3791,13 @@
         "result": {
           "message": "부소장의 의견을 토대로 본부에 현장 상황을 보고하고 지원을 요청했습니다. 본부에서 일부 지원을 승인했지만, \"관리 부족\"이라는 지적도 받았습니다.",
           "stats": {
-            "project_success": 6,
+            "project_success": 10,
             "budget_execution_rate": 5,
-            "reputation": -4,
-            "stress": 8
+            "reputation": -1,
+            "stress": 3
           },
           "deputy_morale": {
-            "principled": 8
+            "principled": 13
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3815,8 +3818,8 @@
         "result": {
           "message": "\"고맙습니다. 바로 검토하죠.\" 부소장과 함께 서류를 꼼꼼히 점검하고 미비한 부분을 보완했습니다. 절차가 투명하게 정리되면서 향후 감사 리스크가 줄어들었습니다.",
           "stats": {
-            "project_success": -3,
-            "stress": 8
+            "project_success": -2,
+            "stress": 2
           },
           "deputy_morale": {
             "local_friendly": 15
@@ -3830,13 +3833,13 @@
         "result": {
           "message": "이수진 부소장이 현지 파트너와 협의하여 서류를 정리했습니다. \"현지 방식을 존중하면서도 본부 기준을 충족시켰습니다.\" 양측 모두 만족하는 절충안이었습니다.",
           "stats": {
-            "reputation": 8,
-            "project_success": 5,
-            "staff_morale": 5
+            "reputation": 2,
+            "project_success": 1,
+            "staff_morale": 1
           },
           "deputy_morale": {
-            "local_friendly": 18,
-            "principled": 5
+            "local_friendly": 4,
+            "principled": 1
           },
           "advance_time": false,
           "next": "continue_main_scenario"
@@ -3847,13 +3850,13 @@
         "result": {
           "message": "\"파트너를 믿어봅시다. 문제되면 그때 설명하죠.\" 부소장이 불안한 표정을 지었습니다. 당장은 일정을 지켰지만, 나중에 문제가 불거질 리스크를 안게 되었습니다.",
           "stats": {
-            "project_success": 3,
-            "reputation": -8,
+            "project_success": 6,
+            "reputation": -1,
             "stress": -5
           },
           "deputy_morale": {
-            "local_friendly": -8,
-            "principled": -5
+            "local_friendly": -1,
+            "principled": -1
           },
           "advance_time": false,
           "next": "continue_main_scenario"
