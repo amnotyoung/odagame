@@ -535,9 +535,79 @@ class GeminiIntegration:
         self.enabled = GEMINI_AVAILABLE and api_key is not None
         if self.enabled:
             genai.configure(api_key=api_key)
-            self.model = genai.GenerativeModel('gemini-2.5-flash-lite')
+            # temperature를 높여 더 창의적이고 다양한 시나리오 생성
+            self.model = genai.GenerativeModel(
+                'gemini-2.5-flash-lite',
+                generation_config=genai.types.GenerationConfig(
+                    temperature=1.2,  # 높은 temperature로 다양성 증가
+                )
+            )
         else:
             self.model = None
+
+        # 시나리오 테마 카테고리 정의
+        self.scenario_themes = [
+            {
+                'name': '외교적 위기',
+                'keywords': ['협력국 정부', '장관', '대사관', '외교 갈등', '국제 관계', '정치적 압력'],
+                'description': '협력국 정부나 국제기구와의 외교적 갈등이나 협상 상황'
+            },
+            {
+                'name': '예산 및 재정',
+                'keywords': ['예산 부족', '집행률', '회계 감사', '재정 위기', '본부 압박', '예산 삭감'],
+                'description': '예산 집행, 재정 관리, 본부와의 예산 협의 관련 상황'
+            },
+            {
+                'name': '인사 및 조직',
+                'keywords': ['직원 갈등', '채용', '해고', '승진', '팀워크', '리더십', '부서 간 갈등'],
+                'description': '조직 내 인사 문제, 직원 간 갈등, 팀 관리 관련 상황'
+            },
+            {
+                'name': '프로젝트 위기',
+                'keywords': ['프로젝트 실패', '계약 파기', '파트너 배신', '사업 중단', '긴급 상황'],
+                'description': '진행 중인 프로젝트의 위기나 예상치 못한 문제 발생'
+            },
+            {
+                'name': '혁신과 기회',
+                'keywords': ['신규 사업', '혁신', '파트너십', 'IT 도입', '디지털 전환', '새로운 접근'],
+                'description': '새로운 기회 발견, 혁신적 시도, 전략적 파트너십 구축'
+            },
+            {
+                'name': '윤리적 딜레마',
+                'keywords': ['부패', '뇌물', '윤리', '갈등', '도덕적 선택', '투명성'],
+                'description': '윤리적 판단이 필요한 복잡한 상황, 가치관의 충돌'
+            },
+            {
+                'name': '긴급 위기 관리',
+                'keywords': ['재난', '사고', '안전', '긴급 대피', '의료 위기', '테러', '자연재해'],
+                'description': '직원이나 봉사단원의 안전과 관련된 긴급 상황'
+            },
+            {
+                'name': '현지 문화 및 사회',
+                'keywords': ['문화 충돌', '전통', '종교', '관습', '현지 사회', '커뮤니티'],
+                'description': '현지 문화와 전통, 사회적 맥락을 이해해야 하는 상황'
+            },
+            {
+                'name': '전략 및 계획',
+                'keywords': ['CPS', '국별협력전략', '중장기 계획', '우선순위', '전략 수립'],
+                'description': '사무소의 중장기 전략이나 우선순위 설정이 필요한 상황'
+            },
+            {
+                'name': '네트워킹 및 협업',
+                'keywords': ['UN', 'NGO', '타 공여국', '민관협력', '다자협력', '컨소시엄'],
+                'description': '다른 기관, 공여국, NGO와의 협력 및 네트워킹 상황'
+            },
+            {
+                'name': '평가 및 보고',
+                'keywords': ['성과 평가', '본부 보고', '감사', '모니터링', '사업 평가'],
+                'description': '프로젝트 평가, 본부 보고, 외부 감사 등의 상황'
+            },
+            {
+                'name': '개인적 갈등',
+                'keywords': ['번아웃', '가족', '건강', '스트레스', '개인 생활', '일과 삶'],
+                'description': '소장 개인의 건강, 가족, 스트레스 등 개인적 어려움'
+            }
+        ]
 
     def generate_scenario(self, game_state: GameState) -> Optional[Dict]:
         """게임 상태를 기반으로 동적 시나리오 생성"""
@@ -548,6 +618,20 @@ class GeminiIntegration:
 
         # 플레이어 스타일 분석
         style_desc = self._analyze_player_style(game_state.player_style)
+
+        # 무작위 테마 선택 (다양성 확보)
+        import random
+        selected_theme = random.choice(self.scenario_themes)
+
+        # 현재 시기에 따른 계절/상황 분석
+        period = game_state.period
+        season_context = self._get_season_context(period)
+
+        # 현재 스탯 분석 (약점 파악)
+        weak_stats = self._identify_weak_stats(game_state)
+
+        # 최근 방문한 시나리오를 많이 추적 (중복 방지)
+        recent_scenarios = ', '.join(summary['visited_scenarios'][-8:]) if summary['visited_scenarios'] else '없음'
 
         prompt = f"""
 당신은 KOICA 해외사무소장 시뮬레이터 게임의 시나리오 작가입니다.
@@ -594,6 +678,7 @@ class GeminiIntegration:
 
 ## 현재 게임 상태
 - 시기: {summary['current_stats']['year']}년차 {summary['current_stats']['period']}기 (격월 단위: 1=1-2월, 2=3-4월, 3=5-6월, 4=7-8월, 5=9-10월, 6=11-12월)
+- 계절/상황: {season_context}
 - 평판: {summary['current_stats']['reputation']}/100
 - 예산 집행률: {summary['current_stats']['budget_execution_rate']}/100 (80-100%가 이상적)
 - 직원 만족도: {summary['current_stats']['staff_morale']}/100
@@ -602,25 +687,36 @@ class GeminiIntegration:
 ## 플레이어 성향
 {style_desc}
 
-## 최근 방문한 시나리오
-{', '.join(summary['visited_scenarios'][-3:])}
+## 현재 약점 (우선적으로 다루면 좋음)
+{weak_stats}
+
+## 최근 방문한 시나리오 (절대 중복 금지!)
+{recent_scenarios}
+
+## 이번 시나리오 테마
+**테마**: {selected_theme['name']}
+**설명**: {selected_theme['description']}
+**관련 키워드**: {', '.join(selected_theme['keywords'][:4])}
 
 ## 요구사항
-1. KOICA 해외사무소장이 직면하는 현실적인 상황을 제시하세요
-2. 사무소장의 역할(사업 발굴, 파트너십, 인력 관리, 전략 수립 등)을 반영하세요
-3. 플레이어의 현재 상태(특히 낮은 스탯)를 고려한 시나리오를 만드세요
-4. 4개의 선택지를 제공하되, 각각 명확한 장단점이 있어야 합니다
-5. **중요: 선택지 텍스트(choice.text)는 최대 80자 이내로 간결하게 작성하세요**
+1. **반드시** 위에 지정된 테마({selected_theme['name']})를 중심으로 시나리오를 작성하세요
+2. 계절/시기({season_context})를 시나리오에 자연스럽게 반영하세요
+3. **최근 방문한 시나리오와 절대 유사하지 않은**, 완전히 새롭고 독창적인 상황을 만드세요
+4. 플레이어의 약점({weak_stats})을 고려하되, 너무 노골적이지 않게 반영하세요
+5. 4개의 선택지는 서로 **완전히 다른 접근법**을 제시해야 합니다:
+   - 적극적/소극적, 단기적/장기적, 내부/외부, 협력/독립 등 다양한 축으로 분산
+6. **중요: 선택지 텍스트(choice.text)는 최대 80자 이내로 간결하게 작성하세요**
    - 핵심 행동만 명시하고, 상세한 설명은 생략하세요
    - 예: "현지 파트너와 긴급 협의를 진행한다" (O)
    - 예: "현지 파트너와 긴급 협의를 진행하여 문제의 원인을 파악하고 해결책을 모색한다" (X - 너무 김)
-6. 각 선택의 결과로 스탯 변화를 제안하세요 (reputation, budget, staff_morale, project_success)
+7. 각 선택의 결과로 스탯 변화를 제안하세요 (reputation, budget, staff_morale, project_success)
    - budget 값은 예산 집행률 변화를 의미 (양수=집행률 상승, 음수=집행률 하락)
-7. 결과 메시지(result.message)는 3-5문장으로 풍부하게 작성하세요:
+8. 결과 메시지(result.message)는 3-5문장으로 풍부하게 작성하세요:
    - 선택한 행동이 어떻게 실행되었는지
    - 이해관계자들(직원, 파트너, 본부 등)의 구체적인 반응
    - 최종적으로 어떤 결과와 영향이 발생했는지
    - 인과관계를 명확히 보여주세요
+9. **창의성**: 예측 가능한 뻔한 시나리오가 아닌, 흥미롭고 예상치 못한 전개를 만드세요
 
 ## 응답 형식 (반드시 JSON 형식으로)
 {{
@@ -786,6 +882,42 @@ class GeminiIntegration:
         except Exception as e:
             print(f"Error generating personalized ending: {e}")
             return ""
+
+    def _get_season_context(self, period: int) -> str:
+        """시기에 따른 계절/상황 설명"""
+        contexts = {
+            1: "연초 (1-2월) - 새해 계획 수립 시기, 예산 배정 준비",
+            2: "봄 (3-4월) - 신규 프로젝트 착수, 직원 이동 시즌",
+            3: "초여름 (5-6월) - 상반기 평가 준비, 본부 보고 시즌",
+            4: "여름 (7-8월) - 휴가 시즌, 프로젝트 중간 점검",
+            5: "가을 (9-10월) - 하반기 사업 가속화, 예산 집행 마감 압박",
+            6: "연말 (11-12월) - 연말 결산, 차년도 계획 수립, 예산 마감"
+        }
+        return contexts.get(period, f"{period}기")
+
+    def _identify_weak_stats(self, game_state: GameState) -> str:
+        """현재 약점 파악"""
+        weak_areas = []
+
+        if game_state.reputation < 50:
+            weak_areas.append("평판 저하 (외부 신뢰 회복 필요)")
+        if game_state.budget_execution_rate < 60:
+            weak_areas.append("예산 집행률 저조 (80% 이상 목표)")
+        elif game_state.budget_execution_rate > 95:
+            weak_areas.append("예산 과다 집행 위험 (통제 필요)")
+        if game_state.staff_morale < 50:
+            weak_areas.append("직원 사기 저하 (내부 화합 필요)")
+        if game_state.project_success < 50:
+            weak_areas.append("프로젝트 성과 부진 (성과 개선 필요)")
+        if game_state.stress > 70:
+            weak_areas.append("높은 스트레스 (개인 건강 관리 필요)")
+        if game_state.wellbeing < 40:
+            weak_areas.append("낮은 웰빙 (휴식과 회복 필요)")
+
+        if not weak_areas:
+            return "현재 모든 지표가 안정적입니다. 균형 유지가 중요합니다."
+
+        return ", ".join(weak_areas[:3])  # 최대 3개까지만 표시
 
     def _extract_json(self, text: str) -> Optional[Dict]:
         """텍스트에서 JSON 추출"""
