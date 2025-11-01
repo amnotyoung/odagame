@@ -415,6 +415,17 @@ class GameState:
             self.period = 1
             self.year += 1
 
+        # 매 격월마다 자동 예산 집행 (현실적인 공공 프로젝트 운영)
+        # 인건비: 급여 등 정기 지출 (격월당 +7)
+        self.budget_execution_rates['인건비'] = min(100,
+            self.budget_execution_rates['인건비'] + 7)
+        # 사업비: 프로젝트 진행에 따른 지출 (격월당 +4)
+        self.budget_execution_rates['사업비'] = min(100,
+            self.budget_execution_rates['사업비'] + 4)
+        # 운영비: 사무소 운영 비용 (격월당 +6)
+        self.budget_execution_rates['운영비'] = min(100,
+            self.budget_execution_rates['운영비'] + 6)
+
     def check_game_over(self):
         """게임 오버 조건 확인"""
         if self.reputation <= 0:
