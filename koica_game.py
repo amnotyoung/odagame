@@ -670,9 +670,11 @@ class GeminiIntegration:
 **본부**: 전체 예산 확보 및 사업별로 각 해외사무소에 배정
 **해외사무소**: 본부로부터 사업별로 배정받은 예산을 집행하는 역할
 **중요**:
-- 해외사무소는 A 사업 예산을 B 사업으로 재배분할 권한 없음
+- 해외사무소는 A 사업 예산을 B 사업으로 임의로 재배분할 권한 없음
 - 해외사무소는 자체적으로 예산을 늘릴 수 없음
-- 추가 예산이 필요하면 본부에 요청하는 것이 정상적이고 자연스러운 절차
+- **예산 증액 요청 또는 예산 전용(목적 변경) 요청은 본부 지역실에 하는 것이 정상적이고 당연한 절차임**
+- 요청한다고 해서 항상 승인되는 것은 아니며, 본부 지역실이 검토 후 결과를 사무소에 통보함
+- **요청 자체는 문제가 없고 오히려 적극적인 사업 관리의 일환임. 단, 승인 여부는 본부의 판단**
 
 ## 사무소장의 6대 핵심 역할과 권한
 1. 사업 발굴 및 형성 (CPS 수립, PCP 검토)
@@ -1435,16 +1437,23 @@ class KOICAGame:
         """시나리오 표시 (AI 생성 지원)"""
         # AI 모드에서 'ai_generated' 시나리오 ID인 경우 동적 생성
         if self.ai_mode and scenario_id == 'ai_generated':
-            print("\n🤖 AI가 맞춤형 시나리오를 생성중입니다...\n")
-            scenario = self.gemini.generate_scenario(self.state)
-
-            if not scenario:
-                print("AI 시나리오 생성 실패. 기본 시나리오를 사용합니다.")
-                # 폴백: 랜덤 시나리오 선택
-                import random
-                fallback_scenarios = ['budget_crisis_1', 'cultural_conflict', 'staff_problem_1']
-                scenario_id = random.choice(fallback_scenarios)
+            # 마지막 기간 (3년차 6기 = period_12)에는 클래식 모드와 동일한 선택지 제공
+            period_number = (self.state.year - 1) * 6 + self.state.period
+            if period_number >= 12:
+                print("\n📅 임기가 종료되어 마지막 선택의 시간입니다...\n")
+                scenario_id = 'period_12'
                 scenario = self.scenarios.get(scenario_id)
+            else:
+                print("\n🤖 AI가 맞춤형 시나리오를 생성중입니다...\n")
+                scenario = self.gemini.generate_scenario(self.state)
+
+                if not scenario:
+                    print("AI 시나리오 생성 실패. 기본 시나리오를 사용합니다.")
+                    # 폴백: 랜덤 시나리오 선택
+                    import random
+                    fallback_scenarios = ['budget_crisis_1', 'cultural_conflict', 'staff_problem_1']
+                    scenario_id = random.choice(fallback_scenarios)
+                    scenario = self.scenarios.get(scenario_id)
         else:
             scenario = self.scenarios.get(scenario_id)
 
